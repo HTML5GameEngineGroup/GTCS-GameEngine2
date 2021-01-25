@@ -1,0 +1,19 @@
+Problems with previous approach:
+- weird dependency relationship (between Engine and Shader, between Core and VertexBuffer)
+    - gl is treated as global, should be explicit
+- unclear separation of responsibilities (between Shader and VertexBuffer)
+
+How I solve them:
+- use modules (now part of JS language, supported by all browsers except IE)
+- engine is responsible for buffers, shaders is responsible for uniforms, shader configs.
+    - this could probably change. Engine responsible for uniforms?
+
+Higher-cost proposed changes:
+- use webpack 
+    - allow us to bundle in glsl, but adds build complexity
+- we anyway might want to switch to npm to manage dependencies
+    - i looked ahead. we have an external dependency for matrix math in next chapter
+
+Other issues:
+- XMLHTTPRequest is bad (solved by using webpack, or refactoring to fetch)
+- MyGame should not be using "this". There's a better (easier) way to do singletons is JS
