@@ -4,10 +4,12 @@
  * Implements a SimpleShader object.
  * 
  */
+
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as core from './Engine_Core.js';
-import * as vertexBuffer from './Engine_VertexBuffer.js';
+import * as map from './Core/Resources/Engine_ResourceMap.js';
+import * as core from './Core/Engine_Core.js';
+import * as vertexBuffer from './Core/Engine_VertexBuffer.js';
 
 class SimpleShader {
 
@@ -16,14 +18,16 @@ class SimpleShader {
         // instance variables
         // Convention: all instance variables: mVariables
         this.mCompiledShader = null;  // reference to the compiled shader in webgl context  
-        this.mVertexPosition = null; // reference to VertexPosition within the shader
+        this.mVertexPosition = null; // reference to SquareVertexPosition within the shader
         this.mPixelColor = null;                    // reference to the pixelColor uniform in the fragment shader
+        this.mModelTransform = null;                // reference to model transform matrix in vertex shader
+        this.mViewProjTransform = null;             // reference to the View/Projection matrix in the vertex shader
 
         // start of constructor code
         // 
         // Step A: load and compile vertex and fragment shaders
-        this.mVertexShader = loadAndCompileShader(vertexShaderPath, core.gGL.VERTEX_SHADER);
-        this.mFragmentShader = loadAndCompileShader(fragmentShaderPath, core.gGL.FRAGMENT_SHADER);
+        this.mVertexShader = compileShader(vertexShaderPath, core.gGL.VERTEX_SHADER);
+        this.mFragmentShader = compileShader(fragmentShaderPath, core.gGL.FRAGMENT_SHADER);
 
         // Step B: Create and link the shaders into a program.
         this.mCompiledShader = core.gGL.createProgram();
@@ -37,60 +41,53 @@ class SimpleShader {
             return null;
         }
 
-        // Step D: Gets a reference to the aVertexPosition attribute within the shaders.
+        // Step D: Gets a reference to the aSquareVertexPosition attribute within the shaders.
         this.mVertexPosition = core.gGL.getAttribLocation(
             this.mCompiledShader, "aVertexPosition");
 
-        // Step E: Gets a reference to the uniform variable uPixelColor in the fragment shader
+        // Step E: Gets references to the uniform variables: uPixelColor, uModelTransform, and uViewProjTransform
         this.mPixelColor = core.gGL.getUniformLocation(this.mCompiledShader, "uPixelColor");
+        this.mModelTransform = core.gGL.getUniformLocation(this.mCompiledShader, "uModelTransform");
+        this.mViewProjTransform = core.gGL.getUniformLocation(this.mCompiledShader, "uViewProjTransform");
     }
 
-    
     // Activate the shader for rendering
-    activateShader(pixelColor) {
+    activateShader(pixelColor, vpMatrix) {
         core.gGL.useProgram(this.mCompiledShader);
+        core.gGL.uniformMatrix4fv(this.mViewProjTransform, false, vpMatrix);
         core.gGL.bindBuffer(core.gGL.ARRAY_BUFFER, vertexBuffer.mGLVertexBuffer);
         core.gGL.vertexAttribPointer(this.mVertexPosition,
             3,              // each element is a 3-float (x,y.z)
-            core.gGL.FLOAT,      // data type is FLOAT
+            core.gGL.FLOAT,       // data type is FLOAT
             false,          // if the content is normalized vectors
             0,              // number of bytes to skip in between elements
             0);             // offsets to the first element
         core.gGL.enableVertexAttribArray(this.mVertexPosition);
         core.gGL.uniform4fv(this.mPixelColor, pixelColor);
-    }
+    };
+
+    // Loads per-object model transform to the vertex shader
+    loadObjectTransform(modelTransformMatrix) {
+            // loads the modelTransform matrix into webGL to be used by the vertex shader
+        core.gGL.uniformMatrix4fv(this.mModelTransform, false, modelTransformMatrix);
+    };
     
-    releaseResources() {
+    cleanUp() {
         core.gGL.detachShader(this.mCompiledShader, this.mVertexShader);
         core.gGL.detachShader(this.mCompiledShader, this.mFragmentShader);
         core.gGL.deleteShader(this.mVertexShader);
         core.gGL.deleteShader(this.mFragmentShader);
     }
-    
-};
-
-// <editor-fold desc="Private Methods">
-//**-----------------------------------
-// Private methods not mean to call by outside of this object
-// **------------------------------------
+}
 
 // 
 // Returns a compiled shader from a shader in the dom.
 // The id is the id of the script in the html tag.
-function loadAndCompileShader(filePath, shaderType) {
-    var xmlReq, shaderSource = null, compiledShader = null;
+function compileShader(filePath, shaderType) {
+    var shaderSource = null, compiledShader = null;
 
-    // Step A: Request the text from the given file location.
-    xmlReq = new XMLHttpRequest();
-    xmlReq.open('GET', filePath, false);
-    try {
-        xmlReq.send();
-    } catch (error) {
-        alert("Failed to load shader: " + filePath + " [Hint: you cannot double click index.html to run this project. " +
-                "The index.html file must be loaded by a web-server.]");
-        return null;
-    }
-    shaderSource = xmlReq.responseText;
+    // Step A: Access the shader textfile
+    shaderSource = map.retrieveAsset(filePath);
 
     if (shaderSource === null) {
         alert("WARNING: Loading of:" + filePath + " Failed!");
@@ -113,7 +110,5 @@ function loadAndCompileShader(filePath, shaderType) {
 
     return compiledShader;
 };
-//-- end of private methods
-//</editor-fold>
 
 export default SimpleShader;

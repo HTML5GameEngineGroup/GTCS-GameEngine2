@@ -15,10 +15,6 @@ let kSimpleFS = "src/GLSLShaders/SimpleFS.glsl";  // Path to the simple Fragment
 
 let mConstColorShader = null;
 
-function getConstColorShader() {
-    return mConstColorShader;
-};
-
 function createShaders(callBackFunction) {
     mConstColorShader = new SimpleShader(kSimpleVS, kSimpleFS);
     callBackFunction();
@@ -29,14 +25,21 @@ function initialize(callBackFunction) {
     textFileLoader.load(kSimpleVS, textFileLoader.eTextFileType.eTextFile);
     textFileLoader.load(kSimpleFS, textFileLoader.eTextFileType.eTextFile);
 
-    map.setLoadCompleteCallback(function () {
-        createShaders(callBackFunction);
-    });
+    map.setLoadCompleteCallback(
+                function () { createShaders(callBackFunction);}
+            );
 };
+
+// unload all resources
+function cleanUp() {
+    mConstColorShader.cleanUp();
+    textFileLoader.unloadTextFile(kSimpleVS);
+    textFileLoader.unloadTextFile(kSimpleFS);
+}
 
 // Public interface for this object. Anything not in here will
 // not be accessable.
 export {
     initialize as init,
-    getConstColorShader
+    mConstColorShader
 };

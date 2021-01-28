@@ -7,11 +7,7 @@
         <group name="AllBookProjects"/>
         <group name="Apress-2d-game-engine"/>
         <group name="zSecondEditionInvestigation">
-            <file>file:/C:/Users/ksung/Desktop/GitHub/CSS452-MyOwn/zSecondEditionInvestigation/4.6.AudioSupport/public_html/src/Engine/Core/Engine_VertexBuffer.js</file>
-            <file>file:/C:/Users/ksung/Desktop/GitHub/CSS452-MyOwn/zSecondEditionInvestigation/4.6.AudioSupport/public_html/src/MyGame/MyGame.js</file>
-            <file>file:/C:/Users/ksung/Desktop/GitHub/CSS452-MyOwn/zSecondEditionInvestigation/4.6.AudioSupport/public_html/src/Engine/index.js</file>
-            <file>file:/C:/Users/ksung/Desktop/GitHub/CSS452-MyOwn/zSecondEditionInvestigation/4.6.AudioSupport/public_html/src/Engine/Camera.js</file>
-            <file>file:/C:/Users/ksung/Desktop/GitHub/CSS452-MyOwn/zSecondEditionInvestigation/4.6.AudioSupport/public_html/src/Engine/Transform.js</file>
+            <file>file:/C:/Users/ksung/Desktop/GitHub/GTCS-GameEngine2/Init-Investigations/4.6.AudioSupport/public_html/src/Engine/Renderable.js</file>
         </group>
     </open-files>
 </project-private>

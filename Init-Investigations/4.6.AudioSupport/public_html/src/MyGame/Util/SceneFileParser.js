@@ -56,7 +56,7 @@ class SceneFileParser {
             h = Number(elm.item(i).attributes.getNamedItem("Height").value);
             r = Number(elm.item(i).attributes.getNamedItem("Rotation").value);
             c = elm.item(i).attributes.getNamedItem("Color").value.split(" ");
-            sq = new Renderable(defaultResources.getConstColorShader());
+            sq = new Renderable(defaultResources.mConstColorShader);
             // make sure color array contains numbers
             for (j = 0; j < 4; j++) {
                 c[j] = Number(c[j]);

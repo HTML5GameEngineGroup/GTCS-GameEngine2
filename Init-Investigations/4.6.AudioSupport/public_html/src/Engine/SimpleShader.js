@@ -71,6 +71,13 @@ class SimpleShader {
             // loads the modelTransform matrix into webGL to be used by the vertex shader
         core.gGL.uniformMatrix4fv(this.mModelTransform, false, modelTransformMatrix);
     };
+    
+    cleanUp() {
+        core.gGL.detachShader(this.mCompiledShader, this.mVertexShader);
+        core.gGL.detachShader(this.mCompiledShader, this.mFragmentShader);
+        core.gGL.deleteShader(this.mVertexShader);
+        core.gGL.deleteShader(this.mFragmentShader);
+   }
 }
 
 // 
