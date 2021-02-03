@@ -1,4 +1,10 @@
-let mMap = new Map();
+"use strict"
+
+import * as map from '../internal/resource_map.js';
+
+function has(path) { return map.has(path) }
+function unload(path) { map.unload(path) }
+
 let mAudioContext = null;
 let mBGAudioNode = null;
 
@@ -11,38 +17,35 @@ function init() {
     }
 }
 
-async function load(path) {
-    if (mMap.has(path)) return;
-    let res = await fetch(path)
-    let buffer = await res.arrayBuffer()
-    let data = await mAudioContext.decodeAudioData(buffer)
-    mMap.set(path, data)
+function load(path) {
+    let r = null; 
+    if (!has(path)) {
+        r = fetch(path)
+            .then(res => res.arrayBuffer())
+            .then(arrayBuffer => mAudioContext.decodeAudioData(arrayBuffer))
+            .then(data => map.set(path, data));    
+        map.pushPromise(r);
+    }
+    return r;
 }
 
-function unload(path) { mMap.delete(path) }
-
 function playCue(path) {
-    if (!mMap.has(path)) {
-        throw new Error("can't get audio synchronously, not loaded")
-    }        // SourceNodes are one use only.
-
     let sourceNode = mAudioContext.createBufferSource();
-    sourceNode.buffer = mMap.get(path);
+    sourceNode.buffer = map.get(path);
     sourceNode.connect(mAudioContext.destination);
     sourceNode.start(0);
 
 };
 
 function playBG(path) {
-    if (!mMap.has(path)) {
-        throw new Error("can't get audio synchronously, not loaded")
+    if (map.has(path)) {
+        stopBG();
+        mBGAudioNode = mAudioContext.createBufferSource();
+        mBGAudioNode.buffer = map.get(path);
+        mBGAudioNode.connect(mAudioContext.destination);
+        mBGAudioNode.loop = true;
+        mBGAudioNode.start(0);
     }
-    stopBG();
-    mBGAudioNode = mAudioContext.createBufferSource();
-    mBGAudioNode.buffer = mMap.get(path);
-    mBGAudioNode.connect(mAudioContext.destination);
-    mBGAudioNode.loop = true;
-    mBGAudioNode.start(0);
 };
 
 function stopBG() {

@@ -1,25 +1,25 @@
-let map = new Map();
+"use strict"
 
-export function has(path) { return map.has(path) }
+import * as map from '../internal/resource_map.js';
 
-export function get(path) {
+function has(path) { return map.has(path) }
+function get(path) { return map.get(path); }
+function unload(path) { map.unload(path) }
+
+function load(path) {
+    let r = null;
     if (!has(path)) {
-        throw new Error("can't get text synchronously, not loaded")
+        r = fetch(path)
+            .then(res => res.text())
+            .then(text => {
+                let parser = new DOMParser();
+                return parser.parseFromString(text, "text/xml");
+            })
+            .then(data => map.set(path, data))
+            .catch(err => { throw err });
+        map.pushPromise(r);
     }
-    return map.get(path);
-};
-
-export async function load(path) {
-    if (has(path)) return;
-
-    await fetch(path)
-        .then(res => res.text())
-        .then(text => {
-            let parser = new DOMParser();
-            return parser.parseFromString(text, "text/xml");
-        })
-        .then(data => map.set(path, data))
-        .catch(err => { throw err });
+    return r;
 }
 
-export function unload(path) { map.delete(path)}
+export {has, get, load, unload}

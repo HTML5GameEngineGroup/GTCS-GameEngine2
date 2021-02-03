@@ -1,7 +1,4 @@
-/*
- * File: EngineCore_Input.js 
- * Provides input support
- */
+"use strict"
 
 // Key code constants
 const keys = {

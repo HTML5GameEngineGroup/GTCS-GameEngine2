@@ -1,8 +1,10 @@
+"use strict"
+
 /* 
  * Encapsulates the user define WC and Viewport functionality
  */
 
-import core from './core/index.js';
+import * as gl from './internal/gl.js'
 
 class Camera {
     // wcCenter: is a vec2
@@ -18,84 +20,82 @@ class Camera {
     //
     constructor(wcCenter, wcWidth, viewportArray) {
         // WC and viewport position and size
-        this.wCCenter = wcCenter;
-        this.wCWidth = wcWidth;
-        this.viewport = viewportArray;  // [x, y, width, height]
-        this.nearPlane = 0;
+        this.mWCCenter = wcCenter;
+        this.mWCWidth = wcWidth;
+        this.mViewport = viewportArray;  // [x, y, width, height]
+        this.mNearPlane = 0;
         this.farPlane = 1000;
 
         // transformation matrices
-        this.viewMatrix = mat4.create();
-        this.projMatrix = mat4.create();
-        this.vPMatrix = mat4.create();
+        this.mViewMatrix = mat4.create();
+        this.mProjMatrix = mat4.create();
+        this.mCameraMatrix = mat4.create();
 
         // background color
-        this.bgColor = [0.8, 0.8, 0.8, 1]; // RGB and Alpha
+        this.mBGColor = [0.8, 0.8, 0.8, 1]; // RGB and Alpha
     };
 
     setWCCenter(xPos, yPos) {
-        this.wCCenter[0] = xPos;
-        this.wCCenter[1] = yPos;
+        this.mWCCenter[0] = xPos;
+        this.mWCCenter[1] = yPos;
     };
-    getWCCenter() { return this.wCCenter; };
-    setWCWidth(width) { this.wCWidth = width; };
+    getWCCenter() { return this.mWCCenter; };
+    setWCWidth(width) { this.mWCWidth = width; };
 
-    setViewport(viewportArray) { this.viewport = viewportArray; };
-    getViewport() { return this.viewport; };
+    setViewport(viewportArray) { this.mViewport = viewportArray; };
+    getViewport() { return this.mViewport; };
 
 
-    setBackgroundColor(newColor) { this.bgColor = newColor; };
-    getBackgroundColor() { return this.bgColor; };
+    setBackgroundColor(newColor) { this.mBGColor = newColor; };
+    getBackgroundColor() { return this.mBGColor; };
 
-    // Getter for the View-Projection transform operator
-    getVPMatrix() {
-        return this.vPMatrix;
-    };
-
+    
 
     // call before you start drawing with this camera
-    setup() {
+    setCameraMatrix() {
         // Step A1: Set up the viewport: area on canvas to be drawn
-        core.gl.get().viewport(this.viewport[0],  // x position of bottom-left corner of the area to be drawn
-            this.viewport[1],  // y position of bottom-left corner of the area to be drawn
-            this.viewport[2],  // width of the area to be drawn
-            this.viewport[3]); // height of the area to be drawn
+        gl.get().viewport(this.mViewport[0],  // x position of bottom-left corner of the area to be drawn
+            this.mViewport[1],  // y position of bottom-left corner of the area to be drawn
+            this.mViewport[2],  // width of the area to be drawn
+            this.mViewport[3]); // height of the area to be drawn
         // Step A2: set up the corresponding scissor area to limit the clear area
-        core.gl.get().scissor(this.viewport[0], // x position of bottom-left corner of the area to be drawn
-            this.viewport[1], // y position of bottom-left corner of the area to be drawn
-            this.viewport[2], // width of the area to be drawn
-            this.viewport[3]);// height of the area to be drawn
+        gl.get().scissor(this.mViewport[0], // x position of bottom-left corner of the area to be drawn
+            this.mViewport[1], // y position of bottom-left corner of the area to be drawn
+            this.mViewport[2], // width of the area to be drawn
+            this.mViewport[3]);// height of the area to be drawn
 
         // Step B1: define the view matrix
-        mat4.lookAt(this.viewMatrix,
-            [this.wCCenter[0], this.wCCenter[1], 10],   // WC center
-            [this.wCCenter[0], this.wCCenter[1], 0],    // 
+        mat4.lookAt(this.mViewMatrix,
+            [this.mWCCenter[0], this.mWCCenter[1], 10],   // WC center
+            [this.mWCCenter[0], this.mWCCenter[1], 0],    // 
             [0, 1, 0]);     // orientation
 
         // Step B2: define the projection matrix
-        var halfWCWidth = 0.5 * this.wCWidth;
-        var halfWCHeight = halfWCWidth * this.viewport[3] / this.viewport[2]; // viewportH/viewportW
-        mat4.ortho(this.projMatrix,
+        var halfWCWidth = 0.5 * this.mWCWidth;
+        var halfWCHeight = halfWCWidth * this.mViewport[3] / this.mViewport[2]; // viewportH/viewportW
+        mat4.ortho(this.mProjMatrix,
             -halfWCWidth,   // distance to left of WC
             halfWCWidth,   // distance to right of WC
             -halfWCHeight,  // distance to bottom of WC
             halfWCHeight,  // distance to top of WC
-            this.nearPlane,   // z-distance to near plane 
+            this.mNearPlane,   // z-distance to near plane 
             this.farPlane  // z-distance to far plane 
         );
         // Step B3: concatenate view and project matrices
-        mat4.multiply(this.vPMatrix, this.projMatrix, this.viewMatrix);
+        mat4.multiply(this.mCameraMatrix, this.mProjMatrix, this.mViewMatrix);
+    
+        // Step A3: set the color to be clear
+        gl.get().clearColor(this.mBGColor[0], this.mBGColor[1], this.mBGColor[2], this.mBGColor[3]);  // set the color to be cleared
+        // Step A4: enable the scissor area, clear, and then disable the scissor area
+        gl.get().enable(gl.get().SCISSOR_TEST);
+        gl.get().clear(gl.get().COLOR_BUFFER_BIT);
+        gl.get().disable(gl.get().SCISSOR_TEST);
+    }
+    // Getter for the View-Projection transform operator
+    getCameraMatrix() {
+        return this.mCameraMatrix;
     };
 
-    // call everytime you're going to draw something new
-    refresh() {
-        // Step A3: set the color to be clear
-        core.gl.get().clearColor(this.bgColor[0], this.bgColor[1], this.bgColor[2], this.bgColor[3]);  // set the color to be cleared
-        // Step A4: enable the scissor area, clear, and then disable the scissor area
-        core.gl.get().enable(core.gl.get().SCISSOR_TEST);
-        core.gl.get().clear(core.gl.get().COLOR_BUFFER_BIT);
-        core.gl.get().disable(core.gl.get().SCISSOR_TEST);
-    }
 };
 
 export default Camera;

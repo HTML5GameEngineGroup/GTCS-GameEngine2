@@ -3,25 +3,26 @@
  * other attributes later) to represent a Renderable object on the game screen.
  */
 
-import core from './core/index.js';
-import Transform from './transform.js'
+import * as gl from './internal/gl.js';
+import Transform from './transform.js';
+// import Camera from './camera.js';
 
 class Renderable {
     constructor(shader) {
-        this.shader = shader;         // the shader for shading this object
-        this.xform = new Transform(); // transform that moves this object around
-        this.color = [1, 1, 1, 1];    // color of pixel
+        this.mShader = shader;         // the shader for shading this object
+        this.mXform = new Transform(); // transform that moves this object around
+        this.mColor = [1, 1, 1, 1];    // color of pixel
     };
 
-    draw(vpMatrix) {
-        this.shader.activateShader(this.color, vpMatrix);  // always activate the shader first!
-        this.shader.loadObjectTransform(this.xform.getTRS());
-        core.gl.get().drawArrays(core.gl.get().TRIANGLE_STRIP, 0, 4);
+    draw(camera) {
+        this.mShader.activateShader(this.mColor, camera.getCameraMatrix());  // always activate the shader first!
+        this.mShader.loadModelMatrix(this.mXform.getTRSMatrix());
+        gl.get().drawArrays(gl.get().TRIANGLE_STRIP, 0, 4);
     };
 
-    getXform() { return this.xform; };
-    setColor(color) { this.color = color; };
-    getColor() { return this.color; };
+    getXform() { return this.mXform; };
+    setColor(color) { this.mColor = color; };
+    getColor() { return this.mColor; };
 };
 
 export default Renderable;

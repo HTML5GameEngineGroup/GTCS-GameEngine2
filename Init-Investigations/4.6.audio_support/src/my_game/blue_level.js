@@ -15,48 +15,47 @@ class BlueLevel extends engine.Scene {
         super();
 
         // audio clips: supports both mp3 and wav formats
-        this.bgAudio = "assets/sounds/bg_clip.mp3";
-        this.cue = "assets/sounds/blue_level_cue.wav";
+        this.mBGAudio = "assets/sounds/bg_clip.mp3";
+        this.mCue = "assets/sounds/blue_level_cue.wav";
 
         // scene file name
-        this.sceneFile = "assets/blue_level.xml";
+        this.mSceneFile = "assets/blue_level.xml";
         // all squares
-        this.sqSet = [];        // these are the Renderable objects
+        this.mSQSet = [];        // these are the Renderable objects
 
         // The camera to view the scene
-        this.camera = null;
+        this.mCamera = null;
     }
 
 
-    async setup() {
-        await Promise.all(
-            [engine.resources.xml.load(this.sceneFile),
-            engine.resources.audio.load(this.bgAudio),
-            engine.resources.audio.load(this.cue)
-            ])
+    load() {
+        engine.xml.load(this.mSceneFile),
+        engine.audio.load(this.mBGAudio),
+        engine.audio.load(this.mCue)
+    }
 
-        let sceneParser = new SceneFileParser(engine.resources.xml.get(this.sceneFile));
+    init() {
+        let sceneParser = new SceneFileParser(engine.xml.get(this.mSceneFile));
 
         // Step A: Read in the camera
-        this.camera = sceneParser.parseCamera();
-        this.camera.setup();
+        this.mCamera = sceneParser.parseCamera();
 
         // Step B: Read all the squares
-        sceneParser.parseSquares(this.sqSet);
+        sceneParser.parseSquares(this.mSQSet);
 
         // now start the bg music ...
-        engine.resources.audio.playBG(this.bgAudio);
+        engine.audio.playBG(this.mBGAudio);
 
     };
 
-    takedown() {
+    unload() {
         // stop the background audio
-        engine.resources.audio.stopBG();
+        engine.audio.stopBG();
 
         // unload the scene flie and loaded resources
-        engine.resources.xml.unload(this.sceneFile);
-        engine.resources.audio.unload(this.bgAudio);
-        engine.resources.audio.unload(this.cue);
+        engine.xml.unload(this.mSceneFile);
+        engine.audio.unload(this.mBGAudio);
+        engine.audio.unload(this.mCue);
 
         let nextLevel = new MyGame();  // load the next level
         nextLevel.start();
@@ -65,11 +64,11 @@ class BlueLevel extends engine.Scene {
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
     draw() {
-        this.camera.refresh();
+        this.mCamera.setCameraMatrix();
         // Step  C: draw all the squares
         let i;
-        for (i = 0; i < this.sqSet.length; i++) {
-            this.sqSet[i].draw(this.camera.getVPMatrix());
+        for (i = 0; i < this.mSQSet.length; i++) {
+            this.mSQSet[i].draw(this.mCamera);
         }
     };
 
@@ -77,12 +76,12 @@ class BlueLevel extends engine.Scene {
     // anything from this function!
     update() {
         // For this very simple game, let's move the first square
-        let xform = this.sqSet[1].getXform();
+        let xform = this.mSQSet[1].getXform();
         let deltaX = 0.05;
 
         /// Move right and swap ovre
-        if (engine.core.input.isKeyPressed(engine.core.input.keys.Right)) {
-            engine.resources.audio.playCue(this.cue);
+        if (engine.input.isKeyPressed(engine.input.keys.Right)) {
+            engine.audio.playCue(this.mCue);
             xform.incXPosBy(deltaX);
             if (xform.getXPos() > 30) { // this is the right-bound of the window
                 xform.setPosition(12, 60);
@@ -90,8 +89,8 @@ class BlueLevel extends engine.Scene {
         }
 
         // Step A: test for white square movement
-        if (engine.core.input.isKeyPressed(engine.core.input.keys.Left)) {
-            engine.resources.audio.playCue(this.cue);
+        if (engine.input.isKeyPressed(engine.input.keys.Left)) {
+            engine.audio.playCue(this.mCue);
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 11) { // this is the left-boundary
                 this.stop();

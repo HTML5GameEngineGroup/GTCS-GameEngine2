@@ -1,10 +1,4 @@
-/*
- * File: EngineCore_VertexBuffer.js
- *  
- * defines the object that supports the loading and using of the buffer that 
- * contains vertex positions of a square onto the core_gl context
- * 
- */
+"use strict"
 
 import * as gl from './gl.js';
 

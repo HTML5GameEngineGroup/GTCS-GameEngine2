@@ -1,23 +1,23 @@
-let mMap = new Map();
+"use strict"
 
-function has(path) { return mMap.has(path) }
+import * as map from '../internal/resource_map.js';
 
-function get(path) {
+function has(path) { return map.has(path) }
+
+function get(path) { return map.get(path); }
+
+function unload(path) { map.unload(path) }
+
+function load(path) {
+    let r = null;
     if (!has(path)) {
-        throw new Error("can't get text synchronously, not loaded")
+        r =  fetch(path)
+            .then(res => res.text())
+            .then(data => { return map.set(path, data) } )
+            .catch(err => { throw err });
+        map.pushPromise(r);
     }
-    return mMap.get(path);
-};
-
-async function load(path) {
-    if (has(path)) return;
-
-    await fetch(path)
-        .then(res => res.text())
-        .then(data => mMap.set(path, data))
-        .catch(err => { throw err });
+    return r;
 }
-
-function unload(path) { mMap.delete(path) }
 
 export {has, get, load, unload}

@@ -2,7 +2,7 @@
  * The template for a scene.
  */
 
-import core from './core/index.js'
+import  * as loop from './core/loop.js'
 
 const abstractClassError = new Error("Abstract Class")
 const abstractMethodError = new Error("Abstract Method")
@@ -15,22 +15,24 @@ class Scene {
     }
 
     async start() {
-        await core.loop.start(this)
+        await loop.start(this)
     }
 
     stop() {
-        core.loop.stop()
+        loop.stop()
     }
 
-    async setup() {
+    load() {
+    }
+
+    init() {
         // initialize the level and load resources (called from GameLoop)
-        throw abstractMethodError
+        // throw abstractMethodError
     };
 
-
-    takedown() {
+    unload() {
         // .. unload all resources
-        throw abstractMethodError
+        // throw abstractMethodError
     };
 
     // update to be called form EngineCore.GameLoop
