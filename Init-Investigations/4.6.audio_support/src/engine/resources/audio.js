@@ -34,7 +34,6 @@ function playCue(path) {
     sourceNode.buffer = map.get(path);
     sourceNode.connect(mAudioContext.destination);
     sourceNode.start(0);
-
 };
 
 function playBG(path) {
