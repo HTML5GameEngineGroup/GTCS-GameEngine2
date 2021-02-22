@@ -3,9 +3,8 @@
  * other attributes later) to represent a Renderable object on the game screen.
  */
 
-import * as gl from './internal/gl.js';
+import * as GLSys from './internal/gl.js';
 import Transform from './transform.js';
-// import Camera from './camera.js';
 
 class Renderable {
     constructor(shader) {
@@ -15,12 +14,14 @@ class Renderable {
     };
 
     draw(camera) {
+        let gl = GLSys.get();
         this.mShader.activateShader(this.mColor, camera.getCameraMatrix());  // always activate the shader first!
         this.mShader.loadModelMatrix(this.mXform.getTRSMatrix());
-        gl.get().drawArrays(gl.get().TRIANGLE_STRIP, 0, 4);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     };
 
     getXform() { return this.mXform; };
+    
     setColor(color) { this.mColor = color; };
     getColor() { return this.mColor; };
 };

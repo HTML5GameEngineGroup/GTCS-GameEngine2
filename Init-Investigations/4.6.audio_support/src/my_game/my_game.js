@@ -15,7 +15,7 @@ class MyGame extends engine.Scene {
         super();
 
         // audio clips: supports both mp3 and wav formats
-        this.mBGAudio = "assets/sounds/bg_clip.mp3";
+        this.mBackgroundAudio = "assets/sounds/bg_clip.mp3";
         this.mCue = "assets/sounds/my_game_cue.wav";
 
         // The camera to view the scene
@@ -28,7 +28,7 @@ class MyGame extends engine.Scene {
 
     load() {
         // loads the audios
-        engine.audio.load(this.mBGAudio);
+        engine.audio.load(this.mBackgroundAudio);
         engine.audio.load(this.mCue);
     }
 
@@ -53,27 +53,21 @@ class MyGame extends engine.Scene {
         this.mHero.getXform().setPosition(20, 60);
         this.mHero.getXform().setSize(2, 3);
 
-        // now start the bg music ...
-        // engine.resources.audio.playBG(this.mBGAudio);
+        // now start the Background music ...
+        engine.audio.playBackground(this.mBackgroundAudio, 1.0);
     };
 
 
     unload() {
         // Step A: Game loop not running, unload all assets
         // stop the background audio
-        engine.audio.stopBG();
+        engine.audio.stopBackground();
 
         // unload the scene resources
-        // gEngine.AudioClips.unloadAudio(this.bgAudio);
+        // gEngine.AudioClips.unloadAudio(this.mBackgroundAudio);
         //      You know this clip will be used elsewhere in the game
         //      So you decide to not unload this clip!!
         engine.audio.unload(this.mCue);
-
-
-        // Step B: starts the next level
-        // starts the next level
-        let nextLevel = new BlueLevel();  // next level to be loaded
-        nextLevel.start()
     };
 
     // This is the draw function, make sure to setup proper drawing environment, and more
@@ -82,7 +76,7 @@ class MyGame extends engine.Scene {
         // Step A: clear the canvas
         engine.clearCanvas([0.2, 0.2, 0.2, 1.0]);
 
-        this.mCamera.setCameraMatrix();
+        this.mCamera.setViewAndCameraMatrix();
         // Step  B: Activate the drawing Camera
 
         // Step  C: draw everything
@@ -101,7 +95,8 @@ class MyGame extends engine.Scene {
 
         // Support hero movements
         if (engine.input.isKeyPressed(engine.input.keys.Right)) {
-            engine.audio.playCue(this.mCue);
+            engine.audio.playCue(this.mCue, 0.5);
+            engine.audio.incBackgroundVolume(0.05);
             xform.incXPosBy(deltaX);
             if (xform.getXPos() > 30) { // this is the right-bound of the window
                 xform.setPosition(12, 60);
@@ -109,19 +104,28 @@ class MyGame extends engine.Scene {
         }
 
         if (engine.input.isKeyPressed(engine.input.keys.Left)) {
-            engine.audio.playCue(this.mCue);
+            engine.audio.playCue(this.mCue, 1.5);
+            engine.audio.incBackgroundVolume(-0.05);
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 11) {  // this is the left-bound of the window
                 this.stop();
             }
         }
+
+        // VOLUME setting!
     };
+
+    next() {      
+        // next scene to run
+        let nextLevel = new BlueLevel();  // next level to be loaded
+        nextLevel.start()
+    }
 }
 export default MyGame;
 
 window.onload = async function () {
     engine.init("GLCanvas");
 
-    let myGame = new BlueLevel();
+    let myGame = new MyGame();
     myGame.start()
 };

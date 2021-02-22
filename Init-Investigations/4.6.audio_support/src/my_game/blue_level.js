@@ -15,7 +15,7 @@ class BlueLevel extends engine.Scene {
         super();
 
         // audio clips: supports both mp3 and wav formats
-        this.mBGAudio = "assets/sounds/bg_clip.mp3";
+        this.mBackgroundAudio = "assets/sounds/bg_clip.mp3";
         this.mCue = "assets/sounds/blue_level_cue.wav";
 
         // scene file name
@@ -30,7 +30,7 @@ class BlueLevel extends engine.Scene {
 
     load() {
         engine.xml.load(this.mSceneFile),
-        engine.audio.load(this.mBGAudio),
+        engine.audio.load(this.mBackgroundAudio),
         engine.audio.load(this.mCue)
     }
 
@@ -43,28 +43,26 @@ class BlueLevel extends engine.Scene {
         // Step B: Read all the squares
         sceneParser.parseSquares(this.mSQSet);
 
-        // now start the bg music ...
-        engine.audio.playBG(this.mBGAudio);
+        // now start the Background music ...
+        engine.audio.playBackground(this.mBackgroundAudio, 0.5);
 
     };
 
     unload() {
         // stop the background audio
-        engine.audio.stopBG();
+        engine.audio.stopBackground();
 
         // unload the scene flie and loaded resources
         engine.xml.unload(this.mSceneFile);
-        engine.audio.unload(this.mBGAudio);
+        engine.audio.unload(this.mBackgroundAudio);
         engine.audio.unload(this.mCue);
 
-        let nextLevel = new MyGame();  // load the next level
-        nextLevel.start();
     };
 
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
     draw() {
-        this.mCamera.setCameraMatrix();
+        this.mCamera.setViewAndCameraMatrix();
         // Step  C: draw all the squares
         let i;
         for (i = 0; i < this.mSQSet.length; i++) {
@@ -81,7 +79,7 @@ class BlueLevel extends engine.Scene {
 
         /// Move right and swap ovre
         if (engine.input.isKeyPressed(engine.input.keys.Right)) {
-            engine.audio.playCue(this.mCue);
+            engine.audio.playCue(this.mCue, 0.5);
             xform.incXPosBy(deltaX);
             if (xform.getXPos() > 30) { // this is the right-bound of the window
                 xform.setPosition(12, 60);
@@ -90,13 +88,23 @@ class BlueLevel extends engine.Scene {
 
         // Step A: test for white square movement
         if (engine.input.isKeyPressed(engine.input.keys.Left)) {
-            engine.audio.playCue(this.mCue);
+            engine.audio.playCue(this.mCue, 1.0);
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 11) { // this is the left-boundary
                 this.stop();
             }
         }
+
+        if (engine.input.isKeyPressed(engine.input.keys.W))
+            this.stop();
     };
+
+    // does not implement the next() funciton
+    // to demonstrate end of game
+    // next() {
+    //     let nextLevel = new MyGame();  // load the next level
+    //     nextLevel.start();
+    // }
 }
 
 export default BlueLevel;

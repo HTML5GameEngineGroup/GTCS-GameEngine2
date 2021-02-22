@@ -18,27 +18,36 @@ import SimpleShader from './simple_shader.js'
 import Renderable from './renderable.js'
 
 // local to this file only
-import * as gl from './internal/gl.js'
+import * as GLSys from './internal/gl.js'
 import * as vertexBuffer from './internal/vertex_buffer.js';
 
 // general engine utilities
-
 function init(htmlCanvasID) {
-    gl.init(htmlCanvasID);
+    GLSys.init(htmlCanvasID);
     vertexBuffer.init();
     input.init();
     audio.init();
     defaultResources.init();
 }
 
+function cleanUp() {
+    loop.cleanUp();
+    defaultResources.cleanUp();
+    audio.cleanUp();
+    input.cleanUp();
+    vertexBuffer.cleanUp();
+    GLSys.cleanUp();
+}
+
 function clearCanvas(color) {
-    gl.get().clearColor(color[0], color[1], color[2], color[3]);  // set the color to be cleared
-    gl.get().clear(gl.get().COLOR_BUFFER_BIT);      // clear to the color previously set
+    let gl = GLSys.get();
+    gl.clearColor(color[0], color[1], color[2], color[3]);  // set the color to be cleared
+    gl.clear(gl.COLOR_BUFFER_BIT);      // clear to the color previously set
 };
 
 
 export default {
-    //
+    // resource support
     audio, text, xml, defaultResources,
 
     // core
@@ -48,5 +57,5 @@ export default {
     Camera, Scene, Transform, SimpleShader, Renderable,
 
     // functions
-    init, clearCanvas
+    init, cleanUp, clearCanvas
 };

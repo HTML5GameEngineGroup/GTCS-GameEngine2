@@ -38,7 +38,7 @@ const keys = {
     W : 87,
 
     LastKeyCode: 222
-};
+}
 
 // Previous key state
 let mKeyPreviousState = []; // a new array
@@ -46,13 +46,17 @@ let mKeyPreviousState = []; // a new array
 let  mIsKeyPressed = [];
 // Click events: once an event is set, it will remain there until polled
 let  mIsKeyClicked = [];
+
 // Event handler functions
 function onKeyDown(event) {
     mIsKeyPressed[event.keyCode] = true;
-};
+}
+
 function onKeyUp(event) {
     mIsKeyPressed[event.keyCode] = false;
-};
+}
+
+function cleanUp() {}  // nothing to do for now
 
 function init() {
     let i;
@@ -65,7 +69,7 @@ function init() {
     // register handlers 
     window.addEventListener('keyup', onKeyUp);
     window.addEventListener('keydown', onKeyDown);
-};
+}
 
 function update() {
     let i;
@@ -73,16 +77,18 @@ function update() {
         mIsKeyClicked[i] = (!mKeyPreviousState[i]) && mIsKeyPressed[i];
         mKeyPreviousState[i] = mIsKeyPressed[i];
     }
-};
+}
+
 // Function for GameEngine programmer to test if a key is pressed down
 function isKeyPressed(keyCode) {
     return mIsKeyPressed[keyCode];
-};
+}
 
 function isKeyClicked(keyCode) {
     return mIsKeyClicked[keyCode];
-};
+}
 
-export {keys, init, update, 
+export {keys, init, cleanUp,
+    update, 
     isKeyClicked,
-    isKeyPressed};
+    isKeyPressed}

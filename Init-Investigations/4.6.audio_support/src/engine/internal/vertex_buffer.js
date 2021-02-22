@@ -1,9 +1,9 @@
 "use strict"
 
-import * as gl from './gl.js';
+import * as GLSys from './gl.js';
 
 // First: define the vertices for a square
-let verticesOfSquare = [
+let mVerticesOfSquare = [
     0.5, 0.5, 0.0,
     -0.5, 0.5, 0.0,
     0.5, -0.5, 0.0,
@@ -14,17 +14,21 @@ let verticesOfSquare = [
 let mGLVertexBuffer = null;
 
 function get() { return mGLVertexBuffer; }
+function cleanUp() { GLSys.get().deleteBuffer(mGLVertexBuffer); }
 
 function init() {
+    let  gl = GLSys.get();
+
     // Step A: Create a buffer on the core_gl context for our vertex positions
-    mGLVertexBuffer = gl.get().createBuffer();
+    mGLVertexBuffer = gl.createBuffer();
        
     // Step B: Activate vertexBuffer
-    gl.get().bindBuffer(gl.get().ARRAY_BUFFER, mGLVertexBuffer);
+    gl.bindBuffer(gl.ARRAY_BUFFER, mGLVertexBuffer);
 
-    // Step C: Loads verticesOfSquare into the vertexBuffer
-    gl.get().bufferData(gl.get().ARRAY_BUFFER, new Float32Array(verticesOfSquare), gl.get().STATIC_DRAW);
-};
+    // Step C: Loads mVerticesOfSquare into the vertexBuffer
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(mVerticesOfSquare), gl.STATIC_DRAW);
+}
 
-export {get, init};
+export {init, cleanUp,
+        get}
 

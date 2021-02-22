@@ -1,8 +1,8 @@
 "use strict"
 
- import core from './index.js'
- import SimpleShader from '../simple_shader.js'
- import * as resourceMap from '../internal/resource_map.js'
+ import core from './index.js';
+ import SimpleShader from '../simple_shader.js';
+ import * as map from '../internal/resource_map.js';
  
  // Simple Shader
  let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 
@@ -12,6 +12,13 @@
  function createShaders() {
     mConstColorShader = new SimpleShader(kSimpleVS, kSimpleFS);
  }
+
+  // unload all resources
+function cleanUp() {
+    mConstColorShader.cleanUp();
+    core.text.unload(kSimpleVS);
+    core.text.unload(kSimpleFS);
+}
 
 function init() {
     let loadPromise = new Promise(
@@ -24,9 +31,9 @@ function init() {
         }).then(
             function resolve() { createShaders(); }
         );
-    resourceMap.pushPromise(loadPromise);
+    map.pushPromise(loadPromise);
 }
 
 function getConstColorShader() { return mConstColorShader; }
 
-export {init, createShaders, getConstColorShader};
+export {init, cleanUp, getConstColorShader}
