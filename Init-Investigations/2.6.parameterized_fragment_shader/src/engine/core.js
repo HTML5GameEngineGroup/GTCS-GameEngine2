@@ -1,10 +1,9 @@
 /*
- * File: Engine_Core.js 
- * The first iteration of what the core of our game engine would look like.
+ * File: core.js 
  */
 "use strict"; 
 
-import * as vertexBuffer from './Engine_VertexBuffer.js';
+import * as vertexBuffer from './vertex_buffer.js';
 // instance variables
 // 
 // The graphical context to draw to

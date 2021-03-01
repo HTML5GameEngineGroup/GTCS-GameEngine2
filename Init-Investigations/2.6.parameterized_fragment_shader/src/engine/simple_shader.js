@@ -1,13 +1,13 @@
 /* 
- * File: SimpleShader.js
+ * File: simple_shader.js
  * 
  * Implements a SimpleShader object.
  * 
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as core from './Engine_Core.js';
-import * as vertexBuffer from './Engine_VertexBuffer.js';
+import * as core from './core.js';
+import * as vertexBuffer from './vertex_buffer.js';
 
 class SimpleShader {
 
@@ -38,8 +38,7 @@ class SimpleShader {
         }
 
         // Step D: Gets a reference to the aVertexPosition attribute within the shaders.
-        this.mVertexPosition = core.gGL.getAttribLocation(
-            this.mCompiledShader, "aVertexPosition");
+        this.mVertexPosition = core.gGL.getAttribLocation(this.mCompiledShader, "aVertexPosition");
 
         // Step E: Gets a reference to the uniform variable uPixelColor in the fragment shader
         this.mPixelColor = core.gGL.getUniformLocation(this.mCompiledShader, "uPixelColor");
@@ -49,6 +48,8 @@ class SimpleShader {
     // Activate the shader for rendering
     activateShader(pixelColor) {
         core.gGL.useProgram(this.mCompiledShader);
+        
+        // bind vertex buffer
         core.gGL.bindBuffer(core.gGL.ARRAY_BUFFER, vertexBuffer.mGLVertexBuffer);
         core.gGL.vertexAttribPointer(this.mVertexPosition,
             3,              // each element is a 3-float (x,y.z)
@@ -57,6 +58,8 @@ class SimpleShader {
             0,              // number of bytes to skip in between elements
             0);             // offsets to the first element
         core.gGL.enableVertexAttribArray(this.mVertexPosition);
+        
+        // load uniforms
         core.gGL.uniform4fv(this.mPixelColor, pixelColor);
     }
     

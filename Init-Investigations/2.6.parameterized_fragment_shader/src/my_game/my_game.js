@@ -4,8 +4,8 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as core from '../Engine/Engine_Core.js';
-import SimpleShader from '../Engine/SimpleShader.js';
+import * as core from '../engine/core.js';
+import SimpleShader from '../engine/simple_shader.js';
 
 class MyGame {
     constructor(htmlCanvasID) {
@@ -17,8 +17,8 @@ class MyGame {
 
         // Step B: Create, load and compile the shaders
         this.mShader = new SimpleShader(
-            "src/GLSLShaders/SimpleVS.glsl",        // Path to the VertexShader 
-            "src/GLSLShaders/SimpleFS.glsl");       // Path to the FragmentShader
+            "src/glsl_shaders/simple_vs.glsl",        // Path to the VertexShader 
+            "src/glsl_shaders/simple_fs.glsl");       // Path to the FragmentShader
 
         // Step C: Draw!
         // Step C1: Clear the canvas

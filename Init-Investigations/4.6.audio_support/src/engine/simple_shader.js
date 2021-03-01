@@ -49,10 +49,11 @@ class SimpleShader {
     }
 
     // Activate the shader for rendering
-    activateShader(pixelColor, cameraMatrix) {
+    activateShader(pixelColor, trsMatrix, cameraMatrix) {
         let gl = GLSys.get();
         gl.useProgram(this.mCompiledShaderProgram);
-        gl.uniformMatrix4fv(this.mCameraMatrixRef, false, cameraMatrix);
+        
+        // bind vertex buffer
         gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
         gl.vertexAttribPointer(this.mVertexPositionRef,
             3,              // each element is a 3-float (x,y.z)
@@ -61,13 +62,11 @@ class SimpleShader {
             0,              // number of bytes to skip in between elements
             0);             // offsets to the first element
         gl.enableVertexAttribArray(this.mVertexPositionRef);
+        
+        // load uniforms
         gl.uniform4fv(this.mPixelColorRef, pixelColor);
-    }
-
-    // Loads per-object model transform to the vertex shader
-    loadModelMatrix(modelTransformMatrix) {
-            // loads the modelTransform matrix into webGL to be used by the vertex shader
-        GLSys.get().uniformMatrix4fv(this.mModelMatrixRef, false, modelTransformMatrix);
+        gl.uniformMatrix4fv(this.mModelMatrixRef, false, trsMatrix);
+        gl.uniformMatrix4fv(this.mCameraMatrixRef, false, cameraMatrix);
     }
 
     cleanUp() {
