@@ -6,8 +6,8 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as core from './core.js';
-import * as vertexBuffer from './vertex_buffer.js';
+import * as core from './core.js'
+import * as vertexBuffer from './vertex_buffer.js'
 
 class SimpleShader {
 
@@ -17,7 +17,7 @@ class SimpleShader {
         // Convention: all instance variables: mVariables
         this.mCompiledShader = null;  // reference to the compiled shader in webgl context  
         this.mVertexPosition = null; // reference to VertexPosition within the shader
-        this.mPixelColor = null;                    // reference to the pixelColor uniform in the fragment shader
+        this.mPixelColor = null;     // reference to the pixelColor uniform in the fragment shader
 
         // start of constructor code
         // 
@@ -62,15 +62,7 @@ class SimpleShader {
         // load uniforms
         core.gGL.uniform4fv(this.mPixelColor, pixelColor);
     }
-    
-    releaseResources() {
-        core.gGL.detachShader(this.mCompiledShader, this.mVertexShader);
-        core.gGL.detachShader(this.mCompiledShader, this.mFragmentShader);
-        core.gGL.deleteShader(this.mVertexShader);
-        core.gGL.deleteShader(this.mFragmentShader);
-    }
-    
-};
+}
 
 // <editor-fold desc="Private Methods">
 //**-----------------------------------
@@ -115,7 +107,7 @@ function loadAndCompileShader(filePath, shaderType) {
     }
 
     return compiledShader;
-};
+}
 //-- end of private methods
 //</editor-fold>
 

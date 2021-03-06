@@ -1,5 +1,5 @@
-import { gl } from '../gl/index.js';
-import Shaders from '../shaders/index.js';
+import { gl } from '../gl/index.js'
+import Shaders from '../shaders/index.js'
 
 let  verticesOfSquare = [
     1, 1, 0,
@@ -62,4 +62,4 @@ function drawOval(scaleX, scaleY, offsetX, offsetY, color) {
     gl.drawArrays(gl.TRIANGLE_FAN, 0, verticesOfCircle.length);
 }
 
-export { initEngine, drawRect, drawTriangle, drawOval };
+export { initEngine, drawRect, drawTriangle, drawOval }

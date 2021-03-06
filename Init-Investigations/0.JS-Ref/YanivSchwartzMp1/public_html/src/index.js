@@ -1,5 +1,5 @@
-import { initEngine, drawRect, drawTriangle, drawOval } from './engine/index.js';
-import { gl, initGL } from './gl/index.js';
+import { initEngine, drawRect, drawTriangle, drawOval } from './engine/index.js'
+import { gl, initGL } from './gl/index.js'
 
 window.onload = function () {
     initGL('glCanvas');

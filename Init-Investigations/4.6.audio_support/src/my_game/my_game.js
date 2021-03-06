@@ -55,7 +55,7 @@ class MyGame extends engine.Scene {
 
         // now start the Background music ...
         engine.audio.playBackground(this.mBackgroundAudio, 1.0);
-    };
+    }
 
 
     unload() {
@@ -68,7 +68,7 @@ class MyGame extends engine.Scene {
         //      You know this clip will be used elsewhere in the game
         //      So you decide to not unload this clip!!
         engine.audio.unload(this.mCue);
-    };
+    }
 
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
@@ -82,7 +82,7 @@ class MyGame extends engine.Scene {
         // Step  C: draw everything
         this.mSupport.draw(this.mCamera);
         this.mHero.draw(this.mCamera);
-    };
+    }
 
     // The update function, updates the application state. Make sure to _NOT_ draw
     // anything from this function!
@@ -113,7 +113,7 @@ class MyGame extends engine.Scene {
         }
 
         // VOLUME setting!
-    };
+    }
 
     next() {      
         // next scene to run
@@ -128,4 +128,4 @@ window.onload = async function () {
 
     let myGame = new MyGame();
     myGame.start()
-};
+}

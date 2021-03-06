@@ -1,5 +1,5 @@
 
-import { gl } from '../gl/index.js';
+import { gl } from '../gl/index.js'
 
 class Shaders {
     constructor(vertexShaderPath, fragmentShaderPath) {

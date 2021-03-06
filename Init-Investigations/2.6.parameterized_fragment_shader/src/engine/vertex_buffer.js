@@ -7,7 +7,7 @@
  */
 "use strict";
 
-import * as core from './core.js';
+import * as core from './core.js'
 
     // reference to the vertex positions for the square in the gl context
 let mGLVertexBuffer = null;
@@ -30,6 +30,6 @@ function init() {
 
     // Step C: Loads mVerticesOfSquare into the vertexBuffer
     core.gGL.bufferData(core.gGL.ARRAY_BUFFER, new Float32Array(mVerticesOfSquare), core.gGL.STATIC_DRAW);
-};
+}
 
-export {init, mGLVertexBuffer};
+export {init, mGLVertexBuffer}

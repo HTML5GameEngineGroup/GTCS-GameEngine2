@@ -34,7 +34,7 @@ class SceneFileParser {
             );
         cam.setBackgroundColor(bgColor);
         return cam;
-    };
+    }
 
     parseSquares(sqSet) {
         let elm = getElm(this.xml, "Square");
@@ -57,7 +57,7 @@ class SceneFileParser {
             sq.getXform().setSize(w, h);
             sqSet.push(sq);
         }
-    };
+    }
 }
 
 function getElm(xmlContent, tagElm) {
@@ -66,7 +66,7 @@ function getElm(xmlContent, tagElm) {
         console.error("Warning: Level element:[" + tagElm + "]: is not found!");
     }
     return theElm;
-};
+}
 
 
 export default SceneFileParser;

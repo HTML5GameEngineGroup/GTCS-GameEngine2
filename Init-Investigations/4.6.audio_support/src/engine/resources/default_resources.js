@@ -1,8 +1,8 @@
 "use strict"
 
- import core from './index.js';
- import SimpleShader from '../simple_shader.js';
- import * as map from '../internal/resource_map.js';
+ import core from '../index.js'
+ import SimpleShader from '../simple_shader.js'
+ import * as map from '../core/internal/resource_map.js'
  
  // Simple Shader
  let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 

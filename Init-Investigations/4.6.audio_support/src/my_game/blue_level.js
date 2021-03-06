@@ -46,7 +46,7 @@ class BlueLevel extends engine.Scene {
         // now start the Background music ...
         engine.audio.playBackground(this.mBackgroundAudio, 0.5);
 
-    };
+    }
 
     unload() {
         // stop the background audio
@@ -57,7 +57,7 @@ class BlueLevel extends engine.Scene {
         engine.audio.unload(this.mBackgroundAudio);
         engine.audio.unload(this.mCue);
 
-    };
+    }
 
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
@@ -68,7 +68,7 @@ class BlueLevel extends engine.Scene {
         for (i = 0; i < this.mSQSet.length; i++) {
             this.mSQSet[i].draw(this.mCamera);
         }
-    };
+    }
 
     // The update function, updates the application state. Make sure to _NOT_ draw
     // anything from this function!
@@ -97,7 +97,7 @@ class BlueLevel extends engine.Scene {
 
         if (engine.input.isKeyPressed(engine.input.keys.W))
             this.stop();
-    };
+    }
 
     // does not implement the next() funciton
     // to demonstrate end of game
