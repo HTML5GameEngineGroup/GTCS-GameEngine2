@@ -49,7 +49,7 @@ class SimpleShader {
     }
 
     // Activate the shader for rendering
-    activateShader(pixelColor, trsMatrix, cameraMatrix) {
+    activate(pixelColor, trsMatrix, cameraMatrix) {
         let gl = GLSys.get();
         gl.useProgram(this.mCompiledShaderProgram);
 

@@ -35,4 +35,4 @@ function init(htmlCanvasID) {
     }
 }
 
-export {get, init, cleanUp}
+export {init, get, cleanUp}

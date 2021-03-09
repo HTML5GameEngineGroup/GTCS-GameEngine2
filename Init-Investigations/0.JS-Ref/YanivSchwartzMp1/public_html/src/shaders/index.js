@@ -5,7 +5,7 @@ class Shaders {
     constructor(vertexShaderPath, fragmentShaderPath) {
         this.mCompiledShader = null; 
         this.mShaderVertexPositionAttribute = null; 
-        this.mPixelColor = null;
+        this.mPixelColorRef = null;
 
         var vertexShader = loadAndCompileShader(vertexShaderPath, gl.VERTEX_SHADER);
         var fragmentShader = loadAndCompileShader(fragmentShaderPath, gl.FRAGMENT_SHADER);
@@ -30,7 +30,7 @@ class Shaders {
             0);             // offsets to the first element
 
         
-        this.mPixelColor = gl.getUniformLocation(this.mCompiledShader, "uPixelColor");
+        this.mPixelColorRef = gl.getUniformLocation(this.mCompiledShader, "uPixelColor");
         this.mScale = gl.getUniformLocation(this.mCompiledShader, "uScale");
         this.mOffset = gl.getUniformLocation(this.mCompiledShader, "uOffset");
     }
@@ -44,7 +44,7 @@ class Shaders {
             0,              // number of bytes to skip in between elements
             0);             // offsets to the first element
         gl.enableVertexAttribArray(this.mShaderVertexPositionAttribute);
-        gl.uniform4fv(this.mPixelColor, pixelColor);
+        gl.uniform4fv(this.mPixelColorRef, pixelColor);
         gl.uniform2f(this.mScale, scaleX, scaleY);
         gl.uniform2f(this.mOffset, offsetX, offsetY);
     }

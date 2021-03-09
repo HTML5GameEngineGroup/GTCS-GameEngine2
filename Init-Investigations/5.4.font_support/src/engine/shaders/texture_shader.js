@@ -19,9 +19,9 @@ class TextureShader extends SimpleShader {
     }
 
     // Overriding the Activation of the shader for rendering
-    activateShader(pixelColor, trsMatrix, cameraMatrix) {
+    activate(pixelColor, trsMatrix, cameraMatrix) {
         // first call the super class's activate
-        super.activateShader(pixelColor, trsMatrix, cameraMatrix);
+        super.activate(pixelColor, trsMatrix, cameraMatrix);
 
         // now our own functionality: enable texture coordinate array
         let gl = GLSys.get();

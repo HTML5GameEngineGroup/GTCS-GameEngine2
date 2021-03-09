@@ -42,14 +42,14 @@ class SimpleShader {
         // Step D: Gets a reference to the aSquareVertexPosition attribute within the shaders.
         this.mVertexPositionRef = gl.getAttribLocation(this.mCompiledShaderProgram, "aVertexPosition");
 
-        // Step E: Gets references to the uniform variables: uPixelColor, uModelTransform, and uViewProjTransform
+        // Step E: Gets references to the uniform variables
         this.mPixelColorRef = gl.getUniformLocation(this.mCompiledShaderProgram, "uPixelColor");
         this.mModelMatrixRef = gl.getUniformLocation(this.mCompiledShaderProgram, "uModelXformMatrix");
         this.mCameraMatrixRef = gl.getUniformLocation(this.mCompiledShaderProgram, "uCameraXformMatrix");
     }
 
     // Activate the shader for rendering
-    activateShader(pixelColor, trsMatrix, cameraMatrix) {
+    activate(pixelColor, trsMatrix, cameraMatrix) {
         let gl = GLSys.get();
         gl.useProgram(this.mCompiledShaderProgram);
         

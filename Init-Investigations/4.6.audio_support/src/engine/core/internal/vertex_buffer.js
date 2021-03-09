@@ -29,6 +29,5 @@ function init() {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(mVerticesOfSquare), gl.STATIC_DRAW);
 }
 
-export {init, cleanUp,
-        get}
+export {init, get, cleanUp}
 
