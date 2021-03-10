@@ -254,7 +254,7 @@ class MyGame extends engine.Scene {
 
 export default MyGame;
 
-window.onload = async function () {
+window.onload = function () {
     engine.init("GLCanvas");
 
     let myGame = new MyGame();
