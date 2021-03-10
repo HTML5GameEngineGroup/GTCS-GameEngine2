@@ -1,7 +1,7 @@
 "use strict"
 
-import * as map from '../core/internal/resource_map.js'
-import * as input from './input.js'
+import * as map from './resource_map.js'
+import * as input from '../input.js'
 
 const FPS = 60; // Frames per second
 const MPF = 1000 / FPS; // Milliseconds per frame.
@@ -27,8 +27,8 @@ function loopOnce() {
         mCurrentScene.draw();    
 
         // Step C: compute how much time has elapsed since  last loopOnce was executed
-        var currentTime = Date.now();
-        var elapsedTime = currentTime - mPrevTime;
+        let currentTime = Date.now();
+        let elapsedTime = currentTime - mPrevTime;
         mPrevTime = currentTime;
         mLagTime += elapsedTime;
 

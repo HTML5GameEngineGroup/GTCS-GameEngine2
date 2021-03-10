@@ -1,7 +1,7 @@
 "use strict"
 
-import * as map from '../core/internal/resource_map.js'
-import * as input from './input.js'
+import * as map from './resource_map.js'
+import * as input from '../input.js'
 
 const FPS = 60; // Frames per second
 const MPF = 1000 / FPS; // Milliseconds per frame.
@@ -27,8 +27,8 @@ function loopOnce() {
         mCurrentScene.draw();    
 
         // Step C: compute how much time has elapsed since  last loopOnce was executed
-        var currentTime = Date.now();
-        var elapsedTime = currentTime - mPrevTime;
+        let currentTime = Date.now();
+        let elapsedTime = currentTime - mPrevTime;
         mPrevTime = currentTime;
         mLagTime += elapsedTime;
 
@@ -51,10 +51,8 @@ async function start(scene) {
     await map.waitOnPromises();
 
     mCurrentScene = scene;
-    mCurrentScene.load();
-    await map.waitOnPromises();
-    
-    mCurrentScene.init();    
+    mCurrentScene.init(); 
+
     mPrevTime = Date.now();
     mLagTime = 0.0;
     mLoopRunning = true;
@@ -67,14 +65,4 @@ function stop() {
     cancelAnimationFrame(mFrameID);
 }
 
-function cleanUp() {
-    if (mLoopRunning) {
-        stop();
-
-        // unload all resources
-        mCurrentScene.unload();
-        mCurrentScene = null;
-    }
-}
-
-export {start, stop, cleanUp}
+export {start, stop}

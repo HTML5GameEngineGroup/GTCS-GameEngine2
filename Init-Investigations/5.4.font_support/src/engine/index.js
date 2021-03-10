@@ -2,7 +2,7 @@
 
 // core
 import * as input from './core/input.js'
-import * as loop from './core/loop.js'
+import * as loop from './core/internal/loop.js'
 
 // resources
 import * as audio from './resources/audio.js'
@@ -65,7 +65,7 @@ export default {
     audio, text, xml, texture, font, defaultResources,
 
     // core
-    input, loop,
+    input,
 
     // Util classes
     Camera, Scene, Transform, 

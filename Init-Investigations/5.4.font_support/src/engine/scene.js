@@ -3,7 +3,7 @@
  * The template for a scene.
  */
 
-import  * as loop from './core/loop.js'
+import  * as loop from './core/internal/loop.js'
 import engine from './index.js'
 
 const abstractClassError = new Error("Abstract Class")
