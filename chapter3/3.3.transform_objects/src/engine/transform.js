@@ -56,7 +56,7 @@ class Transform {
     // returns the matrix the concatenates the transformations defined
     getTRSMatrix() {
         // Creates a blank identity matrix
-        var matrix = mat4.create();
+        let matrix = mat4.create();
 
         // The matrices that WebGL uses are transposed, thus the typical matrix
         // operations must be in reverse.

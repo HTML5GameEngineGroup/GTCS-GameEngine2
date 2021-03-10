@@ -17,12 +17,12 @@
                 "use strict";  // Operate in Strict mode such that variables must be declared before used!
     
                 // Begin of code execution
-                var canvas = document.getElementById("GLCanvas");
+                let canvas = document.getElementById("GLCanvas");
     
                 // Get standard webgl2, or experimental
                 // binds webgl2 to the Canvas area on the web-page to the variable "gl"
                 // "gl" will be the context upon which we access all webGL2 functionality
-                var gl = canvas.getContext("webgl2") ||
+                let gl = canvas.getContext("webgl2") ||
                          canvas.getContext("experimental-webgl2");
     
                 if (gl !== null) {

@@ -22,7 +22,7 @@ class MyGame {
         engine.clearCanvas([0, 0.8, 0, 1]);  // 1. Clear the canvas
     
         // create a new identity transform operator
-        var trsMatrix = mat4.create();
+        let trsMatrix = mat4.create();
     
         // Step E: compute the white square transform 
         mat4.translate(trsMatrix, trsMatrix, vec3.fromValues(-0.25, 0.25, 0.0));
