@@ -48,13 +48,13 @@ class SimpleShader {
         
         // bind vertex buffer
         gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
-        gl.vertexAttribPointer(this.mVertexPosition,
+        gl.vertexAttribPointer(this.mVertexPositionRef,
             3,              // each element is a 3-float (x,y.z)
-            gl.FLOAT,      // data type is FLOAT
+            gl.FLOAT,       // data type is FLOAT
             false,          // if the content is normalized vectors
             0,              // number of bytes to skip in between elements
             0);             // offsets to the first element
-        gl.enableVertexAttribArray(this.mVertexPosition);
+        gl.enableVertexAttribArray(this.mVertexPositionRef);
     }
 }
 

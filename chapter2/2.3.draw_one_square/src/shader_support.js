@@ -47,7 +47,7 @@ function activate() {
 
     // bind vertex buffer
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
-    gl.vertexAttribPointer(this.mVertexPosition,
+    gl.vertexAttribPointer(this.mVertexPositionRef,
         3,              // each element is a 3-float (x,y.z)
         gl.FLOAT,      // data type is FLOAT
         false,          // if the content is normalized vectors
