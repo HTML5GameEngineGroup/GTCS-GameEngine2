@@ -1,3 +1,9 @@
+/*
+ * File: gl.js
+ *  
+ * handles initialization with gl
+ * 
+ */
 "use strict"
 
 let mCanvas = null;

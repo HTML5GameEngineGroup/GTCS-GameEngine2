@@ -1,7 +1,10 @@
-/* 
+/*
+ * File: transform.js 
+ *
  * Encapsulates the matrix transformation functionality, meant to work with
  * Renderable
  */
+"use strict"
 
 class Transform {
     

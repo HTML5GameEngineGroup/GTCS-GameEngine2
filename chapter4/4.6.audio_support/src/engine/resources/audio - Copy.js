@@ -11,7 +11,6 @@ import * as map from '../core/internal/resource_map.js'
 let unload = map.unload;
 let has = map.has;
 
-
 let mAudioContext = null;
 let mBackgroundAudio = null;
 
@@ -33,6 +32,7 @@ function cleanUp() {
 function init() {
     try {
         let AudioContext = window.AudioContext || window.webkitAudioContext;
+        AudioContext.auto
         mAudioContext = new AudioContext();
 
         // connect Master volume control

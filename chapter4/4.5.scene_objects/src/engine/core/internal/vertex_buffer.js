@@ -30,7 +30,7 @@ let mVerticesOfSquare = [
 function init() {
     let  gl = GLSys.get();
 
-    // Step A: Create a buffer on the core_gl context for our vertex positions
+    // Step A: Create a buffer on the gl context for our vertex positions
     mGLVertexBuffer = gl.createBuffer();
        
     // Step B: Activate vertexBuffer

@@ -78,7 +78,7 @@ class MyGame  {
         whiteXform.incRotationByDegree(1);
 
         // Step B: pulse the red square
-        var redXform = this.mRedSq.getXform();
+        let redXform = this.mRedSq.getXform();
         if (redXform.getWidth() > 5)
             redXform.setSize(2, 2);
         redXform.incSizeBy(0.05);

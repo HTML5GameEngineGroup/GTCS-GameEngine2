@@ -1,3 +1,9 @@
+/*
+ * File: input.js
+ *  
+ * interfaces with HTML5 to to receive keyboard events
+ * 
+ */
 "use strict"
 
 // Key code constants
@@ -33,6 +39,7 @@ const keys = {
     J : 74,
     K : 75,
     L : 76,
+    Q : 81,
     R : 82,
     S : 83,
     T : 84,

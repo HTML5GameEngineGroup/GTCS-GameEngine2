@@ -1,8 +1,10 @@
-"use strict"
-
-/* 
+/*
+ * File: camera.js
+ *
  * Encapsulates the user define WC and Viewport functionality
  */
+"use strict"
+
 
 import * as GLSys from './core/internal/gl.js'
 

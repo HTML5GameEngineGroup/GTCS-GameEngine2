@@ -1,4 +1,11 @@
-"use strict";  // Operate in Strict mode such that letiables must be declared before used!
+/*
+ * File: font_renderable.js
+ *
+ * Supports the drawing of a string based on a selected Font
+ * 
+ */
+
+"use strict"
 
 import Transform from '../transform.js'
 import SpriteRenderable from "./sprite_renderable.js"

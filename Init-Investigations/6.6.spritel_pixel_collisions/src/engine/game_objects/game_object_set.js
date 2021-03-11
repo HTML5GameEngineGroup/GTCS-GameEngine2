@@ -1,4 +1,10 @@
-"use strict";  // Operate in Strict mode such that variables must be declared before used!
+/*
+ * File: game_object_set.js
+ *
+ * utility class for a collection of GameObject
+ * 
+ */
+"use strict"
 
 class GameObjectSet {
     constructor() {

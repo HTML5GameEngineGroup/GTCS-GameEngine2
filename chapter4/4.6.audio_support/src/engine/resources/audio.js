@@ -1,10 +1,15 @@
+/*
+ * File: audio.js
+ *
+ * logics for loading an audio file into the resource_map and
+ * provides control of the loaded audio 
+ */
 "use strict"
 
 import * as map from '../core/internal/resource_map.js'
 // functions from resource_map
 let unload = map.unload;
 let has = map.has;
-
 
 let mAudioContext = null;
 let mBackgroundAudio = null;
@@ -24,9 +29,10 @@ function cleanUp() {
     mAudioContext = null;
 }
 
-function init() {
+function createAudioContext() {
     try {
         let AudioContext = window.AudioContext || window.webkitAudioContext;
+        AudioContext.auto
         mAudioContext = new AudioContext();
 
         // connect Master volume control
@@ -49,6 +55,37 @@ function init() {
     } catch (e) {
         throw new Error("Web Audio is not supported. Engine initialization failed.");
     }
+}
+
+function init() {
+    
+    let audioInitPromise = new Promise(
+        function(loadAudio) {
+            // when audioFrame has begin to play call initAudio
+            let audioFrame = document.createElement("iframe");  // the iframe in index.html
+            audioFrame.allow = "autoplay";
+            audioFrame.style = "display: none";
+            audioFrame.source = "./assets/sounds/bg_clip.mp3";
+            audioFrame.onload = loadAudio();
+            console.log("iFrame creation done");
+        }).then(
+            function loadAudio() { 
+                new Promise( function(initAudio) {
+                                console.log("audio play before"); 
+                                let audio = document.createElement("audio");
+                                audio.autoplay = true;
+                                audio.source = "./assets/sounds/bg_clip.mp3";
+                                audio.type= "audio/mp3"
+                                audio.onload = initAudio();
+                            }   
+                ).then(
+                    function initAudio() { createAudioContext(); }
+                )
+            }
+        );
+        map.pushPromise(audioInitPromise); 
+        
+        // createAudioContext();
 }
 
 function decodeResource(data) {

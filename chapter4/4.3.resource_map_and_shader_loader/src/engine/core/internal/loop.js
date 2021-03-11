@@ -1,3 +1,9 @@
+/*
+ * File: loop.js
+ *  
+ * interfaces with HTML5 to implement looping functionality, supports start/end loop
+ * 
+ */
 "use strict"
 
 import * as map from './resource_map.js'

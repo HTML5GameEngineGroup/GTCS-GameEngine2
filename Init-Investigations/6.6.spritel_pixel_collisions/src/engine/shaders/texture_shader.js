@@ -1,4 +1,10 @@
-"use strict";  // Operate in Strict mode such that letiables must be declared before used!
+/*
+ * File: texture_shader.js
+ *
+ * wrapps over GLSL texture shader, supporting the working with the entire file texture
+ * 
+ */
+"use strict"
 
 import * as GLSys from '../core/internal/gl.js'
 import * as vertexBuffer from '../core/internal/vertex_buffer.js'
@@ -14,8 +20,8 @@ class TextureShader extends SimpleShader {
 
         // get the reference of aTextureCoordinate within the shader
         let gl = GLSys.get();
-        this.mTextureCoordinateRef = gl.getAttribLocation(this.mCompiledShaderProgram, "aTextureCoordinate");
-        this.mSamperRef = gl.getAttribLocation(this.mCompiledShaderProgram, "uSampler");
+        this.mTextureCoordinateRef = gl.getAttribLocation(this.mCompiledShader, "aTextureCoordinate");
+        this.mSamperRef = gl.getAttribLocation(this.mCompiledShader, "uSampler");
     }
 
     // Overriding the Activation of the shader for rendering

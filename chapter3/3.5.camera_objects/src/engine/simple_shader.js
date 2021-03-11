@@ -36,7 +36,7 @@ class SimpleShader {
 
         // Step C: check for error
         if (!gl.getProgramParameter(this.mCompiledShader, gl.LINK_STATUS)) {
-            alert("Error linking shader");
+            throw new Error("Shader linking failed with [" + vertexShaderPath + " " + fragmentShaderPath +"].");
             return null;
         }
 
@@ -58,13 +58,13 @@ class SimpleShader {
         
         // bind vertex buffer
         gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
-        gl.vertexAttribPointer(this.mVertexPosition,
+        gl.vertexAttribPointer(this.mVertexPositionRef,
             3,              // each element is a 3-float (x,y.z)
-            gl.FLOAT,      // data type is FLOAT
+            gl.FLOAT,       // data type is FLOAT
             false,          // if the content is normalized vectors
             0,              // number of bytes to skip in between elements
             0);             // offsets to the first element
-        gl.enableVertexAttribArray(this.mVertexPosition);
+        gl.enableVertexAttribArray(this.mVertexPositionRef);
         
         // load uniforms
         gl.uniform4fv(this.mPixelColorRef, pixelColor);
@@ -74,7 +74,7 @@ class SimpleShader {
 }
 
 //**-----------------------------------
-// Private methods not mean to call by outside of this object
+// Private methods not visible outside of this file
 // **------------------------------------
 
 // 
@@ -90,14 +90,14 @@ function loadAndCompileShader(filePath, shaderType) {
     try {
         xmlReq.send();
     } catch (error) {
-        alert("Failed to load shader: " + filePath + " [Hint: you cannot double click index.html to run this project. " +
+        throw new Error("Failed to load shader: " + filePath + " [Hint: you cannot double click index.html to run this project. " +
                 "The index.html file must be loaded by a web-server.]");
         return null;
     }
     shaderSource = xmlReq.responseText;
 
     if (shaderSource === null) {
-        alert("WARNING: Loading of:" + filePath + " Failed!");
+        throw new Error("WARNING: Loading of:" + filePath + " Failed!");
         return null;
     }
 
@@ -112,7 +112,7 @@ function loadAndCompileShader(filePath, shaderType) {
     // The log info is how shader compilation errors are typically displayed.
     // This is useful for debugging the shaders.
     if (!gl.getShaderParameter(compiledShader, gl.COMPILE_STATUS)) {
-        alert("A shader compiling error occurred: " + gl.getShaderInfoLog(compiledShader));
+        throw new Error("Shader ["+ filePath +"] compiling error: " + gl.getShaderInfoLog(compiledShader));
     }
 
     return compiledShader;

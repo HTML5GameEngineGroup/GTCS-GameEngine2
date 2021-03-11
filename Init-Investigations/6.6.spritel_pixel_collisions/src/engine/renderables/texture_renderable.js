@@ -1,4 +1,10 @@
-"use strict";
+/*
+ * File: texture_renderable.js
+ *
+ * Supports the drawing an entire file texture mapped onto an entire Renderable
+ * 
+ */
+"use strict"
 
 import Renderable from "./renderable.js"
 import * as texture from "../resources/texture.js"

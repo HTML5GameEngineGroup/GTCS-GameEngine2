@@ -74,7 +74,7 @@ class MyGame extends engine.Scene {
     // importantly, make sure to _NOT_ change any state.
     draw() {
         // Step A: clear the canvas
-        engine.clearCanvas([0.2, 0.2, 0.2, 1.0]);
+        engine.clearCanvas([0.9, 0.9, 0.9, 1.0]);
 
         this.mCamera.setViewAndCameraMatrix();
         // Step  B: Activate the drawing Camera

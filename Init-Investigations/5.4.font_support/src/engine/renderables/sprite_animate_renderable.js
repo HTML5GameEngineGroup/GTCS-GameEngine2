@@ -1,4 +1,10 @@
-"use strict";   // Operate in Strict mode such that letiables must be declared before used!
+/*
+ * File: sprite_animate_renderable.js
+ *
+ * Supports the drawing and controlling of sprite animation sequence
+ * 
+ */
+"use strict"
 
 import SpriteRenderable from "./sprite_renderable.js"
 import * as defaultResources from "../resources/default_resources.js"
@@ -29,7 +35,7 @@ class SpriteAnimateRenderable extends SpriteRenderable {
         //
         // per animation settings
         this.mUpdateInterval = 1;   // how often to advance
-        this.mAnimationType = eAnimationType.eAnimateRight;
+        this.mAnimationType = eAnimationType.eRight;
 
         this.mCurrentAnimAdvance = -1;
         this.mCurrentElm = 0;
@@ -118,5 +124,5 @@ class SpriteAnimateRenderable extends SpriteRenderable {
     }
 }
 
-export default SpriteAnimateRenderable; 
 export {eAnimationType}
+export default SpriteAnimateRenderable;

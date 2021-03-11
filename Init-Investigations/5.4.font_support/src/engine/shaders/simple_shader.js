@@ -1,5 +1,7 @@
 /* 
- * Implements a SimpleShader object.
+ * File: simple_shader.js
+ * 
+ * Defines the SimpleShader class
  * 
  */
 "use strict"
@@ -14,9 +16,9 @@ class SimpleShader {
     constructor(vertexShaderPath, fragmentShaderPath) {
         // instance variables
         // Convention: all instance variables: mVariables
-        this.mCompiledShaderProgram = null;  // reference to the compiled shader program in webgl context  
-        this.mVertexPositionRef = null; // reference to SquareVertexPosition within the shader
-        this.mPixelColorRef = null;  // reference to the pixelColor uniform in the fragment shader
+        this.mCompiledShader = null;  // reference to the compiled shader in webgl context  
+        this.mVertexPositionRef = null; // reference to VertexPosition within the shader
+        this.mPixelColorRef = null;     // reference to the pixelColor uniform in the fragment shader
         this.mModelMatrixRef = null; // reference to model transform matrix in vertex shader
         this.mCameraMatrixRef = null; // reference to the View/Projection matrix in the vertex shader
 
@@ -28,32 +30,32 @@ class SimpleShader {
         this.mFragmentShader = compileShader(fragmentShaderPath, gl.FRAGMENT_SHADER);
 
         // Step B: Create and link the shaders into a program.
-        this.mCompiledShaderProgram = gl.createProgram();
-        gl.attachShader(this.mCompiledShaderProgram, this.mVertexShader);
-        gl.attachShader(this.mCompiledShaderProgram, this.mFragmentShader);
-        gl.linkProgram(this.mCompiledShaderProgram);
+        this.mCompiledShader = gl.createProgram();
+        gl.attachShader(this.mCompiledShader, this.mVertexShader);
+        gl.attachShader(this.mCompiledShader, this.mFragmentShader);
+        gl.linkProgram(this.mCompiledShader);
 
         // Step C: check for error
-        if (!gl.getProgramParameter(this.mCompiledShaderProgram, gl.LINK_STATUS)) {
+        if (!gl.getProgramParameter(this.mCompiledShader, gl.LINK_STATUS)) {
             throw new Error("Shader linking failed with [" + vertexShaderPath + " " + fragmentShaderPath +"].");
             return null;
         }
 
-        // Step D: Gets a reference to the aSquareVertexPosition attribute within the shaders.
-        this.mVertexPositionRef = gl.getAttribLocation(this.mCompiledShaderProgram, "aVertexPosition");
+        // Step D: Gets a reference to the aVertexPosition attribute within the shaders.
+        this.mVertexPositionRef = gl.getAttribLocation(this.mCompiledShader, "aVertexPosition");
 
         // Step E: Gets references to the uniform variables: uPixelColor, uModelTransform, and uViewProjTransform
-        this.mPixelColorRef = gl.getUniformLocation(this.mCompiledShaderProgram, "uPixelColor");
-        this.mModelMatrixRef = gl.getUniformLocation(this.mCompiledShaderProgram, "uModelXformMatrix");
-        this.mCameraMatrixRef = gl.getUniformLocation(this.mCompiledShaderProgram, "uCameraXformMatrix");
+        this.mPixelColorRef = gl.getUniformLocation(this.mCompiledShader, "uPixelColor");
+        this.mModelMatrixRef = gl.getUniformLocation(this.mCompiledShader, "uModelXformMatrix");
+        this.mCameraMatrixRef = gl.getUniformLocation(this.mCompiledShader, "uCameraXformMatrix");
     }
 
     // Activate the shader for rendering
     activate(pixelColor, trsMatrix, cameraMatrix) {
         let gl = GLSys.get();
-        gl.useProgram(this.mCompiledShaderProgram);
-
-                // bind vertex buffer
+        gl.useProgram(this.mCompiledShader);
+        
+        // bind vertex buffer
         gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
         gl.vertexAttribPointer(this.mVertexPositionRef,
             3,              // each element is a 3-float (x,y.z)
@@ -62,23 +64,27 @@ class SimpleShader {
             0,              // number of bytes to skip in between elements
             0);             // offsets to the first element
         gl.enableVertexAttribArray(this.mVertexPositionRef);
-
+        
         // load uniforms
         gl.uniform4fv(this.mPixelColorRef, pixelColor);
         gl.uniformMatrix4fv(this.mModelMatrixRef, false, trsMatrix);
         gl.uniformMatrix4fv(this.mCameraMatrixRef, false, cameraMatrix);
-        
     }
 
     cleanUp() {
         let gl = GLSys.get();
-        gl.detachShader(this.mCompiledShaderProgram, this.mVertexShader);
-        gl.detachShader(this.mCompiledShaderProgram, this.mFragmentShader);
+        gl.detachShader(this.mCompiledShader, this.mVertexShader);
+        gl.detachShader(this.mCompiledShader, this.mFragmentShader);
         gl.deleteShader(this.mVertexShader);
         gl.deleteShader(this.mFragmentShader);
-        gl.deleteProgram(this.mCompiledShaderProgram);
+        gl.deleteProgram(this.mCompiledShader);
     }
 }
+
+
+//**-----------------------------------
+// Private methods not visible outside of this file
+// **------------------------------------
 
 // 
 // Returns a compiled shader from a shader in the dom.
@@ -106,11 +112,11 @@ function compileShader(filePath, shaderType) {
     // The log info is how shader compilation errors are typically displayed.
     // This is useful for debugging the shaders.
     if (!gl.getShaderParameter(compiledShader, gl.COMPILE_STATUS)) {
-        throw new Error("Shader ["+ filePath +"] compiling error: " + 
-                gl.getShaderInfoLog(compiledShader));
+        throw new Error("Shader ["+ filePath +"] compiling error: " + gl.getShaderInfoLog(compiledShader));
     }
 
     return compiledShader;
 }
+//-- end of private methods
 
 export default SimpleShader;

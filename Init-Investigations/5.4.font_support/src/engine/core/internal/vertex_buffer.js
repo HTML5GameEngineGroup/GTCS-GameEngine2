@@ -1,6 +1,17 @@
-"use strict"
+/*
+ * File: vertex_buffer.js
+ *  
+ * defines the module that supports the loading and using of the buffer that 
+ * contains vertex positions of a square onto the gl context
+ * 
+ */
+"use strict";
 
 import * as GLSys from './gl.js'
+
+// reference to the vertex positions for the square in the gl context
+let mGLVertexBuffer = null;
+function get() { return mGLVertexBuffer; }
 
 // First: define the vertices for a square
 let mVerticesOfSquare = [
@@ -10,6 +21,11 @@ let mVerticesOfSquare = [
     -0.5, -0.5, 0.0
 ];
 
+
+// reference to the texture cooredinates for the square vertices in the gl context
+let mGLTextureCoordBuffer = null;
+function getTexCoord() { return mGLTextureCoordBuffer; }
+
 // Second: define the corresponding texture coordinates
 let mTextureCoordinates = [
     1.0, 1.0,
@@ -18,19 +34,17 @@ let mTextureCoordinates = [
     0.0, 0.0
 ];
 
-// reference to the vertex positions for the square in the gl context
-let mGLVertexBuffer = null;
+function cleanUp() {
+    let gl = GLSys.get(); 
+    if (mGLVertexBuffer !== null) {
+        gl.deleteBuffer(mGLVertexBuffer);
+        mGLVertexBuffer = null;   
+    }
 
-// reference to the texture cooredinates for the square vertices in the gl context
-let mGLTextureCoordBuffer = null;
-
-function get() { return mGLVertexBuffer; }
-function getTexCoord() { return mGLTextureCoordBuffer; }
-
-function cleanUp() { 
-	let gl = GLSys.get()
-	gl.deleteBuffer(mGLVertexBuffer); 
-	gl.deleteBuffer(mGLTextureCoordBuffer); 
+    if (mGLTextureCoordBuffer !== null) {
+        gl.deleteBuffer(mGLTextureCoordBuffer);
+        mGLTextureCoordBuffer = null;
+    }
 }
 
 function init() {

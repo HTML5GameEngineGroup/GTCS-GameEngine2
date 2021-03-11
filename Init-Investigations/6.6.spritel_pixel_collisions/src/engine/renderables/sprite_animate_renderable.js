@@ -1,4 +1,10 @@
-"use strict";   // Operate in Strict mode such that letiables must be declared before used!
+/*
+ * File: sprite_animate_renderable.js
+ *
+ * Supports the drawing and controlling of sprite animation sequence
+ * 
+ */
+"use strict"
 
 import SpriteRenderable from "./sprite_renderable.js"
 import * as defaultResources from "../resources/default_resources.js"

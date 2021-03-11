@@ -1,3 +1,9 @@
+/*
+ * File: audio.js
+ *
+ * logics for loading an audio file into the resource_map and
+ * provides control of the loaded audio 
+ */
 "use strict"
 
 import * as map from '../core/internal/resource_map.js'

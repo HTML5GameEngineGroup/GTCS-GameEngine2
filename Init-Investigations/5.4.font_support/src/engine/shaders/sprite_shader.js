@@ -1,8 +1,14 @@
-"use strict";  // Operate in Strict mode such that variables must be declared before used!
+/*
+ * File: sprite_shader.js
+ *
+ * wrapps over GLSL texture shader, supporting the defintion of one sprite element
+ * from a texture file
+ * 
+ */
+"use strict"
 
 import * as GLSys from '../core/internal/gl.js'
 import TextureShader from './texture_shader.js'
-import SimpleShader from './simple_shader.js'
 
 class SpriteShader extends TextureShader {
     constructor(vertexShaderPath, fragmentShaderPath) {

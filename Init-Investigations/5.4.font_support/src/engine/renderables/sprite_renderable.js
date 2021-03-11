@@ -1,4 +1,10 @@
-"use strict"; // Operate in Strict mode such that variables must be declared before used!
+/*
+ * File: sprite_renderable.js
+ *
+ * Supports the drawing and of one sprite element mapped onto entire Renderable
+ * 
+ */
+"use strict"
 
 import TextureRenderable from "./texture_renderable.js"
 import * as defaultResources from "../resources/default_resources.js"

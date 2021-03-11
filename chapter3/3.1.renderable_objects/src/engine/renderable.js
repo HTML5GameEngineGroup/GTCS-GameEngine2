@@ -4,6 +4,7 @@
  * Encapsulate the Shader and VertexBuffer into the same object (and will include
  * other attributes later) to represent a Renderable object on the game screen.
  */
+"use strict"
 
 import * as GLSys from './core/internal/gl.js'
 
@@ -13,7 +14,7 @@ class Renderable {
         this.mColor = [1, 1, 1, 1];    // color of pixel
     }
 
-    draw(camera) {
+    draw() {
         let gl = GLSys.get();
         this.mShader.activate(this.mColor);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);

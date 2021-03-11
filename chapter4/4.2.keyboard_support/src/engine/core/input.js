@@ -1,3 +1,9 @@
+/*
+ * File: input.js
+ *  
+ * interfaces with HTML5 to to receive keyboard events
+ * 
+ */
 "use strict"
 
 // Key code constants

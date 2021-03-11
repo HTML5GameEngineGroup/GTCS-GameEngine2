@@ -1,3 +1,11 @@
+/*
+ * File: index.js
+ *  
+ * serves as central export of the entire engine
+ * client programs can simply import this file 
+ * for all symbols defined in the engine
+ * 
+ */
 "use strict"
 
 // general utiities

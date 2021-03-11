@@ -1,3 +1,11 @@
+/*
+ * File: index.js
+ *  
+ * serves as central export of the entire engine
+ * client programs can simply import this file 
+ * for all symbols defined in the engine
+ * 
+ */
 "use strict"
 
 // Core
@@ -6,7 +14,6 @@ import * as loop from './core/internal/loop.js'
 
 // Resources
 import * as text from './resources/text.js'
-import * as xml from './resources/xml.js'
 import * as defaultResources from './resources/default_resources.js'
 
 // general utiities
@@ -37,7 +44,7 @@ function clearCanvas(color) {
 
 export default {
     // resource support
-    text, xml, defaultResources,
+    text, defaultResources,
 
     // core
     input,

@@ -1,5 +1,10 @@
-"use strict";  // Operate in Strict mode such that variables must be declared before used!
-
+/*
+ * File: game_object.js
+ *
+ * defines the behavior and apparance of a game object
+ * 
+ */
+"use strict"
 import BoundingBox from '../bounding_box.js'
 
 class GameObject {

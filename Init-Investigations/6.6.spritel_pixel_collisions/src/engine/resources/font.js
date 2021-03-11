@@ -1,3 +1,11 @@
+/*
+ * File: font.js
+ *
+ * logics for loading font into the resource_map
+ * Note that "font" consists of two files
+ *    => the bitmap font image
+ *    => the associated xml descriptor file
+ */
 "use strict";  // Operate in Strict mode such that letiables must be declared before used!
 
 import * as map from '../core/internal/resource_map.js'

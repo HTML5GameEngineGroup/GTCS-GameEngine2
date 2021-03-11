@@ -1,3 +1,8 @@
+/*
+ * File: default_resources.js
+ *
+ * central storage of all engine-wide shared resources, e.g., shaders
+ */
 "use strict"
 
 import core from '../index.js'

@@ -18,8 +18,6 @@ class SimpleShader {
         this.mCompiledShader = null;  // reference to the compiled shader in webgl context  
         this.mVertexPositionRef = null; // reference to VertexPosition within the shader
         this.mPixelColorRef = null;     // reference to the pixelColor uniform in the fragment shader
-        this.mModelMatrixRef = null; // reference to model transform matrix in vertex shader
-        this.mCameraMatrixRef = null; // reference to the View/Projection matrix in the vertex shader
 
         let gl = GLSys.get();
         // start of constructor code
@@ -36,32 +34,32 @@ class SimpleShader {
 
         // Step C: check for error
         if (!gl.getProgramParameter(this.mCompiledShader, gl.LINK_STATUS)) {
-            alert("Error linking shader");
+            throw new Error("Shader linking failed with [" + vertexShaderPath + " " + fragmentShaderPath +"].");
             return null;
         }
 
         // Step D: Gets a reference to the aVertexPosition attribute within the shaders.
         this.mVertexPositionRef = gl.getAttribLocation(this.mCompiledShader, "aVertexPosition");
 
-        // Step E: Gets a reference to the uniform variables in the fragment shader
+        // Step E: Gets a reference to the uniform variable in the fragment shader
         this.mPixelColorRef = gl.getUniformLocation(this.mCompiledShader, "uPixelColor");
     }
 
     
     // Activate the shader for rendering
-    activate(pixelColor, trsMatrix, cameraMatrix) {
+    activate(pixelColor) {
         let gl = GLSys.get();
         gl.useProgram(this.mCompiledShader);
         
         // bind vertex buffer
         gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
-        gl.vertexAttribPointer(this.mVertexPosition,
+        gl.vertexAttribPointer(this.mVertexPositionRef,
             3,              // each element is a 3-float (x,y.z)
-            gl.FLOAT,      // data type is FLOAT
+            gl.FLOAT,       // data type is FLOAT
             false,          // if the content is normalized vectors
             0,              // number of bytes to skip in between elements
             0);             // offsets to the first element
-        gl.enableVertexAttribArray(this.mVertexPosition);
+        gl.enableVertexAttribArray(this.mVertexPositionRef);
         
         // load uniforms
         gl.uniform4fv(this.mPixelColorRef, pixelColor);
@@ -69,7 +67,7 @@ class SimpleShader {
 }
 
 //**-----------------------------------
-// Private methods not mean to call by outside of this object
+// Private methods not visible outside of this file
 // **------------------------------------
 
 // 
@@ -85,14 +83,14 @@ function loadAndCompileShader(filePath, shaderType) {
     try {
         xmlReq.send();
     } catch (error) {
-        alert("Failed to load shader: " + filePath + " [Hint: you cannot double click index.html to run this project. " +
+        throw new Error("Failed to load shader: " + filePath + " [Hint: you cannot double click index.html to run this project. " +
                 "The index.html file must be loaded by a web-server.]");
         return null;
     }
     shaderSource = xmlReq.responseText;
 
     if (shaderSource === null) {
-        alert("WARNING: Loading of:" + filePath + " Failed!");
+        throw new Error("WARNING: Loading of:" + filePath + " Failed!");
         return null;
     }
 
@@ -107,7 +105,7 @@ function loadAndCompileShader(filePath, shaderType) {
     // The log info is how shader compilation errors are typically displayed.
     // This is useful for debugging the shaders.
     if (!gl.getShaderParameter(compiledShader, gl.COMPILE_STATUS)) {
-        alert("A shader compiling error occurred: " + gl.getShaderInfoLog(compiledShader));
+        throw new Error("A shader compiling error occurred: " + gl.getShaderInfoLog(compiledShader));
     }
 
     return compiledShader;

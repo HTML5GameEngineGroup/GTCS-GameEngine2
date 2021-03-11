@@ -1,4 +1,11 @@
-"use strict";  // Operate in Strict mode such that variables must be declared before used!
+/*
+ * File: sprite_animate_renderable.js
+ *
+ * defines the logic for loading and interacting with file texture resources
+ * (load into the resource_map)
+ * 
+ */
+"use strict"
 
 import * as map from '../core/internal/resource_map.js'
 // functions from resource_map

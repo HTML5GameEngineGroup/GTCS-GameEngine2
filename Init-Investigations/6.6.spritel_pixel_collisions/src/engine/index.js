@@ -1,6 +1,18 @@
+/*
+ * File: index.js
+ *  
+ * serves as central export of the entire engine
+ * client programs can simply import this file 
+ * for all symbols defined in the engine
+ * 
+ */
 "use strict"
 
-// Resources
+// core
+import * as input from './core/input.js'
+import * as loop from './core/internal/loop.js'
+
+// resources
 import * as audio from './resources/audio.js'
 import * as text from './resources/text.js'
 import * as xml from './resources/xml.js'
@@ -8,11 +20,7 @@ import * as texture from './resources/texture.js'
 import * as font from './resources/font.js'
 import * as defaultResources from './resources/default_resources.js'
 
-// core
-import * as input from './core/input.js'
-import * as loop from './core/internal/loop.js'
-
-// General Utilities
+// general utilities
 import Camera from './camera.js'
 import Scene from './scene.js'
 import Transform from './transform.js'

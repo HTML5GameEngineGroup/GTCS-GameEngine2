@@ -1,7 +1,10 @@
-"use strict"
-/* 
+/*
+ * File: scene.js
+ *
  * The template for a scene.
+ * 
  */
+"use strict"
 
 import  * as loop from './core/internal/loop.js'
 import engine from './index.js'

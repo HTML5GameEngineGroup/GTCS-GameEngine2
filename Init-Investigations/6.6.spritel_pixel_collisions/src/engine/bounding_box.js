@@ -1,4 +1,10 @@
-"use strict";
+/*
+ * File: boundingbox.js
+ *
+ * defines an Axis Aligned Bounding Box (AABB)
+ * 
+ */
+"use strict"
 
 let eboundCollideStatus = Object.freeze({
     eCollideLeft: 1,
