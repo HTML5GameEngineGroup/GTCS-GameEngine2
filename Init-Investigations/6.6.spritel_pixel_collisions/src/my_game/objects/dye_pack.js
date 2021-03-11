@@ -18,7 +18,7 @@ class DyePack extends engine.GameObject {
     }
 
     update() {
-        var xform = this.getXform();
+        let xform = this.getXform();
         if (engine.input.isKeyPressed(engine.input.keys.Up)) {
             xform.incYPosBy(this.kDelta);
         }

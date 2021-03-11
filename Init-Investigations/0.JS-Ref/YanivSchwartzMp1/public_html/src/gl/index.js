@@ -1,7 +1,7 @@
 let gl = null;
 
 function initGL(canvasID) {
-    var canvas = document.getElementById(canvasID);
+    let canvas = document.getElementById(canvasID);
 
     // Get the standard or experimental webgl and binds to the Canvas area
     // store the results to the instance variable mGL

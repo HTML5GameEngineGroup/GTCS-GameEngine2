@@ -39,10 +39,10 @@ class SpriteRenderable extends TextureRenderable {
 
     // specify element region by pixel positions (between 0 to image resolutions)
     setElementPixelPositions(left, right, bottom, top) {
-        var texInfo = texture.get(this.mTexture);
+        let texInfo = texture.get(this.mTexture);
         // entire image width, height
-        var imageW = texInfo.mWidth;
-        var imageH = texInfo.mHeight;
+        let imageW = texInfo.mWidth;
+        let imageH = texInfo.mHeight;
 
         this.mTexLeft = left / imageW;
         this.mTexRight = right / imageW;

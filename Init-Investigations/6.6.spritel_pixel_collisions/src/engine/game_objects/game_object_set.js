@@ -16,14 +16,14 @@ class GameObjectSet {
     }
 
     update() {
-        var i;
+        let i;
         for (i = 0; i < this.mSet.length; i++) {
             this.mSet[i].update();
         }
     }
 
     draw(aCamera) {
-        var i;
+        let i;
         for (i = 0; i < this.mSet.length; i++) {
             this.mSet[i].draw(aCamera);
         }

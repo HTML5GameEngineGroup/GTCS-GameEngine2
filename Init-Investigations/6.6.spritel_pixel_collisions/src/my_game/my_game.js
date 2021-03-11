@@ -100,7 +100,7 @@ class MyGame extends engine.Scene {
     // The update function, updates the application state. Make sure to _NOT_ draw
     // anything from this function!
     update() {
-        var msg = "L/R: Left or Right Minion; H: Dye; B: Brain]: ";
+        let msg = "L/R: Left or Right Minion; H: Dye; B: Brain]: ";
 
         this.mLMinion.update();
         this.mRMinion.update();
@@ -110,7 +110,7 @@ class MyGame extends engine.Scene {
         this.mPortal.update(engine.input.keys.Up, engine.input.keys.Down,
             engine.input.keys.Left, engine.input.keys.Right, engine.input.keys.P);
 
-        var h = [];
+        let h = [];
 
         // Portal intersects with which ever is selected
         if (this.mPortal.pixelTouches(this.mCollide, h)) {

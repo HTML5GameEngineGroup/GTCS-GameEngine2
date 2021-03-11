@@ -102,15 +102,15 @@ function deactivate() {
 
 function getColorArray(textureName) {
     let gl = GLSys.get();
-    var texInfo = get(textureName);
+    let texInfo = get(textureName);
     if (texInfo.mColorArray === null) {
         // create a framebuffer bind it to the texture, and read the color content
         // Hint from: http://stackoverflow.com/questions/13626606/read-pixels-from-a-webgl-texture 
-        var fb = gl.createFramebuffer();
+        let fb = gl.createFramebuffer();
         gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
         gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texInfo.mGLTexID, 0);
         if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE) {
-            var pixels = new Uint8Array(texInfo.mWidth * texInfo.mHeight * 4);
+            let pixels = new Uint8Array(texInfo.mWidth * texInfo.mHeight * 4);
             gl.readPixels(0, 0, texInfo.mWidth, texInfo.mHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
             texInfo.mColorArray = pixels;
         } else {

@@ -48,14 +48,14 @@ class TextureRenderable extends Renderable {
 
     // the following are support for per-pixel collision
     pixelTouches(other, wcTouchPos) {
-        var pixelTouch = false;
-        var xIndex = 0, yIndex;
-        var otherIndex = [0, 0];
+        let pixelTouch = false;
+        let xIndex = 0, yIndex;
+        let otherIndex = [0, 0];
     
-        var xDir = [1, 0];
-        var yDir = [0, 1];
-        var otherXDir = [1, 0];
-        var otherYDir = [0, 1];
+        let xDir = [1, 0];
+        let yDir = [0, 1];
+        let otherXDir = [1, 0];
+        let otherYDir = [0, 1];
         vec2.rotate(xDir, xDir, this.mXform.getRotationInRad());
         vec2.rotate(yDir, yDir, this.mXform.getRotationInRad());
         vec2.rotate(otherXDir, otherXDir, other.mXform.getRotationInRad());
@@ -95,10 +95,10 @@ class TextureRenderable extends Renderable {
     
     _wcPositionToIndex(returnIndex, wcPos, xDir, yDir) {
         // use wcPos to compute the corresponding returnIndex[0 and 1]
-        var delta = [];
+        let delta = [];
         vec2.sub(delta, wcPos, this.mXform.getPosition());
-        var xDisp = vec2.dot(delta, xDir);
-        var yDisp = vec2.dot(delta, yDir);
+        let xDisp = vec2.dot(delta, xDir);
+        let yDisp = vec2.dot(delta, yDir);
         returnIndex[0] = this.mTexWidth  * (xDisp / this.mXform.getWidth());
         returnIndex[1] = this.mTexHeight * (yDisp / this.mXform.getHeight());
     
@@ -112,12 +112,12 @@ class TextureRenderable extends Renderable {
     }
     
     _indexToWCPosition(returnWCPos, i, j, xDir, yDir) {
-        var x = i * this.mXform.getWidth() / this.mTexWidth;
-        var y = j * this.mXform.getHeight() / this.mTexHeight;
-        var xDisp = x - (this.mXform.getWidth() * 0.5);
-        var yDisp = y - (this.mXform.getHeight() * 0.5);
-        var xDirDisp = [];
-        var yDirDisp = [];
+        let x = i * this.mXform.getWidth() / this.mTexWidth;
+        let y = j * this.mXform.getHeight() / this.mTexHeight;
+        let xDisp = x - (this.mXform.getWidth() * 0.5);
+        let yDisp = y - (this.mXform.getHeight() * 0.5);
+        let xDirDisp = [];
+        let yDirDisp = [];
     
         vec2.scale(xDirDisp, xDir, xDisp);
         vec2.scale(yDirDisp, yDir, yDisp);

@@ -27,8 +27,8 @@ function loopOnce() {
         mCurrentScene.draw();    
 
         // Step C: compute how much time has elapsed since  last loopOnce was executed
-        var currentTime = Date.now();
-        var elapsedTime = currentTime - mPrevTime;
+        let currentTime = Date.now();
+        let elapsedTime = currentTime - mPrevTime;
         mPrevTime = currentTime;
         mLagTime += elapsedTime;
 

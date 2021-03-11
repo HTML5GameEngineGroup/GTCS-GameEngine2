@@ -12,8 +12,8 @@ class GameObject {
 
     getXform() { return this.mRenderComponent.getXform(); }
     getBBox() {
-        var xform = this.getXform();
-        var b = new BoundingBox(xform.getPosition(), xform.getWidth(), xform.getHeight());
+        let xform = this.getXform();
+        let b = new BoundingBox(xform.getPosition(), xform.getWidth(), xform.getHeight());
         return b;
     }
     setVisibility(f) { this.mVisible = f; }
@@ -32,17 +32,17 @@ class GameObject {
     // will rotate Xform() accordingly
     rotateObjPointTo(p, rate) {
         // Step A: determine if reach the destination position p
-        var dir = [];
+        let dir = [];
         vec2.sub(dir, p, this.getXform().getPosition());
-        var len = vec2.length(dir);
+        let len = vec2.length(dir);
         if (len < Number.MIN_VALUE) {
             return; // we are there.
         }
         vec2.scale(dir, dir, 1 / len);
 
         // Step B: compute the angle to rotate
-        var fdir = this.getCurrentFrontDir();
-        var cosTheta = vec2.dot(dir, fdir);
+        let fdir = this.getCurrentFrontDir();
+        let cosTheta = vec2.dot(dir, fdir);
 
         if (cosTheta > 0.999999) { // almost exactly the same direction
             return;
@@ -59,12 +59,12 @@ class GameObject {
         }
 
         // Step D: compute whether to rotate clockwise, or counterclockwise
-        var dir3d = vec3.fromValues(dir[0], dir[1], 0);
-        var f3d = vec3.fromValues(fdir[0], fdir[1], 0);
-        var r3d = [];
+        let dir3d = vec3.fromValues(dir[0], dir[1], 0);
+        let f3d = vec3.fromValues(fdir[0], fdir[1], 0);
+        let r3d = [];
         vec3.cross(r3d, f3d, dir3d);
 
-        var rad = Math.acos(cosTheta);  // radian to roate
+        let rad = Math.acos(cosTheta);  // radian to roate
         if (r3d[2] < 0) {
             rad = -rad;
         }
@@ -77,7 +77,7 @@ class GameObject {
 
     update() {
         // simple default behavior
-        var pos = this.getXform().getPosition();
+        let pos = this.getXform().getPosition();
         vec2.scaleAndAdd(pos, pos, this.getCurrentFrontDir(), this.getSpeed());
     }
 
@@ -91,14 +91,14 @@ class GameObject {
     pixelTouches(otherObj, wcTouchPos) {
         // only continue if both objects have getColorArray defined 
         // if defined, should have other texture intersection support!
-        var pixelTouch = false;
-        var myRen = this.getRenderable();
-        var otherRen = otherObj.getRenderable();
+        let pixelTouch = false;
+        let myRen = this.getRenderable();
+        let otherRen = otherObj.getRenderable();
     
         if ((typeof myRen.pixelTouches === "function") && (typeof otherRen.pixelTouches === "function")) {
             if ((myRen.getXform().getRotationInRad() === 0) && (otherRen.getXform().getRotationInRad() === 0)) {
                 // no rotation, we can use bbox ...
-                var otherBbox = otherObj.getBBox();
+                let otherBbox = otherObj.getBBox();
                 if (otherBbox.intersectsBound(this.getBBox())) {
                     myRen.setColorArray();
                     otherRen.setColorArray();
@@ -107,11 +107,11 @@ class GameObject {
             } else {
                 // One or both are rotated, compute an encompassing circle
                 // by using the hypotenuse as radius
-                var mySize = myRen.getXform().getSize();
-                var otherSize = otherRen.getXform().getSize();
-                var myR = Math.sqrt(0.5*mySize[0]*0.5*mySize[0] + 0.5*mySize[1]*0.5*mySize[1]);
-                var otherR = Math.sqrt(0.5*otherSize[0]*0.5*otherSize[0] + 0.5*otherSize[1]*0.5*otherSize[1]);
-                var d = [];
+                let mySize = myRen.getXform().getSize();
+                let otherSize = otherRen.getXform().getSize();
+                let myR = Math.sqrt(0.5*mySize[0]*0.5*mySize[0] + 0.5*mySize[1]*0.5*mySize[1]);
+                let otherR = Math.sqrt(0.5*otherSize[0]*0.5*otherSize[0] + 0.5*otherSize[1]*0.5*otherSize[1]);
+                let d = [];
                 vec2.sub(d, myRen.getXform().getPosition(), otherRen.getXform().getPosition());
                 if (vec2.length(d) < (myR + otherR)) {
                     myRen.setColorArray();

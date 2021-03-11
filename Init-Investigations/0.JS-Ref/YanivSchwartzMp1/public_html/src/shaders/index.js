@@ -7,8 +7,8 @@ class Shaders {
         this.mShaderVertexPositionAttribute = null; 
         this.mPixelColorRef = null;
 
-        var vertexShader = loadAndCompileShader(vertexShaderPath, gl.VERTEX_SHADER);
-        var fragmentShader = loadAndCompileShader(fragmentShaderPath, gl.FRAGMENT_SHADER);
+        let vertexShader = loadAndCompileShader(vertexShaderPath, gl.VERTEX_SHADER);
+        let fragmentShader = loadAndCompileShader(fragmentShaderPath, gl.FRAGMENT_SHADER);
 
         this.mCompiledShader = gl.createProgram();
         gl.attachShader(this.mCompiledShader, vertexShader);
@@ -51,7 +51,7 @@ class Shaders {
 }
 
 function loadAndCompileShader(filePath, shaderType) {
-    var xmlReq, shaderSource = null, compiledShader = null;
+    let xmlReq, shaderSource = null, compiledShader = null;
 
     // Step A: Request the text from the given file location.
     xmlReq = new XMLHttpRequest();

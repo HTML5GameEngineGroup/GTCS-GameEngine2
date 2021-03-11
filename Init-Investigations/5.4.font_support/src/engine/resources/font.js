@@ -82,7 +82,7 @@ let getCharInfo = function (fontName, aChar) {
     returnInfo.mTexCoordBottom = bottomPixel / (texInfo.mHeight - 1);
 
     // relative character size
-    var charWidth = charInfo.getAttribute("xadvance");
+    let charWidth = charInfo.getAttribute("xadvance");
     returnInfo.mCharWidth = charInfo.getAttribute("width") / charWidth;
     returnInfo.mCharHeight = charInfo.getAttribute("height") / charHeight;
     returnInfo.mCharWidthOffset = charInfo.getAttribute("xoffset") / charWidth;

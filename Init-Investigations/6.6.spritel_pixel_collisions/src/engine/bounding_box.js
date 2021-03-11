@@ -38,7 +38,7 @@ class BoundingBox {
 
     // returns the status of otherBound wrt to this.
     boundCollideStatus(otherBound) {
-        var status = BoundingBox.eboundCollideStatus.eOutside;
+        let status = BoundingBox.eboundCollideStatus.eOutside;
 
         if (this.intersectsBound(otherBound)) {
             if (otherBound.minX() < this.minX()) {

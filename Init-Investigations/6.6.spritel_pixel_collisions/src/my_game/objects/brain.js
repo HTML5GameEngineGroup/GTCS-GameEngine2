@@ -19,8 +19,8 @@ class Brain extends engine.GameObject {
 
     update() {
         GameObject.update();
-        var xf = this.getXform();
-        var fdir = this.getCurrentFrontDir();
+        let xf = this.getXform();
+        let fdir = this.getCurrentFrontDir();
         if (engine.input.isKeyPressed(engine.input.keys.Left)) {
             xf.incRotationByDegree(this.kDeltaDegree);
             vec2.rotate(fdir, fdir, this.kDeltaRad);

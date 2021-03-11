@@ -16,7 +16,7 @@ class Hero extends engine.GameObject {
 
     update() {
         // control by WASD
-        var xform = this.getXform();
+        let xform = this.getXform();
         if (engine.input.isKeyPressed(engine.input.keys.W)) {
             xform.incYPosBy(this.kDelta);
         }

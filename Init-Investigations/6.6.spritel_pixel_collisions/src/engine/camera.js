@@ -87,10 +87,10 @@ class Camera {
     }
 
     collideWCBound(aXform, zone) {
-        var bbox = new BoundingBox(aXform.getPosition(), aXform.getWidth(), aXform.getHeight());
-        var w = zone * this.getWCWidth();
-        var h = zone * this.getWCHeight();
-        var cameraBound = new BoundingBox(this.getWCCenter(), w, h);
+        let bbox = new BoundingBox(aXform.getPosition(), aXform.getWidth(), aXform.getHeight());
+        let w = zone * this.getWCWidth();
+        let h = zone * this.getWCHeight();
+        let cameraBound = new BoundingBox(this.getWCCenter(), w, h);
         return cameraBound.boundCollideStatus(bbox);
     }
 

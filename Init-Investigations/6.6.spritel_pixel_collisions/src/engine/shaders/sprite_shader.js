@@ -11,14 +11,14 @@ class SpriteShader extends TextureShader {
 
         this.mTexCoordBuffer = null; // this is the reference to gl buffer that contains the actual texture coordinate
 
-        var initTexCoord = [
+        let initTexCoord = [
             1.0, 1.0,
             0.0, 1.0,
             1.0, 0.0,
             0.0, 0.0
         ];
 
-        var gl = GLSys.get();
+        let gl = GLSys.get();
         this.mTexCoordBuffer = gl.createBuffer();
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.mTexCoordBuffer);
@@ -31,13 +31,13 @@ class SpriteShader extends TextureShader {
     }
     
     setTextureCoordinate(texCoord) {
-        var gl = GLSys.get();
+        let gl = GLSys.get();
         gl.bindBuffer(gl.ARRAY_BUFFER, this.mTexCoordBuffer);
         gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(texCoord));
     }
 
     cleanUp() {
-        var gl = GLSys.get();
+        let gl = GLSys.get();
         gl.deleteBuffer(this.mTexCoordBuffer);
         // now call super class's clean up ...
         super.cleanUp(this);

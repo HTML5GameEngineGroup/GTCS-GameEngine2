@@ -12,13 +12,13 @@ let kSimpleFS = "src/glsl_shaders/simple_fs.glsl";  // Path to the simple Fragme
 let mConstColorShader = null;
 
 // Texture Shader
-var kTextureVS = "src/glsl_shaders/texture_vs.glsl";  // Path to the VertexShader 
-var kTextureFS = "src/glsl_shaders/texture_fs.glsl";  // Path to the texture FragmentShader
-var mTextureShader = null;
-var mSpriteShader = null;
+let kTextureVS = "src/glsl_shaders/texture_vs.glsl";  // Path to the VertexShader 
+let kTextureFS = "src/glsl_shaders/texture_fs.glsl";  // Path to the texture FragmentShader
+let mTextureShader = null;
+let mSpriteShader = null;
 
 // Default font
-var kDefaultFont = "assets/fonts/system_default_font";
+let kDefaultFont = "assets/fonts/system_default_font";
 
 function createShaders() {
     mConstColorShader = new SimpleShader(kSimpleVS, kSimpleFS);

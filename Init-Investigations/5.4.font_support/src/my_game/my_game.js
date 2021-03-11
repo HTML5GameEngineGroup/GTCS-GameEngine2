@@ -164,8 +164,8 @@ class MyGame extends engine.Scene {
         // let's only allow the movement of hero, 
         // and if hero moves too far off, this level ends, we will
         // load the next level
-        var deltaX = 0.5;
-        var xform = this.mHero.getXform();
+        let deltaX = 0.5;
+        let xform = this.mHero.getXform();
 
         // Support hero movements
         if (engine.input.isKeyPressed(engine.input.keys.Right)) {
@@ -183,19 +183,19 @@ class MyGame extends engine.Scene {
         }
 
         // New update code for changing the sub-texture regions being shown"
-        var deltaT = 0.001;
+        let deltaT = 0.001;
 
         // <editor-fold desc="The font image:">
         // zoom into the texture by updating texture coordinate
         // For font: zoom to the upper left corner by changing bottom right
-        var texCoord = this.mFontImage.getElementUVCoordinateArray();
+        let texCoord = this.mFontImage.getElementUVCoordinateArray();
         // The 8 elements:
         //      mTexRight,  mTexTop,          // x,y of top-right
         //      mTexLeft,   mTexTop,
         //      mTexRight,  mTexBottom,
         //      mTexLeft,   mTexBottom
-        var b = texCoord[engine.eTexCoordArrayIndex.eBottom] + deltaT;
-        var r = texCoord[engine.eTexCoordArrayIndex.eRight] - deltaT;
+        let b = texCoord[engine.eTexCoordArrayIndex.eBottom] + deltaT;
+        let r = texCoord[engine.eTexCoordArrayIndex.eRight] - deltaT;
         if (b > 1.0) {
             b = 0;
         }
@@ -229,7 +229,7 @@ class MyGame extends engine.Scene {
             this.mTextToWork = this.mTextCon72;
         }
 
-        var deltaF = 0.005;
+        let deltaF = 0.005;
         if (engine.input.isKeyPressed(engine.input.keys.Up)) {
             if (engine.input.isKeyPressed(engine.input.keys.X)) {
                 this.mTextToWork.getXform().incWidthBy(deltaF);

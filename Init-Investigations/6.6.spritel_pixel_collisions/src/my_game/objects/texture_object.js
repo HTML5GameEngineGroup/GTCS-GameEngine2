@@ -15,7 +15,7 @@ class TextureObject extends engine.GameObject {
     }
 
     update(up, down, left, right, rot) {
-        var xform = this.getXform();
+        let xform = this.getXform();
         if (engine.input.isKeyPressed(up)) {
             xform.incYPosBy(this.kDelta);
         }
