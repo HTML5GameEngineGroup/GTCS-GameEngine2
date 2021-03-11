@@ -102,6 +102,8 @@ function loadAndCompileShader(filePath, shaderType) {
 
     return compiledShader;
 }
+//-- end of private methods
+
 
 //
 // export the class, the default keyword says importer of this class cannot change the name "SimpleShader"
