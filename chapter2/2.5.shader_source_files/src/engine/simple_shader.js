@@ -32,7 +32,7 @@ class SimpleShader {
 
         // Step C: check for error
         if (!gl.getProgramParameter(this.mCompiledShader, gl.LINK_STATUS)) {
-            alert("Error linking shader");
+            throw new Error("Error linking shader");
             return null;
         }
 
@@ -75,14 +75,14 @@ function loadAndCompileShader(filePath, shaderType) {
     try {
         xmlReq.send();
     } catch (error) {
-        alert("Failed to load shader: " + filePath + " [Hint: you cannot double click index.html to run this project. " +
+        throw new Error("Failed to load shader: " + filePath + " [Hint: you cannot double click index.html to run this project. " +
                 "The index.html file must be loaded by a web-server.]");
         return null;
     }
     shaderSource = xmlReq.responseText;
 
     if (shaderSource === null) {
-        alert("WARNING: Loading of:" + filePath + " Failed!");
+        throw new Error("WARNING: Loading of:" + filePath + " Failed!");
         return null;
     }
 
@@ -97,7 +97,7 @@ function loadAndCompileShader(filePath, shaderType) {
     // The log info is how shader compilation errors are typically displayed.
     // This is useful for debugging the shaders.
     if (!gl.getShaderParameter(compiledShader, gl.COMPILE_STATUS)) {
-        alert("A shader compiling error occurred: " + gl.getShaderInfoLog(compiledShader));
+        throw new Error("A shader compiling error occurred: " + gl.getShaderInfoLog(compiledShader));
     }
 
     return compiledShader;

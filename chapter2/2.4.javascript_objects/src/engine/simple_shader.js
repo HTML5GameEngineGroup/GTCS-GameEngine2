@@ -32,7 +32,7 @@ class SimpleShader {
 
         // Step C: check for error
         if (!gl.getProgramParameter(this.mCompiledShader, gl.LINK_STATUS)) {
-            alert("Error linking shader");
+            throw new Error("Error linking shader");
             return null;
         }
 
@@ -84,11 +84,10 @@ function loadAndCompileShader(id, shaderType) {
     // The log info is how shader compilation errors are typically displayed.
     // This is useful for debugging the shaders.
     if (!gl.getShaderParameter(compiledShader, gl.COMPILE_STATUS)) {
-        alert("A shader compiling error occurred: " + gl.getShaderInfoLog(compiledShader));
+        throw new Error("A shader compiling error occurred: " + gl.getShaderInfoLog(compiledShader));
     }
 
     return compiledShader;
-}
 }
 //-- end of private methods
 
