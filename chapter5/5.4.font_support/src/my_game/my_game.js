@@ -1,9 +1,14 @@
+/* File: MyGame.js
+ *
+ * This is game developer's game
+ * 
+ */
+
 "use strict";
 
 // Engine stuff
 import engine from '../engine/index.js'
 
-// Operate in Strict mode such that variables must be declared before used!
 
 class MyGame extends engine.Scene {
     constructor() {
