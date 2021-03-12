@@ -36,6 +36,3 @@ window.onload = function() {
     initWebGL("GLCanvas");     // Binds mGL context to WebGL functionality
     clearCanvas();       // Clears the GL area and draws one square
 }
-
-// export this symbol 
-export {getGL}
