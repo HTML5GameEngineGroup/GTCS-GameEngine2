@@ -14,6 +14,21 @@
         <script type="module" src="./src/my_game/my_game.js"></script>
     </head>
     
+    <!-- 
+            this is a workaround to the "user must act before audio can be played policy"
+            https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome
+
+            As suggested by the above, page, the silice file is downloaded from:
+            https://github.com/anars/blank-audio/blob/master/250-milliseconds-of-silence.mp3
+            and re-namted to just silence.mp3
+    -->
+    
+    <iframe src="./assets/sounds/system/silence.mp3" allow="autoplay" id="system_audio" style="display: none">
+    </iframe> 
+    <audio autoplay>
+        <source src="./assets/sounds/bg_clip.mp3" type="audio/mp3">
+    </audio> 
+
     <body>    
         <canvas id="GLCanvas" width="640" height="480">
             <!-- GLCanvas is the area we will draw in: a 640x480 area. -->

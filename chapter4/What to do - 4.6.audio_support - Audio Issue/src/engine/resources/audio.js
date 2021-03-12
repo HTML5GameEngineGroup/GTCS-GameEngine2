@@ -29,22 +29,11 @@ function cleanUp() {
     mAudioContext = null;
 }
 
-function init() {
+function createAudioContext() {
     try {
         let AudioContext = window.AudioContext || window.webkitAudioContext;
         AudioContext.auto
         mAudioContext = new AudioContext();
-            /* Note that: the latest policy for some browers, including Chrome, is that
-             * auido will not be allowed to play until first interaction from the user.
-             * This means, the above context creation will result in initial warning from
-             * Chrome (output to runtime browser console). The audio will only be played
-             * after user input (e.g., mouse click, or keybaord events)
-             *
-             * Readers are welcome to investigate "workarounds" by including specific HTML elements with 
-             * specific settings (iframe with autoplay setting). 
-             * e.g., 
-             *     https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome
-             */ 
 
         // connect Master volume control
         mMasterGain = mAudioContext.createGain();
@@ -66,6 +55,37 @@ function init() {
     } catch (e) {
         throw new Error("Web Audio is not supported. Engine initialization failed.");
     }
+}
+
+function init() {
+    
+    let audioInitPromise = new Promise(
+        function(loadAudio) {
+            // when audioFrame has begin to play call initAudio
+            let audioFrame = document.createElement("iframe");  // the iframe in index.html
+            audioFrame.allow = "autoplay";
+            audioFrame.style = "display: none";
+            audioFrame.source = "./assets/sounds/bg_clip.mp3";
+            audioFrame.onload = loadAudio();
+            console.log("iFrame creation done");
+        }).then(
+            function loadAudio() { 
+                new Promise( function(initAudio) {
+                                console.log("audio play before"); 
+                                let audio = document.createElement("audio");
+                                audio.autoplay = true;
+                                audio.source = "./assets/sounds/bg_clip.mp3";
+                                audio.type= "audio/mp3"
+                                audio.onload = initAudio();
+                            }   
+                ).then(
+                    function initAudio() { createAudioContext(); }
+                )
+            }
+        );
+        map.pushPromise(audioInitPromise); 
+        
+        // createAudioContext();
 }
 
 function decodeResource(data) {
