@@ -97,7 +97,7 @@ function compileShader(filePath, shaderType) {
     shaderSource = text.get(filePath);
 
     if (shaderSource === null) {
-        throw new Error("Loading of:" + filePath + " Failed!");
+        throw new Error("WARNING:" + filePath + " not loaded!");
         return null;
     }
 

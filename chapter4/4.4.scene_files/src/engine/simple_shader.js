@@ -70,15 +70,6 @@ class SimpleShader {
         gl.uniformMatrix4fv(this.mModelMatrixRef, false, trsMatrix);
         gl.uniformMatrix4fv(this.mCameraMatrixRef, false, cameraMatrix);
     }
-
-    cleanUp() {
-        let gl = GLSys.get();
-        gl.detachShader(this.mCompiledShader, this.mVertexShader);
-        gl.detachShader(this.mCompiledShader, this.mFragmentShader);
-        gl.deleteShader(this.mVertexShader);
-        gl.deleteShader(this.mFragmentShader);
-        gl.deleteProgram(this.mCompiledShader);
-    }
 }
 
 
@@ -97,7 +88,7 @@ function compileShader(filePath, shaderType) {
     shaderSource = text.get(filePath);
 
     if (shaderSource === null) {
-        throw new Error("Loading of:" + filePath + " Failed!");
+        throw new Error("WARNING:" + filePath + " not loaded!");
         return null;
     }
 

@@ -92,11 +92,11 @@ export default MyGame;
 
 
 
-window.onload = async function () {
+window.onload = function () {
     engine.init("GLCanvas");
 
     let myGame = new MyGame();    
     
-    // make sure loop.start() returns before continue 
-    await loop.start(myGame);
+    // starts the game loop
+    loop.start(myGame);
 }

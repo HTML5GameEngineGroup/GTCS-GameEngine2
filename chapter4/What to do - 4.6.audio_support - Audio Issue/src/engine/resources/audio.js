@@ -32,7 +32,6 @@ function cleanUp() {
 function createAudioContext() {
     try {
         let AudioContext = window.AudioContext || window.webkitAudioContext;
-        AudioContext.auto
         mAudioContext = new AudioContext();
 
         // connect Master volume control

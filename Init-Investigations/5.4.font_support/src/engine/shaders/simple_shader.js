@@ -44,7 +44,7 @@ class SimpleShader {
         // Step D: Gets a reference to the aVertexPosition attribute within the shaders.
         this.mVertexPositionRef = gl.getAttribLocation(this.mCompiledShader, "aVertexPosition");
 
-        // Step E: Gets references to the uniform variables: uPixelColor, uModelTransform, and uViewProjTransform
+        // Step E: Gets references to the uniform variables
         this.mPixelColorRef = gl.getUniformLocation(this.mCompiledShader, "uPixelColor");
         this.mModelMatrixRef = gl.getUniformLocation(this.mCompiledShader, "uModelXformMatrix");
         this.mCameraMatrixRef = gl.getUniformLocation(this.mCompiledShader, "uCameraXformMatrix");
@@ -97,7 +97,7 @@ function compileShader(filePath, shaderType) {
     shaderSource = text.get(filePath);
 
     if (shaderSource === null) {
-        throw new Error("Loading of:" + filePath + " Failed!");
+        throw new Error("WARNING:" + filePath + " not loaded!");
         return null;
     }
 

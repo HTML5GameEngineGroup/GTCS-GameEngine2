@@ -43,7 +43,7 @@ class SimpleShader {
         // Step D: Gets a reference to the aVertexPosition attribute within the shaders.
         this.mVertexPositionRef = gl.getAttribLocation(this.mCompiledShader, "aVertexPosition");
 
-        // Step E: Gets a reference to the uniform variables in the fragment shader
+        // Step E: Gets references to the uniform variables
         this.mPixelColorRef = gl.getUniformLocation(this.mCompiledShader, "uPixelColor");
         this.mModelMatrixRef = gl.getUniformLocation(this.mCompiledShader, "uModelXformMatrix");
         this.mCameraMatrixRef = gl.getUniformLocation(this.mCompiledShader, "uCameraXformMatrix");

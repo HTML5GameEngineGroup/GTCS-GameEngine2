@@ -32,7 +32,6 @@ function cleanUp() {
 function init() {
     try {
         let AudioContext = window.AudioContext || window.webkitAudioContext;
-        AudioContext.auto
         mAudioContext = new AudioContext();
             /* Note that: the latest policy for some browers, including Chrome, is that
              * auido will not be allowed to play until first interaction from the user.

@@ -45,7 +45,7 @@ function loopOnce() {
     } 
 }
 
-async function start(scene) {
+function start(scene) {
     if (mLoopRunning) {
         throw new Error("loop already running")
     }
