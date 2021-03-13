@@ -8,8 +8,8 @@
 import BoundingBox from '../bounding_box.js'
 
 class GameObject {
-    constructor() {
-        this.mRenderComponent = null;
+    constructor(renderable) {
+        this.mRenderComponent = renderable;
         this.mVisible = true;
         this.mCurrentFrontDir = vec2.fromValues(0, 1);  // this is the current front direction of the object
         this.mSpeed = 0;

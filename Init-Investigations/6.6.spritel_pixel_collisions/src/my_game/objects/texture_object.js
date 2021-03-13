@@ -4,7 +4,7 @@ import engine from '../../engine/index.js'
 
 class TextureObject extends engine.GameObject {
     constructor(texture, x, y, w, h) {
-        super();
+        super(null);
         this.kDelta = 0.2;
         this.kRDelta = 0.1; // radian
 

@@ -25,6 +25,7 @@ import Camera from './camera.js'
 import Scene from './scene.js'
 import Transform from './transform.js'
 import BoundingBox from './bounding_box.js'
+import { eBoundCollideStatus } from './bounding_box.js'
 
 // shaders
 import SimpleShader from './shaders/simple_shader.js'
@@ -93,7 +94,7 @@ export default {
     GameObject, GameObjectSet,
 
     // constants
-    eTexCoordArrayIndex, eAnimationType,
+    eTexCoordArrayIndex, eAnimationType, eBoundCollideStatus,
 
     // functions
     init, cleanUp, clearCanvas

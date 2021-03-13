@@ -133,7 +133,7 @@ class MyGame extends engine.Scene {
         // New update code for changing the sub-texture regions being shown"
         let deltaT = 0.001;
 
-        // <editor-fold desc="The font image:">
+        // The font image:
         // zoom into the texture by updating texture coordinate
         // For font: zoom to the upper left corner by changing bottom right
         let texCoord = this.mFontImage.getElementUVCoordinateArray();
@@ -156,7 +156,7 @@ class MyGame extends engine.Scene {
             b,
             texCoord[engine.eTexCoordArrayIndex.eTop]
         );
-        // </editor-fold>
+        //
 
         // The minion image:
         // For minion: zoom to the bottom right corner by changing top left
@@ -166,8 +166,8 @@ class MyGame extends engine.Scene {
         //      mTexLeft,   mTexTop,
         //      mTexRight,  mTexBottom,
         //      mTexLeft,   mTexBottom
-        var t = texCoord[engine.eTexCoordArrayIndex.eTop] - deltaT;
-        var l = texCoord[engine.eTexCoordArrayIndex.eLeft] + deltaT;
+        let t = texCoord[engine.eTexCoordArrayIndex.eTop] - deltaT;
+        let l = texCoord[engine.eTexCoordArrayIndex.eLeft] + deltaT;
 
         if (l > 0.5) {
             l = 0;

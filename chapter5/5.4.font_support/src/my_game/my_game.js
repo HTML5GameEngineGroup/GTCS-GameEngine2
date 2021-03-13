@@ -106,7 +106,7 @@ class MyGame extends engine.Scene {
         this.mHero.getXform().setSize(12, 18);
         this.mHero.setElementPixelPositions(0, 120, 0, 180);
 
-        //<editor-fold desc="Create the fonts!">
+        // Create the fonts
         this.mTextSysFont = new engine.FontRenderable("System Font: in Red");
         this._initText(this.mTextSysFont, 50, 60, [1, 0, 0, 1], 3);
 
@@ -213,7 +213,7 @@ class MyGame extends engine.Scene {
             b,
             texCoord[engine.eTexCoordArrayIndex.eTop]
         );
-        // </editor-fold>
+        // 
 
         // remember to update this.mMinion's animation
         this.mMinion.updateAnimation();

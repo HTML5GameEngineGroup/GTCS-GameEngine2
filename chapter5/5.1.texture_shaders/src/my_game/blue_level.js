@@ -8,8 +8,8 @@
 import engine from "../engine/index.js";
 
 // local stuff
-import MyGame from './my_game.js';
-import SceneFileParser from './util/scene_file_parser.js';
+import MyGame from './my_game.js'
+import SceneFileParser from './util/scene_file_parser.js'
 
 class BlueLevel extends engine.Scene {
     constructor() {
@@ -45,12 +45,12 @@ class BlueLevel extends engine.Scene {
     }
 
     next() {
-        var nextLevel = new MyGame();  // load the next level
+        let nextLevel = new MyGame();  // load the next level
         nextLevel.start();
     }
 
     init() {
-        var sceneParser = new SceneFileParser(this.kSceneFile);
+        let sceneParser = new SceneFileParser(this.kSceneFile);
 
         // Step A: Read in the camera
         this.mCamera = sceneParser.parseCamera();
@@ -70,7 +70,7 @@ class BlueLevel extends engine.Scene {
         this.mCamera.setViewAndCameraMatrix();
 
         // Step  C: Draw all the squares
-        var i;
+        let i;
         for (i = 0; i < this.mSqSet.length; i++) {
             this.mSqSet[i].draw(this.mCamera);
         }
@@ -80,8 +80,8 @@ class BlueLevel extends engine.Scene {
     // anything from this function!
     update() {
         // For this very simple game, let's move the first square
-        var xform = this.mSqSet[0].getXform();
-        var deltaX = 0.05;
+        let xform = this.mSqSet[0].getXform();
+        let deltaX = 0.05;
 
         /// Move right and swap over
         if (engine.input.isKeyPressed(engine.input.keys.Right)) {
@@ -100,8 +100,8 @@ class BlueLevel extends engine.Scene {
         }
 
         // continously change texture tinting
-        var c = this.mSqSet[1].getColor();
-        var ca = c[3] + deltaX;
+        let c = this.mSqSet[1].getColor();
+        let ca = c[3] + deltaX;
         if (ca > 1) {
             ca = 0;
         }

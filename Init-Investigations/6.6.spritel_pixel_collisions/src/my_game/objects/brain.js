@@ -4,7 +4,7 @@ import engine from '../../engine/index.js'
 
 class Brain extends engine.GameObject {
     constructor(spriteTexture) {
-        super();
+        super(null);
         this.kDeltaDegree = 1;
         this.kDeltaRad = Math.PI * this.kDeltaDegree / 180;
         this.kDeltaSpeed = 0.01;
