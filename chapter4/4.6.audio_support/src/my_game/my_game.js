@@ -42,13 +42,13 @@ class MyGame extends engine.Scene {
         this.mCamera.setBackgroundColor([0.8, 0.8, 0.8, 1]);
 
         // Step B: Create the support object in red
-        this.mSupport = new engine.Renderable(engine.defaultResources.getConstColorShader());
+        this.mSupport = new engine.Renderable();
         this.mSupport.setColor([0.8, 0.2, 0.2, 1]);
         this.mSupport.getXform().setPosition(20, 60);
         this.mSupport.getXform().setSize(5, 5);
 
         // Setp C: Create the hero object in blue
-        this.mHero = new engine.Renderable(engine.defaultResources.getConstColorShader());
+        this.mHero = new engine.Renderable();
         this.mHero.setColor([0, 0, 1, 1]);
         this.mHero.getXform().setPosition(20, 60);
         this.mHero.getXform().setSize(2, 3);

@@ -6,12 +6,12 @@
  */
 "use strict"
 
-import SpriteRenderable from "./sprite_renderable.js"
-import * as defaultResources from "../resources/default_resources.js"
-import * as texture from "../resources/texture.js"
+import SpriteRenderable from './sprite_renderable.js'
+import * as defaultResources from '../resources/default_resources.js'
+import * as texture from '../resources/texture.js'
 
 // Assumption is that the first sprite in an animation is always the left-most element.
-let eAnimationType = Object.freeze({
+const eAnimationType = Object.freeze({
     eRight: 0,     // Animate from first (left) towards right, when hit the end, start from the left again
     eLeft: 1,      // Compute find the last element (in the right), start from the right animate left-wards, 
     eSwing: 2      // Animate from first (left) towards the right, when hit the end, animates backwards 
@@ -23,11 +23,10 @@ class SpriteAnimateRenderable extends SpriteRenderable {
         super._setShader(defaultResources.getSpriteShader());
 
         // All coordinates are in texture coordinate (UV between 0 to 1)
-
-        // Information on the sprite element
+        // Information on the sprite element 
         this.mFirstElmLeft = 0.0; // 0.0 is left corner of image
-        this.mElmTop = 1.0;  // 1.0 is top corner of image
-        this.mElmWidth = 1.0;     // default sprite element size is the entire image
+        this.mElmTop = 1.0;  // 1.0 is top corner of image (from SpriteRenderable)
+        this.mElmWidth = 1.0;     
         this.mElmHeight = 1.0;
         this.mWidthPadding = 0.0;
         this.mNumElems = 1;   // number of elements in an animation

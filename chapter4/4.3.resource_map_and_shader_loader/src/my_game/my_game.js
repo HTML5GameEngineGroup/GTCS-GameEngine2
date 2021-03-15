@@ -30,10 +30,9 @@ class MyGame  {
         // sets the background to gray
 
         // Step  C: Create the Renderable objects:
-        let constColorShader = engine.defaultResources.getConstColorShader();
-        this.mWhiteSq = new engine.Renderable(constColorShader);
+        this.mWhiteSq = new engine.Renderable();
         this.mWhiteSq.setColor([1, 1, 1, 1]);
-        this.mRedSq = new engine.Renderable(constColorShader);
+        this.mRedSq = new engine.Renderable();
         this.mRedSq.setColor([1, 0, 0, 1]);
 
         // Step  D: Initialize the white Renderable object: centered, 5x5, rotated

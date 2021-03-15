@@ -8,10 +8,11 @@
 
 import * as GLSys from './core/internal/gl.js'
 import Transform from './transform.js'
+import * as default_resources from './resources/default_resources.js'
 
 class Renderable {
-    constructor(shader) {
-        this.mShader = shader;         // the shader for shading this object
+    constructor() {
+        this.mShader = default_resources.getConstColorShader();  // get the constant color shader
         this.mXform = new Transform(); // transform that moves this object around
         this.mColor = [1, 1, 1, 1];    // color of pixel
     }

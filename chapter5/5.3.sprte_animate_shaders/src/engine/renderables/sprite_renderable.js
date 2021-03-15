@@ -6,10 +6,9 @@
  */
 "use strict"
 
-import TextureRenderable from "./texture_renderable.js"
-import * as defaultResources from "../resources/default_resources.js"
-import * as texture from "../resources/texture.js"
-
+import TextureRenderable from './texture_renderable.js'
+import * as defaultResources from '../resources/default_resources.js'
+import * as texture from '../resources/texture.js'
   
 //// the expected texture coordinate array is an array of 8 floats where elements:
 //  [0] [1]: is u/v coordinate of Top-Right 
@@ -17,7 +16,7 @@ import * as texture from "../resources/texture.js"
 //  [4] [5]: is u/v coordinate of Bottom-Right
 //  [6] [7]: is u/v coordinate of Bottom-Left
 // Convention: eName is an enumerated data type
-let eTexCoordArrayIndex = Object.freeze({
+const eTexCoordArrayIndex = Object.freeze({
     eLeft: 2,
     eRight: 0,
     eTop: 1,
@@ -29,18 +28,18 @@ class SpriteRenderable extends TextureRenderable {
         super(myTexture);
         super._setShader(defaultResources.getSpriteShader());
         // sprite coordinate
-        this.mTexLeft = 0.0;   // bounds of texture coordinate (0 is left, 1 is right)
-        this.mTexRight = 1.0;  // 
-        this.mTexTop = 1.0;    //   1 is top and 0 is bottom of image
-        this.mTexBottom = 0.0; // 
+        this.mElmLeft = 0.0;   // bounds of texture coordinate (0 is left, 1 is right)
+        this.mElmRight = 1.0;  // 
+        this.mElmTop = 1.0;    //   1 is top and 0 is bottom of image
+        this.mElmBottom = 0.0; // 
     }
 
     // specify element region by texture coordinate (between 0 to 1)
     setElementUVCoordinate(left, right, bottom, top) {
-        this.mTexLeft = left;
-        this.mTexRight = right;
-        this.mTexBottom = bottom;
-        this.mTexTop = top;
+        this.mElmLeft = left;
+        this.mElmRight = right;
+        this.mElmBottom = bottom;
+        this.mElmTop = top;
     }
 
     // specify element region by pixel positions (between 0 to image resolutions)
@@ -50,18 +49,18 @@ class SpriteRenderable extends TextureRenderable {
         let imageW = texInfo.mWidth;
         let imageH = texInfo.mHeight;
 
-        this.mTexLeft = left / imageW;
-        this.mTexRight = right / imageW;
-        this.mTexBottom = bottom / imageH;
-        this.mTexTop = top / imageH;
+        this.mElmLeft = left / imageW;
+        this.mElmRight = right / imageW;
+        this.mElmBottom = bottom / imageH;
+        this.mElmTop = top / imageH;
     }
 
     getElementUVCoordinateArray() {
         return [
-            this.mTexRight,  this.mTexTop,          // x,y of top-right
-            this.mTexLeft,   this.mTexTop,
-            this.mTexRight,  this.mTexBottom,
-            this.mTexLeft,   this.mTexBottom
+            this.mElmRight,  this.mElmTop,          // x,y of top-right
+            this.mElmLeft,   this.mElmTop,
+            this.mElmRight,  this.mElmBottom,
+            this.mElmLeft,   this.mElmBottom
         ];
     }
 
