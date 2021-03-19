@@ -8,8 +8,8 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 MyGame.prototype.materialControl = function () {
-    var delta = 0.01;
-    var msg = "";
+    let delta = 0.01;
+    let msg = "";
 
     // player select which object and material channgel to work 
     this._selectMaterialChannel();
@@ -35,7 +35,7 @@ MyGame.prototype.materialControl = function () {
     }
 
     // shinningess
-    var mat = this.mSlectedCh.getRenderable().getMaterial();
+    let mat = this.mSlectedCh.getRenderable().getMaterial();
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.O)) {
         mat.setShininess(mat.getShininess() + delta);
     }

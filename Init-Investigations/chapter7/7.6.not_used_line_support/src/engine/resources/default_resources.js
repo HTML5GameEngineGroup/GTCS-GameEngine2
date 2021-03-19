@@ -24,8 +24,8 @@ let mTextureShader = null;
 let mSpriteShader = null;
 
 // Line Shader
-var kLineFS = "src/glsl_shaders/line_fs.glsl";        // Path to the Line FragmentShader
-var mLineShader = null;
+let kLineFS = "src/glsl_shaders/line_fs.glsl";        // Path to the Line FragmentShader
+let mLineShader = null;
 
 // Default font
 let kDefaultFont = "assets/fonts/system_default_font";

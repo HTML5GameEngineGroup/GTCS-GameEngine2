@@ -33,7 +33,8 @@ function init(htmlCanvasID) {
 
     // Get the standard or experimental webgl and binds to the Canvas area
     // store the results to the instance variable mGL
-    mGL = mCanvas.getContext("webgl2", {alpha: false}) || mCanvas.getContext("experimental-webgl2", {alpha: false});
+    mGL = mCanvas.getContext("webgl2", {alpha: false, depth: true, stencil: true}) || 
+          mCanvas.getContext("experimental-webgl2", {alpha: false, depth: true, stencil: true});
 
     if (mGL === null) {
         document.write("<br><b>WebGL 2 is not supported!</b>");

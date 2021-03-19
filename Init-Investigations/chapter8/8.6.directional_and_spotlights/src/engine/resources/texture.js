@@ -80,12 +80,15 @@ function unload(textureName) {
     map.unload(textureName);
 }
 
-function activate(textureName) {
+function activate(textureName, normalMap) {
     let gl = GLSys.get();
     let texInfo = get(textureName);
 
     // Binds our texture reference to the current webGL texture functionality
-    gl.activeTexture(gl.TEXTURE0); 
+    if (normalMap === "undefined" || (!normalMap))
+        gl.activeTexture(gl.TEXTURE0);  // for this game engine, for now, unit 0 is reserved for color texture map
+    else 
+        gl.activeTexture(gl.TEXTURE1);  // for this game engine, for now, unit 1 is reserved for normal texture map 
     gl.bindTexture(gl.TEXTURE_2D, texInfo.mGLTexID);
 
     // To prevent texture wrappings

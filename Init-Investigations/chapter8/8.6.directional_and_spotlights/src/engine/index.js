@@ -30,6 +30,7 @@ import LerpVec2 from "./utils/lerp_vec2.js";
 import Oscillate from "./utils/oscillate.js";
 import Shake from "./utils/shake.js";
 import ShakeVec2 from "./utils/shake_vec2.js";
+import Material from "./material.js";
 
 // camera and related supports
 import Camera from "./cameras/camera.js";
@@ -38,6 +39,9 @@ import Camera from "./cameras/camera.js";
 import SimpleShader from "./shaders/simple_shader.js";
 import TextureShader from "./shaders/texture_shader.js";
 import SpriteShader from "./shaders/sprite_shader.js";
+import LineShader from "./shaders/line_shader.js";
+import LightShader from "./shaders/light_shader.js";
+import IllumShader from "./shaders/illum_shader.js";
 
 // renderables 
 import Renderable from "./renderables/renderable.js";
@@ -45,12 +49,20 @@ import TextureRenderable from "./renderables/texture_renderable.js";
 import SpriteRenderable from "./renderables/sprite_renderable.js";
 import SpriteAnimateRenderable from "./renderables/sprite_animate_renderable.js";
 import FontRenderable from "./renderables/font_renderable.js";
+import LineRenderable from "./renderables/line_renderable.js";
+import LightRenderable from "./renderables/light_renderable.js";
+import IllumRenderable from "./renderables/illum_renderable.js";
 import { eTexCoordArrayIndex } from "./renderables/sprite_renderable.js";
 import { eAnimationType } from "./renderables/sprite_animate_renderable.js";
 
 // game objects
 import GameObject from "./game_objects/game_object.js";
 import GameObjectSet from "./game_objects/game_object_set.js";
+
+// light and lightSet
+import Light from "./lights/light.js";
+import LightSet from "./lights/light_set.js";
+import { eLightType } from "./lights/light.js";
 
 // local to this file only
 import * as GLSys from "./core/internal/gl.js";
@@ -92,19 +104,23 @@ export default {
     Lerp, LerpVec2, Oscillate, Shake, ShakeVec2,
 
     // Util classes
-    Camera, Scene, Transform, BoundingBox,  
+    Camera, Scene, Transform, BoundingBox, Material,
     
     // Shaders
-    SimpleShader, TextureShader, SpriteShader,
+    SimpleShader, TextureShader, SpriteShader, LineShader, LightShader, IllumShader,
     
     // Renderables
-    Renderable, TextureRenderable, SpriteRenderable, SpriteAnimateRenderable, FontRenderable,
+    Renderable, TextureRenderable, SpriteRenderable, SpriteAnimateRenderable, 
+    FontRenderable, LineRenderable, LightRenderable, IllumRenderable,
 
     // Game Objects
     GameObject, GameObjectSet,
 
+    // Lights
+    Light, LightSet,
+
     // constants
-    eTexCoordArrayIndex, eAnimationType, eBoundCollideStatus,
+    eTexCoordArrayIndex, eAnimationType, eBoundCollideStatus, eLightType,
 
     // functions
     init, cleanUp, clearCanvas

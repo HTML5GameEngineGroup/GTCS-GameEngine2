@@ -77,7 +77,7 @@ class SpriteAnimateRenderable extends SpriteRenderable {
         numElements,      // number of elements in sequence
         wPaddingInPixel  // left/right padding
     ) {
-        var texInfo = texture.get(this.mTexture);
+        let texInfo = texture.get(this.mTexture);
         // entire image width, height
         let imageW = texInfo.mWidth;
         let imageH = texInfo.mHeight;

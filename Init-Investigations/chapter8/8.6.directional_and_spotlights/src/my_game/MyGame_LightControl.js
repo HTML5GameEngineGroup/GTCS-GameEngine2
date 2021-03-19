@@ -9,16 +9,16 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 MyGame.prototype._lightControl = function () {
-    var dirDelta = 0.005;
-    var delta = 0.2;
-    var msg = "";
+    let dirDelta = 0.005;
+    let delta = 0.2;
+    let msg = "";
     // player select which light to work 
     this._selectLight();
 
     // manipulate the light
-    var lgt = this.mGlobalLightSet.getLightAt(this.mLgtIndex);
-    var p = lgt.getPosition();
-    var d = lgt.getDirection();
+    let lgt = this.mGlobalLightSet.getLightAt(this.mLgtIndex);
+    let p = lgt.getPosition();
+    let d = lgt.getDirection();
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Left)) {
         if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Space)) {
             d[0] -= dirDelta;
@@ -95,7 +95,7 @@ MyGame.prototype._lightControl = function () {
         lgt.setLightTo(!lgt.isLightOn());
     }
 
-    var lMsg = "";
+    let lMsg = "";
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Space)) {
         lMsg = this._printVec3("D", d);
     } else {

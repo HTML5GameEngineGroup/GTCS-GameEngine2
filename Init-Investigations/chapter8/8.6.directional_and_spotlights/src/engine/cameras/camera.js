@@ -19,6 +19,16 @@ const eViewport = Object.freeze({
     eHeight: 3
 });
 
+class PerRenderCache {
+    // Information to be updated once per render for efficiency concerns
+    constructor() {
+        this.mWCToPixelRatio = 1;  // WC to pixel transformation
+        this.mCameraOrgX = 1; // Lower-left corner of camera in WC 
+        this.mCameraOrgY = 1;
+        this.mCameraPosInPixelSpace = vec3.fromValues(0, 0, 0); //
+    }
+}
+
 class Camera {
     // wcCenter: is a vec2
     // wcWidth: is the width of the user defined WC
@@ -43,11 +53,21 @@ class Camera {
         this.mScissorBound = [];  // use for bounds
         this.setViewport(viewportArray, this.mViewportBound);
 
+        this.kCameraZ = 10; // this is for illuminaiton computaiton
+
         // transformation matrices
         this.mCameraMatrix = mat4.create();
 
         // background color
         this.mBGColor = [0.8, 0.8, 0.8, 1]; // RGB and Alpha
+
+        // per-rendering cached information
+        // needed for computing transforms for shaders
+        // updated each time in SetupViewProjection()
+        this.mRenderCache = new PerRenderCache();
+            // SHOULD NOT be used except 
+            // xform operations during the rendering
+            // Client game should not access this!
     }
 
     // #region Basic getter and setters
@@ -56,6 +76,7 @@ class Camera {
         this.mCameraState.setCenter(p);
     }
     getWCCenter() { return this.mCameraState.getCenter(); }
+    getWCCenterInPixelSpace() { return this.mRenderCache.mCameraPosInPixelSpace; };
     setWCWidth(width) { this.mCameraState.setWidth(width); }
     getWCWidth() { return this.mCameraState.getWidth(); }
     getWCHeight() {
@@ -128,6 +149,15 @@ class Camera {
 
         // Step B3: first operation to perform is to translate camera center to the origin
         mat4.translate(this.mCameraMatrix, this.mCameraMatrix, vec3.fromValues(-center[0], -center[1], 0));
+        
+        // Step B4: compute and cache per-rendering information
+        this.mRenderCache.mWCToPixelRatio = this.mViewport[eViewport.eWidth] / this.getWCWidth();
+        this.mRenderCache.mCameraOrgX = center[0] - (this.getWCWidth() / 2);
+        this.mRenderCache.mCameraOrgY = center[1] - (this.getWCHeight() / 2);
+        let p = this.wcPosToPixel(this.getWCCenter());
+        this.mRenderCache.mCameraPosInPixelSpace[0] = p[0];
+        this.mRenderCache.mCameraPosInPixelSpace[1] = p[1];
+        this.mRenderCache.mCameraPosInPixelSpace[2] = this.fakeZInPixelSpace(this.kCameraZ);
     }
 
     // Getter for the View-Projection transform operator
@@ -231,28 +261,28 @@ class Camera {
     //#endregion 
 
     // #region Mouse support   
-    _mouseDCX() {
+    mouseDCX() {
         return input.getMousePosX() - this.mViewport[eViewport.eOrgX];
     }
-    _mouseDCY() {
+    mouseDCY() {
         return input.getMousePosY() - this.mViewport[eViewport.eOrgY];
     }
 
     isMouseInViewport() {
-        let dcX = this._mouseDCX();
-        let dcY = this._mouseDCY();
+        let dcX = this.mouseDCX();
+        let dcY = this.mouseDCY();
         return ((dcX >= 0) && (dcX < this.mViewport[eViewport.eWidth]) &&
             (dcY >= 0) && (dcY < this.mViewport[eViewport.eHeight]));
     }
 
     mouseWCX() {
         let minWCX = this.getWCCenter()[0] - this.getWCWidth() / 2;
-        return minWCX + (this._mouseDCX() * (this.getWCWidth() / this.mViewport[eViewport.eWidth]));
+        return minWCX + (this.mouseDCX() * (this.getWCWidth() / this.mViewport[eViewport.eWidth]));
     }
 
     mouseWCY() {
         let minWCY = this.getWCCenter()[1] - this.getWCHeight() / 2;
-        return minWCY + (this._mouseDCY() * (this.getWCHeight() / this.mViewport[eViewport.eHeight]));
+        return minWCY + (this.mouseDCY() * (this.getWCHeight() / this.mViewport[eViewport.eHeight]));
     }
     // #endregion
 
@@ -279,9 +309,35 @@ class Camera {
 
     reShake() {
         let success = (this.mCameraShake !== null);
-        if (success) 
+        if (success)
             this.mCameraShake.reShake();
         return success;
+    }
+    // #endregion
+
+    // #region support for wc to pixel space transform
+    fakeZInPixelSpace(z) {
+        return z * this.mRenderCache.mWCToPixelRatio;
+    }
+
+    wcPosToPixel(p) {  // p is a vec3, fake Z
+        // Convert the position to pixel space
+        let x = this.mViewport[Camera.eViewport.eOrgX] + ((p[0] - this.mRenderCache.mCameraOrgX) * this.mRenderCache.mWCToPixelRatio) + 0.5;
+        let y = this.mViewport[Camera.eViewport.eOrgY] + ((p[1] - this.mRenderCache.mCameraOrgY) * this.mRenderCache.mWCToPixelRatio) + 0.5;
+        let z = this.fakeZInPixelSpace(p[2]);
+        return vec3.fromValues(x, y, z);
+    }
+
+    wcDirToPixel(d) {  // d is a vec3 direction in WC
+        // Convert the position to pixel space
+        let x = d[0] * this.mRenderCache.mWCToPixelRatio;
+        let y = d[1] * this.mRenderCache.mWCToPixelRatio;
+        let z = d[2];
+        return vec3.fromValues(x, y, z);
+    }
+
+    wcSizeToPixel(s) {  // 
+        return (s * this.mRenderCache.mWCToPixelRatio) + 0.5;
     }
     // #endregion
 }

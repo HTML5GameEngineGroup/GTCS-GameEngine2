@@ -9,6 +9,7 @@
 import * as text from "../resources/text.js";
 import * as GLSys from "../core/internal/gl.js";
 import * as vertexBuffer from "../core/internal/vertex_buffer.js";
+import * as defaultResources from "../resources/default_resources.js";
 
 class SimpleShader {
 
@@ -21,6 +22,9 @@ class SimpleShader {
         this.mPixelColorRef = null;     // reference to the pixelColor uniform in the fragment shader
         this.mModelMatrixRef = null; // reference to model transform matrix in vertex shader
         this.mCameraMatrixRef = null; // reference to the View/Projection matrix in the vertex shader
+
+        this.mGlobalAmbientColorRef = null;
+        this.mGlobalAmbientIntensityRef = null;
 
         let gl = GLSys.get();
         // start of constructor code
@@ -48,6 +52,8 @@ class SimpleShader {
         this.mPixelColorRef = gl.getUniformLocation(this.mCompiledShader, "uPixelColor");
         this.mModelMatrixRef = gl.getUniformLocation(this.mCompiledShader, "uModelXformMatrix");
         this.mCameraMatrixRef = gl.getUniformLocation(this.mCompiledShader, "uCameraXformMatrix");
+        this.mGlobalAmbientColorRef = gl.getUniformLocation(this.mCompiledShader, "uGlobalAmbientColor");
+        this.mGlobalAmbientIntensityRef = gl.getUniformLocation(this.mCompiledShader, "uGlobalAmbientIntensity");
     }
 
     // Activate the shader for rendering
@@ -69,6 +75,8 @@ class SimpleShader {
         gl.uniform4fv(this.mPixelColorRef, pixelColor);
         gl.uniformMatrix4fv(this.mModelMatrixRef, false, trsMatrix);
         gl.uniformMatrix4fv(this.mCameraMatrixRef, false, cameraMatrix);
+        gl.uniform4fv(this.mGlobalAmbientColorRef, defaultResources.getGlobalAmbientColor());
+        gl.uniform1f(this.mGlobalAmbientIntensityRef, defaultResources.getGlobalAmbientIntensity());
     }
 
     cleanUp() {

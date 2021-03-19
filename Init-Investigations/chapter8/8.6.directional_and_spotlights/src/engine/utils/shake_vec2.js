@@ -15,13 +15,13 @@ class ShakeVec2 extends Shake {
     }
 
     reStart() {
+        super.reStart();
         this.xShake.reStart();
-        Shake.prototype.reStart.call(this);
     }
 
     getNext() {
         let x = this.xShake.getNext();
-        let y = Shake.prototype.getNext.call(this);
+        let y = super.getNext();
         return [x, y];
     }
 }

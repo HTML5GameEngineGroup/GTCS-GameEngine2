@@ -8,7 +8,7 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 MyGame.prototype._createALight = function (type, pos, dir, color, n, f, inner, outer, intensity, dropOff) {
-    var light = new Light();
+    let light = new Light();
     light.setLightType(type);
     light.setColor(color);
     light.setXPos(pos[0]);
@@ -28,7 +28,7 @@ MyGame.prototype._createALight = function (type, pos, dir, color, n, f, inner, o
 MyGame.prototype._initializeLights = function () {
     this.mGlobalLightSet = new LightSet();
 
-    var l = this._createALight(Light.eLightType.ePointLight,
+    let l = this._createALight(Light.eLightType.ePointLight,
             [15, 50, 5],         // position
             [0, 0, -1],          // Direction 
             [0.6, 1.0, 0.0, 1],  // some color
