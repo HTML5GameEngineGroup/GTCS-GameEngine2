@@ -4,8 +4,8 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as core from '../engine/core.js'
-import SimpleShader from '../engine/simple_shader.js'
+import * as core from "../engine/core.js";
+import SimpleShader from "../engine/simple_shader.js";
 
 class MyGame {
     constructor(htmlCanvasID) {

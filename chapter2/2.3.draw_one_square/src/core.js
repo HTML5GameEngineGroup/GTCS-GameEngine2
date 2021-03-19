@@ -7,8 +7,8 @@
 
 // import all symbols that are exported from vertex_buffer.js, as symbols under the module "vertexBuffer"
 //
-import * as vertexBuffer from './vertex_buffer.js'
-import * as simpleShader from './shader_support.js'
+import * as vertexBuffer from "./vertex_buffer.js";
+import * as simpleShader from "./shader_support.js";
 
 // variables
 // 

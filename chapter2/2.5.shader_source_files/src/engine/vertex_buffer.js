@@ -7,7 +7,7 @@
  */
 "use strict";
 
-import * as core from './core.js'
+import * as core from "./core.js";
 
 // reference to the vertex positions for the square in the gl context
 let mGLVertexBuffer = null;

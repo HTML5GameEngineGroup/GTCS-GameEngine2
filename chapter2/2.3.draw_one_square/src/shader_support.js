@@ -7,8 +7,8 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as core from './core.js'                   // access symbols defined as "core" module
-import * as vertexBuffer from './vertex_buffer.js'  // access symbols defined as "vertexBuffer" module
+import * as core from "./core.js";                   // access symbols defined as "core" module
+import * as vertexBuffer from "./vertex_buffer.js";  // access symbols defined as "vertexBuffer" module
 
 let mCompiledShader = null;
 // Reference to the shader program stored in mGL context.
@@ -91,9 +91,9 @@ function loadAndCompileShader(id, shaderType) {
 //
 // export the class, the default keyword says importer of this class cannot change the name "SimpleShader"
 // for this reason, to import this class, one must issue
-//      import SimpleShader from './simple_shader.js'
+//      import SimpleShader from "./simple_shader.js";
 // attempt to change name, e.g., 
-//      import SimpleShader as MyShaderName from './simple_shader.js'
+//      import SimpleShader as MyShaderName from "./simple_shader.js";
 // will result in failure
 // 
 export { init, activate }
