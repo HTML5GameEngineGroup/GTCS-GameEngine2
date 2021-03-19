@@ -1,6 +1,6 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import engine from '../../engine/index.js'
+import engine from "../../engine/index.js";
 
 class Hero extends engine.GameObject {
     constructor(spriteTexture) {

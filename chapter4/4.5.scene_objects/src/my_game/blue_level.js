@@ -4,11 +4,11 @@
 
 
 // Engine Core stuff
-import engine from '../engine/index.js'
+import engine from "../engine/index.js";
 
 // Local stuff
-import MyGame from './my_game.js'
-import SceneFileParser from './util/scene_file_parser.js'
+import MyGame from "./my_game.js";
+import SceneFileParser from "./util/scene_file_parser.js";
 
 class BlueLevel extends engine.Scene {
     constructor() {

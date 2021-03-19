@@ -6,9 +6,9 @@
  */
 "use strict"
 
-import * as GLSys from '../core/internal/gl.js'
-import * as vertexBuffer from '../core/internal/vertex_buffer.js'
-import  SimpleShader from './simple_shader.js'
+import * as GLSys from "../core/internal/gl.js";
+import * as vertexBuffer from "../core/internal/vertex_buffer.js";
+import  SimpleShader from "./simple_shader.js";
 
 class TextureShader extends SimpleShader {
     constructor(vertexShaderPath, fragmentShaderPath) {

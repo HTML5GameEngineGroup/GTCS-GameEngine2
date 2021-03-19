@@ -7,12 +7,12 @@
  */
 "use strict"
 
-import * as map from '../core/internal/resource_map.js'
+import * as map from "../core/internal/resource_map.js";
 // functions from resource_map
 let has = map.has;
 let get = map.get;
 
-import * as GLSys from '../core/internal/gl.js'
+import * as GLSys from "../core/internal/gl.js";
 
 class TextureInfo {
     constructor(w, h, id) {

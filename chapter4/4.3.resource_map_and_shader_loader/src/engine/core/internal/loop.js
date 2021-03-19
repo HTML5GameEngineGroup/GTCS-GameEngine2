@@ -6,8 +6,8 @@
  */
 "use strict"
 
-import * as map from './resource_map.js'
-import * as input from '../input.js'
+import * as map from "./resource_map.js";
+import * as input from "../input.js";
 
 const FPS = 60; // Frames per second
 const MPF = 1000 / FPS; // Milliseconds per frame.

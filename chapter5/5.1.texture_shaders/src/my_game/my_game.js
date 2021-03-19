@@ -6,10 +6,10 @@
 "use strict";
 
 // Engine stuff
-import engine from '../engine/index.js'
+import engine from "../engine/index.js";
 
 // local stuff
-import BlueLevel from './blue_level.js'
+import BlueLevel from "./blue_level.js";
 
 class MyGame extends engine.Scene {
     constructor() {

@@ -1,6 +1,6 @@
 "use strict";  // Operate in Strict mode such that letiables must be declared before used!
 
-import engine from '../engine/index.js'
+import engine from "../engine/index.js";
 
 class MyGame {
     constructor(htmlCanvasID) {

@@ -6,9 +6,9 @@
  */
 "use strict"
 
-import Renderable from './renderable.js'
-import * as texture from '../resources/texture.js'
-import * as defaultResources from '../resources/default_resources.js'
+import Renderable from "./renderable.js";
+import * as texture from "../resources/texture.js";
+import * as defaultResources from "../resources/default_resources.js";
 
   // Operate in Strict mode such that letiables must be declared before used!
 

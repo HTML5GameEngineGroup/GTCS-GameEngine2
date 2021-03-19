@@ -1,10 +1,10 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import engine from '../engine/index.js'
+import engine from "../engine/index.js";
 
 // user stuff
-import Brain from './objects/brain.js'
-import Hero from './objects/hero.js'
+import Brain from "./objects/brain.js";
+import Hero from "./objects/hero.js";
 
 class MyGame extends engine.Scene {
     constructor() {

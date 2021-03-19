@@ -8,10 +8,10 @@
  */
 "use strict";  // Operate in Strict mode such that letiables must be declared before used!
 
-import * as map from '../core/internal/resource_map.js'
+import * as map from "../core/internal/resource_map.js";
 
-import * as texture from './texture.js'
-import * as xml from './xml.js'
+import * as texture from "./texture.js";
+import * as xml from "./xml.js";
 
 let mImageExt = ".png";  // extension for the bitmap font image
 let mDescExt = ".fnt";   // extension for the bitmap font description

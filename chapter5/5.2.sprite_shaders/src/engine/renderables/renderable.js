@@ -6,9 +6,9 @@
  */
 "use strict"
 
-import * as GLSys from '../core/internal/gl.js'
-import Transform from '../transform.js'
-import * as default_resources from '../resources/default_resources.js'
+import * as GLSys from "../core/internal/gl.js";
+import Transform from "../transform.js";
+import * as default_resources from "../resources/default_resources.js";
 
 class Renderable {
     constructor() {

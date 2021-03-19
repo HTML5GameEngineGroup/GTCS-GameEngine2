@@ -4,10 +4,10 @@
 
 // Accessing engine internal is not ideal, 
 //      this must be resolved! (later)
-import * as loop from '../engine/core/internal/loop.js'
+import * as loop from "../engine/core/internal/loop.js";
 
 // Engine stuff
-import engine from '../engine/index.js'
+import engine from "../engine/index.js";
 
 class MyGame  {
     constructor() {

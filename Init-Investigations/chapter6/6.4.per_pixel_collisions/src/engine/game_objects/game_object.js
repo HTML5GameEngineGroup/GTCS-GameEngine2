@@ -5,7 +5,7 @@
  * 
  */
 "use strict"
-import BoundingBox from '../bounding_box.js'
+import BoundingBox from "../bounding_box.js";
 
 class GameObject {
     constructor(renderable) {

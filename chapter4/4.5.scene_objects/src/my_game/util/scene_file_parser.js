@@ -3,8 +3,8 @@
  */
 
 // Engine utility stuff
-import Camera from '../../engine/Camera.js'
-import Renderable from '../../engine/Renderable.js'
+import Camera from "../../engine/Camera.js";
+import Renderable from "../../engine/Renderable.js";
 
 class SceneFileParser {
     

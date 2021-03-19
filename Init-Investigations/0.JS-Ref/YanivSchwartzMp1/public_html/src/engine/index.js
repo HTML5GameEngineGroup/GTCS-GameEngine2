@@ -1,5 +1,5 @@
-import { gl } from '../gl/index.js'
-import Shaders from '../shaders/index.js'
+import { gl } from "../gl/index.js";
+import Shaders from "../shaders/index.js";
 
 let  verticesOfSquare = [
     1, 1, 0,

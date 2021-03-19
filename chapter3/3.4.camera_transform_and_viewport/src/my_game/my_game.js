@@ -2,9 +2,9 @@
 
 // import from engine internal is not desirable
 // we will define Camera class to hide this in the next project
-import * as GLSys from '../engine/core/internal/gl.js'
+import * as GLSys from "../engine/core/internal/gl.js";
 
-import engine from '../engine/index.js'
+import engine from "../engine/index.js";
 
 class MyGame {
     constructor(htmlCanvasID) {

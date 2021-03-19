@@ -4,10 +4,10 @@
 
 
 // Engine stuff
-import engine from '../engine/index.js'
+import engine from "../engine/index.js";
 
 // User stuff
-import BlueLevel from './blue_level.js'
+import BlueLevel from "./blue_level.js";
 
 class MyGame extends engine.Scene {
 

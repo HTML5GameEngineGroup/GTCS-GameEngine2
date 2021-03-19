@@ -9,39 +9,39 @@
 "use strict"
 
 // core
-import * as input from './core/input.js'
-import * as loop from './core/internal/loop.js'
+import * as input from "./core/input.js";
+import * as loop from "./core/internal/loop.js";
 
 // resources
-import * as audio from './resources/audio.js'
-import * as text from './resources/text.js'
-import * as xml from './resources/xml.js'
-import * as texture from './resources/texture.js'
-import * as font from './resources/font.js'
-import * as defaultResources from './resources/default_resources.js'
+import * as audio from "./resources/audio.js";
+import * as text from "./resources/text.js";
+import * as xml from "./resources/xml.js";
+import * as texture from "./resources/texture.js";
+import * as font from "./resources/font.js";
+import * as defaultResources from "./resources/default_resources.js";
 
 // general utilities
-import Camera from './camera.js'
-import Scene from './scene.js'
-import Transform from './transform.js'
+import Camera from "./camera.js";
+import Scene from "./scene.js";
+import Transform from "./transform.js";
 
 // shaders
-import SimpleShader from './shaders/simple_shader.js'
-import TextureShader from './shaders/texture_shader.js'
-import SpriteShader from './shaders/sprite_shader.js'
+import SimpleShader from "./shaders/simple_shader.js";
+import TextureShader from "./shaders/texture_shader.js";
+import SpriteShader from "./shaders/sprite_shader.js";
 
 // renderables 
-import Renderable from './renderables/renderable.js'
-import TextureRenderable from './renderables/texture_renderable.js'
-import SpriteRenderable from './renderables/sprite_renderable.js'
-import SpriteAnimateRenderable from './renderables/sprite_animate_renderable.js'
-import FontRenderable from './renderables/font_renderable.js'
-import { eTexCoordArrayIndex } from './renderables/sprite_renderable.js'
-import { eAnimationType } from './renderables/sprite_animate_renderable.js'
+import Renderable from "./renderables/renderable.js";
+import TextureRenderable from "./renderables/texture_renderable.js";
+import SpriteRenderable from "./renderables/sprite_renderable.js";
+import SpriteAnimateRenderable from "./renderables/sprite_animate_renderable.js";
+import FontRenderable from "./renderables/font_renderable.js";
+import { eTexCoordArrayIndex } from "./renderables/sprite_renderable.js";
+import { eAnimationType } from "./renderables/sprite_animate_renderable.js";
 
 // local to this file only
-import * as GLSys from './core/internal/gl.js'
-import * as vertexBuffer from './core/internal/vertex_buffer.js'
+import * as GLSys from "./core/internal/gl.js";
+import * as vertexBuffer from "./core/internal/vertex_buffer.js";
 
 // general engine utilities
 function init(htmlCanvasID) {

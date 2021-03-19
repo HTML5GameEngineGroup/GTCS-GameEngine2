@@ -7,7 +7,7 @@
  */
 "use strict";
 
-import * as GLSys from './gl.js'
+import * as GLSys from "./gl.js";
 
 // reference to the vertex positions for the square in the gl context
 let mGLVertexBuffer = null;

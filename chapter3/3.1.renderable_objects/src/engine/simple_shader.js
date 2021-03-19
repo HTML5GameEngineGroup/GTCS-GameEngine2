@@ -6,8 +6,8 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as GLSys from './core/internal/gl.js'
-import * as vertexBuffer from './core/internal/vertex_buffer.js'
+import * as GLSys from "./core/internal/gl.js";
+import * as vertexBuffer from "./core/internal/vertex_buffer.js";
 
 class SimpleShader {
 
@@ -116,9 +116,9 @@ function loadAndCompileShader(filePath, shaderType) {
 //
 // export the class, the default keyword says importer of this class cannot change the name "SimpleShader"
 // for this reason, to import this class, one must issue
-//      import SimpleShader from './simple_shader.js'
+//      import SimpleShader from "./simple_shader.js";
 // attempt to change name, e.g., 
-//      import SimpleShader as MyShaderName from './simple_shader.js'
+//      import SimpleShader as MyShaderName from "./simple_shader.js";
 // will result in failure
 // 
 export default SimpleShader;

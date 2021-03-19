@@ -5,7 +5,7 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 // client program simple import from engine/index.js for all engine symbols
-import engine from '../engine/index.js'
+import engine from "../engine/index.js";
 
 class my_game {
     constructor(htmlCanvasID) {

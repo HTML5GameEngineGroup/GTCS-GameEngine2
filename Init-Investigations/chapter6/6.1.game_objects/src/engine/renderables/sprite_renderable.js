@@ -6,9 +6,9 @@
  */
 "use strict"
 
-import TextureRenderable from './texture_renderable.js'
-import * as defaultResources from '../resources/default_resources.js'
-import * as texture from '../resources/texture.js'
+import TextureRenderable from "./texture_renderable.js";
+import * as defaultResources from "../resources/default_resources.js";
+import * as texture from "../resources/texture.js";
   
 //// the expected texture coordinate array is an array of 8 floats where elements:
 //  [0] [1]: is u/v coordinate of Top-Right 

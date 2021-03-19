@@ -6,9 +6,9 @@
  */
 "use strict"
 
-import SpriteRenderable from './sprite_renderable.js'
-import * as defaultResources from '../resources/default_resources.js'
-import * as texture from '../resources/texture.js'
+import SpriteRenderable from "./sprite_renderable.js";
+import * as defaultResources from "../resources/default_resources.js";
+import * as texture from "../resources/texture.js";
 
 // Assumption is that the first sprite in an animation is always the left-most element.
 const eAnimationType = Object.freeze({

@@ -9,25 +9,25 @@
 "use strict"
 
 // Core
-import * as input from './core/input.js'
-import * as loop from './core/internal/loop.js'
+import * as input from "./core/input.js";
+import * as loop from "./core/internal/loop.js";
 
 // Resources
-import * as text from './resources/text.js'
-import * as xml from './resources/xml.js'
-import * as defaultResources from './resources/default_resources.js'
+import * as text from "./resources/text.js";
+import * as xml from "./resources/xml.js";
+import * as defaultResources from "./resources/default_resources.js";
 
 // general utiities
-import Camera from './camera.js'
-import Scene from './scene.js'
-import Transform from './transform.js'
-import Renderable from './renderable.js'
-import SimpleShader from './simple_shader.js'
+import Camera from "./camera.js";
+import Scene from "./scene.js";
+import Transform from "./transform.js";
+import Renderable from "./renderable.js";
+import SimpleShader from "./simple_shader.js";
 
 
 // local to this file only
-import * as GLSys from './core/internal/gl.js'
-import * as vertexBuffer from './core/internal/vertex_buffer.js'
+import * as GLSys from "./core/internal/gl.js";
+import * as vertexBuffer from "./core/internal/vertex_buffer.js";
 
 // general engine utilities
 function init(htmlCanvasID) {

@@ -9,18 +9,18 @@
 "use strict"
 
 // Core
-import * as loop from './core/internal/loop.js'
+import * as loop from "./core/internal/loop.js";
 
 // general utiities
-import Camera from './camera.js'
-import Transform from './transform.js'
-import Renderable from './renderable.js'
-import SimpleShader from './simple_shader.js'
+import Camera from "./camera.js";
+import Transform from "./transform.js";
+import Renderable from "./renderable.js";
+import SimpleShader from "./simple_shader.js";
 
 
 // local to this file only
-import * as GLSys from './core/internal/gl.js'
-import * as vertexBuffer from './core/internal/vertex_buffer.js'
+import * as GLSys from "./core/internal/gl.js";
+import * as vertexBuffer from "./core/internal/vertex_buffer.js";
 
 // general engine utilities
 function init(htmlCanvasID) {

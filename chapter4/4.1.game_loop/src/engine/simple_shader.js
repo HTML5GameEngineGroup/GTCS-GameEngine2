@@ -6,8 +6,8 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as GLSys from './core/internal/gl.js'
-import * as vertexBuffer from './core/internal/vertex_buffer.js'
+import * as GLSys from "./core/internal/gl.js";
+import * as vertexBuffer from "./core/internal/vertex_buffer.js";
 
 class SimpleShader {
 

@@ -7,10 +7,10 @@
 
 "use strict"
 
-import Transform from '../transform.js'
-import SpriteRenderable from './sprite_renderable.js'
-import * as defaultResources from '../resources/default_resources.js'
-import * as font from '../resources/font.js'
+import Transform from "../transform.js";
+import SpriteRenderable from "./sprite_renderable.js";
+import * as defaultResources from "../resources/default_resources.js";
+import * as font from "../resources/font.js";
 
 class FontRenderable {
     constructor(aString) {

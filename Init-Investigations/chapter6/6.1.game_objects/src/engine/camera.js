@@ -5,7 +5,7 @@
  */
 "use strict"
 
-import * as GLSys from './core/internal/gl.js'
+import * as GLSys from "./core/internal/gl.js";
 
 class Camera {
     // wcCenter: is a vec2

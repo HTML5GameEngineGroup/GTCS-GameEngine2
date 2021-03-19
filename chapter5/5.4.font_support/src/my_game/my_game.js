@@ -7,7 +7,7 @@
 "use strict";
 
 // Engine stuff
-import engine from '../engine/index.js'
+import engine from "../engine/index.js";
 
 
 class MyGame extends engine.Scene {

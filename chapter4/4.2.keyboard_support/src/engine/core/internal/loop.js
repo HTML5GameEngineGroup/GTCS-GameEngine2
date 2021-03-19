@@ -6,7 +6,7 @@
  */
 "use strict"
 
-import * as input from '../input.js'
+import * as input from "../input.js";
 
 const FPS = 60; // Frames per second
 const MPF = 1000 / FPS; // Milliseconds per frame.

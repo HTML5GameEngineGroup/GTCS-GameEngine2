@@ -5,8 +5,8 @@
  */
 "use strict"
 
-import * as GLSys from './core/internal/gl.js'
-import BoundingBox from './bounding_box.js'
+import * as GLSys from "./core/internal/gl.js";
+import BoundingBox from "./bounding_box.js";
 
 class Camera {
     // wcCenter: is a vec2
