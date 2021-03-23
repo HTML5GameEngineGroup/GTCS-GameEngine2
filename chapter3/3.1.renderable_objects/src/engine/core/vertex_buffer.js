@@ -28,10 +28,10 @@ function init() {
     // Step A: Create a buffer on the gl context for our vertex positions
     mGLVertexBuffer = gl.createBuffer();
        
-    // Step B: Activate vertexBuffer
+    // Step B: Activate VertexBuffer
     gl.bindBuffer(gl.ARRAY_BUFFER, mGLVertexBuffer);
 
-    // Step C: Loads mVerticesOfSquare into the vertexBuffer
+    // Step C: Loads mVerticesOfSquare into the VertexBuffer
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(mVerticesOfSquare), gl.STATIC_DRAW);
 }
 

@@ -6,11 +6,12 @@
  */
 "use strict"
 
-import * as GLSys from "./core/internal/gl.js";
+import * as GLSys from "./core/gl.js";
+import * as Shaders from "./core/shader_resources.js";
 
 class Renderable {
-    constructor(shader) {
-        this.mShader = shader;         // the shader for shading this object
+    constructor() {
+        this.mShader = Shaders.getConstColorShader();   // the shader for shading this object
         this.mColor = [1, 1, 1, 1];    // color of pixel
     }
 

@@ -12,15 +12,10 @@ class my_game {
         /// Step A: Initialize the webGL Context
         engine.init(htmlCanvasID);
 
-        // Step B: Create the shader
-        this.mConstColorShader = new engine.SimpleShader(
-            "src/glsl_shaders/simple_vs.glsl",      // Path to the VertexShader 
-            "src/glsl_shaders/simple_fs.glsl");     // Path to the Simple FragmentShader
-
         // Step C: Create the Renderable objects:
-        this.mWhiteSq = new engine.Renderable(this.mConstColorShader);
+        this.mWhiteSq = new engine.Renderable();
         this.mWhiteSq.setColor([1, 1, 1, 1]);
-        this.mRedSq = new engine.Renderable(this.mConstColorShader);
+        this.mRedSq = new engine.Renderable();
         this.mRedSq.setColor([1, 0, 0, 1]);
 
         // Step D: Draw!
