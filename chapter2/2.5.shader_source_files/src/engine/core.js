@@ -3,9 +3,9 @@
  */
 "use strict"; 
 
-// import all symbols that are exported from vertex_buffer.js, as symbols under the module "vertexBuffer"
+// import all symbols that are exported from vertex_buffer.js, as symbols under the module "VertexBuffer"
 //
-import * as vertexBuffer from "./vertex_buffer.js";
+import * as VertexBuffer from "./vertex_buffer.js";
 import SimpleShader from "./simple_shader.js";
 
 // variables
@@ -39,7 +39,7 @@ function initWebGL(htmlCanvasID) {
 // initialize the WebGL, and the vertex buffer
 function init(htmlCanvasID) {
     initWebGL(htmlCanvasID);    // setup mGL
-    vertexBuffer.init();        // setup mGLVertexBuffer
+    VertexBuffer.init();        // setup mGLVertexBuffer
     createShader();             // create the shader 
 }
 
