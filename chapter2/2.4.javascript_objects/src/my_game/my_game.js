@@ -8,7 +8,7 @@ import * as engine from "../engine/core.js";
 
 class MyGame {
     constructor(htmlCanvasID) {
-        // Step A: Initialize the webGL Context and the VertexBuffer
+        // Step A: Initialize the game engine
         engine.init(htmlCanvasID);
 
         // Step B: Clear the canvas

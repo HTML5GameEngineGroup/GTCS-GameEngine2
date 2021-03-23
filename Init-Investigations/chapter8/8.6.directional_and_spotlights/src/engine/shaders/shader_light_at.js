@@ -6,7 +6,7 @@
 
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as GLSys from "../core/internal/gl.js";
+import * as glSys from "../core/internal/gl.js";
 
 class ShaderLightAt {
     constructor(shader, index) {
@@ -14,7 +14,7 @@ class ShaderLightAt {
     }
 
     loadToShader(aCamera, aLight) {
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.uniform1i(this.mIsOnRef, aLight.isLightOn());
         if (aLight.isLightOn()) {
             let p = aCamera.wcPosToPixel(aLight.getPosition());
@@ -47,7 +47,7 @@ class ShaderLightAt {
     }
 
     switchOffLight() {
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.uniform1i(this.mIsOnRef, false);
     }
     //</editor-fold>

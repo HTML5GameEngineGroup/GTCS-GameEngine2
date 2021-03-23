@@ -7,14 +7,14 @@
  */
 "use strict";
 
-import * as GLSys from "./gl.js";
+import * as glSys from "./gl.js";
 
 // reference to the vertex positions for the square in the gl context
 let mGLVertexBuffer = null;
 function get() { return mGLVertexBuffer; }
 function cleanUp() { 
     if (mGLVertexBuffer !== null) {
-        GLSys.get().deleteBuffer(mGLVertexBuffer);
+        glSys.get().deleteBuffer(mGLVertexBuffer);
         mGLVertexBuffer = null;   
     }
 }
@@ -28,7 +28,7 @@ let mVerticesOfSquare = [
 ];
 
 function init() {
-    let  gl = GLSys.get();
+    let  gl = glSys.get();
 
     // Step A: Create a buffer on the gl context for our vertex positions
     mGLVertexBuffer = gl.createBuffer();

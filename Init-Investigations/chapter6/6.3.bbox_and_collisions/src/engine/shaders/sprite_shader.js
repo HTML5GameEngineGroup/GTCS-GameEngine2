@@ -7,7 +7,7 @@
  */
 "use strict"
 
-import * as GLSys from "../core/internal/gl.js";
+import * as glSys from "../core/internal/gl.js";
 import TextureShader from "./texture_shader.js";
 
 class SpriteShader extends TextureShader {
@@ -24,7 +24,7 @@ class SpriteShader extends TextureShader {
             0.0, 0.0
         ];
 
-        let gl = GLSys.get();
+        let gl = glSys.get();
         this.mTexCoordBuffer = gl.createBuffer();
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.mTexCoordBuffer);
@@ -37,13 +37,13 @@ class SpriteShader extends TextureShader {
     }
     
     setTextureCoordinate(texCoord) {
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.bindBuffer(gl.ARRAY_BUFFER, this.mTexCoordBuffer);
         gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(texCoord));
     }
 
     cleanUp() {
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.deleteBuffer(this.mTexCoordBuffer);
         // now call super class's clean up ...
         super.cleanUp(this);

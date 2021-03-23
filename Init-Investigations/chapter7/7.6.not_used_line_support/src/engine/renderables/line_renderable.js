@@ -7,7 +7,7 @@
 
 import Renderable from "./renderable.js";
 import * as defaultResources from "../resources/default_resources.js";
-import * as GLSys from "../core/internal/gl.js";
+import * as glSys from "../core/internal/gl.js";
 
 class LineRenderable extends Renderable {
     // p1, p2: either both there, or none
@@ -44,7 +44,7 @@ class LineRenderable extends Renderable {
         this.mShader.activate(this.mColor, this.mXform.getTRSMatrix(), camera.getCameraMatrix());
 
         // Draw line instead of triangle!
-        let gl = GLSys.get();
+        let gl = glSys.get();
         if (this.mShowLine) {
             gl.drawArrays(gl.LINE_STRIP, 0, 2);
         }

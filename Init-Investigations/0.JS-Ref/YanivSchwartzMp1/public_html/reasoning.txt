@@ -1,7 +1,7 @@
 Problems with previous approach:
-- weird dependency relationship (between Engine and Shader, between Core and VertexBuffer)
+- weird dependency relationship (between Engine and Shader, between Core and vertexBuffer)
     - gl is treated as global, should be explicit
-- unclear separation of responsibilities (between Shader and VertexBuffer)
+- unclear separation of responsibilities (between Shader and vertexBuffer)
 
 How I solve them:
 - use modules (now part of JS language, supported by all browsers except IE)

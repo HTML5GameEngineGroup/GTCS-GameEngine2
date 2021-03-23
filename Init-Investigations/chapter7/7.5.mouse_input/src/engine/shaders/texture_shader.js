@@ -6,7 +6,7 @@
  */
 "use strict"
 
-import * as GLSys from "../core/internal/gl.js";
+import * as glSys from "../core/internal/gl.js";
 import * as vertexBuffer from "../core/internal/vertex_buffer.js";
 import  SimpleShader from "./simple_shader.js";
 
@@ -19,7 +19,7 @@ class TextureShader extends SimpleShader {
         this.mTextureCoordinateRef = null;
 
         // get the reference of aTextureCoordinate within the shader
-        let gl = GLSys.get();
+        let gl = glSys.get();
         this.mTextureCoordinateRef = gl.getAttribLocation(this.mCompiledShader, "aTextureCoordinate");
         this.mSamperRef = gl.getAttribLocation(this.mCompiledShader, "uSampler");
     }
@@ -30,7 +30,7 @@ class TextureShader extends SimpleShader {
         super.activate(pixelColor, trsMatrix, cameraMatrix);
 
         // now our own functionality: enable texture coordinate array
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.bindBuffer(gl.ARRAY_BUFFER, this._getTexCoordBuffer());
         gl.vertexAttribPointer(this.mTextureCoordinateRef, 2, gl.FLOAT, false, 0, 0);        
         gl.enableVertexAttribArray(this.mTextureCoordinateRef);        

@@ -6,8 +6,8 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as GLSys from "./core/gl.js";
-import * as VertexBuffer from "./core/vertex_buffer.js";
+import * as glSys from "./core/gl.js";
+import * as vertexBuffer from "./core/vertex_buffer.js";
 
 class SimpleShader {
 
@@ -19,7 +19,7 @@ class SimpleShader {
         this.mVertexPositionRef = null; // reference to VertexPosition within the shader
         this.mPixelColorRef = null;     // reference to the pixelColor uniform in the fragment shader
 
-        let gl = GLSys.get();
+        let gl = glSys.get();
         // start of constructor code
         // 
         // Step A: load and compile vertex and fragment shaders
@@ -48,11 +48,11 @@ class SimpleShader {
     
     // Activate the shader for rendering
     activate(pixelColor) {
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.useProgram(this.mCompiledShader);
         
         // bind vertex buffer
-        gl.bindBuffer(gl.ARRAY_BUFFER, VertexBuffer.get());
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
         gl.vertexAttribPointer(this.mVertexPositionRef,
             3,              // each element is a 3-float (x,y.z)
             gl.FLOAT,       // data type is FLOAT
@@ -75,7 +75,7 @@ class SimpleShader {
 // The id is the id of the script in the html tag.
 function loadAndCompileShader(filePath, shaderType) {
     let xmlReq, shaderSource = null, compiledShader = null;
-    let gl = GLSys.get();
+    let gl = glSys.get();
 
     // Step A: Request the text from the given file location.
     xmlReq = new XMLHttpRequest();

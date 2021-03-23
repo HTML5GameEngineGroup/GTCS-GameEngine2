@@ -1,10 +1,12 @@
 /*
- * This is the logic of our game. 
+ * File: MyGame.js 
+ * This is the logic of our game. For now, this is very simple.
  */
+"use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 // Accessing engine internal is not ideal, 
 //      this must be resolved! (later)
-import * as loop from "../engine/core/internal/loop.js";
+import * as loop from "../engine/core/loop.js";
 
 // Engine stuff
 import engine from "../engine/index.js";
@@ -29,21 +31,18 @@ class MyGame  {
         this.mCamera.setBackgroundColor([0.8, 0.8, 0.8, 1]);
         // sets the background to gray
 
-        // Step  C: Create the Renderable objects:
-        let constColorShader = new engine.SimpleShader(
-                    "src/glsl_shaders/simple_vs.glsl",      // Path to the VertexShader 
-                    "src/glsl_shaders/simple_fs.glsl");    // Path to the Simple FragmentShader    
-        this.mWhiteSq = new engine.Renderable(constColorShader);
+        // Step  B: Create the Renderable objects:
+        this.mWhiteSq = new engine.Renderable();
         this.mWhiteSq.setColor([1, 1, 1, 1]);
-        this.mRedSq = new engine.Renderable(constColorShader);
+        this.mRedSq = new engine.Renderable();
         this.mRedSq.setColor([1, 0, 0, 1]);
 
-        // Step  D: Initialize the white Renderable object: centered, 5x5, rotated
+        // Step  C: Initialize the white Renderable object: centered, 5x5, rotated
         this.mWhiteSq.getXform().setPosition(20, 60);
         this.mWhiteSq.getXform().setRotationInRad(0.2); // In Radians
         this.mWhiteSq.getXform().setSize(5, 5);
 
-        // Step  E: Initialize the red Renderable object: centered 2x2
+        // Step  D: Initialize the red Renderable object: centered 2x2
         this.mRedSq.getXform().setPosition(20, 60);
         this.mRedSq.getXform().setSize(2, 2);
     }
@@ -72,6 +71,7 @@ class MyGame  {
         let whiteXform = this.mWhiteSq.getXform();
         let deltaX = 0.05;
 
+        // Step A: Rorate the white square
         if (whiteXform.getXPos() > 30) // this is the right-bound of the window
             whiteXform.setPosition(10, 60);
         whiteXform.incXPosBy(deltaX);

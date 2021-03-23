@@ -12,7 +12,7 @@ import * as map from "../core/internal/resource_map.js";
 let has = map.has;
 let get = map.get;
 
-import * as GLSys from "../core/internal/gl.js";
+import * as glSys from "../core/internal/gl.js";
 
 class TextureInfo {
     constructor(w, h, id) {
@@ -27,7 +27,7 @@ class TextureInfo {
  * This should only be called once the texture is loaded.
  */
 function processLoadedImage(path, image) {
-    let gl = GLSys.get();
+    let gl = glSys.get();
 
     // Generate a texture reference to the webGL context
     let textureID = gl.createTexture();
@@ -73,14 +73,14 @@ function load(textureName) {
 // Remove the reference to allow associated memory 
 // be available for subsequent garbage collection
 function unload(textureName) {
-    let gl = GLSys.get();
+    let gl = glSys.get();
     let texInfo = get(textureName);
     gl.deleteTexture(texInfo.mGLTexID);
     map.unload(textureName);
 }
 
 function activate(textureName) {
-    let gl = GLSys.get();
+    let gl = glSys.get();
     let texInfo = get(textureName);
 
     // Binds our texture reference to the current webGL texture functionality
@@ -101,7 +101,7 @@ function activate(textureName) {
 }
 
 function deactivate() {
-    let gl = GLSys.get();
+    let gl = glSys.get();
     gl.bindTexture(gl.TEXTURE_2D, null);
 }
 

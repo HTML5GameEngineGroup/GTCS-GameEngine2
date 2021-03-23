@@ -6,8 +6,8 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as GLSys from "./core/internal/gl.js";
-import * as vertexBuffer from "./core/internal/vertex_buffer.js";
+import * as glSys from "./core/gl.js";
+import * as vertexBuffer from "./core/vertex_buffer.js";
 
 class SimpleShader {
 
@@ -21,7 +21,7 @@ class SimpleShader {
         this.mModelMatrixRef = null; // reference to model transform matrix in vertex shader
         this.mCameraMatrixRef = null; // reference to the View/Projection matrix in the vertex shader
 
-        let gl = GLSys.get();
+        let gl = glSys.get();
         // start of constructor code
         // 
         // Step A: load and compile vertex and fragment shaders
@@ -53,7 +53,7 @@ class SimpleShader {
     
     // Activate the shader for rendering
     activate(pixelColor, trsMatrix, cameraMatrix) {
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.useProgram(this.mCompiledShader);
         
         // bind vertex buffer
@@ -82,7 +82,7 @@ class SimpleShader {
 // The id is the id of the script in the html tag.
 function loadAndCompileShader(filePath, shaderType) {
     let xmlReq, shaderSource = null, compiledShader = null;
-    let gl = GLSys.get();
+    let gl = glSys.get();
 
     // Step A: Request the text from the given file location.
     xmlReq = new XMLHttpRequest();
@@ -112,7 +112,7 @@ function loadAndCompileShader(filePath, shaderType) {
     // The log info is how shader compilation errors are typically displayed.
     // This is useful for debugging the shaders.
     if (!gl.getShaderParameter(compiledShader, gl.COMPILE_STATUS)) {
-        throw new Error("Shader ["+ filePath +"] compiling error: " + gl.getShaderInfoLog(compiledShader));
+        throw new Error("A shader compiling error occurred: " + gl.getShaderInfoLog(compiledShader));
     }
 
     return compiledShader;

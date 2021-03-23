@@ -8,7 +8,7 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 import * as core from "./core.js";                   // access symbols defined as "core" module
-import * as VertexBuffer from "./vertex_buffer.js";  // access symbols defined as "VertexBuffer" module
+import * as vertexBuffer from "./vertex_buffer.js";  // access symbols defined as "vertexBuffer" module
 
 let mCompiledShader = null;
 // Reference to the shader program stored in mGL context.
@@ -46,7 +46,7 @@ function activate() {
     gl.useProgram(mCompiledShader);
 
     // bind vertex buffer
-    gl.bindBuffer(gl.ARRAY_BUFFER, VertexBuffer.get());
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
     gl.vertexAttribPointer(this.mVertexPositionRef,
         3,              // each element is a 3-float (x,y.z)
         gl.FLOAT,      // data type is FLOAT

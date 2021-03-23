@@ -7,28 +7,28 @@
 // client program simple import from engine/index.js for all engine symbols
 import engine from "../engine/index.js";
 
-class my_game {
+class MyGame {
     constructor(htmlCanvasID) {
-        /// Step A: Initialize the webGL Context
+        // Step A: Initialize the game engine
         engine.init(htmlCanvasID);
 
-        // Step C: Create the Renderable objects:
+        // Step B: Create the Renderable objects:
         this.mWhiteSq = new engine.Renderable();
         this.mWhiteSq.setColor([1, 1, 1, 1]);
         this.mRedSq = new engine.Renderable();
         this.mRedSq.setColor([1, 0, 0, 1]);
 
-        // Step D: Draw!
+        // Step C: Draw!
         engine.clearCanvas([0, 0.8, 0, 1]);  // Clear the canvas
 
-        // Step D1: Draw Renderable objects with the white shader
+        // Step C1: Draw Renderable objects with the white shader
         this.mWhiteSq.draw();
 
-        // Step D2: Draw Renderable objects with the red shader
+        // Step C2: Draw Renderable objects with the red shader
         this.mRedSq.draw();
     }
 }
 
 window.onload = function () {
-    new my_game('GLCanvas');
+    new MyGame('GLCanvas');
 }

@@ -5,14 +5,14 @@
 "use strict";
 
 import SimpleShader from "./simple_shader.js";
-import * as GLSys from "../core/internal/gl.js";
+import * as glSys from "../core/internal/gl.js";
 import * as vertexBuffer from "../core/internal/vertex_buffer.js";
 
 class LineShader extends SimpleShader {
     // constructor of LineShader object
     constructor(vertexShaderPath, fragmentShaderPath) {
         super(vertexShaderPath, fragmentShaderPath);
-        let gl = GLSys.get();
+        let gl = glSys.get();
 
         this.mPointSizeRef = null;            // reference to the PointSize uniform
 
@@ -28,7 +28,7 @@ class LineShader extends SimpleShader {
         super.activate(pixelColor, trsMatrix, cameraMatrix);
 
         // now our own functionality: load the line pont size
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.uniform1f(this.mPointSizeRef, this.mPointSize);
 
         // re-bind the vertex position attribute to the line's buffer

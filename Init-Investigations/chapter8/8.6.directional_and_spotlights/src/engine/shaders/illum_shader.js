@@ -6,7 +6,7 @@
 
 import LightShader from "./light_shader.js";
 import ShaderMaterial from "./shader_material.js";
-import * as GLSys from "../core/internal/gl.js";
+import * as glSys from "../core/internal/gl.js";
 
 class IllumShader extends LightShader {
     // constructor 
@@ -18,7 +18,7 @@ class IllumShader extends LightShader {
         this.mMaterial = null;
         this.mMaterialLoader = new ShaderMaterial(this.mCompiledShader);
 
-        let gl = GLSys.get();
+        let gl = glSys.get();
         // Reference to the camera position
         this.mCameraPos = null;  // points to a vec3
         this.mCameraPosRef = gl.getUniformLocation(this.mCompiledShader, "uCameraPosition");
@@ -31,7 +31,7 @@ class IllumShader extends LightShader {
     activate(pixelColor, trsMatrix, cameraMatrix) {
         // first call the super class's activate
         super.activate(pixelColor, trsMatrix, cameraMatrix);
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.uniform1i(this.mNormalSamplerRef, 1); // binds to texture unit 1
         // do not need to set up texture coordinate buffer
         // as we are going to use the ones from the sprite texture 

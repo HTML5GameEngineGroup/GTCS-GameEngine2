@@ -7,7 +7,7 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 import * as core from "./core.js";
-import * as VertexBuffer from "./vertex_buffer.js";
+import * as vertexBuffer from "./vertex_buffer.js";
 
 class SimpleShader {
 
@@ -51,7 +51,7 @@ class SimpleShader {
         gl.useProgram(this.mCompiledShader);
         
         // bind vertex buffer
-        gl.bindBuffer(gl.ARRAY_BUFFER, VertexBuffer.get());
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
         gl.vertexAttribPointer(this.mVertexPositionRef,
             3,              // each element is a 3-float (x,y.z)
             gl.FLOAT,       // data type is FLOAT

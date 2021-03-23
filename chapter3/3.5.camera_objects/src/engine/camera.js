@@ -6,7 +6,7 @@
 "use strict"
 
 
-import * as GLSys from "./core/internal/gl.js";
+import * as glSys from "./core/gl.js";
 
 class Camera {
     // wcCenter: is a vec2
@@ -50,7 +50,7 @@ class Camera {
     
     // call before you start drawing with this camera
     setViewAndCameraMatrix() {
-        let gl = GLSys.get();
+        let gl = glSys.get();
         // Step A1: Set up the viewport: area on canvas to be drawn
         gl.viewport(this.mViewport[0],  // x position of bottom-left corner of the area to be drawn
             this.mViewport[1],  // y position of bottom-left corner of the area to be drawn

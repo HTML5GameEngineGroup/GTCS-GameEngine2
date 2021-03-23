@@ -7,7 +7,7 @@
  */
 "use strict";
 
-import * as GLSys from "./gl.js";
+import * as glSys from "./gl.js";
 
 // reference to the vertex positions for the square in the gl context
 let mGLVertexBuffer = null;
@@ -43,7 +43,7 @@ let mVerticesOfLine = [
 ];
 
 function cleanUp() {
-    let gl = GLSys.get();
+    let gl = glSys.get();
     if (mGLVertexBuffer !== null) {
         gl.deleteBuffer(mGLVertexBuffer);
         mGLVertexBuffer = null;
@@ -61,7 +61,7 @@ function cleanUp() {
 }
 
 function init() {
-    let gl = GLSys.get();
+    let gl = glSys.get();
 
     // #region: support for the square vertices
     // Step A: Create a buffer on the gl context for our vertex positions

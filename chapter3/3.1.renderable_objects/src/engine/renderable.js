@@ -1,12 +1,12 @@
 /*
  * File: renderable.js
  *
- * Encapsulate the Shader and VertexBuffer into the same object (and will include
+ * Encapsulate the Shader and vertexBuffer into the same object (and will include
  * other attributes later) to represent a Renderable object on the game screen.
  */
 "use strict"
 
-import * as GLSys from "./core/gl.js";
+import * as glSys from "./core/gl.js";
 import * as Shaders from "./core/shader_resources.js";
 
 class Renderable {
@@ -16,7 +16,7 @@ class Renderable {
     }
 
     draw() {
-        let gl = GLSys.get();
+        let gl = glSys.get();
         this.mShader.activate(this.mColor);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     }

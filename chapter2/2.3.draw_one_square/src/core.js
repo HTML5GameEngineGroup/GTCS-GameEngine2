@@ -5,9 +5,9 @@
  */
 "use strict"; 
 
-// import all symbols that are exported from vertex_buffer.js, as symbols under the module "VertexBuffer"
+// import all symbols that are exported from vertex_buffer.js, as symbols under the module "vertexBuffer"
 //
-import * as VertexBuffer from "./vertex_buffer.js";
+import * as vertexBuffer from "./vertex_buffer.js";
 import * as simpleShader from "./shader_support.js";
 
 // variables
@@ -32,7 +32,7 @@ function initWebGL(htmlCanvasID) {
     mGL.clearColor(0.0, 0.8, 0.0, 1.0);  // set the color to be cleared
 
     // 1. initialize the buffer with the vertex positions for the unit square
-    VertexBuffer.init(); // This function is defined in the vertex_buffer.js file
+    vertexBuffer.init(); // This function is defined in the vertex_buffer.js file
 
     // 2. now load and compile the vertex and fragment shaders
     simpleShader.init("VertexShader", "FragmentShader");

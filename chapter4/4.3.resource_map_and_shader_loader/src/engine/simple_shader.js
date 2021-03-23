@@ -7,7 +7,7 @@
 "use strict"
 
 import * as text from "./resources/text.js";
-import * as GLSys from "./core/internal/gl.js";
+import * as glSys from "./core/internal/gl.js";
 import * as vertexBuffer from "./core/internal/vertex_buffer.js";
 
 class SimpleShader {
@@ -22,7 +22,7 @@ class SimpleShader {
         this.mModelMatrixRef = null; // reference to model transform matrix in vertex shader
         this.mCameraMatrixRef = null; // reference to the View/Projection matrix in the vertex shader
 
-        let gl = GLSys.get();
+        let gl = glSys.get();
         // start of constructor code
         // 
         // Step A: load and compile vertex and fragment shaders
@@ -52,7 +52,7 @@ class SimpleShader {
 
     // Activate the shader for rendering
     activate(pixelColor, trsMatrix, cameraMatrix) {
-        let gl = GLSys.get();
+        let gl = glSys.get();
         gl.useProgram(this.mCompiledShader);
         
         // bind vertex buffer
@@ -81,7 +81,7 @@ class SimpleShader {
 // The id is the id of the script in the html tag.
 function compileShader(filePath, shaderType) {
     let shaderSource = null, compiledShader = null;
-    let gl = GLSys.get();
+    let gl = glSys.get();
 
     // Step A: Access the shader textfile
     shaderSource = text.get(filePath);

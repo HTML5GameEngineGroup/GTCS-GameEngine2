@@ -13,19 +13,19 @@ import Renderable from "./renderable.js";
 import SimpleShader from "./simple_shader.js";
 
 // local to this file only
-import * as GLSys from "./core/gl.js";
-import * as VertexBuffer from "./core/vertex_buffer.js";
+import * as glSys from "./core/gl.js";
+import * as vertexBuffer from "./core/vertex_buffer.js";
 import * as Shaders from "./core/shader_resources.js";
 
 // general engine utilities
 function init(htmlCanvasID) {
-    GLSys.init(htmlCanvasID);
-    VertexBuffer.init();
+    glSys.init(htmlCanvasID);
+    vertexBuffer.init();
     Shaders.init();
 }
 
 function clearCanvas(color) {
-    let gl = GLSys.get();
+    let gl = glSys.get();
     gl.clearColor(color[0], color[1], color[2], color[3]);  // set the color to be cleared
     gl.clear(gl.COLOR_BUFFER_BIT);      // clear to the color previously set
 }
