@@ -64,7 +64,7 @@ function activate() {
 // Returns a compiled shader from a shader in the dom.
 // The id is the id of the script in the html tag.
 function loadAndCompileShader(id, shaderType) {
-    let xmlReq, shaderSource = null, compiledShader = null;
+    let shaderSource = null, compiledShader = null;
 
     // Step A: Get the shader source from index.html
     let shaderText = document.getElementById(id);

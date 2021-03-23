@@ -42,8 +42,6 @@ function initWebGL(htmlCanvasID) {
 
 // Clears the draw area and draws one square
 function drawSquare() {
-    mGL.clear(mGL.COLOR_BUFFER_BIT);      // clear to the color previously set
-
     // Step A: Activate the shader
     simpleShader.activate();
 
@@ -51,9 +49,15 @@ function drawSquare() {
     mGL.drawArrays(mGL.TRIANGLE_STRIP, 0, 4);
 }
 
+// Clears the canvas area
+function clearCanvas() {
+    mGL.clear(mGL.COLOR_BUFFER_BIT);      // clear to the color previously set
+}
+
 window.onload = function() {
     initWebGL("GLCanvas");     // Binds mGL context to WebGL functionality
-    drawSquare();       // Clears the GL area and draws one square
+    clearCanvas();      // Clears the GL area
+    drawSquare();       // Draws one square
 }
 
 // export this symbol 
