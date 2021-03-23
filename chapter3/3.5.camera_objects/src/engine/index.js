@@ -17,13 +17,13 @@ import SimpleShader from "./simple_shader.js";
 // local to this file only
 import * as glSys from "./core/gl.js";
 import * as vertexBuffer from "./core/vertex_buffer.js";
-import * as Shaders from "./core/shader_resources.js";
+import * as shaderResources from "./core/shader_resources.js";
 
 // general engine utilities
 function init(htmlCanvasID) {
     glSys.init(htmlCanvasID);
     vertexBuffer.init();
-    Shaders.init();
+    shaderResources.init();
 }
 
 function clearCanvas(color) {

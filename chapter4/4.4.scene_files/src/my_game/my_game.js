@@ -1,10 +1,12 @@
 /*
- * This is the logic of our game. 
+ * File: MyGame.js 
+ * This is the logic of our game. For now, this is very simple.
  */
+"use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 // Accessing engine internal is not ideal, 
 //      this must be resolved! (later)
-import * as loop from "../engine/core/internal/loop.js";
+import * as loop from "../engine/core/loop.js";
 
 // Engine stuff
 import engine from "../engine/index.js";
@@ -41,7 +43,7 @@ class MyGame  {
         engine.clearCanvas([0.9, 0.9, 0.9, 1.0]);
 
         this.mCamera.setViewAndCameraMatrix();
-        // Step  C: draw all the squares
+        // Step B: draw all the squares
         let i;
         for (i = 0; i < this.mSqSet.length; i++) {
             this.mSqSet[i].draw(this.mCamera);
@@ -64,13 +66,13 @@ class MyGame  {
             xform.incXPosBy(deltaX);
         }
 
-        // Step  B: test for white square rotation
+        // Step B: test for white square rotation
         if (engine.input.isKeyClicked(engine.input.keys.Up)) {
             xform.incRotationByDegree(1);
         }
 
         xform = this.mSqSet[1].getXform();
-        // Step  C: test for pulsing the red square
+        // Step C: test for pulsing the red square
         if (engine.input.isKeyPressed(engine.input.keys.Down)) {
             if (xform.getWidth() > 5) {
                 xform.setSize(2, 2);
@@ -89,7 +91,6 @@ class MyGame  {
     }
 }
 export default MyGame;
-
 
 
 window.onload = function () {

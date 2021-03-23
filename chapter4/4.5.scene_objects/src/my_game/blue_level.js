@@ -36,8 +36,9 @@ class BlueLevel extends engine.Scene {
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
     draw() {
+        // Step A: set up the camera
         this.mCamera.setViewAndCameraMatrix();
-        // Step  C: draw all the squares
+        // Step B: draw everything with the camera
         let i;
         for (i = 0; i < this.mSQSet.length; i++) {
             this.mSQSet[i].draw(this.mCamera);
@@ -59,7 +60,7 @@ class BlueLevel extends engine.Scene {
             }
         }
 
-        // Step A: test for white square movement
+        // test for white square movement
         if (engine.input.isKeyPressed(engine.input.keys.Left)) {
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 11) { // this is the left-boundary

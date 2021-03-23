@@ -6,8 +6,8 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as glSys from "./core/internal/gl.js";
-import * as vertexBuffer from "./core/internal/vertex_buffer.js";
+import * as glSys from "./core/gl.js";
+import * as vertexBuffer from "./core/vertex_buffer.js";
 
 class SimpleShader {
 
@@ -111,7 +111,7 @@ function loadAndCompileShader(filePath, shaderType) {
     // The log info is how shader compilation errors are typically displayed.
     // This is useful for debugging the shaders.
     if (!gl.getShaderParameter(compiledShader, gl.COMPILE_STATUS)) {
-        throw new Error("Shader ["+ filePath +"] compiling error: " + gl.getShaderInfoLog(compiledShader));
+        throw new Error("A shader compiling error occurred: " + gl.getShaderInfoLog(compiledShader));
     }
 
     return compiledShader;

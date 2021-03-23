@@ -5,7 +5,7 @@
  */
 "use strict"
 
-import * as map from "../core/internal/resource_map.js";
+import * as map from "../core/resource_map.js";
 
 // functions from resource_map
 let unload = map.unload;

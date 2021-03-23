@@ -1,6 +1,8 @@
 /*
- * This is the logic of our game. 
+ * File: MyGame.js 
+ * This is the logic of our game. For now, this is very simple.
  */
+"use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 
 // Engine stuff
@@ -50,8 +52,8 @@ class MyGame extends engine.Scene {
         // Step A: clear the canvas
         engine.clearCanvas([0.9, 0.9, 0.9, 1.0]);
 
-        this.mCamera.setViewAndCameraMatrix();
         // Step  B: Activate the drawing Camera
+        this.mCamera.setViewAndCameraMatrix();
 
         // Step  C: draw everything
         this.mSupport.draw(this.mCamera);

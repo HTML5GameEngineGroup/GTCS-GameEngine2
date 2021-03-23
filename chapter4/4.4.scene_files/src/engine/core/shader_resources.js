@@ -1,13 +1,14 @@
 /*
- * File: default_resources.js
- *
- * central storage of all engine-wide shared resources, e.g., shaders
+ * File: shader_resources.js
+ *  
+ * defines drawing system shaders
+ * 
  */
 "use strict"
 
- import core from "../index.js";
  import SimpleShader from "../simple_shader.js";
- import * as map from "../core/internal/resource_map.js";
+ import * as text from "../resources/text.js";
+ import * as map from "./resource_map.js";
  
  // Simple Shader
  let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 
@@ -18,19 +19,12 @@
     mConstColorShader = new SimpleShader(kSimpleVS, kSimpleFS);
  }
 
-  // unload all resources
-function cleanUp() {
-    mConstColorShader.cleanUp();
-    core.text.unload(kSimpleVS);
-    core.text.unload(kSimpleFS);
-}
-
 function init() {
     let loadPromise = new Promise(
         async function(resolve) {
             await Promise.all([
-                core.text.load(kSimpleFS),
-                core.text.load(kSimpleVS)
+                text.load(kSimpleFS),
+                text.load(kSimpleVS)
             ]);
             resolve();
         }).then(
@@ -41,4 +35,4 @@ function init() {
 
 function getConstColorShader() { return mConstColorShader; }
 
-export {init, cleanUp, getConstColorShader}
+export {init, getConstColorShader}

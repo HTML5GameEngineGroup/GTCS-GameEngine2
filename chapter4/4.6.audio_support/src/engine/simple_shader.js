@@ -6,9 +6,9 @@
  */
 "use strict"
 
+import * as glSys from "./core/gl.js";
+import * as vertexBuffer from "./core/vertex_buffer.js";
 import * as text from "./resources/text.js";
-import * as glSys from "./core/internal/gl.js";
-import * as vertexBuffer from "./core/internal/vertex_buffer.js";
 
 class SimpleShader {
 

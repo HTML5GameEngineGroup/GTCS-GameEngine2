@@ -6,15 +6,15 @@
  */
 "use strict"
 
-import * as glSys from "./core/internal/gl.js";
+import * as glSys from "./core/gl.js";
+import * as shaderResources from "./core/shader_resources.js";
 import Transform from "./transform.js";
-import * as default_resources from "./resources/default_resources.js";
 
 class Renderable {
     constructor() {
-        this.mShader = default_resources.getConstColorShader();  // get the constant color shader
-        this.mXform = new Transform(); // transform that moves this object around
-        this.mColor = [1, 1, 1, 1];    // color of pixel
+        this.mShader = shaderResources.getConstColorShader();   // the shader for shading this object
+        this.mColor = [1, 1, 1, 1];     // color of pixel
+        this.mXform = new Transform();  // the transform object 
     }
 
     draw(camera) {

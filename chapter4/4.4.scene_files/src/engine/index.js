@@ -8,16 +8,12 @@
  */
 "use strict"
 
-// Core
-import * as input from "./core/input.js";
-import * as loop from "./core/internal/loop.js";
-
 // Resources
-import * as text from "./resources/text.js";
 import * as xml from "./resources/xml.js";
-import * as defaultResources from "./resources/default_resources.js";
+import * as text from "./resources/text.js";
 
 // general utiities
+import * as input from "./input.js";
 import Camera from "./camera.js";
 import Transform from "./transform.js";
 import Renderable from "./renderable.js";
@@ -25,15 +21,16 @@ import SimpleShader from "./simple_shader.js";
 
 
 // local to this file only
-import * as glSys from "./core/internal/gl.js";
-import * as vertexBuffer from "./core/internal/vertex_buffer.js";
+import * as glSys from "./core/gl.js";
+import * as vertexBuffer from "./core/vertex_buffer.js";
+import * as shaderResources from "./core/shader_resources.js";
 
 // general engine utilities
 function init(htmlCanvasID) {
     glSys.init(htmlCanvasID);
     vertexBuffer.init();
+	shaderResources.init();
     input.init();
-    defaultResources.init();
 }
 
 function clearCanvas(color) {
@@ -45,7 +42,7 @@ function clearCanvas(color) {
 
 export default {
     // resource support
-    text, xml, defaultResources,
+    text, xml,
 
     // core
     input,

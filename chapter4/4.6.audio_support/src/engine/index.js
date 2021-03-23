@@ -9,41 +9,41 @@
 "use strict"
 
 // Core
-import * as input from "./core/input.js";
-import * as loop from "./core/internal/loop.js";
+import * as loop from "./core/loop.js";
 
 // Resources
 import * as audio from "./resources/audio.js";
-import * as text from "./resources/text.js";
 import * as xml from "./resources/xml.js";
-import * as defaultResources from "./resources/default_resources.js";
+import * as text from "./resources/text.js";
 
 // general utiities
-import Camera from "./camera.js";
+import * as input from "./input.js";
 import Scene from "./scene.js";
+import Camera from "./camera.js";
 import Transform from "./transform.js";
 import Renderable from "./renderable.js";
 import SimpleShader from "./simple_shader.js";
 
 
 // local to this file only
-import * as glSys from "./core/internal/gl.js";
-import * as vertexBuffer from "./core/internal/vertex_buffer.js";
+import * as glSys from "./core/gl.js";
+import * as vertexBuffer from "./core/vertex_buffer.js";
+import * as shaderResources from "./core/shader_resources.js";
 
 // general engine utilities
 function init(htmlCanvasID) {
     glSys.init(htmlCanvasID);
     vertexBuffer.init();
+	shaderResources.init();
     input.init();
     audio.init();
-    defaultResources.init();
 }
 
 function cleanUp() {
     loop.cleanUp();
-    defaultResources.cleanUp();
-    audio.cleanUp();
+	audio.cleanUp();
     input.cleanUp();
+	shaderResources.cleanUp();
     vertexBuffer.cleanUp();
     glSys.cleanUp();
 }
@@ -57,7 +57,7 @@ function clearCanvas(color) {
 
 export default {
     // resource support
-    audio, text, xml, defaultResources,
+    audio, text, xml,
 
     // core
     input,
