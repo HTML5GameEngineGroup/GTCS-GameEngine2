@@ -42,10 +42,13 @@ function init(vertexShaderID, fragmentShaderID) {
 
 // Activate the shader for rendering
 function activate() {
+    // Step A: access to the webgl context
     let gl = core.getGL();
+
+    // Step B: identify the compiled shader to use
     gl.useProgram(mCompiledShader);
 
-    // bind vertex buffer
+    // Step C: bind the vertex buffer to the attribute defined in the vertex shader
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
     gl.vertexAttribPointer(this.mVertexPositionRef,
         3,              // each element is a 3-float (x,y.z)
@@ -54,6 +57,7 @@ function activate() {
         0,              // number of bytes to skip in between elements
         0);             // offsets to the first element
     gl.enableVertexAttribArray(this.mVertexPosition);
+
 }
 
 //**-----------------------------------
