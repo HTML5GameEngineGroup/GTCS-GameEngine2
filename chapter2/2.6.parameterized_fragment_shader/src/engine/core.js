@@ -22,7 +22,7 @@ function createShader() {
         "src/glsl_shaders/simple_fs.glsl");       // Path to the FragmentShader
 }
 
-// initialize the WebGL, the vertex buffer and compile the shaders
+// initialize the WebGL
 function initWebGL(htmlCanvasID) {
     let canvas = document.getElementById(htmlCanvasID);
 
