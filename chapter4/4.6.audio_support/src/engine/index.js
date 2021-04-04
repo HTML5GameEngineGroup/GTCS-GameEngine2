@@ -8,9 +8,6 @@
  */
 "use strict"
 
-// Core
-import * as loop from "./core/loop.js";
-
 // Resources
 import * as audio from "./resources/audio.js";
 import * as xml from "./resources/xml.js";
@@ -29,6 +26,7 @@ import SimpleShader from "./simple_shader.js";
 import * as glSys from "./core/gl.js";
 import * as vertexBuffer from "./core/vertex_buffer.js";
 import * as shaderResources from "./core/shader_resources.js";
+import * as loop from "./core/loop.js";
 
 // general engine utilities
 function init(htmlCanvasID) {

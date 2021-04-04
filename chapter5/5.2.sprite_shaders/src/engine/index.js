@@ -8,9 +8,6 @@
  */
 "use strict"
 
-// core
-import * as loop from "./core/loop.js";
-
 // resources
 import * as audio from "./resources/audio.js";
 import * as text from "./resources/text.js";
@@ -38,6 +35,7 @@ import { eTexCoordArrayIndex } from "./renderables/sprite_renderable.js";
 import * as glSys from "./core/gl.js";
 import * as vertexBuffer from "./core/vertex_buffer.js";
 import * as shaderResources from "./core/shader_resources.js";
+import * as loop from "./core/loop.js";
 
 // general engine utilities
 function init(htmlCanvasID) {
