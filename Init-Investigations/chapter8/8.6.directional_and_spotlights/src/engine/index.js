@@ -8,7 +8,7 @@
  */
 "use strict"
 
-// core
+// 
 import * as input from "./core/input.js";
 import * as loop from "./core/internal/loop.js";
 
@@ -34,14 +34,6 @@ import Material from "./material.js";
 
 // camera and related supports
 import Camera from "./cameras/camera.js";
-
-// shaders
-import SimpleShader from "./shaders/simple_shader.js";
-import TextureShader from "./shaders/texture_shader.js";
-import SpriteShader from "./shaders/sprite_shader.js";
-import LineShader from "./shaders/line_shader.js";
-import LightShader from "./shaders/light_shader.js";
-import IllumShader from "./shaders/illum_shader.js";
 
 // renderables 
 import Renderable from "./renderables/renderable.js";
@@ -97,7 +89,7 @@ export default {
     // resource support
     audio, text, xml, texture, font, defaultResources,
 
-    // core
+    // input support
     input,
 
     // general utils 
@@ -105,9 +97,6 @@ export default {
 
     // Util classes
     Camera, Scene, Transform, BoundingBox, Material,
-    
-    // Shaders
-    SimpleShader, TextureShader, SpriteShader, LineShader, LightShader, IllumShader,
     
     // Renderables
     Renderable, TextureRenderable, SpriteRenderable, SpriteAnimateRenderable, 
