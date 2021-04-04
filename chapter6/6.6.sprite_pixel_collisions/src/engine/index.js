@@ -24,11 +24,6 @@ import Transform from "./transform.js";
 import BoundingBox from "./bounding_box.js";
 import { eBoundCollideStatus } from "./bounding_box.js";
 
-// shaders
-import SimpleShader from "./shaders/simple_shader.js";
-import TextureShader from "./shaders/texture_shader.js";
-import SpriteShader from "./shaders/sprite_shader.js";
-
 // renderables 
 import Renderable from "./renderables/renderable.js";
 import TextureRenderable from "./renderables/texture_renderable.js";
@@ -84,9 +79,6 @@ export default {
 
     // Util classes
     Camera, Scene, Transform, BoundingBox,
-    
-    // Shaders
-    SimpleShader, TextureShader, SpriteShader,
     
     // Renderables
     Renderable, TextureRenderable, SpriteRenderable, SpriteAnimateRenderable, FontRenderable,

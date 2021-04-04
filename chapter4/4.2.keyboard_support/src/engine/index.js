@@ -13,7 +13,6 @@ import * as input from "./input.js";
 import Camera from "./camera.js";
 import Transform from "./transform.js";
 import Renderable from "./renderable.js";
-import SimpleShader from "./simple_shader.js";
 
 
 // local to this file only
@@ -40,7 +39,7 @@ export default {
     input,
 
     // Util classes
-    Camera, Transform, SimpleShader, Renderable,
+    Camera, Transform, Renderable,
 
     // functions
     init, clearCanvas

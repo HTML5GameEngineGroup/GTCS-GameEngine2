@@ -18,7 +18,6 @@ import Scene from "./scene.js";
 import Camera from "./camera.js";
 import Transform from "./transform.js";
 import Renderable from "./renderable.js";
-import SimpleShader from "./simple_shader.js";
 
 // local to this file only
 import * as glSys from "./core/gl.js";
@@ -57,7 +56,7 @@ export default {
     input,
 
     // Util classes
-    Camera, Scene, Transform, SimpleShader, Renderable,
+    Camera, Scene, Transform, Renderable,
 
     // functions
     init, cleanUp, clearCanvas

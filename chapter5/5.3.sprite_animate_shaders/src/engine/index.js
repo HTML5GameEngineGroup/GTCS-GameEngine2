@@ -20,11 +20,6 @@ import Camera from "./camera.js";
 import Scene from "./scene.js";
 import Transform from "./transform.js";
 
-// shaders
-import SimpleShader from "./shaders/simple_shader.js";
-import TextureShader from "./shaders/texture_shader.js";
-import SpriteShader from "./shaders/sprite_shader.js";
-
 // renderables 
 import Renderable from "./renderables/renderable.js";
 import TextureRenderable from "./renderables/texture_renderable.js";
@@ -73,9 +68,6 @@ export default {
 
     // Util classes
     Camera, Scene, Transform, 
-    
-    // Shaders
-    SimpleShader, TextureShader, SpriteShader,
     
     // Renderables
     Renderable, TextureRenderable, SpriteRenderable, SpriteAnimateRenderable,

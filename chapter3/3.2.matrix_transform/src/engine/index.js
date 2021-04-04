@@ -11,7 +11,6 @@
 // general utiities
 import Transform from "./transform.js";
 import Renderable from "./renderable.js";
-import SimpleShader from "./simple_shader.js";
 
 // local to this file only
 import * as glSys from "./core/gl.js";
@@ -34,7 +33,7 @@ function clearCanvas(color) {
 
 export  default {
     // Util classes
-    Transform, SimpleShader, Renderable,
+    Transform, Renderable,
 
     // functions
     init, clearCanvas

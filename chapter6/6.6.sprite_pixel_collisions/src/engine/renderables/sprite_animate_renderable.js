@@ -7,7 +7,6 @@
 "use strict"
 
 import SpriteRenderable from "./sprite_renderable.js";
-import * as texture from "../resources/texture.js";
 import * as shaderResources from "../core/shader_resources.js";
 
 // Assumption is that the first sprite in an animation is always the left-most element.
