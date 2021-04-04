@@ -4,8 +4,6 @@
 
 // Engine utility stuff
 import engine from "../../engine/index.js";
-import Camera from "../../engine/Camera.js";
-import Renderable from "../../engine/Renderable.js";
 
 class SceneFileParser {
     
@@ -27,7 +25,7 @@ class SceneFileParser {
             viewport[j] = Number(viewport[j]);
         }
 
-        let cam = new Camera(
+        let cam = new engine.Camera(
             vec2.fromValues(cx, cy),  // position of the camera
             w,                        // width of camera
             viewport                  // viewport (orgX, orgY, width, height)
@@ -46,7 +44,7 @@ class SceneFileParser {
             h = Number(elm.item(i).attributes.getNamedItem("Height").value);
             r = Number(elm.item(i).attributes.getNamedItem("Rotation").value);
             c = elm.item(i).attributes.getNamedItem("Color").value.split(" ");
-            sq = new Renderable();
+            sq = new engine.Renderable();
             // make sure color array contains numbers
             for (j = 0; j < 4; j++) {
                 c[j] = Number(c[j]);
