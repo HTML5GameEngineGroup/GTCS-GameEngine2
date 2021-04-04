@@ -42,7 +42,7 @@ export default {
     // resource support
     text,
 
-    // core
+    // input support
     input,
 
     // Util classes

@@ -35,7 +35,7 @@ function clearCanvas(color) {
 }
 
 export default {
-    // core
+    // input support
     input,
 
     // Util classes

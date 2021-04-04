@@ -52,7 +52,7 @@ export default {
     // resource support
     text, xml,
 
-    // core
+    // input support
     input,
 
     // Util classes

@@ -72,7 +72,7 @@ export default {
     // resource support
     audio, text, xml, texture, font, defaultResources,
 
-    // core
+    // input support
     input,
 
     // Util classes

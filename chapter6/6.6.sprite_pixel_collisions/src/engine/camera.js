@@ -43,8 +43,7 @@ class Camera {
     setViewport(viewportArray) { this.mViewport = viewportArray; }
     getViewport() { return this.mViewport; }
     getWCWidth() { return this.mWCWidth; }
-    getWCHeight() { return this.mWCWidth * this.mViewport[3] / this.mViewport[2]; }
-                                                  // viewportH/viewportW
+    getWCHeight() { return this.mWCWidth * this.mViewport[3] / this.mViewport[2]; }                                              // viewportH/viewportW
 
     setBackgroundColor(newColor) { this.mBGColor = newColor; }
     getBackgroundColor() { return this.mBGColor; }
