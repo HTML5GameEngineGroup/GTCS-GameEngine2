@@ -4,6 +4,7 @@
 
 # ignore .bak files
 *.bak
+~$*
 
 /.vscode
 /*/.vscode
