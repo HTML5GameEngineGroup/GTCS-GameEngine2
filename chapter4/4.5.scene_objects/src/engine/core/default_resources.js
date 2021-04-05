@@ -5,7 +5,7 @@
  */
 "use strict"
 
-import core from "../index.js";
+import * as font from "./font.js";
 import SimpleShader from "../shaders/simple_shader.js";
 import TextureShader from "../shaders/texture_shader.js";
 import SpriteShader from "../shaders/sprite_shader.js";
@@ -75,7 +75,7 @@ function cleanUp() {
     core.text.unload(kLightFS);
     core.text.unload(kIllumFS);
 
-    core.font.unload(kDefaultFont);
+    font.unload(kDefaultFont);
 }
 
 function init() {
@@ -89,7 +89,7 @@ function init() {
                 core.text.load(kLineFS),
                 core.text.load(kLightFS),
                 core.text.load(kIllumFS),
-                core.font.load(kDefaultFont)
+                font.load(kDefaultFont)
             ]);
             resolve();
         }).then(

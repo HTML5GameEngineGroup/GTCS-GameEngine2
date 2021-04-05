@@ -5,7 +5,7 @@
  */
 "use strict"
 
-import core from "../index.js";
+import * as font from "./font.js";
 import * as map from "../core/resource_map.js";
 
 // Default font
@@ -13,14 +13,14 @@ let kDefaultFont = "assets/fonts/system_default_font";
 
 // unload all resources
 function cleanUp() {
-    core.font.unload(kDefaultFont);
+    font.unload(kDefaultFont);
 }
 
 function init() {
     let loadPromise = new Promise(
         async function (resolve) {
             await Promise.all([
-                core.font.load(kDefaultFont)
+                font.load(kDefaultFont)
             ]);
             resolve();
         }).then(
