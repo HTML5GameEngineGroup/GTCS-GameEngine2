@@ -8,10 +8,6 @@
  */
 "use strict"
 
-// 
-import * as input from "./core/input.js";
-import * as loop from "./core/internal/loop.js";
-
 // resources
 import * as audio from "./resources/audio.js";
 import * as text from "./resources/text.js";
@@ -21,6 +17,7 @@ import * as font from "./resources/font.js";
 import * as defaultResources from "./resources/default_resources.js";
 
 // general utilities
+import * as input from "./input.js";
 import Scene from "./scene.js";
 import Transform from "./utils/transform.js";
 import BoundingBox from "./utils/bounding_box.js";
@@ -57,8 +54,10 @@ import LightSet from "./lights/light_set.js";
 import { eLightType } from "./lights/light.js";
 
 // local to this file only
-import * as glSys from "./core/internal/gl.js";
-import * as vertexBuffer from "./core/internal/vertex_buffer.js";
+import * as glSys from "./core/gl.js";
+import * as vertexBuffer from "./core/vertex_buffer.js";
+import * as shaderResources from "./core/shader_resources.js";
+import * as loop from "./core/loop.js";
 
 // general engine utilities
 function init(htmlCanvasID) {
@@ -66,11 +65,13 @@ function init(htmlCanvasID) {
     vertexBuffer.init();
     input.init(htmlCanvasID);
     audio.init();
+    shaderResources.init();
     defaultResources.init();
 }
 
 function cleanUp() {
     loop.cleanUp();
+    shaderResources.cleanUp();
     defaultResources.cleanUp();
     audio.cleanUp();
     input.cleanUp();

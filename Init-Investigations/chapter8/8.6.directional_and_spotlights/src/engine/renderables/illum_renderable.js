@@ -5,14 +5,16 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import texture from "../resources/texture.js";
+import * as texture from "../resources/texture.js";
 import LightRenderable from "./light_renderable.js";
 import Material from "../material.js";
+import * as defaultShaders from "../core/shader_resources.js";
+
 
 class IllumRenderable extends LightRenderable {
     constructor(myTexture, myNormalMap) {
         super(myTexture);
-        super._setShader(defaultResources.getIllumShader());
+        super._setShader(defaultShaders.getIllumShader());
 
         // here is the normal map resource id
         this.mNormalMap = myNormalMap;

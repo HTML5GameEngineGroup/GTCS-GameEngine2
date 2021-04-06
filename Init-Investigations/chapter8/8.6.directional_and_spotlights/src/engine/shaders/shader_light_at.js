@@ -6,7 +6,7 @@
 
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import * as glSys from "../core/internal/gl.js";
+import * as glSys from "../core/gl.js";
 
 class ShaderLightAt {
     constructor(shader, index) {
@@ -54,7 +54,7 @@ class ShaderLightAt {
 
     //<editor-fold desc="private functions">
     _setShaderReferences(aLightShader, index) {
-        let gl = gEngine.Core.getGL();
+        let gl = glSys.get();
         this.mColorRef = gl.getUniformLocation(aLightShader, "uLights[" + index + "].Color");
         this.mPosRef = gl.getUniformLocation(aLightShader, "uLights[" + index + "].Position");
         this.mDirRef = gl.getUniformLocation(aLightShader, "uLights[" + index + "].Direction");

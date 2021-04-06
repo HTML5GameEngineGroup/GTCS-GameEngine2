@@ -7,7 +7,7 @@
 "use strict"
 
 import TextureRenderable from "./texture_renderable.js";
-import * as defaultResources from "../resources/default_resources.js";
+import * as shaderResources from "../core/shader_resources.js";
   
 //// the expected texture coordinate array is an array of 8 floats where elements:
 //  [0] [1]: is u/v coordinate of Top-Right 
@@ -25,7 +25,7 @@ const eTexCoordArrayIndex = Object.freeze({
 class SpriteRenderable extends TextureRenderable {
     constructor(myTexture) {
         super(myTexture);
-        super._setShader(defaultResources.getSpriteShader());
+        super._setShader(shaderResources.getSpriteShader());
         // sprite coordinate
         this.mElmLeft = 0.0;   // bounds of texture coordinate (0 is left, 1 is right)
         this.mElmRight = 1.0;  // 

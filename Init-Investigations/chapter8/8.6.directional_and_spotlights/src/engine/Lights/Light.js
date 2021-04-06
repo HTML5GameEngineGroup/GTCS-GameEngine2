@@ -28,7 +28,7 @@ class Light {
         this.mOuter = 0.3;
         this.mIntensity = 1;
         this.mDropOff = 1;  // 
-        this.mLightType = Light.eLightType.ePointLight;
+        this.mLightType = eLightType.ePointLight;
         this.mIsOn = true;
     }
 

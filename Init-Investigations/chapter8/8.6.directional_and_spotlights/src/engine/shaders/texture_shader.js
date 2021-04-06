@@ -6,8 +6,8 @@
  */
 "use strict"
 
-import * as glSys from "../core/internal/gl.js";
-import * as vertexBuffer from "../core/internal/vertex_buffer.js";
+import * as glSys from "../core/gl.js";
+import * as vertexBuffer from "../core/vertex_buffer.js";
 import  SimpleShader from "./simple_shader.js";
 
 class TextureShader extends SimpleShader {

@@ -5,12 +5,14 @@
  */
 "use strict"
 
-import * as glSys from "../core/internal/gl.js";
-import * as input from "../core/input.js";
-import CameraShake from "./camera_shake.js";
-import CameraState from "./camera_state.js";
+import * as glSys from "../core/gl.js";
 import BoundingBox from "../utils/bounding_box.js";
 import { eBoundCollideStatus } from "../utils/bounding_box.js";
+
+import * as input from "../input.js";
+import CameraShake from "./camera_shake.js";
+import CameraState from "./camera_state.js";
+
 
 const eViewport = Object.freeze({
     eOrgX: 0,
@@ -76,7 +78,7 @@ class Camera {
         this.mCameraState.setCenter(p);
     }
     getWCCenter() { return this.mCameraState.getCenter(); }
-    getWCCenterInPixelSpace() { return this.mRenderCache.mCameraPosInPixelSpace; };
+    getWCCenterInPixelSpace() { return this.mRenderCache.mCameraPosInPixelSpace; }
     setWCWidth(width) { this.mCameraState.setWidth(width); }
     getWCWidth() { return this.mCameraState.getWidth(); }
     getWCHeight() {
@@ -322,8 +324,8 @@ class Camera {
 
     wcPosToPixel(p) {  // p is a vec3, fake Z
         // Convert the position to pixel space
-        let x = this.mViewport[Camera.eViewport.eOrgX] + ((p[0] - this.mRenderCache.mCameraOrgX) * this.mRenderCache.mWCToPixelRatio) + 0.5;
-        let y = this.mViewport[Camera.eViewport.eOrgY] + ((p[1] - this.mRenderCache.mCameraOrgY) * this.mRenderCache.mWCToPixelRatio) + 0.5;
+        let x = this.mViewport[eViewport.eOrgX] + ((p[0] - this.mRenderCache.mCameraOrgX) * this.mRenderCache.mWCToPixelRatio) + 0.5;
+        let y = this.mViewport[eViewport.eOrgY] + ((p[1] - this.mRenderCache.mCameraOrgY) * this.mRenderCache.mWCToPixelRatio) + 0.5;
         let z = this.fakeZInPixelSpace(p[2]);
         return vec3.fromValues(x, y, z);
     }

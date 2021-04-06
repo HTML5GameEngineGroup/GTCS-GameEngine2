@@ -8,7 +8,7 @@
 
 import Renderable from "./renderable.js";
 import * as texture from "../resources/texture.js";
-import * as defaultResources from "../resources/default_resources.js";
+import * as shaderResources from "../core/shader_resources.js";
 
   // Operate in Strict mode such that letiables must be declared before used!
 
@@ -16,7 +16,7 @@ class TextureRenderable extends Renderable {
     constructor(myTexture) {
         super();
         super.setColor([1, 1, 1, 0]); // Alpha of 0: switch off tinting of texture
-        super._setShader(defaultResources.getTextureShader());
+        super._setShader(shaderResources.getTextureShader());
         
         this.mTexture = null;
         // these two instance variables are to cache texture information

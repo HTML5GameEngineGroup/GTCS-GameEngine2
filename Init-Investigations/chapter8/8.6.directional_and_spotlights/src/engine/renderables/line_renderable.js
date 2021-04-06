@@ -5,16 +5,16 @@
  */
 "use strict";
 
+import * as glSys from "../core/gl.js";
 import Renderable from "./renderable.js";
-import * as defaultResources from "../resources/default_resources.js";
-import * as glSys from "../core/internal/gl.js";
+import * as shaderResources from "../core/shader_resources.js";
 
 class LineRenderable extends Renderable {
     // p1, p2: either both there, or none
     constructor(x1, y1, x2, y2) {
         super();
         this.setColor([0, 0, 0, 1]);
-        this._setShader(defaultResources.getLineShader());
+        this._setShader(shaderResources.getLineShader());
 
         this.mPointSize = 1;
         this.mDrawVertices = false;

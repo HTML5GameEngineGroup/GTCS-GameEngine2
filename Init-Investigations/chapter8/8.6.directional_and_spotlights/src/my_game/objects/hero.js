@@ -3,14 +3,17 @@
 import engine from "../../engine/index.js";
 
 class Hero extends engine.GameObject {
-    constructor(spriteTexture) {
+    constructor(spriteTexture, normalMap, atX, atY) {
         super(null);
         this.kDelta = 0.3;
-
-        this.mRenderComponent = new engine.SpriteRenderable(spriteTexture);
+        if (normalMap !== null) {
+            this.mRenderComponent = new engine.IllumRenderable(spriteTexture, normalMap);
+        } else {
+            this.mRenderComponent = new engine.LightRenderable(spriteTexture);
+        }
         this.mRenderComponent.setColor([1, 1, 1, 0]);
-        this.mRenderComponent.getXform().setPosition(35, 50);
-        this.mRenderComponent.getXform().setSize(9, 12);
+        this.mRenderComponent.getXform().setPosition(atX, atY);
+        this.mRenderComponent.getXform().setSize(18, 24);
         this.mRenderComponent.setElementPixelPositions(0, 120, 0, 180);
     }
 

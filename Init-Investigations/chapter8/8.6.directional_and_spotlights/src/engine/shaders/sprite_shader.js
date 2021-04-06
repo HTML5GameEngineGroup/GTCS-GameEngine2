@@ -7,7 +7,7 @@
  */
 "use strict"
 
-import * as glSys from "../core/internal/gl.js";
+import * as glSys from "../core/gl.js";
 import TextureShader from "./texture_shader.js";
 
 class SpriteShader extends TextureShader {

@@ -64,7 +64,7 @@ class MyGame extends engine.Scene {
         engine.audio.stopBackground();
 
         // unload the scene resources
-        // gEngine.AudioClips.unloadAudio(this.mBackgroundAudio);
+        // engine.audio.unload(this.mBackgroundAudio);
         //      You know this clip will be used elsewhere in the game
         //      So you decide to not unload this clip!!
         engine.audio.unload(this.mCue);

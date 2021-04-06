@@ -7,7 +7,7 @@
 "use strict"
 
 import SpriteRenderable from "./sprite_renderable.js";
-import * as defaultResources from "../resources/default_resources.js";
+import * as shaderResources from "../core/shader_resources.js";
 
 // Assumption is that the first sprite in an animation is always the left-most element.
 const eAnimationType = Object.freeze({
@@ -19,7 +19,7 @@ const eAnimationType = Object.freeze({
 class SpriteAnimateRenderable extends SpriteRenderable {
     constructor(myTexture) {
         super(myTexture);
-        super._setShader(defaultResources.getSpriteShader());
+        super._setShader(shaderResources.getSpriteShader());
 
         // All coordinates are in texture coordinate (UV between 0 to 1)
         // Information on the sprite element 

@@ -8,8 +8,6 @@
  */
 "use strict";  // Operate in Strict mode such that letiables must be declared before used!
 
-import * as map from "../core/internal/resource_map.js";
-
 import * as texture from "./texture.js";
 import * as xml from "./xml.js";
 

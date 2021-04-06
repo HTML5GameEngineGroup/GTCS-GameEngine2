@@ -5,7 +5,7 @@
  */
 "use strict"
 
- import core from "../index.js";
+ import * as font from "./font.js";
  import SimpleShader from "../simple_shader.js";
  import * as map from "../core/internal/resource_map.js";
  

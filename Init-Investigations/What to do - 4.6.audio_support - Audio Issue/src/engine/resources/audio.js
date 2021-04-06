@@ -124,7 +124,7 @@ function playBackground(path, volume) {
 
 /**
      * Set the volume of the background audio clip
-     * @memberOf gEngine.AudioClips
+     * @memberOf engine.audio
      * @param {float} volume
      * @returns {void}
      */
@@ -136,7 +136,7 @@ function setBackgroundVolume(volume) {
 
 /**
  * Increment the volume of the background audio clip
- * @memberOf gEngine.AudioClips
+ * @memberOf engine.audio
  * @param {float} increment
  * @returns {void}
  */
@@ -153,7 +153,7 @@ function  incBackgroundVolume(increment) {
 
 /**
  * Set the Master volume
- * @memberOf gEngine.AudioClips
+ * @memberOf engine.audio
  * @param {float} volume
  * @returns {void}
  */
@@ -165,7 +165,7 @@ function  setMasterVolume(volume) {
 
 /**
  * Increment the Master volume
- * @memberOf gEngine.AudioClips
+ * @memberOf engine.audio
  * @param {float} increment
  * @returns {void}
  */

@@ -6,7 +6,7 @@
 
 import LightShader from "./light_shader.js";
 import ShaderMaterial from "./shader_material.js";
-import * as glSys from "../core/internal/gl.js";
+import * as glSys from "../core/gl.js";
 
 class IllumShader extends LightShader {
     // constructor 
