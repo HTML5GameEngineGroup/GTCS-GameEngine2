@@ -7,6 +7,7 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 import * as glSys from "../core/gl.js";
+import { eLightType } from "../lights/light.js";
 
 class ShaderLightAt {
     constructor(shader, index) {
@@ -31,13 +32,13 @@ class ShaderLightAt {
             gl.uniform1f(this.mDropOffRef, 0);
             gl.uniform1i(this.mLightTypeRef, aLight.getLightType());
 
-            if (aLight.getLightType() === Light.eLightType.ePointLight) {
+            if (aLight.getLightType() === eLightType.ePointLight) {
                 gl.uniform3fv(this.mDirRef, vec3.fromValues(0, 0, 0));
             } else {
                 // either spot or directional lights: must compute direction
                 let d = aCamera.wcDirToPixel(aLight.getDirection());
                 gl.uniform3fv(this.mDirRef, vec3.fromValues(d[0], d[1], d[2]));
-                if (aLight.getLightType() === Light.eLightType.eSpotLight) {
+                if (aLight.getLightType() === eLightType.eSpotLight) {
                     gl.uniform1f(this.mInnerRef, Math.cos(0.5 * aLight.getInner())); // stores the cosine of half of inner cone angle
                     gl.uniform1f(this.mOuterRef, Math.cos(0.5 * aLight.getOuter())); // stores the cosine of half of outer cone angle
                     gl.uniform1f(this.mDropOffRef, aLight.getDropOff());

@@ -182,7 +182,7 @@ class MyGame extends engine.Scene {
         return this.mSelectedChMsg;
     }
 
-    // #region: Creation and initialization of Light
+    // #region Creation and initialization of Light
     _createALight(type, pos, dir, color, n, f, inner, outer, intensity, dropOff) {
         let light = new engine.Light();
         light.setLightType(type);
@@ -250,7 +250,7 @@ class MyGame extends engine.Scene {
     }
     // #endregion 
 
-    // #region: Light Control 
+    // #region Light Control 
     _lightControl() {
         let dirDelta = 0.005;
         let delta = 0.2;

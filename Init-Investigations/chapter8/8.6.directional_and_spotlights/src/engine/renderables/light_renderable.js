@@ -21,7 +21,7 @@ class LightRenderable extends SpriteAnimateRenderable {
     }
 
     draw(camera) {
-        this.mShader.setLights(this.mLights);
+        this.mShader.setCameraAndLights(camera, this.mLights);
         super.draw(camera);
     }
 

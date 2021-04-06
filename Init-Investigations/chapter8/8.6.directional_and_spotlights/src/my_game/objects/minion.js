@@ -21,7 +21,7 @@ class Minion extends engine.GameObject {
                                        204, 164,    // widthxheight in pixels
                                        5,           // number of elements in this sequence
                                        0);          // horizontal padding in between
-        this.mRenderComponent.setAnimationType(engine.eAnimationType.eAnimateSwing);
+        this.mRenderComponent.setAnimationType(engine.eAnimationType.eSwing);
         this.mRenderComponent.setAnimationSpeed(30);
                                     // show each element for mAnimSpeed updates
     }

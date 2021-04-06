@@ -14,6 +14,7 @@ class LightShader extends SpriteShader {
         super(vertexShaderPath, fragmentShaderPath);  // call super class constructor
 
         this.mLights = null;  // lights from the Renderable
+        this.mCamera = null;  // the camera to draw for, required for WC to DC transform
 
         //*******WARNING***************
         // this number MUST correspond to the GLSL uLight[] array size (for LightFS.glsl and IllumFS.glsl)
@@ -36,7 +37,7 @@ class LightShader extends SpriteShader {
         let numLight = 0;
         if (this.mLights !== null) {
             while (numLight < this.mLights.length) {
-                this.mShaderLights[numLight].loadToShader(aCamera, this.mLights[numLight]);
+                this.mShaderLights[numLight].loadToShader(this.mCamera, this.mLights[numLight]);
                 numLight++;
             }
         }
@@ -47,7 +48,8 @@ class LightShader extends SpriteShader {
         }
     }
 
-    setLights(l) {
+    setCameraAndLights(c, l) {
+        this.mCamera = c;
         this.mLights = l;
     }
 }
