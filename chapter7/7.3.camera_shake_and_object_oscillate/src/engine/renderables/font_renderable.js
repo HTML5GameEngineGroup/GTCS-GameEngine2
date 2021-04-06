@@ -87,7 +87,7 @@ class FontRenderable {
         let charIndex, aChar, charInfo;
         for (charIndex = 0; charIndex < this.mText.length; charIndex++) {
             aChar = this.mText.charCodeAt(charIndex);
-            charInfo = gEngine.Fonts.getCharInfo(this.mFont, aChar);
+            charInfo = font.getCharInfo(this.mFont, aChar);
             stringWidth += charSize * charInfo.mCharWidth * charInfo.mXAdvance;
         }
         return stringWidth;

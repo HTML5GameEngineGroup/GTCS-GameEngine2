@@ -17,10 +17,10 @@ import * as map from "../core/internal/resource_map.js";
 // Global Ambient color
 let mGlobalAmbientColor = [0.3, 0.3, 0.3, 1];
 let mGlobalAmbientIntensity = 1;
-function getGlobalAmbientIntensity() { return mGlobalAmbientIntensity; };
-function setGlobalAmbientIntensity(v) { mGlobalAmbientIntensity = v; };
-function getGlobalAmbientColor() { return mGlobalAmbientColor; };
-function setGlobalAmbientColor(v) { mGlobalAmbientColor = vec4.fromValues(v[0], v[1], v[2], v[3]); };
+function getGlobalAmbientIntensity() { return mGlobalAmbientIntensity; }
+function setGlobalAmbientIntensity(v) { mGlobalAmbientIntensity = v; }
+function getGlobalAmbientColor() { return mGlobalAmbientColor; }
+function setGlobalAmbientColor(v) { mGlobalAmbientColor = vec4.fromValues(v[0], v[1], v[2], v[3]); }
 
 // Simple Shader
 let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 
@@ -102,8 +102,8 @@ function getConstColorShader() { return mConstColorShader; }
 function getTextureShader() { return mTextureShader; }
 function getSpriteShader() { return mSpriteShader; }
 function getLineShader() { return mLineShader; }
-function getLightShader() { return mLightShader; };
-function getIllumShader() { return mIllumShader; };
+function getLightShader() { return mLightShader; }
+function getIllumShader() { return mIllumShader; }
 
 // font
 function getDefaultFontName() { return kDefaultFont; }

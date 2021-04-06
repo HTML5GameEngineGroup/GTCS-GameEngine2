@@ -8,8 +8,8 @@
 
 import * as input from "../input.js";
 
-const FPS = 60; // Frames per second
-const MPF = 1000 / FPS; // Milliseconds per frame.
+const UPS = 60; // Updates per second
+const MPF = 1000 / UPS; // Milliseconds per update.
 
 // Variables for timing gameloop.
 let mPrevTime;
@@ -20,7 +20,7 @@ let mLoopRunning = false;
 let mCurrentScene = null;
 let mFrameID = -1;
 
-// This function assumes it is sub-classed from MyGame
+// This function loops over draw/update once
 function loopOnce() {
     if (mLoopRunning) {
         // Step A: set up for next call to LoopOnce and update input!
@@ -32,7 +32,7 @@ function loopOnce() {
         mCurrentScene.draw();    
 
         // Step C: compute how much time has elapsed since  last loopOnce was executed
-        let currentTime = Date.now();
+        let currentTime = performance.now();
         let elapsedTime = currentTime - mPrevTime;
         mPrevTime = currentTime;
         mLagTime += elapsedTime;
@@ -56,7 +56,7 @@ function start(scene) {
     mCurrentScene = scene;
     mCurrentScene.init(); 
 
-    mPrevTime = Date.now();
+    mPrevTime = performance.now();
     mLagTime = 0.0;
     mLoopRunning = true;
     mFrameID = requestAnimationFrame(loopOnce);

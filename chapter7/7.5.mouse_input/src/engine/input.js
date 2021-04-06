@@ -173,13 +173,13 @@ function isKeyClicked(keyCode) {
 // Functions for query mouse button state and position
 function isButtonPressed(button) {
     return mIsButtonPressed[button];
-};
+}
 
 function isButtonClicked(button) {
     return mIsButtonClicked[button];
-};
-function getMousePosX() { return mMousePosX; };
-function getMousePosY() { return mMousePosY; };
+}
+function getMousePosX() { return mMousePosX; }
+function getMousePosY() { return mMousePosY; }
 
 export {
     keys, eMouseButton,
