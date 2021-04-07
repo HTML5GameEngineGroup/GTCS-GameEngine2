@@ -10,8 +10,6 @@ import Renderable from "./renderable.js";
 import * as texture from "../resources/texture.js";
 import * as shaderResources from "../core/shader_resources.js";
 
-  // Operate in Strict mode such that letiables must be declared before used!
-
 class TextureRenderable extends Renderable {
     constructor(myTexture) {
         super();

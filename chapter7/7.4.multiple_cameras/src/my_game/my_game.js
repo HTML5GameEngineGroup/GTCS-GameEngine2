@@ -204,7 +204,7 @@ class MyGame extends engine.Scene {
         this.mBrainCam.panTo(this.mBrain.getXform().getXPos(), this.mBrain.getXform().getYPos());
 
         // Move the hero cam viewport just to show it is possible
-        var v = this.mHeroCam.getViewport();
+        let v = this.mHeroCam.getViewport();
         v[0] += 1;
         if (v[0] > 500) {
             v[0] = 0;
