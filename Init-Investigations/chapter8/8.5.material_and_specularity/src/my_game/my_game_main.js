@@ -38,7 +38,8 @@ class MyGame extends engine.Scene {
         this.mBlock2 = null;
 
         this.mLgtIndex = 0;     // the light to control
-        this.mLgtRotateTheta = 0;   // the selected character
+
+        this.mSlectedCh = null; // the selected character
     }
 
     load() {
@@ -73,6 +74,8 @@ class MyGame extends engine.Scene {
         bgR.setElementPixelPositions(0, 1024, 0, 1024);
         bgR.getXform().setSize(100, 100);
         bgR.getXform().setPosition(50, 35);
+        // set background materal properties
+        bgR.getMaterial().setShininess(25);
         bgR.getMaterial().setSpecular([1, 0, 0, 1]);
         let i;
         for (i = 0; i < 4; i++) {
@@ -181,7 +184,6 @@ class MyGame extends engine.Scene {
         }
         return this.mSelectedChMsg;
     }
-    // #endregion 
 }
 
 export default MyGame;

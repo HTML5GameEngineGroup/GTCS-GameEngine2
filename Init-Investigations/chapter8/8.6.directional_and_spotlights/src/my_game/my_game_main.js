@@ -40,7 +40,6 @@ class MyGame extends engine.Scene {
         this.mBlock2 = null;
 
         this.mLgtIndex = 0;
-        this.mLgtRotateTheta = 0;
     }
 
     load() {
@@ -181,7 +180,6 @@ class MyGame extends engine.Scene {
         }
         return this.mSelectedChMsg;
     }
-    // #endregion 
 }
 
 export default MyGame;
