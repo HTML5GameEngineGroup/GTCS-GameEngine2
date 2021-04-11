@@ -6,20 +6,20 @@
  */
 "use strict"
 
- import SimpleShader from "../simple_shader.js";
- import * as text from "../resources/text.js";
- import * as map from "./resource_map.js";
+import SimpleShader from "../simple_shader.js";
+import * as text from "../resources/text.js";
+import * as map from "./resource_map.js";
  
  // Simple Shader
- let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 
- let kSimpleFS = "src/glsl_shaders/simple_fs.glsl";  // Path to the simple FragmentShader
- let mConstColorShader = null;
+let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 
+let kSimpleFS = "src/glsl_shaders/simple_fs.glsl";  // Path to the simple FragmentShader
+let mConstColorShader = null;
 
- function createShaders() {
+function createShaders() {
     mConstColorShader = new SimpleShader(kSimpleVS, kSimpleFS);
  }
 
- function cleanUp() {
+function cleanUp() {
     mConstColorShader.cleanUp();
     text.unload(kSimpleVS);
     text.unload(kSimpleFS);
