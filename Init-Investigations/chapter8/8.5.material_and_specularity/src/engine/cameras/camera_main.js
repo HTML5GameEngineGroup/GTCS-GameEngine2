@@ -57,7 +57,7 @@ class Camera {
 
         this.kCameraZ = 10; // this is for illuminaiton computaiton
 
-        // transformation matrices
+        // Camera transform operator
         this.mCameraMatrix = mat4.create();
 
         // background color

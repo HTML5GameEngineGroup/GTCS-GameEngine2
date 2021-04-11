@@ -54,7 +54,7 @@ class Camera {
         this.mScissorBound = [];  // use for bounds
         this.setViewport(viewportArray, this.mViewportBound);
 
-        // transformation matrices
+        // Camera transform operator
         this.mCameraMatrix = mat4.create();
 
         // background color

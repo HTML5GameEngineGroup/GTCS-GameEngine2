@@ -57,7 +57,7 @@ class MyGame {
         gl.disable(gl.SCISSOR_TEST);
 
 
-        // Step E: Set up camera's transform matrix
+        // Step E: Set up camera transform matrix
         // assume camera position and dimension
         let cameraCenter = vec2.fromValues(20, 60);
         let wcSize = vec2.fromValues(20, 10);

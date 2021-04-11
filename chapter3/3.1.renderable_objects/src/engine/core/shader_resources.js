@@ -8,16 +8,16 @@
 
 import SimpleShader from "../simple_shader.js";
 
- // Simple Shader
- let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 
- let kSimpleFS = "src/glsl_shaders/simple_fs.glsl";  // Path to the simple FragmentShader
- let mConstColorShader = null;
+// Simple Shader
+let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 
+let kSimpleFS = "src/glsl_shaders/simple_fs.glsl";  // Path to the simple FragmentShader
+let mConstColorShader = null;
 
- function createShaders() {
+function createShaders() {
     mConstColorShader = new SimpleShader(kSimpleVS, kSimpleFS);
  }
 
- function init() {
+function init() {
     createShaders();
 }
 function getConstColorShader() { return mConstColorShader; }

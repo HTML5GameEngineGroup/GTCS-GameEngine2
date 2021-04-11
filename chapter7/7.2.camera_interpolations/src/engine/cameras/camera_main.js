@@ -35,7 +35,7 @@ class Camera {
 
         this.mViewport = viewportArray;  // [x, y, width, height]
         
-        // transformation matrices
+        // Camera transform operator
         this.mCameraMatrix = mat4.create();
 
         // background color
