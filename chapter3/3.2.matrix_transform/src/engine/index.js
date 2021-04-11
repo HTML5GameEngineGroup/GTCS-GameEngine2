@@ -9,7 +9,6 @@
 "use strict"
 
 // general utiities
-import Transform from "./transform.js";
 import Renderable from "./renderable.js";
 
 // local to this file only
@@ -33,7 +32,7 @@ function clearCanvas(color) {
 
 export  default {
     // Util classes
-    Transform, Renderable,
+    Renderable,
 
     // functions
     init, clearCanvas
