@@ -84,12 +84,12 @@ function onKeyUp(event) {
 }
 
  // Support mouse
- let mCanvas = null;
- let mButtonPreviousState = [];
- let mIsButtonPressed = [];
- let mIsButtonClicked = [];
- let mMousePosX = -1;
- let mMousePosY = -1;
+let mCanvas = null;
+let mButtonPreviousState = [];
+let mIsButtonPressed = [];
+let mIsButtonClicked = [];
+let mMousePosX = -1;
+let mMousePosY = -1;
 
 function onMouseMove(event) {
     let inside = false;
