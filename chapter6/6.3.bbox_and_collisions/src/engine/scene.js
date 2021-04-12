@@ -4,7 +4,7 @@
  * The template for a scene.
  * 
  */
-"use strict"
+"use strict";
 
 import  * as loop from "./core/loop.js";
 import engine from "./index.js";

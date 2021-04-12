@@ -84,7 +84,6 @@ class MyGame  {
         redXform.incSizeBy(0.05);
     }
 }
-export default MyGame;
 
 window.onload = function () {
     engine.init("GLCanvas");

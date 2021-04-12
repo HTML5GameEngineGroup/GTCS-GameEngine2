@@ -2,7 +2,7 @@
  * File: shake.js
  * randomize oscillate results 
  */
-"use strict"
+"use strict";
 
 import Oscillate from "./oscillate.js";
 

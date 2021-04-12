@@ -3,7 +3,7 @@
  *
  * Adds the manipulation functions to the Camera class
  */
-"use strict"
+"use strict";
 
 import Camera from "./camera_main.js"
 import { eBoundCollideStatus } from "../utils/bounding_box.js";

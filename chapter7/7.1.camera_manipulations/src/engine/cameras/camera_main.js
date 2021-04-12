@@ -3,7 +3,7 @@
  *
  * The main camera class definition
  */
-"use strict"
+"use strict";
 
 import * as glSys from "../core/gl.js";
 import BoundingBox from "../bounding_box.js";

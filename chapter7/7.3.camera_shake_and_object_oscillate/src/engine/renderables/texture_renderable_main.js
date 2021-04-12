@@ -4,7 +4,7 @@
  * Supports the drawing an entire file texture mapped onto an entire Renderable
  * 
  */
-"use strict" // Operate in Strict mode such that letiables must be declared before used!
+"user strict"; // Operate in Strict mode such that letiables must be declared before used!
 
 import Renderable from "./renderable.js";
 import * as texture from "../resources/texture.js";

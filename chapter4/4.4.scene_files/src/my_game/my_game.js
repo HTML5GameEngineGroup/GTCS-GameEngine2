@@ -90,7 +90,6 @@ class MyGame  {
         engine.xml.unload(this.mSceneFile);
     }
 }
-export default MyGame;
 
 
 window.onload = function () {

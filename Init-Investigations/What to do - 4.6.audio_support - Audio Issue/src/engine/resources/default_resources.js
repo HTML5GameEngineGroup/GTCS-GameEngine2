@@ -3,7 +3,7 @@
  *
  * central storage of all engine-wide shared resources, e.g., shaders
  */
-"use strict"
+"use strict";
 
 import * as font from "./font.js";
 import SimpleShader from "../simple_shader.js";

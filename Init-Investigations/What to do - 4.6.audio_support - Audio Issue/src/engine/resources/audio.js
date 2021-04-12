@@ -4,7 +4,7 @@
  * logics for loading an audio file into the resource_map and
  * provides control of the loaded audio 
  */
-"use strict"
+"use strict";
 
 import * as map from "../core/internal/resource_map.js";
 // functions from resource_map

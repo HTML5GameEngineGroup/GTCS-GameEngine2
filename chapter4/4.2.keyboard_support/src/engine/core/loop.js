@@ -4,12 +4,12 @@
  * interfaces with HTML5 to implement looping functionality, supports start/end loop
  * 
  */
-"use strict"
+"use strict";
 
 import * as input from "../input.js";
 
-const UPS = 60; // Updates per second
-const MPF = 1000 / UPS; // Milliseconds per update.
+const kUPS = 60; // Updates per second
+const kMPF = 1000 / kUPS; // Milliseconds per update.
 
 // Variables for timing gameloop.
 let mPrevTime;
@@ -40,10 +40,10 @@ function loopOnce() {
         // Step D: Make sure we update the game the appropriate number of times.
         //      Update only every Milliseconds per frame.
         //      If lag larger then update frames, update until caught up.
-        while ((mLagTime >= MPF) && mLoopRunning) {
+        while ((mLagTime >= kMPF) && mLoopRunning) {
             input.update();
             mCurrentScene.update();      
-            mLagTime -= MPF;
+            mLagTime -= kMPF;
         }
     } 
 }

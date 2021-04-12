@@ -3,7 +3,7 @@
  *
  * logics for loading a text file into the resource_map
  */
-"use strict"
+"use strict";
 
 import * as map from "../core/resource_map.js";
 

@@ -95,7 +95,6 @@ class MyGame  {
         }
     }
 }
-export default MyGame;
 
 window.onload = function () {
     engine.init("GLCanvas");

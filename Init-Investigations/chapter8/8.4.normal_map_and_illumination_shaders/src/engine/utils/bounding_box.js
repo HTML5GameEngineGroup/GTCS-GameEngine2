@@ -4,7 +4,7 @@
  * defines an Axis Aligned Bounding Box (AABB)
  * 
  */
-"use strict"
+"use strict";
 
 const eBoundCollideStatus = Object.freeze({
     eCollideLeft: 1,

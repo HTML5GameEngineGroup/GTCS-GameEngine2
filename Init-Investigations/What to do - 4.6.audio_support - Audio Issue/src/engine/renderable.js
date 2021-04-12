@@ -4,7 +4,7 @@
  * Encapsulate the Shader and vertexBuffer into the same object (and will include
  * other attributes later) to represent a Renderable object on the game screen.
  */
-"use strict"
+"use strict";
 
 import * as glSys from "./core/internal/gl.js";
 import Transform from "./transform.js";

@@ -5,7 +5,7 @@
  * from a texture file
  * 
  */
-"use strict"
+"use strict";
 
 import * as glSys from "../core/gl.js";
 import TextureShader from "./texture_shader.js";

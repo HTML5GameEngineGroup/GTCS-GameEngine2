@@ -3,7 +3,7 @@
  *
  * Adds WC <--> DC transformation support to the Camrea class
  */
-"use strict"
+"use strict";
 
 import Camera from "./camera_input.js";
 import { eViewport } from "./camera_main.js";

@@ -4,7 +4,7 @@
  * handles initialization with gl
  * 
  */
-"use strict"
+"use strict";
 
 let mCanvas = null;
 let mGL = null;

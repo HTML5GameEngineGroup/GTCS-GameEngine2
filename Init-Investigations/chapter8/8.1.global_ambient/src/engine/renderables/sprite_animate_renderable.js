@@ -4,7 +4,7 @@
  * Supports the drawing and controlling of sprite animation sequence
  * 
  */
-"use strict"
+"use strict";
 
 import SpriteRenderable from "./sprite_renderable.js";
 import * as shaderResources from "../core/shader_resources.js";

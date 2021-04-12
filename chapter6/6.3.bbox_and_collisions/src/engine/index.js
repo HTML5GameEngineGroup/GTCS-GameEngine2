@@ -6,7 +6,7 @@
  * for all symbols defined in the engine
  * 
  */
-"use strict"
+"use strict";
 
 // resources
 import * as audio from "./resources/audio.js";

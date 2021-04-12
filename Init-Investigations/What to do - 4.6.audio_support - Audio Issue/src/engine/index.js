@@ -6,7 +6,7 @@
  * for all symbols defined in the engine
  * 
  */
-"use strict"
+"use strict";
 
 // Core
 import * as input from "./core/input.js";

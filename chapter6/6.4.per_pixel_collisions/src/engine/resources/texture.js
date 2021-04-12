@@ -5,7 +5,7 @@
  * (load into the resource_map)
  * 
  */
-"use strict"
+"use strict";
 
 import * as glSys from "../core/gl.js";
 import * as map from "../core/resource_map.js";

@@ -6,7 +6,7 @@
  * for all symbols defined in the engine
  * 
  */
-"use strict"
+"use strict";
 
 // general utiities
 import * as input from "./input.js";

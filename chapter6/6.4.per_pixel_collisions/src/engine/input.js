@@ -4,7 +4,7 @@
  * interfaces with HTML5 to to receive keyboard events
  * 
  */
-"use strict"
+"use strict";
 
 // Key code constants
 const keys = {

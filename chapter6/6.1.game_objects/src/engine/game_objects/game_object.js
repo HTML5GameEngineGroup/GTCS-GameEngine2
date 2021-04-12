@@ -4,7 +4,7 @@
  * defines the behavior and apparance of a game object
  * 
  */
-"use strict"
+"use strict";
 
 class GameObject {
     constructor(renderable) {

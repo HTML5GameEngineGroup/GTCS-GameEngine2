@@ -4,7 +4,7 @@
  * utility class for a collection of GameObject
  * 
  */
-"use strict"
+"use strict";
 
 class GameObjectSet {
     constructor() {

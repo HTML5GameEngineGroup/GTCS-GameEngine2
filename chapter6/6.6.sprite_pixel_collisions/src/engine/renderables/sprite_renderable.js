@@ -4,7 +4,7 @@
  * Supports the drawing and of one sprite element mapped onto entire Renderable
  * 
  */
-"use strict"
+"use strict";
 
 import TextureRenderable from "./texture_renderable.js";
 import * as shaderResources from "../core/shader_resources.js";

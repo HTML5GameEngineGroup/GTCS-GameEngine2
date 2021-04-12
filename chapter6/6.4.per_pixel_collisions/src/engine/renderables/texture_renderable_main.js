@@ -9,7 +9,7 @@
  *         texture_renderable.js: for importing all symbols
  * 
  */
-"use strict"
+"use strict";
 
 import Renderable from "./renderable.js";
 import * as texture from "../resources/texture.js";

@@ -6,7 +6,7 @@
  * for all symbols defined in the engine
  * 
  */
-"use strict"
+"use strict";
 
 // general utiities
 import Transform from "./transform.js";
@@ -31,7 +31,7 @@ function clearCanvas(color) {
 }
 
 
-export  default {
+export default {
     // Util classes
     Transform, Renderable,
 

@@ -4,7 +4,7 @@
  * base module for managing storage and synchronization of all resources
  * 
  */
-"use strict"
+"use strict";
 
 let mMap = new Map();
 let mOutstandingPromises = [];

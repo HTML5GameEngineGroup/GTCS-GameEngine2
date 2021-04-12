@@ -3,7 +3,7 @@
  *
  * central storage of all engine-wide shared resources, e.g., fonts
  */
-"use strict"
+"use strict";
 
 import * as font from "./font.js";
 import * as map from "../core/resource_map.js";

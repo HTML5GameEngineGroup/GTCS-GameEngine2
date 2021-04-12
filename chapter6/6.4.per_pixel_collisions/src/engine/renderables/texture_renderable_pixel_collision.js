@@ -4,7 +4,7 @@
  *      all pixel collision related functions
  * 
  */
-"use strict"
+"use strict";
 
 import TextureRenderable from "./texture_renderable_main.js";
 import * as texture from "../resources/texture.js";

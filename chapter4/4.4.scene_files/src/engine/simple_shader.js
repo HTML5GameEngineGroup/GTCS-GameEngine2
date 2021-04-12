@@ -4,7 +4,7 @@
  * Defines the SimpleShader class
  * 
  */
-"use strict"
+"use strict";
 
 import * as glSys from "./core/gl.js";
 import * as vertexBuffer from "./core/vertex_buffer.js";

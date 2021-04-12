@@ -4,7 +4,7 @@
  * Encapsulates the matrix transformation functionality, meant to work with
  * Renderable
  */
-"use strict"
+"use strict";
 
 class Transform {
     

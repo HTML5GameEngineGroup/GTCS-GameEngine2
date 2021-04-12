@@ -4,7 +4,7 @@
  * defines drawing system shaders
  * 
  */
-"use strict"
+"use strict";
 
 import SimpleShader from "../simple_shader.js";
 import * as text from "../resources/text.js";

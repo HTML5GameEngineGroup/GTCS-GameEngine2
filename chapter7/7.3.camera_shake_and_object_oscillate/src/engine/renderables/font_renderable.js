@@ -5,7 +5,7 @@
  * 
  */
 
-"use strict"
+"use strict";
 
 import Transform from "../utils/transform.js";
 import SpriteRenderable from "./sprite_renderable.js";

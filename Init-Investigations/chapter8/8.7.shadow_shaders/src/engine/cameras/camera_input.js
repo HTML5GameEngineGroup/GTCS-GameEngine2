@@ -3,7 +3,7 @@
  *
  * Adds functions that support mouse input (transform from DC to WC)
  */
-"use strict"
+"use strict";
 
 import Camera from "./camera_manipulation.js";
 import { eViewport } from "./camera_main.js";

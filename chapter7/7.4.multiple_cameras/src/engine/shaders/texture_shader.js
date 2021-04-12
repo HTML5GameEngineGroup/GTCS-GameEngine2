@@ -4,7 +4,7 @@
  * wrapps over GLSL texture shader, supporting the working with the entire file texture
  * 
  */
-"use strict"
+"use strict";
 
 import * as glSys from "../core/gl.js";
 import * as vertexBuffer from "../core/vertex_buffer.js";

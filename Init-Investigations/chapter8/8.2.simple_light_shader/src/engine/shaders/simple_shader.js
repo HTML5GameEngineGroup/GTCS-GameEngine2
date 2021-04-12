@@ -4,7 +4,7 @@
  * Defines the SimpleShader class
  * 
  */
-"use strict"
+"use strict";
 
 import * as text from "../resources/text.js";
 import * as glSys from "../core/gl.js";

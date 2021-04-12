@@ -3,7 +3,7 @@
  *
  * Encapsulates the user define WC and Viewport functionality
  */
-"use strict"
+"use strict";
 
 import * as glSys from "./core/internal/gl.js";
 
