@@ -6,21 +6,30 @@
  */
 "use strict";
 
-import  * as loop from "./core/internal/loop.js";
+import * as loop from "./core/loop.js";
 import engine from "./index.js";
 
-const abstractClassError = new Error("Abstract Class")
-const abstractMethodError = new Error("Abstract Method")
+const kAbstractClassError = new Error("Abstract Class")
+const kAbstractMethodError = new Error("Abstract Method")
 
 class Scene {
     constructor() {
         if (this.constructor === Scene) {
-            throw abstractClassError
+            throw kAbstractClassError;
         }
     }
 
     async start() {
         await loop.start(this);
+    }
+
+    // expected to be over-written, and, 
+    // subclass MUST call 
+    //      super.next()
+    // to stop the loop and unload the level
+    next() {
+        loop.stop();
+        this.unload();
     }
 
     stop() {
@@ -29,36 +38,12 @@ class Scene {
         engine.cleanUp();
     }
 
-    next() {
-        loop.stop();
-        this.unload();
-    }
-
-    
-    init() {
-        // initialize the level and load resources (called from GameLoop)
-        // throw abstractMethodError
-    }
-
-    load() { 
-        // to load necessary resources
-    } 
-
-    unload() {
-        // .. unload all resources
-        // throw abstractMethodError
-    }
-
-    // update to be called form EngineCore.GameLoop
-    update() {
-        // when done with this level should call this.stop()
-        throw abstractMethodError
-    }
-
-    // draw to be called from EngineCore.GameLoop
-    draw() {
-        throw abstractMethodError
-    }
+    init() { /* to initialize the level (called from loop.start()) */ }
+    load() { /* to load necessary resources */ }
+    unload() { /* unload all resources */ }
+    // draw/update must be over-written by subclass
+    draw() { throw kAbstractMethodError; }
+    update() { throw kAbstractMethodError; }
 
 }
 
