@@ -41,6 +41,7 @@ class MyGame extends engine.Scene {
     }
 
     next() {
+        super.next();
         // starts the next level
         let nextLevel = new BlueLevel();  // next level to be loaded
         nextLevel.start();
@@ -109,7 +110,7 @@ class MyGame extends engine.Scene {
         if (engine.input.isKeyPressed(engine.input.keys.Left)) {
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 11) {  // this is the left-bound of the window
-                this.stop();
+                this.next();
             }
         }
 

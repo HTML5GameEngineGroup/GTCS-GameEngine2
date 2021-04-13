@@ -124,8 +124,6 @@ class MyGame extends engine.Scene {
     // anything from this function!
     update() {
         // let's only allow the movement of hero, 
-        // and if hero moves too far off, this level ends, we will
-        // load the next level
         let deltaX = 0.05;
         let xform = this.mHero.getXform();
 

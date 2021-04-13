@@ -26,13 +26,12 @@ class Scene {
     stop() {
         loop.stop();
         this.unload();
-        this.next();
+        engine.cleanUp();
     }
 
     next() {
-        // if sub-class does not override this funciton
-        // then, this is the end of the game
-        engine.cleanUp();
+        loop.stop();
+        this.unload();
     }
 
     

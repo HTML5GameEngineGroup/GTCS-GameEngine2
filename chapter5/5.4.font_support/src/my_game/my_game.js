@@ -67,9 +67,6 @@ class MyGame extends engine.Scene {
         engine.font.unload(this.kFontSeg96);
     }
 
-    // does not override next(), so when scene ends, will unload the engine
-    // next() { }
-
     init() {
         // Step A: set up the cameras
         this.mCamera = new engine.Camera(
@@ -167,8 +164,6 @@ class MyGame extends engine.Scene {
     // anything from this function!
     update() {
         // let's only allow the movement of hero, 
-        // and if hero moves too far off, this level ends, we will
-        // load the next level
         let deltaX = 0.5;
         let xform = this.mHero.getXform();
 
