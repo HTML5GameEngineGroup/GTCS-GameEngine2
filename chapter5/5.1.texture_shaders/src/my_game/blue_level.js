@@ -45,6 +45,7 @@ class BlueLevel extends engine.Scene {
     }
 
     next() {
+        super.next();
         let nextLevel = new MyGame();  // load the next level
         nextLevel.start();
     }
@@ -95,7 +96,7 @@ class BlueLevel extends engine.Scene {
         if (engine.input.isKeyPressed(engine.input.keys.Left)) {
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 11) { // this is the left-boundary
-                this.stop();
+                this.next();
             }
         }
 

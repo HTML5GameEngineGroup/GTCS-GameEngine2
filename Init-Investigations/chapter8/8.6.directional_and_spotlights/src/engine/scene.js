@@ -26,15 +26,13 @@ class Scene {
     stop() {
         loop.stop();
         this.unload();
-        this.next();
-    }
-
-    next() {
-        // if sub-class does not override this funciton
-        // then, this is the end of the game
         engine.cleanUp();
     }
 
+    next() {
+        loop.stop();
+        this.unload();
+    }
     
     init() {
         // initialize the level and load resources (called from GameLoop)

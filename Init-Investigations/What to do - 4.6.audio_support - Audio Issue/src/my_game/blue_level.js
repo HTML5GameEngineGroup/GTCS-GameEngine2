@@ -91,7 +91,7 @@ class BlueLevel extends engine.Scene {
             engine.audio.playCue(this.mCue, 1.0);
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 11) { // this is the left-boundary
-                this.stop();
+                this.next();
             }
         }
 
@@ -99,12 +99,11 @@ class BlueLevel extends engine.Scene {
             this.stop();
     }
 
-    // does not implement the next() funciton
-    // to demonstrate end of game
-    // next() {
-    //     let nextLevel = new MyGame();  // load the next level
-    //     nextLevel.start();
-    // }
+    next() {
+        super.next();
+        let nextLevel = new MyGame();  // load the next level
+        nextLevel.start();
+    }
 }
 
 export default BlueLevel;
