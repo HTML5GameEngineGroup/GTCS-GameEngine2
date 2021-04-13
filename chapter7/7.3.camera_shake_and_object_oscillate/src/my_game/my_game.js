@@ -182,5 +182,5 @@ window.onload = function () {
     engine.init("GLCanvas");
 
     let myGame = new MyGame();
-    myGame.start()
+    myGame.start();
 }

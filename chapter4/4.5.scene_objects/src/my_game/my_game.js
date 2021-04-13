@@ -93,7 +93,7 @@ class MyGame extends engine.Scene {
 
         // next scene to run
         let nextLevel = new BlueLevel();  // next level to be loaded
-        nextLevel.start()
+        nextLevel.start();
     }
 }
 export default MyGame;
@@ -102,5 +102,5 @@ window.onload = function () {
     engine.init("GLCanvas");
 
     let myGame = new MyGame();
-    myGame.start()
+    myGame.start();
 }
