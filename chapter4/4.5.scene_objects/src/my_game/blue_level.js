@@ -64,22 +64,20 @@ class BlueLevel extends engine.Scene {
         if (engine.input.isKeyPressed(engine.input.keys.Left)) {
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 11) { // this is the left-boundary
-                this.stop();
+                this.next(); // go back to my game
             }
         }
 
         if (engine.input.isKeyPressed(engine.input.keys.Q))
-            this.stop();
+            this.stop();  // Quit the game
     }
 
-    // If next() is not defined, then
-    // the default in the Scenes.next() will be called
-    // causing the end of the game
-    // 
-    // next() {
-    //     let nextLevel = new MyGame();  // load the next level
-    //     nextLevel.start();
-    // }
+    
+    next() {
+        super.next();
+        let nextLevel = new MyGame();  // load the next level
+        nextLevel.start();
+    }
 
     load() {
         engine.xml.load(this.mSceneFile);

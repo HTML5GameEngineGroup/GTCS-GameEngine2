@@ -110,14 +110,16 @@ class MyGame extends engine.Scene {
             engine.audio.incBackgroundVolume(-0.05);
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 11) {  // this is the left-bound of the window
-                this.stop();
+                this.next();
             }
         }
 
-        // VOLUME setting!
+        if (engine.input.isKeyPressed(engine.input.keys.Q))
+            this.stop();  // Quit the game
     }
 
     next() {      
+        super.next();
         // next scene to run
         let nextLevel = new BlueLevel();  // next level to be loaded
         nextLevel.start()
