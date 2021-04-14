@@ -29,14 +29,14 @@ import * as loop from "./core/loop.js";
 function init(htmlCanvasID) {
     glSys.init(htmlCanvasID);
     vertexBuffer.init();
-	shaderResources.init();
+    shaderResources.init();
     input.init();
 }
 
 function cleanUp() {
     loop.cleanUp();
     input.cleanUp();
-	shaderResources.cleanUp();
+    shaderResources.cleanUp();
     vertexBuffer.cleanUp();
     glSys.cleanUp();
 }

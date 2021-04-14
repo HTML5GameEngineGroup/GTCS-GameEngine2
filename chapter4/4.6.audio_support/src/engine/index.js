@@ -31,16 +31,16 @@ import * as loop from "./core/loop.js";
 function init(htmlCanvasID) {
     glSys.init(htmlCanvasID);
     vertexBuffer.init();
-	shaderResources.init();
+    shaderResources.init();
     input.init();
     audio.init();
 }
 
 function cleanUp() {
     loop.cleanUp();
-	audio.cleanUp();
+    audio.cleanUp();
     input.cleanUp();
-	shaderResources.cleanUp();
+    shaderResources.cleanUp();
     vertexBuffer.cleanUp();
     glSys.cleanUp();
 }
