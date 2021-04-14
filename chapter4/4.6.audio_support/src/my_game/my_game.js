@@ -78,8 +78,8 @@ class MyGame extends engine.Scene {
         // Step A: clear the canvas
         engine.clearCanvas([0.9, 0.9, 0.9, 1.0]);
 
-        this.mCamera.setViewAndCameraMatrix();
         // Step  B: Activate the drawing Camera
+        this.mCamera.setViewAndCameraMatrix();
 
         // Step  C: draw everything
         this.mSupport.draw(this.mCamera);
@@ -119,7 +119,8 @@ class MyGame extends engine.Scene {
     }
 
     next() {      
-        super.next();
+        super.next();  // this must be called!
+
         // next scene to run
         let nextLevel = new BlueLevel();  // next level to be loaded
         nextLevel.start();
