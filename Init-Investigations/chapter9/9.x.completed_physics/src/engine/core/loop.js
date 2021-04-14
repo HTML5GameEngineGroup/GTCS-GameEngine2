@@ -11,7 +11,7 @@ import * as input from "../input.js";
 
 const kUPS = 60; // Updates per second
 const kMPF = 1000 / kUPS; // Milliseconds per update.
-const kSPU = 1000 * kMPF; // seconds per update
+const kSPU = 1/kUPS; // seconds per update
 
 // Variables for timing gameloop.
 let mPrevTime;

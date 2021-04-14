@@ -1,50 +1,48 @@
-/* File: Minion.js 
+/* File: minion.js 
  *
  * Creates and initializes a Minion object
  * overrides the update function of GameObject to define
  * simple sprite animation behavior behavior
  */
-
-/*jslint node: true, vars: true */
-/*global gEngine: false, GameObject: false, TextureRenderable: false */
-/* find out more about jslint: http://www.jslint.com/help.html */
-
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-var kMinionWidth = 6*0.5;
-var kMinionHeight = 4.8*0.5;
-var kMinionRandomSize = 5;
+import engine from "../../engine/index.js";
+import WASDObj from "./wasd_obj.js";
 
-function Minion(spriteTexture, atX, atY, createCircle, size) {
-        
-    var w = kMinionWidth + size;
-    var h = kMinionHeight + size;
-    
-    this.mMinion = new TextureRenderable(spriteTexture);
-    this.mMinion.setColor([1, 1, 1, 0]);
-    this.mMinion.getXform().setPosition(atX, atY);
-    this.mMinion.getXform().setSize(w, h);
-    if(createCircle===1){
-       this.mMinion.getXform().setSize(h, h); 
+let kMinionWidth = 6 * 0.5;
+let kMinionHeight = 4.8 * 0.5;
+
+class Minion extends WASDObj {
+    constructor(spriteTexture, atX, atY, createCircle, size) {
+        super(null);
+        let w = kMinionWidth + size;
+        let h = kMinionHeight + size;
+
+        this.mRenderComponent = new engine.TextureRenderable(spriteTexture);
+        this.mRenderComponent.setColor([1, 1, 1, 0]);
+        this.mRenderComponent.getXform().setPosition(atX, atY);
+        this.mRenderComponent.getXform().setSize(w, h);
+        if (createCircle === 1) {
+            this.mRenderComponent.getXform().setSize(h, h);
+        }
+
+        let r;
+        if (createCircle)
+            r = new engine.RigidCircle(this.getXform(), 0.35 * Math.sqrt(w * w + h * h));
+        else
+            r = new engine.RigidRectangle(this.getXform(), w, h);
+        let vx = (Math.random() - 0.5);
+        let vy = (Math.random() - 0.5);
+        let speed = 20 + Math.random() * 10;
+        r.setVelocity(vx * speed, vy * speed);
+        this.setRigidBody(r);
+        this.toggleDrawRenderable();
+        // this.toggleDrawRigidShape();
     }
 
-    GameObject.call(this, this.mMinion);
-    
-    var r;
-    if (createCircle)
-        r = new RigidCircle(this.getXform(), 0.35*Math.sqrt(w*w + h*h)); 
-    else
-        r = new RigidRectangle(this.getXform(), w, h);
-    var vx = (Math.random() - 0.5);
-    var vy = (Math.random() - 0.5);
-    var speed = 20 + Math.random() * 10;
-    r.setVelocity(vx * speed, vy * speed);
-    this.setRigidBody(r);
-    this.toggleDrawRenderable();
-    this.toggleDrawRigidShape();
+    update() {
+        engine.GameObject.prototype.update.call(this);
+    }
 }
-gEngine.Core.inheritPrototype(Minion, WASDObj);
 
-Minion.prototype.update = function (aCamera) {
-    GameObject.prototype.update.call(this);
-};
+export default Minion;

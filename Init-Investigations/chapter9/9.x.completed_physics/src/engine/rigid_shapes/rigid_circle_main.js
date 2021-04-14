@@ -1,7 +1,7 @@
 /* 
  * File: rigid_circle_main.js
  * 
- * Rigid circle class definition file
+ *       Rigid circle class definition file
  */
 "use strict";
 

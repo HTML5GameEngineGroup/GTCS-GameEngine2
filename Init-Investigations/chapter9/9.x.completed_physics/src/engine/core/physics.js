@@ -6,6 +6,7 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
+import CollisionInfo from "../rigid_shapes/collision_info.js";
 
 let mSystemtAcceleration = [0, -20];        // system-wide default acceleration
 let mPosCorrectionRate = 0.8;               // percentage of separation to project objects
@@ -15,7 +16,7 @@ let mCorrectPosition = true;
 let mHasMotion = true;
 
 // getters and setters
-function getSystemtAcceleration() { return mSystemtAcceleration; }
+function getSystemAcceleration() { return mSystemtAcceleration; }
 
 function getPositionalCorrection() { return mCorrectPosition; }
 function togglePositionalCorrection() { mCorrectPosition = !mCorrectPosition; }
@@ -161,7 +162,7 @@ function processCollision(set, infoSet) {
 
 export {
     // Physics system attributes
-    getSystemtAcceleration,
+    getSystemAcceleration,
 
     togglePositionalCorrection,
     getPositionalCorrection,

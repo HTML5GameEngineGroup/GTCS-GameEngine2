@@ -10,9 +10,10 @@ import BoundingBox from "../utils/bounding_box.js";
 class GameObject {
     constructor(renderable) {
         this.mRenderComponent = renderable;
+        this.mVisible = true;
         this.mCurrentFrontDir = vec2.fromValues(0, 1);  // this is the current front direction of the object
         this.mRigidBody = null;
-        this.mDrawRenderble = true;
+        this.mDrawRenderable = true;
         this.mDrawRigidShape = false;
     }
 
@@ -22,6 +23,8 @@ class GameObject {
         let b = new BoundingBox(xform.getPosition(), xform.getWidth(), xform.getHeight());
         return b;
     }
+    setVisibility(f) { this.mVisible = f; }
+    isVisible() { return this.mVisible; }
 
     setCurrentFrontDir(f) { vec2.normalize(this.mCurrentFrontDir, f); }
     getCurrentFrontDir() { return this.mCurrentFrontDir; }

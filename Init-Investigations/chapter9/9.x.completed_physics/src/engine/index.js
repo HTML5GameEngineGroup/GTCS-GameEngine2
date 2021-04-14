@@ -57,6 +57,13 @@ import { eLightType } from "./lights/light.js";
 import ShadowCaster from "./shadows/shadow_caster.js";
 import ShadowReceiver from "./shadows/shadow_receiver.js";
 
+// Physics and Rigid Shapes
+import * as physics from "./core/physics.js";
+import RigidShape from "./rigid_shapes/rigid_shape.js";
+import RigidCircle from "./rigid_shapes/rigid_circle.js";
+import RigidRectangle from "./rigid_shapes/rigid_rectangle.js";
+import CollisionInfo from "./rigid_shapes/collision_info.js";
+
 // local to this file only
 import * as glSys from "./core/gl.js";
 import * as vertexBuffer from "./core/vertex_buffer.js";
@@ -116,6 +123,9 @@ export default {
 
     // Shadows
     ShadowCaster, ShadowReceiver,
+
+    // Physics and RigidShapes
+    physics, RigidShape, RigidCircle, RigidRectangle, CollisionInfo,
 
     // constants
     eTexCoordArrayIndex, eAnimationType, eBoundCollideStatus, eLightType,

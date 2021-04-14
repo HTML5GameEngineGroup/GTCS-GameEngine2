@@ -44,7 +44,7 @@ class RigidShape {
     setMass(m) {
         if (m > 0) {
             this.mInvMass = 1 / m;
-            this.mAcceleration = physics.getSystemAcceleration();
+            this.mAcceleration = physics.getSystemAcceleration()
         } else {
             this.mInvMass = 0;
             this.mAcceleration = [0, 0];
