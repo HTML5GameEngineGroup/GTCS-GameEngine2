@@ -26,18 +26,17 @@ function get(path) {
 //   Step 4: store result into the map
 // Push the promised operation into an array
 function loadDecodeParse(path, decodeResource, parseResource) {
-    let r = null;
+    let fetchPromise = null;
     if (!has(path)) {
-        r =  fetch(path)
+        fetchPromise =  fetch(path)
             .then(res => decodeResource(res) )
             .then(data => parseResource(data) )
             .then(data => { return mMap.set(path, data) } )
             .catch(err => { throw err });
-        pushPromise(r);
+        pushPromise(fetchPromise);
     }
-    return r;
+    return fetchPromise;
 }
-
 function unload(path) { mMap.delete(path) }
 
 function set(key, value) { mMap.set(key, value); }
