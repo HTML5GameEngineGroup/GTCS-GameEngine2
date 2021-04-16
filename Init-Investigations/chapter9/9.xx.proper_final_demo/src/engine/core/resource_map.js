@@ -20,8 +20,8 @@ function get(path) {
 }
 
 // generic loading function, 
-//   Step 1: fech from server
-//   Step 2: decodeResource on the loaded
+//   Step 1: fetch from server
+//   Step 2: decodeResource on the loaded package
 //   Step 3: parseResource on the decodedResource
 //   Step 4: store result into the map
 // Push the promised operation into an array
