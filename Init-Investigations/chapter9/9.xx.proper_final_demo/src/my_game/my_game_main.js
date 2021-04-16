@@ -15,7 +15,6 @@ class MyGame extends engine.Scene {
         this.kPlatformTexture = "assets/platform.png";
         this.kWallTexture = "assets/wall.png";
         this.kTargetTexture = "assets/target.png";
-        this.kParticleTexture = "assets/ParticleSystem/particle.png";
 
         // The camera to view the scene
         this.mCamera = null;
@@ -44,7 +43,6 @@ class MyGame extends engine.Scene {
         engine.texture.load(this.kPlatformTexture);
         engine.texture.load(this.kWallTexture);
         engine.texture.load(this.kTargetTexture);
-        engine.texture.load(this.kParticleTexture);
     }
 
     unload() {
@@ -52,7 +50,6 @@ class MyGame extends engine.Scene {
         engine.texture.unload(this.kPlatformTexture);
         engine.texture.unload(this.kWallTexture);
         engine.texture.unload(this.kTargetTexture);
-        engine.texture.unload(this.kParticleTexture);
     }
 
     init() {

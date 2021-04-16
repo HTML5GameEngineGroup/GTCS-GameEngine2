@@ -12,10 +12,9 @@ let kRock = "assets/rigid_shape/rock.png";
 let kBouncy = "assets/rigid_shape/ball.png";
 let kBall = "assets/rigid_shape/soccer_ball.png";
 let kWoodBall = "assets/rigid_shape/wood_ball.png";
-let kParticleTexture = "assets/rigid_shape/dirt_particle.png";
 let kBowlingBall = "assets/rigid_shape/bowling_ball.png";
 
 export {
     kTargetTexture, kIce, kWood, kDirt, kMud,
-    kRock, kBall, kBouncy, kWoodBall, kParticleTexture, kBowlingBall
+    kRock, kBall, kBouncy, kWoodBall, kBowlingBall
 }
