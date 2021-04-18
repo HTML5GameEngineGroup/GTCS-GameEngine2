@@ -287,9 +287,9 @@
 </div>
 
 <div data-role="collapsible">
-<h2>NOT READY Chapter 8: Implementing Illumination and Shadow</h2>
+<h2>Chapter 8: Implementing Illumination and Shadow</h2>
 <ul>
-    <li>8.1. <a href="./chapter8/8.1.GlobalAmbient/index.html " target="_blank">Global Ambient</a>: Illuminates 
+    <li>8.1. <a href="./chapter8/8.1.global_ambient/index.html " target="_blank">Global Ambient</a>: Illuminates 
     the scene with a global ambient light source.
     	<ul>
 			<li>LMB/MMB: to increase/decrease global red ambient</li>
@@ -297,7 +297,7 @@
 			<li><strong>Observe</strong>: it is possible to create negative light!</li>
 		</ul>
 	</li>
-    <li>8.2. <a href="./chapter8/8.2.SimpleLightShader/index.html " target="_blank">Simple 
+    <li>8.2. <a href="./chapter8/8.2.simple_light_shader/index.html " target="_blank">Simple 
 	Light Shader</a>: Illuminates with one light source.
 		<ul>
 			<li>WASD Keys: to move Dye</li>
@@ -313,7 +313,7 @@
 			</li>
 		</ul>
 	</li>
-    <li>8.3. <a href="./chapter8/8.3.MultipleLights/index.html " target="_blank">Multiple Lights</a>:
+    <li>8.3. <a href="./chapter8/8.3.multiple_lights/index.html " target="_blank">Multiple Lights</a>:
     Illuminates with multiple light sources.
     	<ul>
 			<li>WASD Keys: to move Dye</li>
@@ -337,13 +337,13 @@
 
 		</ul>
 	</li>
-    <li>8.4. <a href="./chapter8/8.4.NormalMapsAndIlluminationShaders/index.html " target="_blank">Normal Maps 
+    <li>8.4. <a href="./chapter8/8.4.normal_map_and_illumination_shaders/index.html " target="_blank">Normal Maps 
     and Illumination Shader</a>: Supports 3D illumination effects.
 	    <ul>
 			<li>◦Exactly the same control as above.</li>
 		</ul>
 	</li>
-	<li>8.5. <a href="./chapter8/8.5.MaterialAndSpecularity/index.html " target="_blank">
+	<li>8.5. <a href="./chapter8/8.5.material_and_specularity/index.html " target="_blank">
 	Materials and Specularity</a>: Implements a simple Phong Illumination model.
 		<ul>
 			<li>Same controls as 8.4 with the following additional controls</li>
@@ -358,7 +358,7 @@
 			</li>
 		</ul>
 	</li>
-	<li>8.6. <a href="./chapter8/8.6.DirectionalAndSpotLights/index.html " target="_blank">
+	<li>8.6. <a href="./chapter8/8.6.directional_and_spotLights/index.html " target="_blank">
 	Directional and Spot Lights</a>: Supports additional light types.
 		<ul>
 			<li>Same controls as 8.5 with the following additional controls</li>
@@ -366,7 +366,7 @@
 			<li><strong>Observe</strong>: Light-0 is a point light and direction of the light is not used.</li>
 		</ul>
 	</li>
-	<li>8.7. <a href="./chapter8/8.7.ShadowShaders/index.html " target="_blank">Shadow 
+	<li>8.7. <a href="./chapter8/8.7.shadow_shaders/index.html " target="_blank">Shadow 
 	Shaders</a>: Simulates shadows.
 		<ul>
 			<li>Same controls as 8.6</li>
@@ -382,7 +382,126 @@
 </div>
 
 <div data-role="collapsible">
-<h2>NOT READY Chapter 9: Integrating Physics and Particles</h2>
+<h2>Chapter 9: Rigid Shapes and Physics</h2>
+<ul>
+    <li>9.1. <a href="./chapter9/9.1.rigid_shapes_and_bounds/index.html " target="_blank">Rigid Shape and Bounds</a>:
+    Implements bounds for rigid shapes for collision detection.
+	    <ul>
+			<li>Refer to the page for commands</li>
+			<li><strong>Observe</strong>: 
+				<ul>
+					<li>Toggle texture, rigid shape drawing, and bounds</li>
+				</ul></li>
+		</ul>
+	</li>
+    
+	<li>9.2. <a href="./chapter9/9.2.collision_info_and_circle_collisions/index.html " target="_blank">Collision Info and Circle Collisions</a>:
+    Defines what is collision info and implements circle-circle collisions.
+	    <ul>
+			<li>Refer to the page for commands</li>
+			<li><strong>Observe</strong>: 
+				<ul>
+					<li>Arrow key to select a circle, move it around with WASD, notice collision info
+					 when overlapping with circles, and, nothing when 
+					 overlapping with rectangles (not supported yet).
+					</li>
+				</ul></li>
+		</ul>
+	</li>
+	
+	<li>9.3. <a href="./chapter9/9.3.rectangle_collisions/index.html " target="_blank">Rectangle Collisions</a>:
+    Implements rectangle-rectangle collisions.
+	    <ul>
+			<li>Refer to the page for commands</li>
+			<li><strong>Observe</strong>: 
+				<ul>
+					<li>Arrow key to select a circle or a rectangle, move it around with WASD, 
+					 notice collision info
+					 when circles overlap or when rectangles overlap. 
+					 Does not know how to collide a circle with a rectangle yet.
+					</li>
+				</ul></li>
+		</ul>
+	</li>
+	
+	<li>9.4. <a href="./chapter9/9.4.rectangle_and_circle_collisions/index.html " target="_blank">Rectangle-Circle Collisions</a>:
+    Implements rectangle-circle collisions.
+	    <ul>
+			<li>Refer to the page for commands</li>
+			<li><strong>Observe</strong>: 
+				<ul>
+					<li>Arrow key to select a circle or a rectangle, move it around with WASD, 
+					 notice collision info when any two shapes overlap.
+					</li>
+				</ul></li>
+		</ul>
+	</li>
+	
+	<li>9.5. <a href="./chapter9/9.5.rigid_shape_movements/index.html " target="_blank">Rigid Shape Movements</a>:
+    Implements physically based movements.
+	    <ul>
+			<li>Refer to the page for commands</li>
+			<li><strong>Observe</strong>: 
+				<ul>
+					<li>Type "H" key to re-energize the shapes see them "shoots up" and falls "naturally".
+					</li>
+				</ul></li>
+		</ul>
+	</li>
+	
+	<li>9.6. <a href="./chapter9/9.6.collision_position_correction/index.html " target="_blank">Collision Position Correction</a>:
+    Corrects inter-object-penetration.
+	    <ul>
+			<li>Refer to the page for commands</li>
+			<li><strong>Observe</strong>: 
+				<ul>
+					<li>Type "H" key to re-energize the shapes see them "shoots up" and falls "naturally", 
+					try typing "P" to toggle position correction on/off and observe shapes "sink"
+					into blocks.
+					</li>
+				</ul></li>
+		</ul>
+	</li>
+	
+	<li>9.7. <a href="./chapter9/9.7.collision_resolution/index.html " target="_blank">Collision Resolution</a>:
+    Resolves collision with impulse response.
+	    <ul>
+			<li>Refer to the page for commands</li>
+			<li><strong>Observe</strong>: 
+				<ul>
+					<li>See objects collide and falls, try changing restitution/frictions and observe 
+					more/less bounding/skating.
+					</li>
+				</ul></li>
+		</ul>
+	</li>
+		
+	<li>9.8. <a href="./chapter9/9.8.collision_angular_resolution/index.html " target="_blank">Collision Angular Resolution</a>:
+    Resolves collision with impulse and angular response.
+	    <ul>
+			<li>Refer to the page for commands</li>
+			<li><strong>Observe</strong>: 
+				<ul>
+					<li>See objects collide and falls, try changing restitution/frictions and observe 
+					more/less bounding/skating.
+					</li>
+				</ul></li>
+		</ul>
+	</li>
+	
+	<li>9.9. <a href="./chapter9/9.9.physics_presets/index.html " target="_blank">Physics Presets</a>:
+    Sample pre-set values for restitution/friction that resamples physical world (ice/wood/dirt/mud).
+	    <ul>
+			<li>Refer to the page for commands</li>
+		</ul>
+	</li>
+	
+</ul>
+</div>
+
+
+<div data-role="collapsible">
+<h2>NOT READY Chapter 10: Particles and Particle Systems</h2>
 <ul>
     <li>9.1. <a href="./chapter9/9.1.RigidShapeBounds/index.html " target="_blank">Rigid Shape Bounds</a>:
     Implements bounds for rigid shapes for collision detection.
