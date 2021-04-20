@@ -17,6 +17,7 @@ import * as font from "./resources/font.js";
 import * as defaultResources from "./resources/default_resources.js";
 
 // general utilities
+import * as physics from "./physics.js";
 import * as input from "./input.js";
 import Scene from "./scene.js";
 import Transform from "./utils/transform.js";
@@ -57,8 +58,7 @@ import { eLightType } from "./lights/light.js";
 import ShadowCaster from "./shadows/shadow_caster.js";
 import ShadowReceiver from "./shadows/shadow_receiver.js";
 
-// Physics and Rigid Shapes
-import * as physics from "./rigid_shapes/physics.js";
+// Rigid Shapes and Collision Info
 import RigidShape from "./rigid_shapes/rigid_shape.js";
 import RigidCircle from "./rigid_shapes/rigid_circle.js";
 import RigidRectangle from "./rigid_shapes/rigid_rectangle.js";

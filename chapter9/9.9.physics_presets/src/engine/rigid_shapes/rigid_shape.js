@@ -5,7 +5,7 @@
  */
 "use strict";
 
-import * as physics from "./physics.js";
+import * as physics from "../physics.js";
 import * as loop from "../core/loop.js";
 import * as input from "../input.js";
 import LineRenderable from "../renderables/line_renderable.js";

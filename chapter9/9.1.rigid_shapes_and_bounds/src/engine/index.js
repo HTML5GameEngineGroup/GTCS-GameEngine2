@@ -57,7 +57,7 @@ import { eLightType } from "./lights/light.js";
 import ShadowCaster from "./shadows/shadow_caster.js";
 import ShadowReceiver from "./shadows/shadow_receiver.js";
 
-// Physics and Rigid Shapes
+// Rigid Shapes
 import RigidShape from "./rigid_shapes/rigid_shape.js";
 import RigidCircle from "./rigid_shapes/rigid_circle.js";
 import RigidRectangle from "./rigid_shapes/rigid_rectangle.js";
