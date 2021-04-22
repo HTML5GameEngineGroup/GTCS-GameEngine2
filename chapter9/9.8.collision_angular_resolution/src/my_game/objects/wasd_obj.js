@@ -1,4 +1,4 @@
-/* File: WASD_Obj.js
+/* File: wasd_obj.js
  *
  * Defines the keyControl function
  */
