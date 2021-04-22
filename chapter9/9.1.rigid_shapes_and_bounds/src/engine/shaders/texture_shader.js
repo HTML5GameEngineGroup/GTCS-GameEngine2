@@ -21,7 +21,7 @@ class TextureShader extends SimpleShader {
         // get the reference of aTextureCoordinate within the shader
         let gl = glSys.get();
         this.mTextureCoordinateRef = gl.getAttribLocation(this.mCompiledShader, "aTextureCoordinate");
-        this.mSamperRef = gl.getAttribLocation(this.mCompiledShader, "uSampler");
+        this.mSamplerRef =  gl.getUniformLocation(this.mCompiledShader, "uSampler");
     }
 
     // Overriding the Activation of the shader for rendering

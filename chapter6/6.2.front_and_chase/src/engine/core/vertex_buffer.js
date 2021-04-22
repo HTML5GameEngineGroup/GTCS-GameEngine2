@@ -59,14 +59,14 @@ function init() {
     // Step C: Loads mVerticesOfSquare into the vertexBuffer
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(mVerticesOfSquare), gl.STATIC_DRAW);
 
-    // Step  B: Allocate and store texture coordinates"
+    //  Step  D: Allocate and store texture coordinates
     // Create a buffer on the gl context for texture coordinates
     mGLTextureCoordBuffer = gl.createBuffer();
 
-    // Activate vertexBuffer
+    // Activate texture cooredinate buffer
     gl.bindBuffer(gl.ARRAY_BUFFER, mGLTextureCoordBuffer);
 
-    // Loads textureCoordinates into the vertexBuffer
+    // Loads textureCoordinates into the mGLTextureCoordBuffer
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(mTextureCoordinates), gl.STATIC_DRAW);   
 }
 

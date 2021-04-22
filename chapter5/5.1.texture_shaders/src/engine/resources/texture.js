@@ -1,5 +1,5 @@
 /*
- * File: sprite_animate_renderable.js
+ * File: texture.js
  *
  * defines the logic for loading and interacting with file texture resources
  * (load into the resource_map)
