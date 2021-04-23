@@ -180,9 +180,6 @@ class MyGame extends engine.Scene {
             texCoord[engine.eTexCoordArrayIndex.eBottom],
             t
         );
-
-        if (engine.input.isKeyClicked(engine.input.keys.Q))
-            this.stop();
     }
 }
 

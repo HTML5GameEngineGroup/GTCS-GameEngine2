@@ -213,9 +213,6 @@ class MyGame extends engine.Scene {
             this.mRightMinion.incAnimationSpeed(2);
             this.mLeftMinion.incAnimationSpeed(2);
         }
-
-        if (engine.input.isKeyClicked(engine.input.keys.Q))
-            this.stop();
     }
 }
 
