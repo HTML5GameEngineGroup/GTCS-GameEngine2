@@ -96,7 +96,7 @@ class SpriteAnimateRenderable extends SpriteRenderable {
         this.mUpdateInterval = tickInterval;   // how often to advance
     }
 
-    incAnimationSpeed = function (
+   incAnimationSpeed(
         deltaInterval   // number of update calls before advancing the animation
     ) {
         this.mUpdateInterval += deltaInterval;   // how often to advance

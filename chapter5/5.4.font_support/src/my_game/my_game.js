@@ -178,7 +178,7 @@ class MyGame extends engine.Scene {
         if (engine.input.isKeyPressed(engine.input.keys.Left)) {
             xform.incXPosBy(-deltaX);
             if (xform.getXPos() < 0) {  // this is the left-bound of the window
-                this.stop();
+                xform.setPosition(100, 50);
             }
         }
 

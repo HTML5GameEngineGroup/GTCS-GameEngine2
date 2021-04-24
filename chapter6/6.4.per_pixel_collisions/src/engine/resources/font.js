@@ -11,8 +11,8 @@
 import * as texture from "./texture.js";
 import * as xml from "./xml.js";
 
-let mImageExt = ".png";  // extension for the bitmap font image
-let mDescExt = ".fnt";   // extension for the bitmap font description
+let kImageExt = ".png";  // extension for the bitmap font image
+let kDescExt = ".fnt";   // extension for the bitmap font description
 
 // for convenenit communication of per-character information
 // all size returned are in normalize unit (range between 0 to 1)
@@ -35,8 +35,8 @@ class CharacterInfo {
     }
 }
 
-function imageName(fontName) { return fontName+mImageExt;}
-function descName(fontName) { return fontName+mDescExt;}
+function imageName(fontName) { return fontName+kImageExt;}
+function descName(fontName) { return fontName+kDescExt;}
 
 function load(fontName) {
     texture.load(imageName(fontName));
@@ -55,7 +55,7 @@ function has(fontName) {
     return texture.has(imageName(fontName)) && xml.has(descName(fontName));
 }
 
-let getCharInfo = function (fontName, aChar) {
+function getCharInfo(fontName, aChar) {
     let returnInfo = null;
     let fontInfo = xml.get(descName(fontName));
     let commonPath = "font/common";
