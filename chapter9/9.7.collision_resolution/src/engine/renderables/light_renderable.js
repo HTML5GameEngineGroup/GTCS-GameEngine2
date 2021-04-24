@@ -25,7 +25,7 @@ class LightRenderable extends SpriteAnimateRenderable {
         super.draw(camera);
     }
 
-    getNumLights = function () {
+    getNumLights() {
         return this.mLights.length;
     }
 

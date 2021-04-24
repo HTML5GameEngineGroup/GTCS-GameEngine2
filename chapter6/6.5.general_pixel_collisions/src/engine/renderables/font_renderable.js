@@ -20,7 +20,7 @@ class FontRenderable {
         this.mText = aString;
     }
 
-    draw = function (camera) {
+    draw(camera) {
         // we will draw the text string by calling to mOneChar for each of the
         // chars in the mText string.
         let widthOfOneChar = this.mXform.getWidth() / this.mText.length;
