@@ -22,7 +22,7 @@ let mVerticesOfSquare = [
 ];
 
 
-// reference to the texture cooredinates for the square vertices in the gl context
+// reference to the texture coordinates for the square vertices in the gl context
 let mGLTextureCoordBuffer = null;
 function getTexCoord() { return mGLTextureCoordBuffer; }
 
@@ -63,7 +63,7 @@ function init() {
     // Create a buffer on the gl context for texture coordinates
     mGLTextureCoordBuffer = gl.createBuffer();
 
-    // Activate texture cooredinate buffer
+    // Activate texture coordinate buffer
     gl.bindBuffer(gl.ARRAY_BUFFER, mGLTextureCoordBuffer);
 
     // Loads textureCoordinates into the mGLTextureCoordBuffer
