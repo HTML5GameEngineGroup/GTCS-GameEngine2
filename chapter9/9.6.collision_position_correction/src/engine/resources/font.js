@@ -41,7 +41,6 @@ function descName(fontName) { return fontName+kDescExt;}
 function load(fontName) {
     texture.load(imageName(fontName));
     xml.load(descName(fontName));
-    return null;
 }
 
 // Remove the reference to allow associated memory 
