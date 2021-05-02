@@ -6,7 +6,7 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-import CollisionInfo from "./rigid_shapes/collision_info.js";
+import CollisionInfo from "../rigid_shapes/collision_info.js";
 
 function processCollision(set, infoSet) {
     let i = 0, j = 0;

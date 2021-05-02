@@ -16,9 +16,9 @@ import * as texture from "./resources/texture.js";
 import * as font from "./resources/font.js";
 import * as defaultResources from "./resources/default_resources.js";
 
-// Engine components
-import * as physics from "./components/physics.js";
+// components
 import * as input from "./components/input.js";
+import * as physics from "./components/physics.js";
 import * as particleSystem from "./components/particle_system.js";
 
 // general utilities

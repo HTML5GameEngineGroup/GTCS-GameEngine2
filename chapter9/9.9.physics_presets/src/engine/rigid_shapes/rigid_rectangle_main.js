@@ -6,6 +6,7 @@
 "use strict";
 
 import RigidShape from "./rigid_shape.js";
+import * as debugDraw from "../core/debug_draw.js";
 
 class RigidRectangle extends RigidShape {
     constructor(xf, width, height) {
@@ -81,23 +82,12 @@ class RigidRectangle extends RigidShape {
         this.computeFaceNormals();
     }
 
-    drawAnEdge(i1, i2, aCamera) {
-        this.mLine.setFirstVertex(this.mVertex[i1][0], this.mVertex[i1][1]);
-        this.mLine.setSecondVertex(this.mVertex[i2][0], this.mVertex[i2][1]);
-        this.mLine.draw(aCamera);
-    }
-
     draw(aCamera) {
-        super.draw(aCamera);
-        this.mLine.setColor([0, 0, 0, 1]);
-        let i = 0;
-        for (i = 0; i < 4; i++) {
-            this.drawAnEdge(i, (i + 1) % 4, aCamera);
-        }
+        super.draw(aCamera);  // the cross marker at the center
+        debugDraw.drawRectangle(aCamera, this.mVertex, this._shapeColor());
 
         if (this.mDrawBounds) {
-            this.mLine.setColor([1, 1, 1, 1]);
-            this.drawCircle(aCamera, this.mBoundRadius);
+            debugDraw.drawCircle(aCamera, this.mXform.getPosition(), this.mBoundRadius, this._boundColor());
         }
     }
 

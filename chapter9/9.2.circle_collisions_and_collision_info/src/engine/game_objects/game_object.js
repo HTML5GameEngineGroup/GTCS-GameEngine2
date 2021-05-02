@@ -47,7 +47,8 @@ class GameObject {
     }
 
     update() {
-        if (this.mRigidBody != null)
+        // simple default behavior
+        if (this.mRigidBody !== null)
             this.mRigidBody.update();
     }
 

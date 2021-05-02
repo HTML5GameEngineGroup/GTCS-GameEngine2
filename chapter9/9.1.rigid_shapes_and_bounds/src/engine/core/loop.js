@@ -7,7 +7,9 @@
 "use strict";
 
 import * as map from "./resource_map.js";
-import * as input from "../input.js";
+import * as input from "../components/input.js";
+
+import * as debugDraw from "../core/debug_draw.js";
 
 const kUPS = 60; // Updates per second
 const kMPF = 1000 / kUPS; // Milliseconds per update.
@@ -58,7 +60,11 @@ async function start(scene) {
     
     // Wait for any async requests before game-load
     await map.waitOnPromises();
+
+    // System debug-drawing support
+    debugDraw.init();
     
+    // Now, initialize current scenes
     mCurrentScene.init();    
     mPrevTime = performance.now();
     mLagTime = 0.0;

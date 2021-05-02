@@ -82,12 +82,6 @@ class RigidRectangle extends RigidShape {
         this.computeFaceNormals();
     }
 
-    drawAnEdge(i1, i2, aCamera) {
-        this.mLine.setFirstVertex(this.mVertex[i1][0], this.mVertex[i1][1]);
-        this.mLine.setSecondVertex(this.mVertex[i2][0], this.mVertex[i2][1]);
-        this.mLine.draw(aCamera);
-    }
-
     draw(aCamera) {
         super.draw(aCamera);  // the cross marker at the center
         debugDraw.drawRectangle(aCamera, this.mVertex, this._shapeColor());

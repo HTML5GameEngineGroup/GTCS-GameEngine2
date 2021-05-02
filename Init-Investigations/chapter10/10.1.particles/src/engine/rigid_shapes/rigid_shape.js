@@ -5,15 +5,17 @@
  */
 "use strict";
 
-import * as physics from "../components/physics.js";
-import * as loop from "../core/loop.js";
-import * as input from "../components/input.js";
 import * as debugDraw from "../core/debug_draw.js";
+
+let kShapeColor = [0, 0, 0, 1];
+let kBoundColor = [1, 1, 1, 1];
+
+import * as physics from "../components/physics.js";
+import * as input from "../components/input.js";
+import * as loop from "../core/loop.js";
 
 let kRigidShapeUIDelta = 0.01;   // for UI interactive debugging
 let kPrintPrecision = 2;         // for printing float precision
-let kShapeColor = [0, 0, 0, 1];
-let kBoundColor = [1, 1, 1, 1];
 
 class RigidShape {
     constructor(xf) {
@@ -132,7 +134,7 @@ class RigidShape {
 
     _shapeColor() { return kShapeColor; }
     _boundColor() { return kBoundColor; }
-
+    // #endregion 
 
     // #region support interactive debugging and state querying
     getCurrentState() {
@@ -178,7 +180,6 @@ class RigidShape {
                     this.mRestitution = 1;
             }
         }
-
     }
     // #endregion
 }
