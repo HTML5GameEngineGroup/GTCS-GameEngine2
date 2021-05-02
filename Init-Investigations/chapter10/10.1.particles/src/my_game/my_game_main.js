@@ -256,5 +256,5 @@ function _createParticle(atX, atY) {
     p.setSizeDelta(0.98);
     
     return p;
-};
+}
 export default MyGame;

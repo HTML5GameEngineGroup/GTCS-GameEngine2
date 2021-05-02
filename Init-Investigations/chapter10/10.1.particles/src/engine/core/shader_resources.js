@@ -117,7 +117,7 @@ function getLightShader() { return mLightShader; }
 function getIllumShader() { return mIllumShader; }
 function getShadowReceiverShader() { return mShadowReceiverShader; }
 function getShadowCasterShader() { return mShadowCasterShader; }
-function getParticleShader() { return mParticleShader };
+function getParticleShader() { return mParticleShader }
 
 export {init, cleanUp, 
         getConstColorShader, getTextureShader, getSpriteShader, getLineShader,
