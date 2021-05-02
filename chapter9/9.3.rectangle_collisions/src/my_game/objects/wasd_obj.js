@@ -4,7 +4,7 @@
  */
 
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
-var kWASDDelta = 0.3;
+let kWASDDelta = 0.3;
 
 import engine from "../../engine/index.js";
 

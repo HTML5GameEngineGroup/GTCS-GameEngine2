@@ -19,7 +19,7 @@ class Hero extends WASDObj {
         this.mRenderComponent.getXform().setSize(3, 4);
         this.mRenderComponent.setElementPixelPositions(0, 120, 0, 180);
 
-        var r = new engine.RigidRectangle(this.getXform(), 3, 4);
+        let r = new engine.RigidRectangle(this.getXform(), 3, 4);
         this.setRigidBody(r);
         this.toggleDrawRenderable();
         this.toggleDrawRigidShape();
