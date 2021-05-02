@@ -7,10 +7,12 @@
 import * as loop from "../core/loop.js";
 import * as particleSystem from "../components/particle_system.js";
 import ParticleRenderable from "../renderables/particle_renderable.js";
+import * as debugDraw from "../core/debug_draw.js";
+
+let kSizeFactor = 0.2;
 
 class Particle {
     constructor(texture, x, y, life) {
-        this.kPadding = 0.5;   // for drawing particle bounds
         this.mRenderComponent = new ParticleRenderable(texture);
         this.setPosition(x, y);
 
@@ -29,17 +31,9 @@ class Particle {
         this.mCyclesToLive = life;
     }
 
-    drawMarker(aCamera, line) {
-        //calculation for the X at the particle position
-        let p = this.getPosition();
-
-        line.setFirstVertex(p[0] - this.kPadding, p[1] + this.kPadding);  //TOP LEFT
-        line.setSecondVertex(p[0] + this.kPadding, p[1] - this.kPadding); //BOTTOM RIGHT
-        line.draw(aCamera);
-
-        line.setFirstVertex(p[0] + this.kPadding, p[1] + this.kPadding);  //TOP RIGHT
-        line.setSecondVertex(p[0] - this.kPadding, p[1] - this.kPadding); //BOTTOM LEFT
-        line.draw(aCamera);
+    drawMarker(aCamera) {
+        let size = this.getSize();
+        debugDraw.drawCrossMarker(aCamera, this.getPosition(), size[0] * kSizeFactor, [0, 1, 0, 1]);
     }
 
     draw(aCamera) {

@@ -10,13 +10,10 @@
 
 import * as glSys from "../core/gl.js";
 import GameObjectSet from "../game_objects/game_object_set.js";
-import LineRenderable from "../renderables/line_renderable.js";
 
 class ParticleSet extends GameObjectSet {
     constructor() {
         super();
-        this.mMarkerLine = new LineRenderable();
-        this.mMarkerLine.setColor([0, 1, 0, 1]);
     }
 
     draw(aCamera) {
@@ -29,7 +26,7 @@ class ParticleSet extends GameObjectSet {
     drawMarkers(aCamera) {
         let i;
         for (i = 0; i < this.mSet.length; i++) {
-            this.mSet[i].drawMarker(aCamera, this.mMarkerLine);
+            this.mSet[i].drawMarker(aCamera);
         }
     }
 

@@ -15,6 +15,7 @@ import IllumShader from "../shaders/illum_shader.js";
 import ShadowCasterShader from "../shaders/shadow_caster_shader.js";
 import * as text from "../resources/text.js";
 import * as map from "./resource_map.js";
+import * as debugDraw from "../core/debug_draw.js";
  
 // Simple Shader
 let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 
@@ -59,6 +60,8 @@ function createShaders() {
     mShadowCasterShader = new ShadowCasterShader(kTextureVS, kShadowCasterFS);
     mShadowReceiverShader = new SpriteShader(kTextureVS, kShadowReceiverFS);
     mParticleShader = new TextureShader(kTextureVS, kParticleFS);
+    
+    debugDraw.init();
 }
 
 function cleanUp() {
