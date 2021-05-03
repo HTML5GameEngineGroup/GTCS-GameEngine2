@@ -74,7 +74,7 @@ class MyGame extends engine.Scene {
         this.mMsg.getXform().setPosition(1, 2);
         this.mMsg.setTextHeight(3);
 
-        // create a oscillate object to simulate motion
+        // create an Oscillate object to simulate motion
         this.mBounce = new engine.Oscillate(2, 6, 120); // delta, freq, duration
     }
 

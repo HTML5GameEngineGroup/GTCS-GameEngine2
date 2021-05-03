@@ -8,7 +8,7 @@
 import ShakeVec2 from "../utils/shake_vec2.js";
 
 class CameraShake {
-    // state is the CameraState to be shaked.
+    // state is the CameraState to be shaken
     constructor(state, deltas, freqs, shakeDuration) {
         this.mOrgCenter = vec2.clone(state.getCenter());
         this.mShakeCenter = vec2.clone(this.mOrgCenter);

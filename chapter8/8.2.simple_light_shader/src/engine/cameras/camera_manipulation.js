@@ -31,7 +31,7 @@ Camera.prototype.shake = function (deltas, freqs, duration) {
     this.mCameraShake = new CameraShake(this.mCameraState, deltas, freqs, duration);
 }
 
-// Re-cause the shake
+// Restart the shake
 Camera.prototype.reShake = function () {
     let success = (this.mCameraShake !== null);
     if (success)
