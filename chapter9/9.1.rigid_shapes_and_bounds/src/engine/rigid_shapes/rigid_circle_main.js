@@ -6,6 +6,7 @@
 "use strict";
 
 import RigidShape from "./rigid_shape.js";
+import * as debugDraw from "../core/debug_draw.js";
 
 class RigidCircle extends RigidShape {
     constructor(xf, radius) {
@@ -21,23 +22,18 @@ class RigidCircle extends RigidShape {
     }
 
     draw(aCamera) {
-        super.draw(aCamera);
-
-        // kNumSides forms the circle.
-        this.mLine.setColor([0, 0, 0, 1]);
-        this.drawCircle(aCamera, this.mRadius);
+        super.draw(aCamera);  // draw the cross marker
 
         let p = this.mXform.getPosition();
+        debugDraw.drawCircle(aCamera, p, this.mRadius, this._shapeColor());  // the circle object
+
         let u = [p[0], p[1] + this.mBoundRadius];
         // angular motion
         vec2.rotateWRT(u, u, this.mXform.getRotationInRad(), p);
-        this.mLine.setColor([1, 1, 1, 1]);
-        this.mLine.setFirstVertex(p[0], p[1]);
-        this.mLine.setSecondVertex(u[0], u[1]);
-        this.mLine.draw(aCamera);
+        debugDraw.drawLine(aCamera, p, u, false, this._shapeColor()); // show rotation 
 
         if (this.mDrawBounds)
-            this.drawCircle(aCamera, this.mBoundRadius);
+            debugDraw.drawCircle(aCamera, p, this.mBoundRadius, this._boundColor());
     }
 
     getRadius() { return this.mRadius; }

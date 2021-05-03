@@ -16,8 +16,10 @@ import * as texture from "./resources/texture.js";
 import * as font from "./resources/font.js";
 import * as defaultResources from "./resources/default_resources.js";
 
+// components
+import * as input from "./components/input.js";
+
 // general utilities
-import * as input from "./input.js";
 import Scene from "./scene.js";
 import Transform from "./utils/transform.js";
 import BoundingBox from "./utils/bounding_box.js";

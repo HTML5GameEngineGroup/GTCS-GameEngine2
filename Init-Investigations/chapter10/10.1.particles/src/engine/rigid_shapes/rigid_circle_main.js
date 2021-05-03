@@ -44,7 +44,7 @@ class RigidCircle extends RigidShape {
         let u = [p[0], p[1] + this.mBoundRadius];
         // angular motion
         vec2.rotateWRT(u, u, this.mXform.getRotationInRad(), p);
-        debugDraw.drawLine(aCamera, p, u, this._shapeColor()); // show rotation 
+        debugDraw.drawLine(aCamera, p, u, false, this._shapeColor()); // show rotation 
 
         if (this.mDrawBounds)
             debugDraw.drawCircle(aCamera, p, this.mBoundRadius, this._boundColor());

@@ -7,7 +7,7 @@
 
 import Camera from "./camera_manipulation.js";
 import { eViewport } from "./camera_main.js";
-import * as input from "../input.js";
+import * as input from "../components/input.js";
 
 Camera.prototype._mouseDCX = function () {
     return input.getMousePosX() - this.mViewport[eViewport.eOrgX];

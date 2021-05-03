@@ -5,19 +5,16 @@
  */
 "use strict";
 
-import LineRenderable from "../renderables/line_renderable.js";
+import * as debugDraw from "../core/debug_draw.js";
+
+let kInfoColor = [1, 0, 1, 1];
 
 class CollisionInfo {
     constructor() {
         this.mDepth = 0;
         this.mNormal = vec2.fromValues(0, 0);
         this.mStart = vec2.fromValues(0, 0);
-        this.mEnd = vec2.fromValues(0, 0);
-
-        this.mLine = new LineRenderable();
-        this.mLine.setColor([1, 0, 1, 1]);
-        this.mLine.setDrawVertices(true);
-        this.mLine.setPointSize(5);
+        this.mEnd = vec2.fromValues(0, 0);        
     }
 
     getDepth() { return this.mDepth; }
@@ -46,9 +43,7 @@ class CollisionInfo {
     }
 
     draw(aCamera) {
-        this.mLine.setFirstVertex(this.mStart[0], this.mStart[1]);
-        this.mLine.setSecondVertex(this.mEnd[0], this.mEnd[1]);
-        this.mLine.draw(aCamera);
+        debugDraw.drawLine(aCamera, this.mStart, this.mEnd, true, kInfoColor);
     }
 }
 
