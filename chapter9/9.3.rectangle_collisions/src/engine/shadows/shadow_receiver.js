@@ -2,14 +2,14 @@
  * File: shadow_receiver.js
  * Shadow support
  * 
- * Instance letiables:
+ * Instance variables:
  *     mReceiver: Reference to any GameObject
  *                Treats this target for shadow receiver
  *     mCasters: Reference to an array of Renderables that are at least LightRenderable
  *     
  * Draws the mReceiver, and the shadows of mCasters on this mReceiver
  */
-"use strict";  // Operate in Strict mode such that letiables must be declared before used!
+"use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 import * as shaderResources from "../core/shader_resources.js";
 import ShadowCaster from "./shadow_caster.js";

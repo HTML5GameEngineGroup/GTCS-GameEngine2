@@ -4,7 +4,7 @@
  * Adds interactive control for Material to the MyGame class
  */
 
-"use strict";  // Operate in Strict mode such that letiables must be declared before used!
+"use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 import engine from "../engine/index.js";
 import MyGame from "./my_game_light_control.js";

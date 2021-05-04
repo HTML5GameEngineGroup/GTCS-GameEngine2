@@ -2,7 +2,7 @@
  * File: shadow_caster.js
  * Renders a colored image representing the shadowCaster on the receiver
  */
-"use strict";  // Operate in Strict mode such that letiables must be declared before used!
+"use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 import * as shaderResources from "../core/shader_resources.js";
 import SpriteRenderable from "../renderables/sprite_renderable.js";

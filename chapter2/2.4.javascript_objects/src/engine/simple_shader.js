@@ -10,13 +10,15 @@ import * as core from "./core.js";
 import * as vertexBuffer from "./vertex_buffer.js";
 
 class SimpleShader {
+    #mCompiledShader;
+    #mVertexPositionRef;
 
     // constructor of SimpleShader object
     constructor(vertexShaderID, fragmentShaderID) {
         // instance variables
         // Convention: all instance variables: mVariables
-        this.mCompiledShader = null;  // reference to the compiled shader in webgl context  
-        this.mVertexPositionRef = null; // reference to VertexPosition within the shader
+        this.#mCompiledShader = null;  // reference to the compiled shader in webgl context  
+        this.#mVertexPositionRef = null; // reference to VertexPosition within the shader
 
         let gl = core.getGL();
         // 
@@ -25,36 +27,36 @@ class SimpleShader {
         this.mFragmentShader = loadAndCompileShader(fragmentShaderID, gl.FRAGMENT_SHADER);
 
         // Step B: Create and link the shaders into a program.
-        this.mCompiledShader = gl.createProgram();
-        gl.attachShader(this.mCompiledShader, this.mVertexShader);
-        gl.attachShader(this.mCompiledShader, this.mFragmentShader);
-        gl.linkProgram(this.mCompiledShader);
+        this.#mCompiledShader = gl.createProgram();
+        gl.attachShader(this.#mCompiledShader, this.mVertexShader);
+        gl.attachShader(this.#mCompiledShader, this.mFragmentShader);
+        gl.linkProgram(this.#mCompiledShader);
 
         // Step C: check for error
-        if (!gl.getProgramParameter(this.mCompiledShader, gl.LINK_STATUS)) {
+        if (!gl.getProgramParameter(this.#mCompiledShader, gl.LINK_STATUS)) {
             throw new Error("Error linking shader");
             return null;
         }
 
         // Step D: Gets a reference to the aVertexPosition attribute within the shaders.
-        this.mVertexPositionRef = gl.getAttribLocation(this.mCompiledShader, "aVertexPosition");
+        this.#mVertexPositionRef = gl.getAttribLocation(this.#mCompiledShader, "aVertexPosition");
     }
 
     
     // Activate the shader for rendering
     activate() {
         let gl = core.getGL();
-        gl.useProgram(this.mCompiledShader);
+        gl.useProgram(this.#mCompiledShader);
         
         // bind vertex buffer
         gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer.get());
-        gl.vertexAttribPointer(this.mVertexPositionRef,
+        gl.vertexAttribPointer(this.#mVertexPositionRef,
             3,              // each element is a 3-float (x,y.z)
             gl.FLOAT,       // data type is FLOAT
             false,          // if the content is normalized vectors
             0,              // number of bytes to skip in between elements
             0);             // offsets to the first element
-        gl.enableVertexAttribArray(this.mVertexPositionRef);
+        gl.enableVertexAttribArray(this.#mVertexPositionRef);
     }
 }
 
