@@ -1,7 +1,7 @@
 /*
  * File: game_object.js
  *
- * defines the behavior and apparance of a game object
+ * defines the behavior and appearance of a game object
  * 
  */
 "use strict";
