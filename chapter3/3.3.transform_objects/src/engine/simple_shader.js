@@ -21,7 +21,6 @@ class SimpleShader {
         this.mModelMatrixRef = null; // reference to model transform matrix in vertex shader
 
         let gl = glSys.get();
-        // start of constructor code
         // 
         // Step A: load and compile vertex and fragment shaders
         this.mVertexShader = loadAndCompileShader(vertexShaderPath, gl.VERTEX_SHADER);

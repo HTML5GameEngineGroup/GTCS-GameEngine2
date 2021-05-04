@@ -23,7 +23,6 @@ class SimpleShader {
         this.mCameraMatrixRef = null; // reference to the View/Projection matrix in the vertex shader
 
         let gl = glSys.get();
-        // start of constructor code
         // 
         // Step A: load and compile vertex and fragment shaders
         this.mVertexShader = compileShader(vertexShaderPath, gl.VERTEX_SHADER);

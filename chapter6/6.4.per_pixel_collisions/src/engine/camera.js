@@ -8,6 +8,13 @@
 import * as glSys from "./core/gl.js";
 import BoundingBox from "./bounding_box.js";
 
+const eViewport = Object.freeze({
+    eOrgX: 0,
+    eOrgY: 1,
+    eWidth: 2,
+    eHeight: 3
+});
+
 class Camera {
     // wcCenter: is a vec2
     // wcWidth: is the width of the user defined WC
@@ -21,7 +28,6 @@ class Camera {
     //  wcHeight = wcWidth * viewport[3]/viewport[2]
     //
     constructor(wcCenter, wcWidth, viewportArray) {
-        // WC and viewport position and size
         this.mWCCenter = wcCenter;
         this.mWCWidth = wcWidth;
         this.mViewport = viewportArray;  // [x, y, width, height]
@@ -33,22 +39,29 @@ class Camera {
         this.mBGColor = [0.8, 0.8, 0.8, 1]; // RGB and Alpha
     }
 
+    // #region Basic getter and setters
+
     setWCCenter(xPos, yPos) {
         this.mWCCenter[0] = xPos;
         this.mWCCenter[1] = yPos;
     }
     getWCCenter() { return this.mWCCenter; }
     setWCWidth(width) { this.mWCWidth = width; }
+    getWCWidth() { return this.mWCWidth; }
+    getWCHeight() {
+        // viewportH/viewportW
+        let ratio = this.mViewport[eViewport.eHeight] / this.mViewport[eViewport.eWidth];
+        return this.getWCWidth() * ratio;
+    }  
 
     setViewport(viewportArray) { this.mViewport = viewportArray; }
     getViewport() { return this.mViewport; }
-    getWCWidth() { return this.mWCWidth; }
-    getWCHeight() { return this.mWCWidth * this.mViewport[3] / this.mViewport[2]; }
-                                                  // viewportH/viewportW
 
     setBackgroundColor(newColor) { this.mBGColor = newColor; }
     getBackgroundColor() { return this.mBGColor; }
+    // #endregion
 
+    // #region Compute and access camera transform matrix
     
     // call before you start drawing with this camera
     setViewAndCameraMatrix() {
@@ -72,21 +85,20 @@ class Camera {
         gl.disable(gl.SCISSOR_TEST);
 
         // Step B: Compute the Camera Matrix
-
-        // Step B1: compute wcHeight
-        let wcHeight = this.mWCWidth * this.mViewport[3] / this.mViewport[2]; // viewportH/viewportW
+        let center = this.getWCCenter();
         
         // Step B2: following the translation, scale to: (-1, -1) to (1, 1): a 2x2 square at origin
-        mat4.scale(this.mCameraMatrix, mat4.create(), vec3.fromValues(2.0/this.mWCWidth, 2.0/wcHeight, 1.0));
+        mat4.scale(this.mCameraMatrix, mat4.create(), vec3.fromValues(2.0 / this.getWCWidth(), 2.0 / this.getWCHeight(), 1.0));
 
         // Step B3: first operation to perform is to translate camera center to the origin
-        mat4.translate(this.mCameraMatrix, this.mCameraMatrix, vec3.fromValues(-this.mWCCenter[0], -this.mWCCenter[1], 0));
+        mat4.translate(this.mCameraMatrix, this.mCameraMatrix, vec3.fromValues(-center[0], -center[1], 0));
     }
 
     // Getter for the View-Projection transform operator
     getCameraMatrix() {
         return this.mCameraMatrix;
     }
+    // #endregion
 
     collideWCBound(aXform, zone) {
         let bbox = new BoundingBox(aXform.getPosition(), aXform.getWidth(), aXform.getHeight());

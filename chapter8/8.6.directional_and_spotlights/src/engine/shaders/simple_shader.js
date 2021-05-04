@@ -27,7 +27,6 @@ class SimpleShader {
         this.mGlobalAmbientIntensityRef = null;
 
         let gl = glSys.get();
-        // start of constructor code
         // 
         // Step A: load and compile vertex and fragment shaders
         this.mVertexShader = compileShader(vertexShaderPath, gl.VERTEX_SHADER);

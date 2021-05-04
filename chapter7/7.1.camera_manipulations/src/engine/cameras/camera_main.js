@@ -9,6 +9,13 @@ import * as glSys from "../core/gl.js";
 import BoundingBox from "../bounding_box.js";
 import { eBoundCollideStatus } from "../bounding_box.js";
 
+const eViewport = Object.freeze({
+    eOrgX: 0,
+    eOrgY: 1,
+    eWidth: 2,
+    eHeight: 3
+});
+
 class Camera {
     // wcCenter: is a vec2
     // wcWidth: is the width of the user defined WC
@@ -34,17 +41,22 @@ class Camera {
     }
 
     // #region Basic getter and setters
+
     setWCCenter(xPos, yPos) {
         this.mWCCenter[0] = xPos;
         this.mWCCenter[1] = yPos;
     }
     getWCCenter() { return this.mWCCenter; }
     setWCWidth(width) { this.mWCWidth = width; }
+    getWCWidth() { return this.mWCWidth; }
+    getWCHeight() {
+        // viewportH/viewportW
+        let ratio = this.mViewport[eViewport.eHeight] / this.mViewport[eViewport.eWidth];
+        return this.getWCWidth() * ratio;
+    }
 
     setViewport(viewportArray) { this.mViewport = viewportArray; }
     getViewport() { return this.mViewport; }
-    getWCWidth() { return this.mWCWidth; }
-    getWCHeight() { return this.mWCWidth * this.mViewport[3] / this.mViewport[2]; }                                              // viewportH/viewportW
 
     setBackgroundColor(newColor) { this.mBGColor = newColor; }
     getBackgroundColor() { return this.mBGColor; }

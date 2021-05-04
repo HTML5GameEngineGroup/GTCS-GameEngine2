@@ -56,6 +56,9 @@ class Camera {
         return this.mCameraState.getWidth() * ratio;
     }
 
+    setViewport(viewportArray) { this.mViewport = viewportArray; }
+    getViewport() { return this.mViewport; }
+    
     setBackgroundColor(newColor) { this.mBGColor = newColor; }
     getBackgroundColor() { return this.mBGColor; }
     // #endregion

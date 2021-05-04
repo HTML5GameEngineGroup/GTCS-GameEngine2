@@ -20,7 +20,6 @@ class SimpleShader {
         this.mPixelColorRef = null;     // reference to the pixelColor uniform in the fragment shader
 
         let gl = glSys.get();
-        // start of constructor code
         // 
         // Step A: load and compile vertex and fragment shaders
         this.mVertexShader = loadAndCompileShader(vertexShaderPath, gl.VERTEX_SHADER);
