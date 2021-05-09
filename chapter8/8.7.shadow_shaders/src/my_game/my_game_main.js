@@ -167,7 +167,7 @@ class MyGame extends engine.Scene {
         // always draw shadow receivers first!
         this.mBgShadow.draw(camera);        // also draws the receiver object
         this.mMinionShadow.draw(camera);
-        this.mLgtMinionShaodw.draw(camera);
+        this.mLgtMinionShadow.draw(camera);
 
         this.mBlock1.draw(camera);
         this.mIllumHero.draw(camera);
