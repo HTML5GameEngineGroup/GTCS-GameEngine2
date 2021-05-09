@@ -109,7 +109,7 @@ export default {
     // resource support
     audio, text, xml, texture, font, defaultResources,
 
-    // input support
+    // engine components
     input, particleSystem,
 
     // general utils 
