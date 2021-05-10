@@ -12,7 +12,7 @@ let kSpeed = 40;
 MyGame.prototype.radomizeVelocity = function()
 {
     let i = 0;
-    for (i = this.mFirstObject; i<this.mAllObjs.size(); i++) {
+    for (i = 0; i<this.mAllObjs.size(); i++) {
         let obj = this.mAllObjs.getObjectAt(i);
         let rigidShape = obj.getRigidBody();
         let x = (Math.random() - 0.5) * kSpeed;
@@ -62,7 +62,7 @@ MyGame.prototype.wallAt = function (x, y, w) {
     r.setMass(0);
     xf.setSize(w, h);
     xf.setPosition(x, y);
-    this.mAllObjs.addToSet(g);
+    this.mPlatforms.addToSet(g);
 }
 
 MyGame.prototype.platformAt = function (x, y, w, rot) {
@@ -80,7 +80,7 @@ MyGame.prototype.platformAt = function (x, y, w, rot) {
     xf.setSize(w, h);
     xf.setPosition(x, y);
     xf.setRotationInDegree(rot);
-    this.mAllObjs.addToSet(g);
+    this.mPlatforms.addToSet(g);
 }
 
 export default MyGame;

@@ -4,9 +4,9 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-let mSystemtAcceleration = [30, -50.0];   
+let mSystemAcceleration = [30, -50.0];   
     
-function getSystemtAcceleration() { return mSystemtAcceleration; }
-function setSystemtAcceleration(g) { mSystemtAcceleration = g; }
+function getSystemAcceleration() { return mSystemAcceleration; }
+function setSystemAcceleration(g) { mSystemAcceleration = g; }
 
-export {getSystemtAcceleration, setSystemtAcceleration}
+export {getSystemAcceleration, setSystemAcceleration}

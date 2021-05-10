@@ -40,6 +40,29 @@ class GameObjectSet {
             this.mSet[i].draw(aCamera);
         }
     }
+
+    toggleDrawRenderable() {
+        let i;
+        for (i = 0; i < this.mSet.length; i++) {
+            this.mSet[i].toggleDrawRenderable();
+        }
+    }
+
+    toggleDrawRigidShape() {
+        let i;
+        for (i = 0; i < this.mSet.length; i++) {
+            this.mSet[i].toggleDrawRigidShape();
+        }
+    }
+
+    toggleDrawBound() {
+        let i;
+        for (i = 0; i < this.mSet.length; i++) {
+            let r = this.mSet[i].getRigidBody()
+            if (r !== null) 
+                r.toggleDrawBound();
+        }
+    }
 }
 
 export default GameObjectSet;

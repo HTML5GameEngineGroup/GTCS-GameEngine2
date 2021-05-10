@@ -1,6 +1,6 @@
 /* 
  * File: camera_state.js
- * Defines the state of a camera to faciliate the manipulation of this state
+ * Defines the state of a camera to facilitate the manipulation of this state
  */
 "use strict";
 

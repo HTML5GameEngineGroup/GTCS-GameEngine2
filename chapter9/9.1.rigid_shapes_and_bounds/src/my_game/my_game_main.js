@@ -23,6 +23,7 @@ class MyGame extends engine.Scene {
         this.mShapeMsg = null;
 
         this.mAllObjs = null;
+        this.mPlatforms = null;
         this.mBounds = null;
         this.mHero = null;
 
@@ -62,14 +63,15 @@ class MyGame extends engine.Scene {
         // sets the background to gray
         engine.defaultResources.setGlobalAmbientIntensity(3);
 
-        this.mHero = new Hero(this.kMinionSprite);
         this.mAllObjs = new engine.GameObjectSet();
+        this.mPlatforms = new engine.GameObjectSet();
 
-        this.createBounds();
-        this.mFirstObject = this.mAllObjs.size();
-        this.mCurrentObj = this.mFirstObject;
+        this.createBounds();  // added to mPlatforms
 
+        this.mHero = new Hero(this.kMinionSprite);
         this.mAllObjs.addToSet(this.mHero);
+        this.mCurrentObj = 0;
+
         let y = 40;
         let x = 10;
         for (let i = 1; i <= 5; i++) {
@@ -97,6 +99,7 @@ class MyGame extends engine.Scene {
 
         this.mCamera.setViewAndCameraMatrix();
 
+        this.mPlatforms.draw(this.mCamera);
         this.mAllObjs.draw(this.mCamera);
 
         this.mTarget.draw(this.mCamera);
@@ -113,15 +116,18 @@ class MyGame extends engine.Scene {
         let msg = "";
         let kBoundDelta = 0.1;
 
+        this.mAllObjs.update(this.mCamera);
+        this.mPlatforms.update(this.mCamera);
+
         if (engine.input.isKeyClicked(engine.input.keys.Left)) {
             this.mCurrentObj -= 1;
-            if (this.mCurrentObj < this.mFirstObject)
+            if (this.mCurrentObj < 0)
                 this.mCurrentObj = this.mAllObjs.size() - 1;
         }
         if (engine.input.isKeyClicked(engine.input.keys.Right)) {
             this.mCurrentObj += 1;
             if (this.mCurrentObj >= this.mAllObjs.size())
-                this.mCurrentObj = this.mFirstObject;
+                this.mCurrentObj = 0;
         }
 
         let obj = this.mAllObjs.getObjectAt(this.mCurrentObj);
@@ -148,31 +154,26 @@ class MyGame extends engine.Scene {
 
         obj.keyControl();
         this.drawControlUpdate();
-        this.mAllObjs.update(this.mCamera);
 
         let p = obj.getXform().getPosition();
         this.mTarget.getXform().setPosition(p[0], p[1]);
     }
 
     drawControlUpdate() {
-        let i;
         if (engine.input.isKeyClicked(engine.input.keys.T)) {
             this.mDrawTexture = !this.mDrawTexture;
-            for (i = 0; i < this.mAllObjs.size(); i++) {
-                this.mAllObjs.getObjectAt(i).toggleDrawRenderable();
-            }
+            this.mAllObjs.toggleDrawRenderable();
+            this.mPlatforms.toggleDrawRenderable();
         }
         if (engine.input.isKeyClicked(engine.input.keys.R)) {
             this.mDrawRigidShape = !this.mDrawRigidShape;
-            for (i = 0; i < this.mAllObjs.size(); i++) {
-                this.mAllObjs.getObjectAt(i).toggleDrawRigidShape();
-            }
+            this.mAllObjs.toggleDrawRigidShape();
+            this.mPlatforms.toggleDrawRigidShape();
         }
         if (engine.input.isKeyClicked(engine.input.keys.B)) {
             this.mDrawBounds = !this.mDrawBounds;
-            for (i = 0; i < this.mAllObjs.size(); i++) {
-                this.mAllObjs.getObjectAt(i).getRigidBody().toggleDrawBound();
-            }
+            this.mAllObjs.toggleDrawBound();
+            this.mPlatforms.toggleDrawBound();
         }
     }
 }

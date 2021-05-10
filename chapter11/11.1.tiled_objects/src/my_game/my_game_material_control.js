@@ -13,7 +13,7 @@ MyGame.prototype._materialControl = function () {
     let delta = 0.01;
     let msg = "";
 
-    // player select which object and material channgel to work 
+    // player select which object and material channel to work 
     this._selectMaterialChannel();
 
     // manipulate the selected component Ambient, Diffuse, Specular

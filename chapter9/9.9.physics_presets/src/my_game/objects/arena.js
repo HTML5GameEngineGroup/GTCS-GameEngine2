@@ -12,6 +12,7 @@ import Minion from "./minion.js";
 class Arena {
     constructor(x, y, w, h, res, frct, s1, s2, art, p) {
         this.mShapes = new engine.GameObjectSet();
+        this.mWalls = new engine.GameObjectSet();
         // this.mPset = new ParticleGameObjectSet();
         this.createBounds(x, y, w, h, res, frct, art);
         this.firstObject = this.mShapes.size();
@@ -23,19 +24,14 @@ class Arena {
 
     draw(aCamera) {
         this.mShapes.draw(aCamera);
-        if (this.rep) {
-            // this.mPset.draw(aCamera); 
-        }
+        this.mWalls.draw(aCamera);
     }
 
     update() {
         this.mShapes.update();
-        if (this.rep) {
-            this.reportVelocity();
-            //this.mPset.update();
-            //this.particleCollision();
-        }
-        engine.physics.processCollision(this.mShapes, []);
+        this.mWalls.update();
+        engine.physics.processSet(this.mShapes, null);
+        engine.physics.processSetToSet(this.mWalls, this.mShapes, null);
     }
 
     createObj(x, y, s1, s2) {
@@ -72,28 +68,28 @@ class Arena {
     }
 
     incRestitution(inc) {
-        let res = this.mShapes.getObjectAt(0).getRigidBody().getRestitution();
+        let res = this.mWalls.getObjectAt(0).getRigidBody().getRestitution();
         for (let i = 0; i < 4; i++) {
             if (res + inc > 1) {
-                this.mShapes.getObjectAt(i).getRigidBody().setRestitution(1);
+                this.mWalls.getObjectAt(i).getRigidBody().setRestitution(1);
             }
             else if (res + inc < 0) {
-                this.mShapes.getObjectAt(i).getRigidBody().setRestitution(0);
+                this.mWalls.getObjectAt(i).getRigidBody().setRestitution(0);
             }
             else {
-                this.mShapes.getObjectAt(i).getRigidBody().setRestitution(res + inc);
+                this.mWalls.getObjectAt(i).getRigidBody().setRestitution(res + inc);
             }
         }
     }
 
     incFriction(inc) {
-        let frct = this.mShapes.getObjectAt(0).getRigidBody().getFriction();
+        let frct = this.mWalls.getObjectAt(0).getRigidBody().getFriction();
         for (let i = 0; i < 4; i++) {
             if (frct + inc < 0) {
-                this.mShapes.getObjectAt(i).getRigidBody().setFriction(0);
+                this.mWalls.getObjectAt(i).getRigidBody().setFriction(0);
             }
             else {
-                this.mShapes.getObjectAt(i).getRigidBody().setFriction(frct + inc);
+                this.mWalls.getObjectAt(i).getRigidBody().setFriction(frct + inc);
             }
         }
     }
@@ -101,7 +97,7 @@ class Arena {
     radomizeVelocity() {
         let kSpeed = 40;
         let i = 0;
-        for (i = this.firstObject; i < this.mShapes.size(); i++) {
+        for (i = 0; i < this.mShapes.size(); i++) {
             let obj = this.mShapes.getObjectAt(i);
             let rigidShape = obj.getRigidBody();
             let x = (Math.random() - 0.5) * kSpeed;
@@ -111,25 +107,25 @@ class Arena {
     }
     lightOn() {
         for (let i = 0; i < 4; i++) {
-            this.mShapes.getObjectAt(i).getRenderable().setColor([1, 1, 1, .6]);
+            this.mWalls.getObjectAt(i).getRenderable().setColor([1, 1, 1, .6]);
         }
     }
 
     lightOff() {
         for (let i = 0; i < 4; i++) {
-            this.mShapes.getObjectAt(i).getRenderable().setColor([1, 1, 1, 0]);
+            this.mWalls.getObjectAt(i).getRenderable().setColor([1, 1, 1, 0]);
         }
     }
 
     cycleBackward() {
         this.currentObject -= 1;
-        if (this.currentObject < this.firstObject)
+        if (this.currentObject < 0)
             this.currentObject = this.mShapes.size() - 1;
     }
     cycleFoward() {
         this.currentObject += 1;
         if (this.currentObject >= this.mShapes.size())
-            this.currentObject = this.firstObject;
+            this.currentObject = 0;
     }
     getObject() {
         return this.mShapes.getObjectAt(this.currentObject);
@@ -151,7 +147,7 @@ class Arena {
         r.setFriction(frct);
         xf.setSize(w, h);
         xf.setPosition(x, y);
-        this.mShapes.addToSet(g);
+        this.mWalls.addToSet(g);
     }
 
     platformAt(x, y, w, rot, res, frct, art) {
@@ -171,7 +167,7 @@ class Arena {
         xf.setSize(w, h);
         xf.setPosition(x, y);
         xf.setRotationInDegree(rot);
-        this.mShapes.addToSet(g);
+        this.mWalls.addToSet(g);
     }
 
     createBouncy(x, y, size) {
@@ -242,58 +238,13 @@ class Arena {
     }
 
     getCurrentState() {
-        let num2 = this.mShapes.getObjectAt(0).getRigidBody().getRestitution();
-        let num3 = this.mShapes.getObjectAt(0).getRigidBody().getFriction();
+        let num2 = this.mWalls.getObjectAt(0).getRigidBody().getRestitution();
+        let num3 = this.mWalls.getObjectAt(0).getRigidBody().getFriction();
         return "Arena Physics Values: Friction=" + num3.toFixed(2) +
             " Restitution=" + num2.toFixed(2);
     }
-
-    reportVelocity() {
-        return;  // for now
-        let info = new engine.CollisionInfo();
-        //let func(x, y) { this.createParticle.call(this, x, y); }
-        for (let i = this.firstObject; i < this.mShapes.size(); i++) {
-            if (this.mShapes.getObjectAt(0).getRigidBody().collisionTest(this.mShapes.getObjectAt(i).getRigidBody(), info) === true) {
-                if (this.mShapes.getObjectAt(i).getRigidBody().getVelocity()[1] <= -15) {
-                    this.mPset.addEmitterAt([this.mShapes.getObjectAt(i).getRenderable().getXform().getPosition()[0], this.pos[1] + 6], 20, this.createParticle);
-                }
-            }
-        }
-    }
-
     getPos() {
         return this.pos;
     }
-
-    /*
-    particleCollision(){
-        for(let i=0; i<4; i++){
-            gEngine.ParticleSystem.processObjSet(this.mShapes.getObjectAt(i),this.mPset);
-        }
-    }
-    
-    createParticle(atX, atY) {
-        let life = 30 + Math.random() * 200;
-        let p = new ParticleGameObject("assets/RigidShape/DirtParticle.png", atX, atY, life);
-        p.getRenderable().setColor([.61, .30, .08, 1]);
-        
-        // size of the particle
-        let r = Math.random() * 2.5;
-        p.getXform().setSize(r, r);
-        
-        // final color
-        p.setFinalColor([.61, .30, .08, 1]);
-        
-        // velocity on the particle
-        let fx = 30 * Math.random() - 60 * Math.random();
-        let fy = 20 * Math.random()+10;
-        p.getParticle().setVelocity([fx, fy]);
-        
-        // size delta
-        p.setSizeDelta(0.985);
-        
-        return p;
-    }
-    */
 }
 export default Arena;

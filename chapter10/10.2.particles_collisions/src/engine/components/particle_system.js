@@ -19,9 +19,9 @@ function init() {
     mCollisionInfo = new CollisionInfo();
 }
 
-let mSystemtAcceleration = [30, -50.0];   
-function getSystemtAcceleration() { return mSystemtAcceleration; }
-function setSystemtAcceleration(g) { mSystemtAcceleration = g; }
+let mSystemAcceleration = [30, -50.0];   
+function getSystemAcceleration() { return mSystemAcceleration; }
+function setSystemAcceleration(g) { mSystemAcceleration = g; }
 
 function resolveCirclePos(circShape, particle) {
     let pos = particle.getPosition();
@@ -53,7 +53,7 @@ function resolveRectPos(rectShape, particle) {
     }
 }
 
-// objSet: set of GameObjcets (with potential mRigidBody)
+// objSet: set of GameObjects (with potential mRigidBody)
 // pSet: set of particles (ParticleSet)
 function resolveRigidShapeCollision(objSet, pSet) {
     let i, j;
@@ -70,5 +70,5 @@ function resolveRigidShapeCollision(objSet, pSet) {
     }
 }
 export {init,
-        getSystemtAcceleration, setSystemtAcceleration, 
+        getSystemAcceleration, setSystemAcceleration, 
         resolveRigidShapeCollision}

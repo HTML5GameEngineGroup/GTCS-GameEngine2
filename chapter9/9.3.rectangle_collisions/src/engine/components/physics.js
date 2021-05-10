@@ -8,34 +8,78 @@
 
 import CollisionInfo from "../rigid_shapes/collision_info.js";
 
-function processCollision(set, infoSet) {
-    let i = 0, j = 0;
-    let iToj = [0, 0];
-    let info = new CollisionInfo();
+let mS1toS2 = [0, 0];
+let mCInfo = new CollisionInfo();
 
-    for (i = 0; i < set.size(); i++) {
-        let objI = set.getObjectAt(i).getRigidBody();
-        for (j = i + 1; j < set.size(); j++) {
-            let objJ = set.getObjectAt(j).getRigidBody();
-            if (objI.boundTest(objJ)) {
-                if (objI.collisionTest(objJ, info)) {
-                    // make sure info is always from i towards j
-                    vec2.subtract(iToj, objJ.getCenter(), objI.getCenter());
-                    if (vec2.dot(iToj, info.getNormal()) < 0)
-                        info.changeDir();
-                    // for showing off collision info!
-                    if (infoSet !== null) {
-                        infoSet.push(info);
-                        info = new CollisionInfo();
-                    }
+// collide two rigid shapes
+function collideShape(s1, s2, infoSet) {
+    let hasCollision = false;
+    if (s1 !== s2) {
+        if (s1.boundTest(s2)) {
+            hasCollision = s1.collisionTest(s2, mCInfo);
+            if (hasCollision) {
+                // make sure mCInfo is always from s1 towards s2
+                vec2.subtract(mS1toS2, s2.getCenter(), s1.getCenter());
+                if (vec2.dot(mS1toS2, mCInfo.getNormal()) < 0)
+                    mCInfo.changeDir();
+                // for showing off collision mCInfo!
+                if (infoSet !== null) {
+                    infoSet.push(mCInfo);
+                    mCInfo = new CollisionInfo();
                 }
             }
-
         }
     }
+    return hasCollision;
+}
+
+// collide an GameObject with a GameObjectSet
+function processObjToSet(obj, set, infoSet)
+{
+    let j = 0;
+    let hasCollision = false;
+    let s1 = obj.getRigidBody();
+    for (j = 0; j < set.size(); j++) {
+        let s2 = set.getObjectAt(j).getRigidBody();
+        hasCollision = collideShape(s1, s2, infoSet) || hasCollision;
+    }
+    return hasCollision;
+}
+
+// collide two GameObjectSets
+function processSetToSet(set1, set2, infoSet) 
+{
+    let i = 0, j = 0;
+    let hasCollision = false;
+    for (i = 0; i < set1.size(); i++) {
+        let s1 = set1.getObjectAt(i).getRigidBody();
+        for (j = 0; j < set2.size(); j++) {
+            let s2 = set2.getObjectAt(j).getRigidBody();
+            hasCollision = collideShape(s1, s2, infoSet) || hasCollision;
+        }
+    }
+    return hasCollision;
+}
+
+// collide all objects in the GameObjectSet with themselves
+function processSet(set, infoSet) {
+    let i = 0, j = 0;
+    let hasCollision = false;
+
+    for (i = 0; i < set.size(); i++) {
+        let s1 = set.getObjectAt(i).getRigidBody();
+        for (j = i + 1; j < set.size(); j++) {
+            let s2 = set.getObjectAt(j).getRigidBody();
+            hasCollision = collideShape(s1, s2, infoSet) || hasCollision;
+        }
+    }
+    return hasCollision;
 }
 
 export {
+    // collide two shapes
+    collideShape,
+
     // Collide
-    processCollision
+    processSet, processObjToSet, processSetToSet
 }

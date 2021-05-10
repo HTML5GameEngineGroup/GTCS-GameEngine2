@@ -23,6 +23,7 @@ class MyGame extends engine.Scene {
         this.mShapeMsg = null;
 
         this.mAllObjs = null;
+        this.mPlatforms = null;
         this.mBounds = null;
         this.mCollisionInfos = [];
         this.mHero = null;
@@ -64,14 +65,15 @@ class MyGame extends engine.Scene {
         // sets the background to gray
         engine.defaultResources.setGlobalAmbientIntensity(3);
 
-        this.mHero = new Hero(this.kMinionSprite);
         this.mAllObjs = new engine.GameObjectSet();
+        this.mPlatforms = new engine.GameObjectSet();
 
-        this.createBounds();
-        this.mFirstObject = this.mAllObjs.size();
-        this.mCurrentObj = this.mFirstObject;
-
+        this.createBounds();  // added to mPlatforms
+        
+        this.mHero = new Hero(this.kMinionSprite);
         this.mAllObjs.addToSet(this.mHero);
+        this.mCurrentObj = 0;
+                
         let y = 70;
         let x = 10;
         for (let i = 1; i <= 5; i++) {
@@ -99,12 +101,15 @@ class MyGame extends engine.Scene {
 
         this.mCamera.setViewAndCameraMatrix();
 
+        this.mPlatforms.draw(this.mCamera);
         this.mAllObjs.draw(this.mCamera);
 
         // for now draw these ...
+        if (this.mCollisionInfos !== null) {
         for (let i = 0; i < this.mCollisionInfos.length; i++)
             this.mCollisionInfos[i].draw(this.mCamera);
         this.mCollisionInfos = [];
+        }
 
         this.mTarget.draw(this.mCamera);
         this.mMsg.draw(this.mCamera);   // only draw status in the main camera
@@ -122,6 +127,9 @@ class MyGame extends engine.Scene {
         let msg = "";
         let kBoundDelta = 0.1;
 
+        this.mAllObjs.update(this.mCamera);
+        this.mPlatforms.update(this.mCamera);
+
         if (engine.input.isKeyClicked(engine.input.keys.P)) {
             engine.physics.togglePositionalCorrection();
         }
@@ -134,13 +142,13 @@ class MyGame extends engine.Scene {
 
         if (engine.input.isKeyClicked(engine.input.keys.Left)) {
             this.mCurrentObj -= 1;
-            if (this.mCurrentObj < this.mFirstObject)
+            if (this.mCurrentObj < 0)
                 this.mCurrentObj = this.mAllObjs.size() - 1;
         }
         if (engine.input.isKeyClicked(engine.input.keys.Right)) {
             this.mCurrentObj += 1;
             if (this.mCurrentObj >= this.mAllObjs.size())
-                this.mCurrentObj = this.mFirstObject;
+                this.mCurrentObj = 0;
         }
 
         let obj = this.mAllObjs.getObjectAt(this.mCurrentObj);
@@ -152,8 +160,8 @@ class MyGame extends engine.Scene {
         }
 
         if (engine.input.isKeyClicked(engine.input.keys.G)) {
-            let x = 20 + Math.random() * 60;
-            let y = 75;
+            let x = 50 + Math.random() * 20;
+            let y = 50;
             let t = Math.random() > 0.5;
             let m = new Minion(this.kMinionSprite, x, y, t);
             if (this.mDrawTexture) // default is false
@@ -167,12 +175,14 @@ class MyGame extends engine.Scene {
 
         obj.keyControl();
         this.drawControlUpdate();
-        this.mAllObjs.update(this.mCamera);
 
         if (this.mDrawCollisionInfo)
-            engine.physics.processCollision(this.mAllObjs, this.mCollisionInfos);
+            this.mCollisionInfos = [];
         else
-            engine.physics.processCollision(this.mAllObjs, null);
+            this.mCollisionInfos = null;
+        engine.physics.processObjToSet(this.mHero, this.mPlatforms, this.mCollisionInfos);
+        engine.physics.processSetToSet(this.mAllObjs, this.mPlatforms, this.mCollisionInfos);
+        engine.physics.processSet(this.mAllObjs, this.mCollisionInfos);
 
         let p = obj.getXform().getPosition();
         this.mTarget.getXform().setPosition(p[0], p[1]);
@@ -191,21 +201,18 @@ class MyGame extends engine.Scene {
         }
         if (engine.input.isKeyClicked(engine.input.keys.T)) {
             this.mDrawTexture = !this.mDrawTexture;
-            for (i = 0; i < this.mAllObjs.size(); i++) {
-                this.mAllObjs.getObjectAt(i).toggleDrawRenderable();
-            }
+            this.mAllObjs.toggleDrawRenderable();
+            this.mPlatforms.toggleDrawRenderable();
         }
         if (engine.input.isKeyClicked(engine.input.keys.R)) {
             this.mDrawRigidShape = !this.mDrawRigidShape;
-            for (i = 0; i < this.mAllObjs.size(); i++) {
-                this.mAllObjs.getObjectAt(i).toggleDrawRigidShape();
-            }
+            this.mAllObjs.toggleDrawRigidShape();
+            this.mPlatforms.toggleDrawRigidShape();
         }
         if (engine.input.isKeyClicked(engine.input.keys.B)) {
             this.mDrawBounds = !this.mDrawBounds;
-            for (i = 0; i < this.mAllObjs.size(); i++) {
-                this.mAllObjs.getObjectAt(i).getRigidBody().toggleDrawBound();
-            }
+            this.mAllObjs.toggleDrawBound();
+            this.mPlatforms.toggleDrawBound();
         }
     }
 }
