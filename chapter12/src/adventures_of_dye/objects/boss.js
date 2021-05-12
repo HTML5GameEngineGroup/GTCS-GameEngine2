@@ -1,198 +1,204 @@
-function Boss(atX, atY, velocity, movementRange, type, texture0, texture1, texture2,
+"use strict";
+import engine from "../../engine/index.js";
+import ChaserMinion from "./chaser_minion.js";
+
+const kMinionTex = "assets/minion_sprite.png";
+// this.kDelta = 0.1;
+const kWidth = 8;
+const kHeight = 8;
+const kSpeed = 0.02;
+const kSpawnerTotal = 800;
+
+class Boss extends engine.GameObject {
+    constructor(atX, atY, velocity, movementRange, type, texture0, texture1, texture2,
         texture3, texture4, texture5, texture6, normal, lightSet, hero) {
-    this.kMinionTex = "assets/minion_sprite.png";
-    this.kDelta = 0.1;
-    this.kWidth = 8;
-    this.kHeight = 8;
-    this.kSpeed = 0.02;
-    this.kSpawnerTotal = 800;
-    
-    this.mSpawnerTicks = 0;
-    this.mTicks = 0;
-    this.mClockwise = 1;
-    this.mLightSet = lightSet;
-    this.mHeroRef = hero;
-    this.mAllMinions = [];
-    
-    // control of movement
-    this.mInitialPosition = vec2.fromValues(atX, atY);
-    this.mMovementRange = movementRange;
+        super(null);
 
-    if (normal === null) {
-        this.mDyeBoss_Bottom = new LightRenderable(texture0);
-        this.mDyeBoss_Top = new LightRenderable(texture1);
-        this.mDyeBoss_CenterSpawn = new LightRenderable(texture2);
-        this.mDyeBoss_Eyeballs = new LightRenderable(texture3);
-        this.mDyeBoss_Eyeballs02 = new LightRenderable(texture3);
-        this.mDyeBoss_WeakPoint_Blue = new LightRenderable(texture4);
-        this.mDyeBoss_WeakPoint_Green = new LightRenderable(texture5);
-        this.mDyeBoss_WeakPoint_Red = new LightRenderable(texture6);
-    } else {
-        this.mDyeBoss_Bottom = new IllumRenderable(texture0, normal);
-        this.mDyeBoss_Top = new IllumRenderable(texture1, normal);
-        this.mDyeBoss_CenterSpawn = new IllumRenderable(texture2, normal);
-        this.mDyeBoss_Eyeballs = new IllumRenderable(texture3, normal);
-        this.mDyeBoss_Eyeballs02 = new IllumRenderable(texture3, normal);
-        this.mDyeBoss_WeakPoint_Blue = new IllumRenderable(texture4, normal);
-        this.mDyeBoss_WeakPoint_Green = new IllumRenderable(texture5, normal);
-        this.mDyeBoss_WeakPoint_Red = new IllumRenderable(texture6, normal);
-    }
-
-    this.light = this._createPointLight(atX, atY);
-    lightSet.addToSet(this.light);
-
-    let i;
-    for (i = 2; i < lightSet.numLights(); i++) {
-        this.mDyeBoss_Bottom.addLight(lightSet.getLightAt(i));
-        this.mDyeBoss_Top.addLight(lightSet.getLightAt(i));
-        this.mDyeBoss_CenterSpawn.addLight(lightSet.getLightAt(i));
-        this.mDyeBoss_Eyeballs.addLight(lightSet.getLightAt(i));
-        this.mDyeBoss_Eyeballs02.addLight(lightSet.getLightAt(i));
-        this.mDyeBoss_WeakPoint_Blue.addLight(lightSet.getLightAt(i));
-        this.mDyeBoss_WeakPoint_Green.addLight(lightSet.getLightAt(i));
-        this.mDyeBoss_WeakPoint_Red.addLight(lightSet.getLightAt(i));
-    }
-    
-    this.buildSprite(atX, atY);
-    GameObject.call(this, this.mDyeBoss_Bottom);
-
-    // velocity and movementRange will come later
-    let size = vec2.length(velocity);
-    if (size > 0.001) {
-        this.setCurrentFrontDir(velocity);
-        this.setSpeed(this.kSpeed);
-    }
-
-    let rigidShape = new RigidRectangle(this.getXform(), this.kWidth, this.kHeight);
-    rigidShape.setMass(0);
-    rigidShape.setDrawBounds(true);
-    rigidShape.setColor([0, 0, 1, 1]);
-    //rigidShape.setAcceleration([0, 0]);
-    this.setPhysicsComponent(rigidShape);
-}
-gEngine.Core.inheritPrototype(Boss, GameObject);
-
-Boss.prototype.update = function () {
-    GameObject.prototype.update.call(this);
-    let i;
-    for (i = 0; i < this.mAllMinions.length; i++) {
-        this.mAllMinions[i].update(this.mHeroRef);
-    }
-    
-    this.mTicks++
-    if(this.mTicks > 20){
-        this.mClockwise *= -1;
-        this.mTicks = 0;
-    }
-    
-    this.mSpawnerTicks++;
-    if(this.mSpawnerTicks > this.kSpawnerTotal && this.mAllMinions.length < 6){
-        this._spawnChaser();
         this.mSpawnerTicks = 0;
+        this.mTicks = 0;
+        this.mClockwise = 1;
+        this.mLightSet = lightSet;
+        this.mHeroRef = hero;
+        this.mAllMinions = [];
+
+        // control of movement
+        this.mInitialPosition = vec2.fromValues(atX, atY);
+        this.mMovementRange = movementRange;
+
+        if (normal === null) {
+            this.mDyeBoss_Bottom = new engine.LightRenderable(texture0);
+            this.mDyeBoss_Top = new engine.LightRenderable(texture1);
+            this.mDyeBoss_CenterSpawn = new engine.LightRenderable(texture2);
+            this.mDyeBoss_Eyeballs = new engine.LightRenderable(texture3);
+            this.mDyeBoss_Eyeballs02 = new engine.LightRenderable(texture3);
+            this.mDyeBoss_WeakPoint_Blue = new engine.LightRenderable(texture4);
+            this.mDyeBoss_WeakPoint_Green = new engine.LightRenderable(texture5);
+            this.mDyeBoss_WeakPoint_Red = new engine.LightRenderable(texture6);
+        } else {
+            this.mDyeBoss_Bottom = new engine.IllumRenderable(texture0, normal);
+            this.mDyeBoss_Top = new engine.IllumRenderable(texture1, normal);
+            this.mDyeBoss_CenterSpawn = new engine.IllumRenderable(texture2, normal);
+            this.mDyeBoss_Eyeballs = new engine.IllumRenderable(texture3, normal);
+            this.mDyeBoss_Eyeballs02 = new engine.IllumRenderable(texture3, normal);
+            this.mDyeBoss_WeakPoint_Blue = new engine.IllumRenderable(texture4, normal);
+            this.mDyeBoss_WeakPoint_Green = new engine.IllumRenderable(texture5, normal);
+            this.mDyeBoss_WeakPoint_Red = new engine.IllumRenderable(texture6, normal);
+        }
+
+        this.light = this._createPointLight(atX, atY);
+        lightSet.addToSet(this.light);
+
+        let i;
+        for (i = 2; i < lightSet.numLights(); i++) {
+            this.mDyeBoss_Bottom.addLight(lightSet.getLightAt(i));
+            this.mDyeBoss_Top.addLight(lightSet.getLightAt(i));
+            this.mDyeBoss_CenterSpawn.addLight(lightSet.getLightAt(i));
+            this.mDyeBoss_Eyeballs.addLight(lightSet.getLightAt(i));
+            this.mDyeBoss_Eyeballs02.addLight(lightSet.getLightAt(i));
+            this.mDyeBoss_WeakPoint_Blue.addLight(lightSet.getLightAt(i));
+            this.mDyeBoss_WeakPoint_Green.addLight(lightSet.getLightAt(i));
+            this.mDyeBoss_WeakPoint_Red.addLight(lightSet.getLightAt(i));
+        }
+
+        this.buildSprite(atX, atY);
+        this.mRenderComponent = this.mDyeBoss_Bottom;
+
+        let rigidShape = new engine.RigidRectangle(this.getXform(), kWidth, kHeight);
+        rigidShape.setMass(0);
+        rigidShape.toggleDrawBound();
+        rigidShape.setAcceleration(0, 0);
+        this.setRigidBody(rigidShape);
+
+        // velocity and movementRange will come later
+        let size = vec2.length(velocity);
+        if (size > 0.001) {
+            this.setCurrentFrontDir(velocity);
+            vec2.scale(velocity, velocity, this.kSpeed);
+            rigidShape.setVelocity(velocity.x, velocity.y);
+        }
     }
-    
-    let s = vec2.fromValues(0, 0);
-    vec2.subtract(s, this.getXform().getPosition(), this.mInitialPosition);
-    let len = vec2.length(s);
-    
-    if (len > this.mMovementRange) {
-        let f = this.getCurrentFrontDir();
-        f[0] = -f[0];
-        f[1] = -f[1];
-        
+
+
+    update() {
+        super.update(this);
+
+        let i;
+        for (i = 0; i < this.mAllMinions.length; i++) {
+            this.mAllMinions[i].update(this.mHeroRef);
+        }
+
+        this.mTicks++
+        if (this.mTicks > 20) {
+            this.mClockwise *= -1;
+            this.mTicks = 0;
+        }
+
+        this.mSpawnerTicks++;
+        if (this.mSpawnerTicks > kSpawnerTotal && this.mAllMinions.length < 6) {
+            this._spawnChaser();
+            this.mSpawnerTicks = 0;
+        }
+
+        let s = vec2.fromValues(0, 0);
+        vec2.subtract(s, this.getXform().getPosition(), this.mInitialPosition);
+        let len = vec2.length(s);
+
+        if (len > this.mMovementRange) {
+            let f = this.getCurrentFrontDir();
+            f[0] = -f[0];
+            f[1] = -f[1];
+
+        }
+        this.light.set2DPosition(this.getXform().getPosition());
+        this.buildSprite(this.getXform().getPosition()[0], this.getXform().getPosition()[1] - this.mClockwise * 0.01);
+
+        this.mDyeBoss_WeakPoint_Blue.getXform().incRotationByDegree(1);
+        this.mDyeBoss_WeakPoint_Red.getXform().incRotationByDegree(1);
+        this.mDyeBoss_WeakPoint_Green.getXform().incRotationByDegree(1);
+
+        this.mDyeBoss_CenterSpawn.getXform().incRotationByDegree(5);
+
+        //    this.mDyeBoss_Eyeballs.getXform().incRotationByDegree(10 * Math.random()* this.mClockwise);
+        //    this.mDyeBoss_Eyeballs02.getXform().incRotationByDegree(10 * Math.random() * this.mClockwise);
     }
-    this.light.set2DPosition(this.getXform().getPosition());
-    this.buildSprite(this.getXform().getPosition()[0], this.getXform().getPosition()[1] - this.mClockwise * 0.01);
-    
-    this.mDyeBoss_WeakPoint_Blue.getXform().incRotationByDegree(1);
-    this.mDyeBoss_WeakPoint_Red.getXform().incRotationByDegree(1);
-    this.mDyeBoss_WeakPoint_Green.getXform().incRotationByDegree(1);
-    
-    this.mDyeBoss_CenterSpawn.getXform().incRotationByDegree(5);
-    
-//    this.mDyeBoss_Eyeballs.getXform().incRotationByDegree(10 * Math.random()* this.mClockwise);
-//    this.mDyeBoss_Eyeballs02.getXform().incRotationByDegree(10 * Math.random() * this.mClockwise);
-}
 
-Boss.prototype.buildSprite = function (atX, atY) {
-    this.mDyeBoss_Bottom.getXform().setPosition(atX, atY);
-    this.mDyeBoss_Bottom.getXform().setSize(this.kWidth, this.kHeight);
-    this.mDyeBoss_Bottom.getXform().setZPos(2);
-    
-    this.mDyeBoss_Top.getXform().setPosition(atX, atY);
-    this.mDyeBoss_Top.getXform().setSize(this.kWidth, this.kHeight);
-    this.mDyeBoss_Top.getXform().setZPos(2);
-    
-    let centerScaler = 1.75;
-    this.mDyeBoss_CenterSpawn.getXform().setPosition(atX+0.525, atY);
-    this.mDyeBoss_CenterSpawn.getXform().setSize(this.kWidth/centerScaler, this.kHeight/centerScaler);
-    this.mDyeBoss_CenterSpawn.getXform().setZPos(2);
-    
-    let eyeScaler = 4;
-    this.mDyeBoss_Eyeballs.getXform().setPosition(atX - 2.75, atY + 1.25);
-    this.mDyeBoss_Eyeballs.getXform().setSize(this.kWidth/eyeScaler, this.kHeight/eyeScaler);
-    this.mDyeBoss_Eyeballs.getXform().setZPos(2);
-    
-    this.mDyeBoss_Eyeballs02.getXform().setPosition(atX - 2.75, atY - 1.25);
-    this.mDyeBoss_Eyeballs02.getXform().setSize(this.kWidth/eyeScaler, this.kHeight/eyeScaler);
-    this.mDyeBoss_Eyeballs02.getXform().setZPos(2);
-    
-    let weakspotScaler = 3;
-    this.mDyeBoss_WeakPoint_Blue.getXform().setPosition(atX + 0.25, atY + 3);
-    this.mDyeBoss_WeakPoint_Blue.getXform().setSize(this.kWidth/weakspotScaler, this.kHeight/weakspotScaler);
-    this.mDyeBoss_WeakPoint_Blue.getXform().setZPos(2);
-    
-    this.mDyeBoss_WeakPoint_Green.getXform().setPosition(atX + 3.5, atY);
-    this.mDyeBoss_WeakPoint_Green.getXform().setSize(this.kWidth/weakspotScaler, this.kHeight/weakspotScaler);
-    this.mDyeBoss_WeakPoint_Green.getXform().setZPos(2);
-    
-    this.mDyeBoss_WeakPoint_Red.getXform().setPosition(atX + 0.25, atY - 3);
-    this.mDyeBoss_WeakPoint_Red.getXform().setSize(this.kWidth/weakspotScaler, this.kHeight/weakspotScaler);
-    this.mDyeBoss_WeakPoint_Red.getXform().setZPos(2);
-    
+    buildSprite(atX, atY) {
+        this.mDyeBoss_Bottom.getXform().setPosition(atX, atY);
+        this.mDyeBoss_Bottom.getXform().setSize(kWidth, kHeight);
+        this.mDyeBoss_Bottom.getXform().setZPos(2);
 
-}
+        this.mDyeBoss_Top.getXform().setPosition(atX, atY);
+        this.mDyeBoss_Top.getXform().setSize(kWidth, kHeight);
+        this.mDyeBoss_Top.getXform().setZPos(2);
 
-Boss.prototype._createPointLight = function (atX, atY) {
-    let lgt = new Light();
-    lgt.setLightType(0);
-    lgt.setColor([1, 1, 1, 1]);
-    lgt.setXPos(atX);
-    lgt.setYPos(atY);
-    lgt.setZPos(1);
-    lgt.setNear(4);
-    lgt.setFar(6);
-    lgt.setIntensity(0.5);
-    lgt.setDropOff(20);
-    lgt.setLightCastShadowTo(true);
-    return lgt;
-}
+        let centerScaler = 1.75;
+        this.mDyeBoss_CenterSpawn.getXform().setPosition(atX + 0.525, atY);
+        this.mDyeBoss_CenterSpawn.getXform().setSize(kWidth / centerScaler, kHeight / centerScaler);
+        this.mDyeBoss_CenterSpawn.getXform().setZPos(2);
 
-Boss.prototype.draw = function (aCamera) {
-    GameObject.prototype.draw.call(this, aCamera);
-    //this.mDyeBoss_Bottom.draw(aCamera);     
-    this.mDyeBoss_WeakPoint_Blue.draw(aCamera);
-    this.mDyeBoss_WeakPoint_Green.draw(aCamera);
-    this.mDyeBoss_WeakPoint_Red.draw(aCamera);
+        let eyeScaler = 4;
+        this.mDyeBoss_Eyeballs.getXform().setPosition(atX - 2.75, atY + 1.25);
+        this.mDyeBoss_Eyeballs.getXform().setSize(kWidth / eyeScaler, kHeight / eyeScaler);
+        this.mDyeBoss_Eyeballs.getXform().setZPos(2);
 
-    this.mDyeBoss_Eyeballs.draw(aCamera);
-    this.mDyeBoss_Eyeballs02.draw(aCamera);    
-        
-    this.mDyeBoss_CenterSpawn.draw(aCamera);
-    this.mDyeBoss_Top.draw(aCamera);
-    
-    let i;
-    for (i = 0; i < this.mAllMinions.length; i++) {
-        this.mAllMinions[i].draw(aCamera);
+        this.mDyeBoss_Eyeballs02.getXform().setPosition(atX - 2.75, atY - 1.25);
+        this.mDyeBoss_Eyeballs02.getXform().setSize(kWidth / eyeScaler, kHeight / eyeScaler);
+        this.mDyeBoss_Eyeballs02.getXform().setZPos(2);
+
+        let weakspotScaler = 3;
+        this.mDyeBoss_WeakPoint_Blue.getXform().setPosition(atX + 0.25, atY + 3);
+        this.mDyeBoss_WeakPoint_Blue.getXform().setSize(kWidth / weakspotScaler, kHeight / weakspotScaler);
+        this.mDyeBoss_WeakPoint_Blue.getXform().setZPos(2);
+
+        this.mDyeBoss_WeakPoint_Green.getXform().setPosition(atX + 3.5, atY);
+        this.mDyeBoss_WeakPoint_Green.getXform().setSize(kWidth / weakspotScaler, kHeight / weakspotScaler);
+        this.mDyeBoss_WeakPoint_Green.getXform().setZPos(2);
+
+        this.mDyeBoss_WeakPoint_Red.getXform().setPosition(atX + 0.25, atY - 3);
+        this.mDyeBoss_WeakPoint_Red.getXform().setSize(kWidth / weakspotScaler, kHeight / weakspotScaler);
+        this.mDyeBoss_WeakPoint_Red.getXform().setZPos(2);
+    }
+
+    _createPointLight(atX, atY) {
+        let lgt = new Light();
+        lgt.setLightType(0);
+        lgt.setColor([1, 1, 1, 1]);
+        lgt.setXPos(atX);
+        lgt.setYPos(atY);
+        lgt.setZPos(1);
+        lgt.setNear(4);
+        lgt.setFar(6);
+        lgt.setIntensity(0.5);
+        lgt.setDropOff(20);
+        lgt.setLightCastShadowTo(true);
+        return lgt;
+    }
+
+    draw(aCamera) {
+        super.draw(this, aCamera);
+        //this.mDyeBoss_Bottom.draw(aCamera);     
+        this.mDyeBoss_WeakPoint_Blue.draw(aCamera);
+        this.mDyeBoss_WeakPoint_Green.draw(aCamera);
+        this.mDyeBoss_WeakPoint_Red.draw(aCamera);
+
+        this.mDyeBoss_Eyeballs.draw(aCamera);
+        this.mDyeBoss_Eyeballs02.draw(aCamera);
+
+        this.mDyeBoss_CenterSpawn.draw(aCamera);
+        this.mDyeBoss_Top.draw(aCamera);
+
+        let i;
+        for (i = 0; i < this.mAllMinions.length; i++) {
+            this.mAllMinions[i].draw(aCamera);
+        }
+    }
+
+    _spawnChaser() {
+        let x = this.getXform().getXPos();
+        let y = this.getXform().getYPos();
+        let m = new ChaserMinion(x, y, [0, 0], 0, 2, kMinionTex, null, this.mLightSet, 1, 1.6);
+        this.mAllMinions.push(m);
     }
 }
 
-Boss.prototype._spawnChaser = function () {
-    let x = this.getXform().getXPos();
-    let y = this.getXform().getYPos();
-    let m = new ChaserMinion(x, y, [0, 0], 0, 2, this.kMinionTex, null, this.mLightSet, 1, 1.6);
-    this.mAllMinions.push(m);
-}
-
-
-
+export default Boss;

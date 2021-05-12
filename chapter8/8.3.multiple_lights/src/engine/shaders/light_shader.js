@@ -51,6 +51,8 @@ class LightShader extends SpriteShader {
     setCameraAndLights(c, l) {
         this.mCamera = c;
         this.mLights = l;
+        if (this.mLights.length > this.kGLSLuLightArraySize)
+            throw new Error ("Error: " + this.mLights.length + " lights requested. Current max light source supported is: " + this.kGLSLuLightArraySize + " update kGLSLuLightArraySize variable in light_shader.js  AND  light_fs.glsl to the proper number.");
     }
 }
 

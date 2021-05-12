@@ -19,7 +19,7 @@ class LightShader extends SpriteShader {
         //*******WARNING***************
         // this number MUST correspond to the GLSL uLight[] array size (for LightFS.glsl and IllumFS.glsl)
         //*******WARNING********************
-        this.kGLSLuLightArraySize = 4;  // <-- make sure this is the same as LightFS.glsl and IllumFS.glsl
+        this.kGLSLuLightArraySize = 8;  // <-- make sure this is the same as LightFS.glsl and IllumFS.glsl
         this.mShaderLights = [];
         let i, ls;
         for (i = 0; i < this.kGLSLuLightArraySize; i++) {
@@ -37,7 +37,8 @@ class LightShader extends SpriteShader {
         let numLight = 0;
         if (this.mLights !== null) {
             while (numLight < this.mLights.length) {
-                this.mShaderLights[numLight].loadToShader(this.mCamera, this.mLights[numLight]);
+                if (numLight < this.kGLSLuLightArraySize)
+                    this.mShaderLights[numLight].loadToShader(this.mCamera, this.mLights[numLight]);
                 numLight++;
             }
         }
@@ -51,6 +52,8 @@ class LightShader extends SpriteShader {
     setCameraAndLights(c, l) {
         this.mCamera = c;
         this.mLights = l;
+        if (this.mLights.length > this.kGLSLuLightArraySize)
+            throw new Error ("Error: " + this.mLights.length + " lights requested. Current max light source supported is: " + this.kGLSLuLightArraySize + " update kGLSLuLightArraySize variable in light_shader.js  AND  light_fs.glsl to the proper number.");
     }
 }
 

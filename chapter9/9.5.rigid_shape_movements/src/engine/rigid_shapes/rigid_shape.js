@@ -65,6 +65,12 @@ class RigidShape {
         this.mVelocity[0] = -this.mVelocity[0];
         this.mVelocity[1] = -this.mVelocity[1];
     }
+        
+    getAcceleration() { return this.mAcceleration; }
+    setAcceleration(x, y) {
+        this.mAcceleration[0] = x;
+        this.mAcceleration[1] = y;
+    }
 
     setTransform(xf) { this.mXform = xf; }
     // #endregion

@@ -130,7 +130,7 @@ class MyGame extends engine.Scene {
         this.mShapeMsg.draw(this.mCamera);
     }
 
-    increasShapeSize(obj, delta) {
+    incShapeSize(obj, delta) {
         let s = obj.getRigidBody();
         let r = s.incShapeSizeBy(delta);
     }
@@ -151,7 +151,7 @@ class MyGame extends engine.Scene {
             engine.physics.toggleHasMotion();
         }
         if (engine.input.isKeyClicked(engine.input.keys.H)) {
-            this.radomizeVelocity();
+            this.randomizeVelocity();
         }
 
         if (engine.input.isKeyClicked(engine.input.keys.Left)) {
@@ -167,10 +167,10 @@ class MyGame extends engine.Scene {
 
         let obj = this.mAllObjs.getObjectAt(this.mCurrentObj);
         if (engine.input.isKeyPressed(engine.input.keys.Y)) {
-            this.increasShapeSize(obj, kBoundDelta);
+            this.incShapeSize(obj, kBoundDelta);
         }
         if (engine.input.isKeyPressed(engine.input.keys.U)) {
-            this.increasShapeSize(obj, -kBoundDelta);
+            this.incShapeSize(obj, -kBoundDelta);
         }
 
         if (engine.input.isKeyClicked(engine.input.keys.G)) {
@@ -202,8 +202,8 @@ class MyGame extends engine.Scene {
         if (engine.input.isKeyClicked(engine.input.keys.One))
             this.mPSCollision = !this.mPSCollision;
         if (this.mPSCollision) {
-            engine.particleSystem.resolveRigidShapeCollision(this.mAllObjs, this.mParticles);
-            engine.particleSystem.resolveRigidShapeCollision(this.mPlatforms, this.mParticles);
+            engine.particleSystem.resolveRigidShapeSetCollision(this.mAllObjs, this.mParticles);
+            engine.particleSystem.resolveRigidShapeSetCollision(this.mPlatforms, this.mParticles);
         }
 
         obj.keyControl();

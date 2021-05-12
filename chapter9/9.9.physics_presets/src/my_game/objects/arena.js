@@ -94,7 +94,7 @@ class Arena {
         }
     }
 
-    radomizeVelocity() {
+    randomizeVelocity() {
         let kSpeed = 40;
         let i = 0;
         for (i = 0; i < this.mShapes.size(); i++) {

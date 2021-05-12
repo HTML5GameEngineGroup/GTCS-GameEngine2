@@ -1,32 +1,31 @@
-/* File: Wall.js 
+/* File: wall.js 
  *
  * Creates and initializes a Platform
  */
 
-/*jslint node: true, vars: true, white: true */
-/*global gEngine, GameObject, IllumRenderable */
-/* find out more about jslint: http://www.jslint.com/help.html */
-
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
+import engine from "../../engine/index.js";
 
-function Wall(cx, cy, texture, normal, lightSet) {
-    this.kWallWidth = 1.2;
-    this.kWallHeight = 5;
+const kWallWidth = 1.2;
+const kWallHeight = 5;
 
-    let renderableObj = new IllumRenderable(texture, normal);
-    let i;
-    for (i=0; i<lightSet.numLights(); i++) {
-        renderableObj.addLight(lightSet.getLightAt(i));
+class Wall extends engine.GameObject {
+    constructor(cx, cy, texture, normal, lightSet) {
+        super(null);
+
+        this.mRenderComponent = new engine.IllumRenderable(texture, normal);
+        let i;
+        for (i = 0; i < lightSet.numLights(); i++) {
+            this.mRenderComponent.addLight(lightSet.getLightAt(i));
+        }
+        this.getXform().setSize(kWallWidth, kWallHeight);
+        this.getXform().setPosition(cx, cy);
+
+        let rigidShape = new engine.RigidRectangle(this.getXform(), kWallWidth, kWallHeight);
+        rigidShape.setMass(0);  // ensures no movements!
+        rigidShape.toggleDrawBound();
+        this.setRigidBody(rigidShape);
     }
-    GameObject.call(this, renderableObj);
-    this.getXform().setSize(this.kWallWidth, this.kWallHeight);
-    this.getXform().setPosition(cx, cy);
-    
-    let rigidShape = new RigidRectangle(this.getXform(), this.kWallWidth, this.kWallHeight);
-    rigidShape.setMass(0);  // ensures no movements!
-    rigidShape.setDrawBounds(true);
-    rigidShape.setColor([0, 0, 1, 1]);
-    this.setPhysicsComponent(rigidShape);
 }
-gEngine.Core.inheritPrototype(Wall, GameObject);
 
+export default Wall;

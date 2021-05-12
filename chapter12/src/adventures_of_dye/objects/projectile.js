@@ -1,23 +1,18 @@
 "use strict";
+import engine from "../../engine/index.js";
 
-function Projectile(atX, atY, velocity, radius) {
-    this.kTexture = "assets/EMPPulse.png";
-    this.kSpeed = 0.2;
+const kTexture = "assets/EMPPulse.png";
+const kSpeed = 0.2;
 
-    ParticleGameObject.call(this, this.kTexture, atX, atY, 500);
-    this.setSpeed(this.kSpeed);
-    this.setCurrentFrontDir(velocity);
-    let obj = this.getRenderable();
-    obj.setColor([1, 1, 1, 1]);
-    obj.getXform().setSize(radius, radius);
-    
-    let rigidShape = new RigidCircle(this.getXform(), radius);
-    rigidShape.setMass(0.1);
-    rigidShape.setAcceleration([0, 0]);
-    this.setPhysicsComponent(rigidShape);
-    
-    this.setSizeDelta(1);
+class Projectile extends engine.Particle {
+    constructor(atX, atY, velocity, radius) {
+        super(kTexture, atX, atY, 500);
+        vec2.scale(velocity, velocity, kSpeed);
+        this.setVelocity(velocity.x, velocity.y);
+        this.setColor([1, 1, 1, 1]);
+        this.setSize(radius, radius);
+        this.setSizeDelta(1);
+    }
 }
-gEngine.Core.inheritPrototype(Projectile, ParticleGameObject);
 
-
+export default Projectile;

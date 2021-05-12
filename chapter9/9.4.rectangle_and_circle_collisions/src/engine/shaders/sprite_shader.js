@@ -52,7 +52,7 @@ class SpriteShader extends TextureShader {
     // make sure these functions are defined, such that
     // this shader can support LightRenderable and IllumRenderable
     // will be override by LightShader
-    setCameraAndLights(l) { }
+    setCameraAndLights(c, l) { }
 
     // will be override by IllumShader
     setMaterialAndCameraPos(m, p) { }

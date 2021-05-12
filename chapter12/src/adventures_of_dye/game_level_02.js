@@ -223,7 +223,7 @@ GameLevel_02.prototype.update = function () {
     let collided = false;
     let collisionInfo = new CollisionInfo();
     for (i = 0; i < this.mAllPlatforms.size(); i++) {
-        let platBox = this.mAllPlatforms.getObjectAt(i).getPhysicsComponent();
+        let platBox = this.mAllPlatforms.getObjectAt(i).getRigidBody();
         collided = this.mIllumHero.getJumpBox().collided(platBox, collisionInfo);
         if (collided) {
             this.mIllumHero.canJump(true);

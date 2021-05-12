@@ -1,22 +1,22 @@
 "use strict";
 
-function ChaserMinion(atX, atY, velocity, movementRange, type, texture, normal, lightSet, w, h) {
-    this.kOffset = 4.7;
-    this.kShootTimer = 90;
+import Minion from "./minion.js";
 
-    Minion.call(this, atX, atY, velocity, movementRange, type, texture, normal, lightSet, w, h);   
+class ChaserMinion extends Minion {
+    constructor(atX, atY, velocity, movementRange, type, texture, normal, lightSet, w, h) {
+        super(atX, atY, velocity, movementRange, type, texture, normal, lightSet, w, h);
+        this.kOffset = 4.7;
+        this.kShootTimer = 90;
+        this.setCurrentFrontDir([0, 1]);
+        this.getRigidBody().setSpeed(this.kSpeed);
 
-    this.setSpeed(this.kSpeed);
-    this.setCurrentFrontDir([0, 1]);
+    }
 
+    update(target) {
+        super.update(target);
+        let p = target.getXform().getPosition();
+        this.rotateObjPointTo(p, 0.08);
+    }
 }
-gEngine.Core.inheritPrototype(ChaserMinion, Minion);
 
-ChaserMinion.prototype.update = function (target) {
-    Minion.prototype.update.call(this);
-    let p = target.getXform().getPosition();
-    this.rotateObjPointTo(p, 0.08);
-}
-
-
-
+export default ChaserMinion;

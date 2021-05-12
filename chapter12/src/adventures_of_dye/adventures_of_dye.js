@@ -38,7 +38,7 @@ class AdventuresOfDye extends engine.Scene {
         engine.clearCanvas([0.9, 0.9, 0.9, 1.0]); // clear to light gray
 
         this.mCamera.setViewAndCameraMatrix();
-        this.mMsg.setText("This is splash Screen");
+        this.mMsg.setText("To be completed"); // ("This is splash Screen");
         this.mMsg.getXform().setPosition(10, 55);
         this.mMsg.draw(this.mCamera);
         this.mMsg.setText("<Space Bar> to Start");
@@ -60,7 +60,7 @@ class AdventuresOfDye extends engine.Scene {
 
         // Step B: starts the next level
         // starts the next level
-        let nextLevel = new GameLevel_01("Level1");  // next level to be loaded
+        let nextLevel = new AdventuresOfDye(); // GameLevel_01("Level1");  // next level to be loaded
         nextLevel.start();
     }
 }
@@ -68,6 +68,6 @@ class AdventuresOfDye extends engine.Scene {
 window.onload = function () {
     engine.init("GLCanvas");
 
-    let myGame = new AdventuresOfDye();
+    let myGame = new GameLevel_01("Level1"); // AdventuresOfDye();
     myGame.start();
 }

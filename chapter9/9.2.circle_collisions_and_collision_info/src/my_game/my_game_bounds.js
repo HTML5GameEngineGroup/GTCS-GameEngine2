@@ -9,7 +9,7 @@ import engine from "../engine/index.js";
 import MyGame from "./my_game_main.js";
 
 let kSpeed = 40;
-MyGame.prototype.radomizeVelocity = function()
+MyGame.prototype.randomizeVelocity = function()
 {
     let i = 0;
     for (i = 0; i<this.mAllObjs.size(); i++) {

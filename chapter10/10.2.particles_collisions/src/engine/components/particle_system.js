@@ -24,6 +24,7 @@ function getSystemAcceleration() { return mSystemAcceleration; }
 function setSystemAcceleration(g) { mSystemAcceleration = g; }
 
 function resolveCirclePos(circShape, particle) {
+    let collision = false;
     let pos = particle.getPosition();
     let cPos = circShape.getCenter();
     vec2.subtract(mFrom1to2, pos, cPos);
@@ -31,10 +32,13 @@ function resolveCirclePos(circShape, particle) {
     if (dist < circShape.getRadius()) {
         vec2.scale(mFrom1to2, mFrom1to2, 1/dist);
         vec2.scaleAndAdd(pos, cPos, mFrom1to2, circShape.getRadius());
+        collision = true;
     }
+    return collision;
 }
 
 function resolveRectPos(rectShape, particle) {
+    let collision = false;
     let s = particle.getSize();
     let p = particle.getPosition();
     mXform.setSize(s[0], s[1]); // referred by mCircleCollision
@@ -49,26 +53,49 @@ function resolveRectPos(rectShape, particle) {
                 mCircleCollider.adjustPositionBy(mCollisionInfo.getNormal(), mCollisionInfo.getDepth());
             p = mXform.getPosition();
             particle.setPosition(p[0], p[1]);
+            collision = true;
         }
     }
+    return collision;
 }
+
+// obj: a GameObject (with potential mRigidBody)
+// pSet: set of particles (ParticleSet)
+function resolveRigidShapeCollision(obj, pSet) {
+    let i, j;
+    let collision = false;
+
+    let rigidShape = obj.getRigidBody();
+    for (j = 0; j < pSet.size(); j++) {
+        if (rigidShape.getType() == "RigidRectangle")
+            collision = resolveRectPos(rigidShape, pSet.getObjectAt(j));
+        else if (rigidShape.getType() == "RigidCircle")
+            collision = resolveCirclePos(rigidShape, pSet.getObjectAt(j));
+    }
+
+    return collision;
+}
+
 
 // objSet: set of GameObjects (with potential mRigidBody)
 // pSet: set of particles (ParticleSet)
-function resolveRigidShapeCollision(objSet, pSet) {
+function resolveRigidShapeSetCollision(objSet, pSet) {
     let i, j;
+    let collision = false;
     if ((objSet.size === 0) || (pSet.size === 0))
-        return;
+        return false;
     for (i=0; i<objSet.size(); i++) {
         let rigidShape = objSet.getObjectAt(i).getRigidBody();
         for (j = 0; j<pSet.size(); j++) {
             if (rigidShape.getType() == "RigidRectangle")
-                resolveRectPos(rigidShape, pSet.getObjectAt(j));
+                collision = resolveRectPos(rigidShape, pSet.getObjectAt(j)) || collision;
             else if (rigidShape.getType() == "RigidCircle")
-                    resolveCirclePos(rigidShape, pSet.getObjectAt(j));
+                    collision = resolveCirclePos(rigidShape, pSet.getObjectAt(j)) || collision;
         }
     }
+    return collision;
 }
+
 export {init,
         getSystemAcceleration, setSystemAcceleration, 
-        resolveRigidShapeCollision}
+        resolveRigidShapeCollision, resolveRigidShapeSetCollision}

@@ -162,7 +162,7 @@ class MyGame extends engine.Scene {
             area.incFriction(.01);
         }
         if (engine.input.isKeyClicked(engine.input.keys.H)) {
-            area.radomizeVelocity();
+            area.randomizeVelocity();
         }
 
         if (engine.input.isKeyClicked(engine.input.keys.U)) {
