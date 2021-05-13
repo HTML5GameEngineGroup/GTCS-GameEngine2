@@ -57,26 +57,34 @@ function processLoadedImage(path, image) {
 
 // Loads an texture so that it can be drawn.
 function load(textureName) {
-    let image = new Image();
-    let texturePromise = new Promise(
-        function(resolve) {
-            image.onload = resolve; 
-            image.src = textureName;
-        }).then(
-            function resolve() { 
-                processLoadedImage(textureName, image); }
-        );
-    map.pushPromise(texturePromise);
+    let texturePromise = null;
+    if (map.has(textureName)) {
+        map.incRef(textureName);
+    } else {
+        map.loadRequested(textureName);
+        let image = new Image();
+        texturePromise = new Promise(
+            function (resolve) {
+                image.onload = resolve;
+                image.src = textureName;
+            }).then(
+                function resolve() {
+                    processLoadedImage(textureName, image);
+                }
+            );
+        map.pushPromise(texturePromise);
+    }
     return texturePromise;
 }
 
 // Remove the reference to allow associated memory 
 // be available for subsequent garbage collection
 function unload(textureName) {
-    let gl = glSys.get();
     let texInfo = get(textureName);
-    gl.deleteTexture(texInfo.mGLTexID);
-    map.unload(textureName);
+    if (map.unload(textureName)) {
+        let gl = glSys.get();
+        gl.deleteTexture(texInfo.mGLTexID);
+    }
 }
 
 function activate(textureName, normalMap) {
@@ -86,7 +94,7 @@ function activate(textureName, normalMap) {
     // Binds our texture reference to the current webGL texture functionality
     if (normalMap === "undefined" || (!normalMap))
         gl.activeTexture(gl.TEXTURE0);  // for this game engine, for now, unit 0 is reserved for color texture map
-    else 
+    else
         gl.activeTexture(gl.TEXTURE1);  // for this game engine, for now, unit 1 is reserved for normal texture map 
     gl.bindTexture(gl.TEXTURE_2D, texInfo.mGLTexID);
 
@@ -132,9 +140,10 @@ function getColorArray(textureName) {
     return texInfo.mColorArray;
 }
 
-export {has, get, load, unload, 
+export {
+    has, get, load, unload,
 
-    TextureInfo,    
+    TextureInfo,
 
     activate, deactivate,
 

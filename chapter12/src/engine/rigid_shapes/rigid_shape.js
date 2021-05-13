@@ -7,7 +7,7 @@
 
 import * as debugDraw from "../core/debug_draw.js";
 
-let kShapeColor = [0, 0, 0, 1];
+let kShapeColor = [0, 1, 0, 1];
 let kBoundColor = [1, 1, 1, 1];
 
 import * as physics from "../components/physics.js";
@@ -104,6 +104,9 @@ class RigidShape {
         this.mXform.incRotationByRad(this.mAngularVelocity * dt);
     }
 
+    setPosition(x, y) {
+        this.mXform.setPosition(x, y);
+    }
     adjustPositionBy(v, delta) {
         let p = this.mXform.getPosition();
         vec2.scaleAndAdd(p, p, v, delta);

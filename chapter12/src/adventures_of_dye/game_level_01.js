@@ -243,7 +243,7 @@ class GameLevel_01 extends engine.Scene {
             collided = engine.particleSystem.resolveRigidShapeCollision(this.mIllumHero, p);
                 if (collided) {
                     this.mRestart = true;
-                    this.next();
+                    // this.next();
                 }
             
         }
@@ -277,12 +277,10 @@ class GameLevel_01 extends engine.Scene {
     }
 
     _physicsSimulation(onPlatform, touchMinion) {
-
         // Hero platform
         engine.physics.processObjToSet(this.mIllumHero, this.mAllPlatforms);
         engine.physics.processObjToSet(this.mIllumHero, this.mAllWalls);
         engine.physics.processObjToSet(this.mIllumHero, this.mAllDoors);
-
 
         // Minion platform
         engine.physics.processSetToSet(this.mAllMinions, this.mAllPlatforms);

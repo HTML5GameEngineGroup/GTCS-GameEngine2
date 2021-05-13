@@ -91,7 +91,7 @@ RigidRectangle.prototype.findAxisLeastPenetration = function (otherRect, collisi
         // Retrieve a face normal from A
         n = this.mFaceNormal[i];
 
-        // use -n as direction and the vectex on edge i as point on edge    
+        // use -n as direction and the vertex on edge i as point on edge    
         vec2.scale(dir, n, -1);
         let ptOnEdge = this.mVertex[i];
         // find the support on B

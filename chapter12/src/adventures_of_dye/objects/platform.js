@@ -27,8 +27,8 @@ class Platform extends engine.GameObject {
 
         let rigidShape = new engine.RigidRectangle(this.getXform(), this.kPlatformWidth, this.kPlatformHeight);
         rigidShape.setMass(0);  // ensures no movements!
-        rigidShape.toggleDrawBound();
         this.setRigidBody(rigidShape);
+        this.toggleDrawRigidShape();
 
         // velocity and movementRange will come later
         let size = vec2.length(velocity);

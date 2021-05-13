@@ -44,7 +44,7 @@ function set(key, value) { mMap.set(key, value); }
 
 function pushPromise(p) { mOutstandingPromises.push(p); }
 
-// will block, wait for all oustanding promises complete
+// will block, wait for all outstanding promises complete
 // before continue
 async function waitOnPromises() {
     await Promise.all(mOutstandingPromises);

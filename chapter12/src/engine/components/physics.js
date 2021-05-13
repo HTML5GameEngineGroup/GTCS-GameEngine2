@@ -135,7 +135,7 @@ function resolveCollision(s1, s2, collisionInfo) {
 }
 
 // collide two rigid shapes
-function collideShape(s1, s2, infoSet) {
+function collideShape(s1, s2, infoSet = null) {
     let hasCollision = false;
     if ((s1 !== s2) && ((s1.getInvMass() !== 0) || (s2.getInvMass() !== 0))) {
         if (s1.boundTest(s2)) {
@@ -148,18 +148,18 @@ function collideShape(s1, s2, infoSet) {
                 positionalCorrection(s1, s2, mCInfo);
                 resolveCollision(s1, s2, mCInfo);
                 // for showing off collision mCInfo!
-                            if (infoSet !== null) {
+                if (infoSet !== null) {
                     infoSet.push(mCInfo);
                     mCInfo = new CollisionInfo();
-                            }
-                        }
-                    }
                 }
+            }
+        }
+    }
     return hasCollision;
 }
 
 // collide an GameObject with a GameObjectSet
-function processObjToSet(obj, set, infoSet) {
+function processObjToSet(obj, set, infoSet = null) {
     let j = 0, r = 0;
     let hasCollision = false;
     let s1 = obj.getRigidBody();
@@ -173,7 +173,7 @@ function processObjToSet(obj, set, infoSet) {
 }
 
 // collide two GameObjectSets
-function processSetToSet(set1, set2, infoSet) {
+function processSetToSet(set1, set2, infoSet = null) {
     let i = 0, j = 0, r = 0;;
     let hasCollision = false;
     for (r = 0; r < mRelaxationCount; r++) {
@@ -182,14 +182,14 @@ function processSetToSet(set1, set2, infoSet) {
             for (j = 0; j < set2.size(); j++) {
                 let s2 = set2.getObjectAt(j).getRigidBody();
                 hasCollision = collideShape(s1, s2, infoSet) || hasCollision;
-                            }
-                        }
-                    }
+            }
+        }
+    }
     return hasCollision;
-                }
+}
 
 // collide all objects in the GameObjectSet with themselves
-function processSet(set, infoSet) {
+function processSet(set, infoSet = null) {
     let i = 0, j = 0, r = 0;;
     let hasCollision = false;
     for (r = 0; r < mRelaxationCount; r++) {
@@ -213,7 +213,7 @@ export {
 
     getRelaxationCount,
     incRelaxationCount,
-    
+
     getHasMotion,
     toggleHasMotion,
 

@@ -49,12 +49,11 @@ class Hero extends engine.GameObject {
         //this.mDye.addLight(lgtSet.getLightAt(3));
         //    this.mDye.addLight(lgtSet.getLightAt(2));
 
-        this.mJmpTransform = new engine.Transform();
-        this.mJmpTransform.setPosition(this.mDye.getXform().getXPos(), this.mDye.getXform().getYPos() - this.kHeight / 2);
-        this.mJumpBox = new engine.RigidRectangle(this.mJmpTransform, this.kWidth, 0.25);
+        let jxf = new engine.Transform();
+        jxf.setPosition(this.mDye.getXform().getXPos(), this.mDye.getXform().getYPos() - this.kHeight / 2);
+        this.mJumpBox = new engine.RigidRectangle(jxf, this.kWidth, 0.25);
         this.mJumpBox.toggleDrawBound();
         //this.setRigidBody(this.mJumpBox);
-
 
         let r = new engine.RigidRectangle(this.getXform(), this.kWidth / 1.9, this.kHeight / 1.1);
         r.setMass(0.7);
@@ -67,7 +66,7 @@ class Hero extends engine.GameObject {
     update() {
         super.update();
 
-        this.mJmpTransform.setPosition(this.mDye.getXform().getXPos(), this.mDye.getXform().getYPos() - this.kHeight / 2);
+        this.mJumpBox.setPosition(this.mDye.getXform().getXPos(), this.mDye.getXform().getYPos() - this.kHeight / 2);
 
         // control by WASD
         let xform = this.getXform();
