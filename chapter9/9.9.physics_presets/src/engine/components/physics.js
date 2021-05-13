@@ -48,7 +48,7 @@ function resolveCollision(s1, s2, collisionInfo) {
     let n = collisionInfo.getNormal();
 
     //the direction of collisionInfo is always from s1 to s2
-    //but the Mass is inversed, so start scale with s2 and end scale with s1
+    //but the Mass is inverse, so start scale with s2 and end scale with s1
     let invSum = 1 / (s1.getInvMass() + s2.getInvMass());
     let start = [0, 0], end = [0, 0], p = [0, 0];
     vec2.scale(start, collisionInfo.getStart(), s2.getInvMass() * invSum);
