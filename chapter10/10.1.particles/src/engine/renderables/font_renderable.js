@@ -81,6 +81,10 @@ class FontRenderable {
 
     update() {}
 
+    
+    /*
+     * this can be a potentially useful function. Not included/tested in this version of the engine
+
     getStringWidth(h) {
         let stringWidth = 0;
         let charSize = h;
@@ -92,6 +96,7 @@ class FontRenderable {
         }
         return stringWidth;
     }
+    */
 }
 
 export default FontRenderable;

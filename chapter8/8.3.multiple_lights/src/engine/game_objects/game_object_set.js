@@ -21,6 +21,12 @@ class GameObjectSet {
         this.mSet.push(obj);
     }
 
+    removeFromSet(obj) {
+        let index = this.mSet.indexOf(obj);
+        if (index > -1)
+            this.mSet.splice(index, 1);
+    }
+    
     update() {
         let i;
         for (i = 0; i < this.mSet.length; i++) {

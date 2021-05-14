@@ -82,7 +82,7 @@ class FontRenderable {
     update() {}
 
     /*
-     * this can be a potentially useful funciton. Not included/tested in this version of the engine
+     * this can be a potentially useful function. Not included/tested in this version of the engine
 
     getStringWidth(h) {
         let stringWidth = 0;
