@@ -18,7 +18,7 @@ class Brain extends engine.GameObject {
     }
 
     update() {
-        GameObject.update();
+        super.update();
         let xf = this.getXform();
         let fdir = this.getCurrentFrontDir();
         if (engine.input.isKeyPressed(engine.input.keys.Left)) {
