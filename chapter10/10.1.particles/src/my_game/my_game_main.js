@@ -257,7 +257,7 @@ function _createParticle(atX, atY) {
     // velocity on the particle
     let fx = 10 - 20 * Math.random();
     let fy = 10 * Math.random();
-    p.setVelocity([fx, fy]);
+    p.setVelocity(fx, fy);
     
     // size delta
     p.setSizeDelta(0.98);

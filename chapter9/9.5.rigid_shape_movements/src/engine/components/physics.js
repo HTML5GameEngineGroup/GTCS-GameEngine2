@@ -30,7 +30,6 @@ function incRelaxationCount(dc) { mRelaxationCount += dc; }
 let mS1toS2 = [0, 0];
 let mCInfo = new CollisionInfo();
 
-
 function positionalCorrection(s1, s2, collisionInfo) {
     if (!mCorrectPosition)
         return;
@@ -46,7 +45,7 @@ function positionalCorrection(s1, s2, collisionInfo) {
 }
 
 // collide two rigid shapes
-function collideShape(s1, s2, infoSet) {
+function collideShape(s1, s2, infoSet = null) {
     let hasCollision = false;
     if ((s1 !== s2) && ((s1.getInvMass() !== 0) || (s2.getInvMass() !== 0))) {
         if (s1.boundTest(s2)) {
@@ -68,8 +67,7 @@ function collideShape(s1, s2, infoSet) {
 }
 
 // collide an GameObject with a GameObjectSet
-function processObjToSet(obj, set, infoSet)
-{
+function processObjToSet(obj, set, infoSet = null) {
     let j = 0;
     let hasCollision = false;
     let s1 = obj.getRigidBody();
@@ -81,8 +79,7 @@ function processObjToSet(obj, set, infoSet)
 }
 
 // collide two GameObjectSets
-function processSetToSet(set1, set2, infoSet) 
-{
+function processSetToSet(set1, set2, infoSet = null) {
     let i = 0, j = 0;
     let hasCollision = false;
     for (i = 0; i < set1.size(); i++) {
@@ -96,7 +93,7 @@ function processSetToSet(set1, set2, infoSet)
 }
 
 // collide all objects in the GameObjectSet with themselves
-function processSet(set, infoSet) {
+function processSet(set, infoSet = null) {
     let i = 0, j = 0;
     let hasCollision = false;
 

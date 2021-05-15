@@ -30,9 +30,7 @@ class ShadowCasterShader extends SpriteShader {
 
     setCameraAndLights(c, l) {
         this.mCamera = c;
-        this.mLights = l;
-        if (this.mLights.length > this.kGLSLuLightArraySize)
-            throw new Error ("Error: Max number of light source supported is: " + this.kGLSLuLightArraySize);
+        this.mLight = l;
     }
 }
 

@@ -85,9 +85,15 @@ class Particle {
     setSize(x, y) { this.mRenderComponent.getXform().setSize(x, y); }
 
     getVelocity() { return this.mVelocity; }
-    setVelocity(f) { this.mVelocity = f; }
+    setVelocity(x, y) { 
+        this.mVelocity[0] = x;
+        this.mVelocity[1] = y;
+    }
     getAcceleration() { return this.mAcceleration; }
-    setAcceleration(g) { this.mAcceleration = g; }
+    setAcceleration(x, y) { 
+        this.mAcceleration[0] = x;
+        this.mAcceleration[1] = y;
+    }
 
     setDrag(d) { this.mDrag = d; }
     getDrag() { return this.mDrag; }

@@ -81,7 +81,7 @@ class Minion extends engine.GameObject {
             return;
         }
 
-        // Step C: clamp the cosTheda to -1 to 1 
+        // Step C: clamp the cosTheta to -1 to 1 
         // in a perfect world, this would never happen! BUT ...
         if (cosTheta > 1) {
             cosTheta = 1;

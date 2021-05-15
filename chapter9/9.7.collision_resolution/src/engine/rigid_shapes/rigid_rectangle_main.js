@@ -29,6 +29,11 @@ class RigidRectangle extends RigidShape {
         this.rotateVertices();
     }
 
+    setPosition(x, y) {
+        super.setPosition(x, y);
+        this.setVertices();
+        this.rotateVertices();
+    }
     adjustPositionBy(v, delta) {
         super.adjustPositionBy(v, delta);
         this.setVertices();
@@ -45,6 +50,12 @@ class RigidRectangle extends RigidShape {
         this.mVertex[1] = vec2.fromValues(center[0] + hw, center[1] - hh);
         this.mVertex[2] = vec2.fromValues(center[0] + hw, center[1] + hh);
         this.mVertex[3] = vec2.fromValues(center[0] - hw, center[1] + hh);
+    }
+
+    setTransform(xf) {
+        super.setTransform(xf);
+        this.setVertices();
+        this.rotateVertices();
     }
 
     computeFaceNormals() {

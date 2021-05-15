@@ -56,26 +56,34 @@ function processLoadedImage(path, image) {
 
 // Loads an texture so that it can be drawn.
 function load(textureName) {
+    let texturePromise = null;
+    if (map.has(textureName)) {
+        map.incRef(textureName);
+    } else {
+        map.loadRequested(textureName);
     let image = new Image();
-    let texturePromise = new Promise(
+        texturePromise = new Promise(
         function(resolve) {
             image.onload = resolve; 
             image.src = textureName;
         }).then(
             function resolve() { 
-                processLoadedImage(textureName, image); }
+                    processLoadedImage(textureName, image);
+                }
         );
     map.pushPromise(texturePromise);
+    }
     return texturePromise;
 }
 
 // Remove the reference to allow associated memory 
 // be available for subsequent garbage collection
 function unload(textureName) {
-    let gl = glSys.get();
     let texInfo = get(textureName);
+    if (map.unload(textureName)) {
+    let gl = glSys.get();
     gl.deleteTexture(texInfo.mGLTexID);
-    map.unload(textureName);
+    }
 }
 
 function activate(textureName) {
@@ -105,7 +113,8 @@ function deactivate() {
 }
 
 
-export {has, get, load, unload, 
+export {
+    has, get, load, unload,
 
     TextureInfo,    
 

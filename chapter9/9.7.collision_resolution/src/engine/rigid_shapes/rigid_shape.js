@@ -99,13 +99,15 @@ class RigidShape {
         this.mXform.incRotationByRad(this.mAngularVelocity * dt);
     }
 
+    setPosition(x, y) {
+        this.mXform.setPosition(x, y);
+    }
     adjustPositionBy(v, delta) {
         let p = this.mXform.getPosition();
         vec2.scaleAndAdd(p, p, v, delta);
     }
 
     update() {
-
         if (this.mInvMass === 0)
             return;
 

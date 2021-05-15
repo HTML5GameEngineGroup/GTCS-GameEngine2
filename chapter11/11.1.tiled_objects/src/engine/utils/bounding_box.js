@@ -1,5 +1,5 @@
 /*
- * File: boundingbox.js
+ * File: bounding_box.js
  *
  * defines an Axis Aligned Bounding Box (AABB)
  * 

@@ -31,6 +31,14 @@ class RigidShape {
     setTransform(xf) { this.mXform = xf; }
     // #endregion
 
+
+    setPosition(x, y) {
+        this.mXform.setPosition(x, y);
+    }
+    adjustPositionBy(v, delta) {
+        let p = this.mXform.getPosition();
+        vec2.scaleAndAdd(p, p, v, delta);
+    }
     boundTest(otherShape) {
         let vFrom1to2 = [0, 0];
         vec2.subtract(vFrom1to2, otherShape.mXform.getPosition(), this.mXform.getPosition());
