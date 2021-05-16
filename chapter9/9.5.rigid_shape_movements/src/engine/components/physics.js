@@ -16,7 +16,11 @@ let mCorrectPosition = true;
 let mHasMotion = true;
 
 // getters and setters
-function getSystemAcceleration() { return mSystemAcceleration; }
+function getSystemAcceleration() { return vec2.clone(mSystemAcceleration); }
+function setSystemAcceleration(x, y) {
+    mSystemAcceleration[0] = x;
+    mSystemAcceleration[1] = y;
+}
 
 function getPositionalCorrection() { return mCorrectPosition; }
 function togglePositionalCorrection() { mCorrectPosition = !mCorrectPosition; }
@@ -109,7 +113,8 @@ function processSet(set, infoSet = null) {
 
 export {
     // Physics system attributes
-    getSystemAcceleration,
+    getSystemAcceleration, setSystemAcceleration,
+
 
     togglePositionalCorrection,
     getPositionalCorrection,

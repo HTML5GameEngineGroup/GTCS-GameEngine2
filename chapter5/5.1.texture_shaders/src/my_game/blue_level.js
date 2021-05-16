@@ -5,7 +5,7 @@
 "use strict";
 
 // from engine
-import engine from "../engine/index.js";;
+import engine from "../engine/index.js";
 
 // local stuff
 import MyGame from "./my_game.js";

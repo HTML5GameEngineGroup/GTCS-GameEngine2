@@ -58,8 +58,9 @@ class Hero extends engine.GameObject {
         let r = new engine.RigidRectangle(this.getXform(), this.kWidth / 1.9, this.kHeight / 1.1);
         r.setMass(0.7);
         r.setRestitution(0);
+        r.setInertia(0);
         r.toggleDrawBound();
-        r.setAcceleration(0, -5);
+        r.setAcceleration(0, -30);
         this.setRigidBody(r);
     }
 
@@ -103,7 +104,7 @@ class Hero extends engine.GameObject {
             }
 
             if (engine.input.isKeyPressed(engine.input.keys.Space)) {
-                v[1] = 35; // Jump velocity
+                v[1] = 20; // Jump velocity
                 this.mPreviousHeroState = this.mHeroState;
                 if (this.mHeroState === eHeroState.eRunRight
                     || this.mHeroState === eHeroState.eFaceRight)

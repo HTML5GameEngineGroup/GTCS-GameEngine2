@@ -6,7 +6,10 @@
 
 let mSystemAcceleration = [30, -50.0];   
     
-function getSystemAcceleration() { return mSystemAcceleration; }
-function setSystemAcceleration(g) { mSystemAcceleration = g; }
+function getSystemAcceleration() { return vec2.clone(mSystemAcceleration); }
+function setSystemAcceleration(x, y) {
+    mSystemAcceleration[0] = x;
+    mSystemAcceleration[1] = y;
+}
 
 export {getSystemAcceleration, setSystemAcceleration}

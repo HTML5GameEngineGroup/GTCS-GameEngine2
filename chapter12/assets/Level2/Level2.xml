@@ -14,7 +14,7 @@
             BgColor="0 0 1 1.0"
     />    
 	
-    <Background PosX="0" PosY="0" Width="10" Height="10" ZPos="-20" ParallaxDepth="100" 
+    <Background PosX="0" PosY="0" Width="10" Height="10" ZPos="-5" ParallaxDepth="100" 
                     LightIndices="2"
                     ReceiveShadow="false"
                     Texture="bg.png" NormalMap="bg_normal.png" />

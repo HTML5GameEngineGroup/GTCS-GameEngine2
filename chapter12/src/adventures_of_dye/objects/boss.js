@@ -73,14 +73,16 @@ class Boss extends engine.GameObject {
         let size = vec2.length(velocity);
         if (size > 0.001) {
             this.setCurrentFrontDir(velocity);
-            vec2.scale(velocity, velocity, this.kSpeed);
-            rigidShape.setVelocity(velocity.x, velocity.y);
+            vec2.scale(velocity, velocity, kSpeed);
+            rigidShape.setVelocity(velocity[0], velocity[1]);
         }
     }
 
 
     update() {
-        super.update(this);
+        super.update();
+        let p = this.getXform().getPosition();
+        vec2.add(p, p, this.getRigidBody().getVelocity());
 
         let i;
         for (i = 0; i < this.mAllMinions.length; i++) {
@@ -104,9 +106,7 @@ class Boss extends engine.GameObject {
         let len = vec2.length(s);
 
         if (len > this.mMovementRange) {
-            let f = this.getCurrentFrontDir();
-            f[0] = -f[0];
-            f[1] = -f[1];
+            this.getRigidBody().flipVelocity();
 
         }
         this.light.set2DPosition(this.getXform().getPosition());
@@ -160,7 +160,7 @@ class Boss extends engine.GameObject {
     }
 
     _createPointLight(atX, atY) {
-        let lgt = new Light();
+        let lgt = new engine.Light();
         lgt.setLightType(0);
         lgt.setColor([1, 1, 1, 1]);
         lgt.setXPos(atX);
@@ -175,7 +175,7 @@ class Boss extends engine.GameObject {
     }
 
     draw(aCamera) {
-        super.draw(this, aCamera);
+        super.draw(aCamera);
         //this.mDyeBoss_Bottom.draw(aCamera);     
         this.mDyeBoss_WeakPoint_Blue.draw(aCamera);
         this.mDyeBoss_WeakPoint_Green.draw(aCamera);
@@ -196,7 +196,7 @@ class Boss extends engine.GameObject {
     _spawnChaser() {
         let x = this.getXform().getXPos();
         let y = this.getXform().getYPos();
-        let m = new ChaserMinion(x, y, [0, 0], 0, 2, kMinionTex, null, this.mLightSet, 1, 1.6);
+        let m = new ChaserMinion(x, y, [0, 1], 0, 2, kMinionTex, null, this.mLightSet, 1, 1.6);
         this.mAllMinions.push(m);
     }
 }

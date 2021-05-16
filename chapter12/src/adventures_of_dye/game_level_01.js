@@ -10,6 +10,8 @@ import engine from "../engine/index.js";
 import SceneFileParser from "./util/scene_file_parser.js";
 import Hero from "./objects/hero.js"
 
+import GameLevel_02 from "./game_level_02.js";
+
 class GameLevel_01 extends engine.Scene {
     constructor(level) {
         super();
@@ -233,7 +235,7 @@ class GameLevel_01 extends engine.Scene {
             collided = this.mIllumHero.getRigidBody().collisionTest(minionBox, collisionInfo);
             if (collided) {
                 this.mRestart = true;
-                this.next();
+                // this.next();
             }
         }
 

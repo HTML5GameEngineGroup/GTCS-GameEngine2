@@ -60,7 +60,7 @@ class AdventuresOfDye extends engine.Scene {
 
         // Step B: starts the next level
         // starts the next level
-        let nextLevel = new AdventuresOfDye(); // GameLevel_01("Level1");  // next level to be loaded
+        let nextLevel = new GameLevel_01("Level1");  // next level to be loaded
         nextLevel.start();
     }
 }
@@ -68,6 +68,6 @@ class AdventuresOfDye extends engine.Scene {
 window.onload = function () {
     engine.init("GLCanvas");
 
-    let myGame = new GameLevel_01("Level1"); // AdventuresOfDye();
+    let myGame = new AdventuresOfDye();
     myGame.start();
 }

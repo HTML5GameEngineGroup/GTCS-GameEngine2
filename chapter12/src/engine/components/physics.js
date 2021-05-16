@@ -16,8 +16,11 @@ let mCorrectPosition = true;
 let mHasMotion = true;
 
 // getters and setters
-function getSystemAcceleration() { return mSystemAcceleration; }
-
+function getSystemAcceleration() { return vec2.clone(mSystemAcceleration); }
+function setSystemAcceleration(x, y) {
+    mSystemAcceleration[0] = x;
+    mSystemAcceleration[1] = y;
+}
 function getPositionalCorrection() { return mCorrectPosition; }
 function togglePositionalCorrection() { mCorrectPosition = !mCorrectPosition; }
 
@@ -174,7 +177,7 @@ function processObjToSet(obj, set, infoSet = null) {
 
 // collide two GameObjectSets
 function processSetToSet(set1, set2, infoSet = null) {
-    let i = 0, j = 0, r = 0;;
+    let i = 0, j = 0, r = 0;
     let hasCollision = false;
     for (r = 0; r < mRelaxationCount; r++) {
         for (i = 0; i < set1.size(); i++) {
@@ -190,7 +193,7 @@ function processSetToSet(set1, set2, infoSet = null) {
 
 // collide all objects in the GameObjectSet with themselves
 function processSet(set, infoSet = null) {
-    let i = 0, j = 0, r = 0;;
+    let i = 0, j = 0, r = 0;
     let hasCollision = false;
     for (r = 0; r < mRelaxationCount; r++) {
         for (i = 0; i < set.size(); i++) {
@@ -206,7 +209,8 @@ function processSet(set, infoSet = null) {
 
 export {
     // Physics system attributes
-    getSystemAcceleration,
+    getSystemAcceleration, setSystemAcceleration,
+
 
     togglePositionalCorrection,
     getPositionalCorrection,

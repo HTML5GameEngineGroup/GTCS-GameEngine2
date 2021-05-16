@@ -46,9 +46,10 @@ class Minion extends engine.GameObject {
         this.changeSprite(atX, atY);
 
         let rigidShape = new engine.RigidRectangle(this.getXform(), this.kWidth, this.kHeight);
-        rigidShape.setMass(1);  // ensures no movements!
+        rigidShape.setMass(1);  
         rigidShape.toggleDrawBound();
         rigidShape.setAcceleration(0, 0);
+        rigidShape.setInertia(0);
         this.setRigidBody(rigidShape);
 
         // velocity and movementRange will come later
@@ -56,7 +57,7 @@ class Minion extends engine.GameObject {
         if (size > 0.001) {
             this.setCurrentFrontDir(velocity);
             vec2.scale(velocity, velocity, this.kSpeed);
-            rigidShape.setVelocity(velocity.x, velocity.y);
+            rigidShape.setVelocity(velocity[0], velocity[1]);
         }
     }
 
@@ -112,16 +113,17 @@ class Minion extends engine.GameObject {
         // remember to update this.mMinion's animation
         this.mMinion.updateAnimation();
         this.mProjectiles.update();
-        super.update();
+        // super.update(); do not need to do rigidshape update!
+
+        let p = this.getXform().getPosition();
+        vec2.add(p, p, this.getRigidBody().getVelocity());
 
         if (this.mType === eMinionType.eDefault || this.mType === eMinionType.eSentry) {
             let s = vec2.fromValues(0, 0);
-            vec2.subtract(s, this.getXform().getPosition(), this.mInitialPosition);
+            vec2.subtract(s, p, this.mInitialPosition);
             let len = vec2.length(s);
             if (len > this.mMovementRange) {
-                let f = this.getCurrentFrontDir();
-                f[0] = -f[0];
-                f[1] = -f[1];
+                this.getRigidBody().flipVelocity();
             }
             this.light.set2DPosition(this.getXform().getPosition());
         }

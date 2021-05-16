@@ -35,19 +35,19 @@ class Platform extends engine.GameObject {
         if (size > 0.001) {
             this.setCurrentFrontDir(velocity);
             vec2.scale(velocity, velocity, this.kSpeed);
-            rigidShape.setVelocity(velocity.x, velocity.y);
+            rigidShape.setVelocity(velocity[0], velocity[1]);
         }
     }
 
     update() {
         super.update();
+        let p = this.getXform().getPosition();
+        vec2.add(p, p, this.getRigidBody().getVelocity());
         let s = vec2.fromValues(0, 0);
-        vec2.subtract(s, this.getXform().getPosition(), this.mInitialPosition);
+        vec2.subtract(s, p, this.mInitialPosition);
         let len = vec2.length(s);
         if (len > this.mMovementRange) {
-            let f = this.getCurrentFrontDir();
-            f[0] = -f[0];
-            f[1] = -f[1];
+            this.getRigidBody().flipVelocity();
         }
     }
 }

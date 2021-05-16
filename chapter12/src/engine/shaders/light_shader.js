@@ -37,7 +37,6 @@ class LightShader extends SpriteShader {
         let numLight = 0;
         if (this.mLights !== null) {
             while (numLight < this.mLights.length) {
-                if (numLight < this.kGLSLuLightArraySize)
                     this.mShaderLights[numLight].loadToShader(this.mCamera, this.mLights[numLight]);
                 numLight++;
             }
