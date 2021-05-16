@@ -11,13 +11,8 @@ class TiledGameObject extends GameObject {
     constructor(renderableObj) {
         super(renderableObj);
 
-        this.mSpeed = 0;  // moving speed
         this.mShouldTile = true; // can switch this off if desired
     }
-
-    setSpeed(s) { this.mSpeed = s; }
-    getSpeed() { return this.mSpeed; }
-    incSpeedBy(delta) { this.mSpeed += delta; }
 
     setIsTiled(t) {
         this.mShouldTile = t;
@@ -107,12 +102,6 @@ class TiledGameObject extends GameObject {
                 this.mRenderComponent.draw(aCamera);
             }
         }
-    }
-
-    update() {
-        // simple default behavior
-        let pos = this.getXform().getPosition();
-        vec2.scaleAndAdd(pos, pos, this.getCurrentFrontDir(), this.getSpeed());
     }
 }
 

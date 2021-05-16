@@ -30,8 +30,7 @@ class ParallaxGameObject extends TiledGameObject {
     update() {
         // simple default behavior
         this._refPosUpdate(); // check to see if the camera has moved
-        let pos = this.getXform().getPosition();  // our own xform
-        vec2.scaleAndAdd(pos, pos, this.getCurrentFrontDir(), this.getSpeed() * this.mParallaxScale);
+        super.update();
     }
 
     _refPosUpdate() {

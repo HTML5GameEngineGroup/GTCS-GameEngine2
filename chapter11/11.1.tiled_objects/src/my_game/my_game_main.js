@@ -99,9 +99,7 @@ class MyGame extends engine.Scene {
     bgR.getXform().setZPos(-5);
     bgR.addLight(this.mGlobalLightSet.getLightAt(1));   // only the directional light
     this.mBg = new engine.TiledGameObject(bgR);
-    this.mBg.setCurrentFrontDir([0, 1]);
-    this.mBg.setSpeed(0.05);
-    
+        
     // Step D: the closer Background
     let i; 
     let bgR1 = new engine.IllumRenderable(this.kBgLayer, this.kBgLayerNormal);
@@ -114,8 +112,6 @@ class MyGame extends engine.Scene {
     bgR1.getMaterial().setSpecular([0.2, 0.2, 0.5, 1]);
     bgR1.getMaterial().setShininess(10);
     this.mBgL1 = new engine.TiledGameObject(bgR1);
-    this.mBgL1.setSpeed(0.05);
-    this.mBgL1.setCurrentFrontDir([-1, 0]);
     
     // 
     // the objects

@@ -102,7 +102,6 @@ class MyGame extends engine.Scene {
     bgR.getXform().setZPos(-5);
     bgR.addLight(this.mGlobalLightSet.getLightAt(1));   // only the directional light
     this.mBg = new engine.ParallaxGameObject(bgR, 5, this.mCamera);
-    this.mBg.setCurrentFrontDir([0, -1, 0]);
     
     // Step D: the closer Background
     let i; 
@@ -116,7 +115,6 @@ class MyGame extends engine.Scene {
     bgR1.getMaterial().setSpecular([0.2, 0.2, 0.5, 1]);
     bgR1.getMaterial().setShininess(10);
     this.mBgL1 = new engine.ParallaxGameObject(bgR1, 3, this.mCamera);
-    this.mBgL1.setCurrentFrontDir([0, -1, 0]);
     
     // Step E: the front layer 
     let f = new engine.TextureRenderable(this.kBgLayer);

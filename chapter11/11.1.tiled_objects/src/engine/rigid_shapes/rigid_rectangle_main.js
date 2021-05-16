@@ -59,7 +59,7 @@ class RigidRectangle extends RigidShape {
         let center = this.mXform.getPosition();
         let hw = this.mWidth / 2;
         let hh = this.mHeight / 2;
-        //0--TopLeft;1--TopRight;2--BottomRight;3--BottomLeft
+        // 0--TopLeft;1--TopRight;2--BottomRight;3--BottomLeft
         this.mVertex[0] = vec2.fromValues(center[0] - hw, center[1] - hh);
         this.mVertex[1] = vec2.fromValues(center[0] + hw, center[1] - hh);
         this.mVertex[2] = vec2.fromValues(center[0] + hw, center[1] + hh);
@@ -73,8 +73,8 @@ class RigidRectangle extends RigidShape {
     }
 
     computeFaceNormals() {
-        //0--Top;1--Right;2--Bottom;3--Left
-        //mFaceNormal is normal of face toward outside of rectangle    
+        // 0--Top;1--Right;2--Bottom;3--Left
+        // mFaceNormal is normal of face toward outside of rectangle    
         for (let i = 0; i < 4; i++) {
             let v = (i + 1) % 4;
             let nv = (i + 2) % 4;
