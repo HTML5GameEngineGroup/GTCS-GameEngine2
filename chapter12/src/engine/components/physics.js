@@ -21,6 +21,7 @@ function setSystemAcceleration(x, y) {
     mSystemAcceleration[0] = x;
     mSystemAcceleration[1] = y;
 }
+
 function getPositionalCorrection() { return mCorrectPosition; }
 function togglePositionalCorrection() { mCorrectPosition = !mCorrectPosition; }
 

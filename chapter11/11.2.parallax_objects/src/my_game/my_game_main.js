@@ -195,8 +195,6 @@ class MyGame extends engine.Scene {
         this.mCamera.panWith(xf, 0.2);
         this.mGlobalLightSet.getLightAt(3).set2DPosition(xf.getPosition());
 
-        this.mParallaxCam.panWith(this.mIllumHero.getXform(), 0.6);
-
         xf = this.mIllumHero.getXform();
         this.mGlobalLightSet.getLightAt(2).set2DPosition(xf.getPosition());
 

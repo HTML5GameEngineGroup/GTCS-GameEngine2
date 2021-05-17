@@ -42,7 +42,7 @@ class ParallaxGameObject extends TiledGameObject {
     }
 
     setWCTranslationBy(delta) {
-        let f = (1 - this.mParallaxScale);
+        let f = (1 - (1/this.mParallaxScale));
         this.getXform().incXPosBy(-delta[0] * f);
         this.getXform().incYPosBy(-delta[1] * f);
     }
@@ -52,10 +52,9 @@ class ParallaxGameObject extends TiledGameObject {
     }
 
     setParallaxScale(s) {
+        this.mParallaxScale = s;
         if (s <= 0) {
             this.mParallaxScale = 1;
-        } else {
-            this.mParallaxScale = 1 / s;
         }
     }
 }
