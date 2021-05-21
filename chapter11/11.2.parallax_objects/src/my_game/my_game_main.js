@@ -168,7 +168,7 @@ class MyGame extends engine.Scene {
 
         // Step  B: Draw with all cameras
         this._drawCamera(this.mCamera);
-        this.mMsg.draw(this.mCamera);   // only draw status in the main camera
+        this.mMsg.draw(this.mCamera);   
         this.mMatMsg.draw(this.mCamera);
 
         if (this.mShowParallaxCam)  // toggle with "P" key

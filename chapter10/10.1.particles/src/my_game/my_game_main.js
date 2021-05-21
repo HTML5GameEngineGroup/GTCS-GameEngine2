@@ -123,7 +123,7 @@ class MyGame extends engine.Scene {
         }
 
         this.mTarget.draw(this.mCamera);
-        this.mMsg.draw(this.mCamera);   // only draw status in the main camera
+        this.mMsg.draw(this.mCamera);   
         this.mShapeMsg.draw(this.mCamera);
     }
 
