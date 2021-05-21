@@ -55,7 +55,6 @@ class MyGame extends engine.Scene {
         bgR.getXform().setPosition(50, 35);
         this.mBg = new engine.GameObject(bgR);
 
-        // Step B: Create the hero object with texture from the lower-left corner 
         this.mHero = new Hero(this.kMinionSprite);
 
         this.mLMinion = new Minion(this.kMinionSprite, 30, 30);
@@ -67,26 +66,20 @@ class MyGame extends engine.Scene {
         this.mMsg.setTextHeight(3);
     }
 
-    _drawCamera(camera) {
-        // set up the View Projection matrix
-        camera.setViewAndCameraMatrix();
-
-        // Now draws each primitive
-        this.mBg.draw(camera);
-        this.mHero.draw(camera);
-        this.mLMinion.draw(camera);
-        this.mRMinion.draw(camera);
-    }
-
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
     draw() {
-        // Step A: clear the canvas
+        // Clear the canvas
         engine.clearCanvas([0.9, 0.9, 0.9, 1.0]); // clear to light gray
 
-        // Step  B: Draw with all three cameras
-        this._drawCamera(this.mCamera);
-        this.mMsg.draw(this.mCamera);   // only draw status in the main camera
+        // Set up the camera and draw
+        this.mCamera.setViewAndCameraMatrix();
+        this.mBg.draw(this.mCamera);
+        this.mHero.draw(this.mCamera);
+        this.mLMinion.draw(this.mCamera);
+        this.mRMinion.draw(this.mCamera);
+
+        this.mMsg.draw(this.mCamera); // draw last
     }
 
     // The Update function, updates the application state. Make sure to _NOT_ draw

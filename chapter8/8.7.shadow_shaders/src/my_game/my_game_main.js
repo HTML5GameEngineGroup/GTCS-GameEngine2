@@ -128,12 +128,23 @@ class MyGame extends engine.Scene {
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
     draw() {
-        // Step A: clear the canvas
+        // Clear the canvas
         engine.clearCanvas([0.9, 0.9, 0.9, 1.0]); // clear to light gray
 
-        // Step  B: Draw with all three cameras
-        this._drawCamera(this.mCamera);
-        this.mMsg.draw(this.mCamera);   // only draw status in the main camera
+        // Set up the camera and draw
+        this.mCamera.setViewAndCameraMatrix();
+
+        // always draw shadow receivers first!
+        this.mBgShadow.draw(this.mCamera);        // also draws the receiver object
+        this.mMinionShadow.draw(this.mCamera);
+        this.mLgtMinionShadow.draw(this.mCamera);
+
+        this.mBlock1.draw(this.mCamera);
+        this.mIllumHero.draw(this.mCamera);
+        this.mBlock2.draw(this.mCamera);
+        this.mLgtHero.draw(this.mCamera);
+        
+        this.mMsg.draw(this.mCamera);   // draw last
         this.mMatMsg.draw(this.mCamera);
     }
 
@@ -157,22 +168,6 @@ class MyGame extends engine.Scene {
         msg += this._materialControl();
         this.mMatMsg.setText(msg);
 
-    }
-
-    // #region Local utility functions
-    _drawCamera(camera) {
-        // set up the camera matrix
-        camera.setViewAndCameraMatrix();
-
-        // always draw shadow receivers first!
-        this.mBgShadow.draw(camera);        // also draws the receiver object
-        this.mMinionShadow.draw(camera);
-        this.mLgtMinionShadow.draw(camera);
-
-        this.mBlock1.draw(camera);
-        this.mIllumHero.draw(camera);
-        this.mBlock2.draw(camera);
-        this.mLgtHero.draw(camera);
     }
 
     _selectCharacter() {

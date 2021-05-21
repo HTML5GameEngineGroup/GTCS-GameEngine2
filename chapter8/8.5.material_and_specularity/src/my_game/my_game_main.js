@@ -125,28 +125,22 @@ class MyGame extends engine.Scene {
         this.mMaterialCh = this.mSlectedCh.getRenderable().getMaterial().getDiffuse();  // to support interactive changing
     }
 
-
-    _drawCamera(camera) {
-        // Step A: set up the View Projection matrix
-        camera.setViewAndCameraMatrix();
-        // Step B: Now draws each primitive
-        this.mBg.draw(camera);
-        this.mBlock1.draw(camera);
-        this.mLMinion.draw(camera);
-        this.mBlock2.draw(camera);
-        this.mHero.draw(camera);
-        this.mRMinion.draw(camera);
-    }
-
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
     draw() {
-        // Step A: clear the canvas
+        // Clear the canvas
         engine.clearCanvas([0.9, 0.9, 0.9, 1.0]); // clear to light gray
 
-        // Step  B: Draw with all three cameras
-        this._drawCamera(this.mCamera);
-        this.mMsg.draw(this.mCamera);   // only draw status in the main camera
+        // Set up the camera and draw
+        this.mCamera.setViewAndCameraMatrix();
+        this.mBg.draw(this.mCamera);
+        this.mBlock1.draw(this.mCamera);
+        this.mLMinion.draw(this.mCamera);
+        this.mBlock2.draw(this.mCamera);
+        this.mHero.draw(this.mCamera);
+        this.mRMinion.draw(this.mCamera);
+
+        this.mMsg.draw(this.mCamera);   // draw last
         this.mMatMsg.draw(this.mCamera);
     }
 

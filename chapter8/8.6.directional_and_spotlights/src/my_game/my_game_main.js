@@ -119,29 +119,23 @@ class MyGame extends engine.Scene {
         this.mSelectedChMsg = "H:";
     }
 
-
-    _drawCamera(camera) {
-        // Step A: set up the View Projection matrix
-        camera.setViewAndCameraMatrix();
-        // Step B: Now draws each primitive
-        this.mBg.draw(camera);
-        this.mBlock1.draw(camera);
-        this.mLgtMinion.draw(camera);
-        this.mIllumHero.draw(camera);
-        this.mBlock2.draw(camera);
-        this.mLgtHero.draw(camera);
-        this.mIllumMinion.draw(camera);
-    }
-
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
     draw() {
-        // Step A: clear the canvas
+        // Clear the canvas
         engine.clearCanvas([0.9, 0.9, 0.9, 1.0]); // clear to light gray
 
-        // Step  B: Draw with all three cameras
-        this._drawCamera(this.mCamera);
-        this.mMsg.draw(this.mCamera);   // only draw status in the main camera
+        // Set up the camera and draw
+        this.mCamera.setViewAndCameraMatrix();
+        this.mBg.draw(this.mCamera);
+        this.mBlock1.draw(this.mCamera);
+        this.mLgtMinion.draw(this.mCamera);
+        this.mIllumHero.draw(this.mCamera);
+        this.mBlock2.draw(this.mCamera);
+        this.mLgtHero.draw(this.mCamera);
+        this.mIllumMinion.draw(this.mCamera);
+
+        this.mMsg.draw(this.mCamera);   // draw last
         this.mMatMsg.draw(this.mCamera);
     }
 
