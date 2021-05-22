@@ -16,7 +16,7 @@ class LightRenderable extends SpriteAnimateRenderable {
         super(myTexture);
         super._setShader(defaultShaders.getLightShader());
 
-        // here is the light source
+        // the light sources
         this.mLights = [];
     }
 
