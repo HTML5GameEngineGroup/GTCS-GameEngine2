@@ -54,19 +54,19 @@ varying vec2 vTexCoord;
 
 // Computes the L-vector, and returns attenuation
 float LightAttenuation(Light lgt, float dist) {
-    float atten = 0.0;
+    float strength = 0.0;
     if (dist <= lgt.Far) {
         if (dist <= lgt.Near)
-            atten = 1.0;  //  no attenuation
+            strength = 1.0;  //  no attenuation
         else {
             // simple quadratic drop off
             float n = dist - lgt.Near;
             float d = lgt.Far - lgt.Near;
-            atten = smoothstep(0.0, 1.0, 1.0-(n*n)/(d*d)); // blended attenuation
+            strength = smoothstep(0.0, 1.0, 1.0-(n*n)/(d*d)); // blended attenuation
         }
         
     }
-    return atten;
+    return strength;
 }
 
 vec4 SpecularResult(vec3 N, vec3 L) {
@@ -83,10 +83,10 @@ vec4 ShadedResult(Light lgt, vec3 N, vec4 textureMapColor) {
     vec3 L = lgt.Position.xyz - gl_FragCoord.xyz; 
     float dist = length(L);
     L = L / dist;
-    float atten = LightAttenuation(lgt, dist);
+    float strength = LightAttenuation(lgt, dist);
     vec4  diffuse = DiffuseResult(N, L, textureMapColor);
     vec4  specular = SpecularResult(N, L);
-    vec4 result = atten * lgt.Intensity * lgt.Color * (diffuse + specular);
+    vec4 result = strength * lgt.Intensity * lgt.Color * (diffuse + specular);
     return result;
 }
 

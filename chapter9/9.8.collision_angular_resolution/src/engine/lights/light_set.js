@@ -4,7 +4,7 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-class light_set {
+class LightSet{
     constructor() {
         this.mSet = [];
     }
@@ -20,4 +20,4 @@ class light_set {
     }
 }
 
-export default light_set;
+export default LightSet

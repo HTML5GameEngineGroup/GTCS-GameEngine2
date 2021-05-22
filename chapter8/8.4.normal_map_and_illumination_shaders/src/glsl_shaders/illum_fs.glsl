@@ -43,25 +43,25 @@ varying vec2 vTexCoord;
 
 vec4 LightEffect(Light lgt, vec3 N) {
     vec4 result = vec4(0);
-    float atten = 0.0;
+    float strength = 0.0;
     vec3 L = lgt.Position.xyz - gl_FragCoord.xyz;
     float dist = length(L);
     if (dist <= lgt.Far) {
         if (dist <= lgt.Near)
-            atten = 1.0;  //  no attenuation
+            strength = 1.0;  //  no attenuation
         else {
             // simple quadratic drop off
             float n = dist - lgt.Near;
             float d = lgt.Far - lgt.Near;
-            atten = smoothstep(0.0, 1.0, 1.0-(n*n)/(d*d)); // blended attenuation
+            strength = smoothstep(0.0, 1.0, 1.0-(n*n)/(d*d)); // blended attenuation
         }
         L = L / dist; // To normalize L
               // Not calling the normalize() function to avoid re-computing
               // the "dist". This is computationally more efficient.
         float NdotL = max(0.0, dot(N, L));   
-        atten *= NdotL;
+        strength *= NdotL;
     }
-    result = atten * lgt.Intensity * lgt.Color;
+    result = strength * lgt.Intensity * lgt.Color;
     return result;
 }
 

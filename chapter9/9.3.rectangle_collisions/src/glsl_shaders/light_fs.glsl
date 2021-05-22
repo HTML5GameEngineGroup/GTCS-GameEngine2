@@ -53,33 +53,33 @@ uniform Light uLights[kGLSLuLightArraySize];  // Maximum array of lights this sh
 varying vec2 vTexCoord;
 
 float AngularDropOff(Light lgt, vec3 lgtDir, vec3 L) {
-    float atten = 0.0;
+    float strength = 0.0;
     float cosL = dot(lgtDir, L);
     float num = cosL - lgt.CosOuter;
     if (num > 0.0) {
         if (cosL > lgt.CosInner) 
-            atten = 1.0;
+            strength = 1.0;
         else {
             float denom = lgt.CosInner - lgt.CosOuter;
-            atten = smoothstep(0.0, 1.0, pow(num/denom, lgt.DropOff));
+            strength = smoothstep(0.0, 1.0, pow(num/denom, lgt.DropOff));
         }
     }
-    return atten;
+    return strength;
 }
 
 float DistanceDropOff(Light lgt, float dist) {
-    float atten = 0.0;
+    float strength = 0.0;
     if (dist <= lgt.Far) {
         if (dist <= lgt.Near)
-            atten = 1.0;  //  no attenuation
+            strength = 1.0;  //  no attenuation
         else {
             // simple quadratic drop off
             float n = dist - lgt.Near;
             float d = lgt.Far - lgt.Near;
-            atten = smoothstep(0.0, 1.0, 1.0-(n*n)/(d*d)); // blended attenuation
+            strength = smoothstep(0.0, 1.0, 1.0-(n*n)/(d*d)); // blended attenuation
         }   
     }
-    return atten;
+    return strength;
 }
 
 // Directional lights: without normal information
