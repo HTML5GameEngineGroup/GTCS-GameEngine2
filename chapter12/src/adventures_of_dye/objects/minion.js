@@ -65,7 +65,7 @@ class Minion extends engine.GameObject {
     // Orientate the entire object to point towards point p
     // will rotate Xform() accordingly
     rotateObjPointTo(p, rate) {
-        // Step A: determine if reach the destination position p
+        // Step A: determine if reached the destination position p
         let dir = [];
         vec2.sub(dir, p, this.getXform().getPosition());
         let len = vec2.length(dir);
