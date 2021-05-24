@@ -6,6 +6,7 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 import * as texture from "../resources/texture.js";
+import * as glSys from "../core/gl.js";
 import LightRenderable from "./light_renderable.js";
 import * as defaultShaders from "../core/shader_resources.js";
 
@@ -26,8 +27,8 @@ class IllumRenderable extends LightRenderable {
     // Public methods
     //**-----------------------------------------
     draw(camera) {
-        texture.activate(this.mNormalMap, true);
-        // Here thenormal map texture coordinate is copied from those of 
+        texture.activate(this.mNormalMap, glSys.get().TEXTURE1); 
+        // Here the normal map texture coordinate is copied from those of 
         // the corresponding sprite sheet
         super.draw(camera);
     }
