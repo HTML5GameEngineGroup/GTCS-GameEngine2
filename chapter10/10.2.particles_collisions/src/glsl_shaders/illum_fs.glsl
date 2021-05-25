@@ -65,7 +65,7 @@ uniform Light uLights[kGLSLuLightArraySize];  // Maximum array of lights this sh
 // interpolated and thus varies. 
 varying vec2 vTexCoord;
 
-float AngularDropOff(Light lgt, vec3 lgtDir, vec3 L) {
+float AngularStrength(Light lgt, vec3 lgtDir, vec3 L) {
     float strength = 0.0;
     float cosL = dot(lgtDir, L);
     float num = cosL - lgt.CosOuter;
@@ -80,7 +80,7 @@ float AngularDropOff(Light lgt, vec3 lgtDir, vec3 L) {
     return strength;
 }
 
-float DistanceDropOff(Light lgt, float dist) {
+float DistanceStrength(Light lgt, float dist) {
     float strength = 0.0;
     if (dist <= lgt.Far) {
         if (dist <= lgt.Near)
@@ -106,7 +106,7 @@ vec4 DiffuseResult(vec3 N, vec3 L, vec4 textureMapColor) {
 }
 
 vec4 ShadedResult(Light lgt, vec3 N, vec4 textureMapColor) {
-    float aAtten = 1.0, dAtten = 1.0;
+    float aStrength = 1.0, dStrength = 1.0;
     vec3 lgtDir = -normalize(lgt.Direction.xyz);
     vec3 L; // light vector
     float dist; // distance to light
@@ -119,15 +119,15 @@ vec4 ShadedResult(Light lgt, vec3 N, vec4 textureMapColor) {
     }
     if (lgt.LightType == eSpotLight) {
         // spotlight: do angle dropoff
-        aAtten = AngularDropOff(lgt, lgtDir, L);
+        aStrength = AngularStrength(lgt, lgtDir, L);
     }
     if (lgt.LightType != eDirectionalLight) {
         // both spot and point light has distance dropoff
-        dAtten = DistanceDropOff(lgt, dist);
+        dStrength = DistanceStrength(lgt, dist);
     }
     vec4  diffuse = DiffuseResult(N, L, textureMapColor);
     vec4  specular = SpecularResult(N, L);
-    vec4 result = aAtten * dAtten * lgt.Intensity * lgt.Color * (diffuse + specular);
+    vec4 result = aStrength * dStrength * lgt.Intensity * lgt.Color * (diffuse + specular);
     return result;
 }
 

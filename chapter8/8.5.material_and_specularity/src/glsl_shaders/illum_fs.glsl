@@ -52,8 +52,8 @@ uniform Light uLights[kGLSLuLightArraySize];  // Maximum array of lights this sh
 // interpolated and thus varies. 
 varying vec2 vTexCoord;
 
-// Computes the L-vector, and returns attenuation
-float LightAttenuation(Light lgt, float dist) {
+// Computes the L-vector, returns strength
+float LightStrength(Light lgt, float dist) {
     float strength = 0.0;
     if (dist <= lgt.Far) {
         if (dist <= lgt.Near)
@@ -83,7 +83,7 @@ vec4 ShadedResult(Light lgt, vec3 N, vec4 textureMapColor) {
     vec3 L = lgt.Position.xyz - gl_FragCoord.xyz; 
     float dist = length(L);
     L = L / dist;
-    float strength = LightAttenuation(lgt, dist);
+    float strength = LightStrength(lgt, dist);
     vec4  diffuse = DiffuseResult(N, L, textureMapColor);
     vec4  specular = SpecularResult(N, L);
     vec4 result = strength * lgt.Intensity * lgt.Color * (diffuse + specular);
