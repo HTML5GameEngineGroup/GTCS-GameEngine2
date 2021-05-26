@@ -57,7 +57,7 @@ MyGame.prototype._initializeLights = function () {
         [-0.02, 0.02, -1],      // direction
         [0.5, 0.5, 0.5, 1],     // color
         20, 40,                 // near and far distances
-        1.9, 2.0,               // inner outter angles (in radius)
+        1.9, 2.0,               // inner outer angles (in radius)
         5,                      // intensity
         1.2                     // drop off
     );

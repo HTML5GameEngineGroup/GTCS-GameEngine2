@@ -85,7 +85,7 @@ float DistanceDropOff(Light lgt, float dist) {
 // Directional lights: without normal information
 //    directional light is the same as an ambient light!
 vec4 LightEffect(Light lgt) {    
-    float aAtten = 1.0, dAtten = 1.0;
+    float aStrength = 1.0, dStrength = 1.0;
 
     if (lgt.LightType != eDirectionalLight) {
         vec3 lgtDir = -normalize(lgt.Direction.xyz);
@@ -96,11 +96,11 @@ vec4 LightEffect(Light lgt) {
         // find out what kind of light ...
         if (lgt.LightType == eSpotLight) {
             // spotlight: do angle dropoff
-            aAtten = AngularDropOff(lgt, lgtDir, L);
+            aStrength = AngularDropOff(lgt, lgtDir, L);
         } 
-        dAtten = DistanceDropOff(lgt, dist);
+        dStrength = DistanceDropOff(lgt, dist);
     }
-    return dAtten * aAtten * lgt.Intensity * lgt.Color;
+    return dStrength * aStrength * lgt.Intensity * lgt.Color;
 }
 
 void main(void)  {

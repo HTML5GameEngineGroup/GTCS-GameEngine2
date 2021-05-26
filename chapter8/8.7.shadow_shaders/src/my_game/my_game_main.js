@@ -35,7 +35,7 @@ class MyGame extends engine.Scene {
 
         this.mGlobalLightSet = null;
 
-        this.mBlock1 = null;   // to verify swiitching between shaders is fine
+        this.mBlock1 = null;   // to verify switching between shaders is fine
         this.mBlock2 = null;
 
         this.mLgtIndex = 0;

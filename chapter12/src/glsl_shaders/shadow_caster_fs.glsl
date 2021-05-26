@@ -39,37 +39,37 @@ uniform Light uLights[1];  // Exactly one light source, the one that is casting 
 varying vec2 vTexCoord;
 
 float AngularDropOff(vec3 lgtDir, vec3 L) {
-    float atten = 0.0;
+    float strength = 0.0;
     float cosL = dot(lgtDir, L);
     float num = cosL - uLights[0].CosOuter;
     if (num > 0.0) {
         if (cosL > uLights[0].CosInner) 
-            atten = 1.0;
+            strength = 1.0;
         else {
             float denom = uLights[0].CosInner - uLights[0].CosOuter;
-            atten = smoothstep(0.0, 1.0, pow(num/denom, uLights[0].DropOff));
+            strength = smoothstep(0.0, 1.0, pow(num/denom, uLights[0].DropOff));
         }
     }
-    return atten;
+    return strength;
 }
 
 float DistanceDropOff(float dist) {
-    float atten = 0.0;
+    float strength = 0.0;
     if (dist <= uLights[0].Far) {
         if (dist <= uLights[0].Near)
-            atten = 1.0;  //  no attenuation
+            strength = 1.0;  //  no attenuation
         else {
             // simple quadratic drop off
             float n = dist - uLights[0].Near;
             float d = uLights[0].Far - uLights[0].Near;
-            atten = smoothstep(0.0, 1.0, 1.0-(n*n)/(d*d)); // blended attenuation
+            strength = smoothstep(0.0, 1.0, 1.0-(n*n)/(d*d)); // blended attenuation
         }   
     }
-    return atten;
+    return strength;
 }
 
 float LightStrength() {
-    float aAtten = 1.0, dAtten = 1.0;
+    float aStrength = 1.0, dStrength = 1.0;
     vec3 lgtDir = -normalize(uLights[0].Direction.xyz);
     vec3 L; // light vector
     float dist; // distance to light
@@ -82,13 +82,13 @@ float LightStrength() {
     }
     if (uLights[0].LightType == eSpotLight) {
         // spotlight: do angle dropoff
-        aAtten = AngularDropOff(lgtDir, L);
+        aStrength = AngularDropOff(lgtDir, L);
     }
     if (uLights[0].LightType != eDirectionalLight) {
         // both spot and point light has distance dropoff
-        dAtten = DistanceDropOff(dist);
+        dStrength = DistanceDropOff(dist);
     }
-    float result = aAtten * dAtten;
+    float result = aStrength * dStrength;
     return result;
 }
 

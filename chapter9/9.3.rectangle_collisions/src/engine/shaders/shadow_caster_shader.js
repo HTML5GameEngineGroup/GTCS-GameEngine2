@@ -7,7 +7,7 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 import SpriteShader from "./sprite_shader.js";
-import ShaderLightAtIndex from "./shader_light_at.js";
+import ShaderLightAt from "./shader_light_at.js";
 
 class ShadowCasterShader extends SpriteShader {
     // constructor 
@@ -18,7 +18,7 @@ class ShadowCasterShader extends SpriteShader {
         this.mCamera = null;
 
         // **** The GLSL Shader must define uLights[1] (array size of 1) <-- as the only light source!!
-        this.mShaderLight = new ShaderLightAtIndex(this.mCompiledShader, 0);
+        this.mShaderLight = new ShaderLightAt(this.mCompiledShader, 0);
     }
 
     // Overriding the Activation of the shader for rendering

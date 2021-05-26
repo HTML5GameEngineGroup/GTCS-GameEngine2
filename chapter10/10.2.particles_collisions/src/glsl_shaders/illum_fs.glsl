@@ -65,7 +65,7 @@ uniform Light uLights[kGLSLuLightArraySize];  // Maximum array of lights this sh
 // interpolated and thus varies. 
 varying vec2 vTexCoord;
 
-float AngularStrength(Light lgt, vec3 lgtDir, vec3 L) {
+float AngularDropOff(Light lgt, vec3 lgtDir, vec3 L) {
     float strength = 0.0;
     float cosL = dot(lgtDir, L);
     float num = cosL - lgt.CosOuter;
@@ -80,7 +80,7 @@ float AngularStrength(Light lgt, vec3 lgtDir, vec3 L) {
     return strength;
 }
 
-float DistanceStrength(Light lgt, float dist) {
+float DistanceDropOff(Light lgt, float dist) {
     float strength = 0.0;
     if (dist <= lgt.Far) {
         if (dist <= lgt.Near)
@@ -119,11 +119,11 @@ vec4 ShadedResult(Light lgt, vec3 N, vec4 textureMapColor) {
     }
     if (lgt.LightType == eSpotLight) {
         // spotlight: do angle dropoff
-        aStrength = AngularStrength(lgt, lgtDir, L);
+        aStrength = AngularDropOff(lgt, lgtDir, L);
     }
     if (lgt.LightType != eDirectionalLight) {
         // both spot and point light has distance dropoff
-        dStrength = DistanceStrength(lgt, dist);
+        dStrength = DistanceDropOff(lgt, dist);
     }
     vec4  diffuse = DiffuseResult(N, L, textureMapColor);
     vec4  specular = SpecularResult(N, L);
@@ -143,7 +143,7 @@ void main(void)  {
     // 
     vec3 N = normalize(normalMap.xyz);
    
-    vec4 shadedResult = uMaterial.Ka + (textureMapColor  * uGlobalAmbientColor * uGlobalAmbientIntensity);
+    vec4 shadedResult = uMaterial.Ka + (uGlobalAmbientColor * uGlobalAmbientIntensity);
 
     // now decide if we should illuminate by the light
     if (textureMapColor.a > 0.0) {

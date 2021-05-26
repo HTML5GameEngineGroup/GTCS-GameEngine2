@@ -53,7 +53,7 @@ uniform Light uLights[kGLSLuLightArraySize];  // Maximum array of lights this sh
 varying vec2 vTexCoord;
 
 // Computes the L-vector, returns strength
-float LightStrength(Light lgt, float dist) {
+float DistanceDropOff(Light lgt, float dist) {
     float strength = 0.0;
     if (dist <= lgt.Far) {
         if (dist <= lgt.Near)
@@ -83,7 +83,7 @@ vec4 ShadedResult(Light lgt, vec3 N, vec4 textureMapColor) {
     vec3 L = lgt.Position.xyz - gl_FragCoord.xyz; 
     float dist = length(L);
     L = L / dist;
-    float strength = LightStrength(lgt, dist);
+    float strength = DistanceDropOff(lgt, dist);
     vec4  diffuse = DiffuseResult(N, L, textureMapColor);
     vec4  specular = SpecularResult(N, L);
     vec4 result = strength * lgt.Intensity * lgt.Color * (diffuse + specular);
@@ -102,7 +102,7 @@ void main(void)  {
     // 
     vec3 N = normalize(normalMap.xyz);
    
-    vec4 shadedResult = uMaterial.Ka + (textureMapColor  * uGlobalAmbientColor * uGlobalAmbientIntensity);
+    vec4 shadedResult = uMaterial.Ka + (uGlobalAmbientColor * uGlobalAmbientIntensity);
 
     // now decide if we should illuminate by the light
     if (textureMapColor.a > 0.0) {
