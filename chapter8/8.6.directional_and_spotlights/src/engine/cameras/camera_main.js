@@ -53,7 +53,7 @@ class Camera {
         this.mScissorBound = [];  // use for bounds
         this.setViewport(viewportArray, this.mViewportBound);
 
-        this.kCameraZ = 10; // this is for illuminaiton computaiton
+        this.kCameraZ = 10; // this is for illumination computation
 
         // Camera transform operator
         this.mCameraMatrix = mat4.create();
