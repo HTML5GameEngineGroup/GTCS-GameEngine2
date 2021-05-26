@@ -74,7 +74,7 @@ class MyGame extends engine.Scene {
         bgR.setElementPixelPositions(0, 1024, 0, 1024);
         bgR.getXform().setSize(100, 100);
         bgR.getXform().setPosition(50, 35);
-        // set background materal properties
+        // set background material properties
         bgR.getMaterial().setShininess(25);
         bgR.getMaterial().setSpecular([1, 0, 0, 1]);
         let i;
