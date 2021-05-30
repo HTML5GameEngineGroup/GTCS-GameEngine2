@@ -31,7 +31,7 @@ class LightShader extends SpriteShader {
         this.mIsOnRef = gl.getUniformLocation(shader, "uLightOn");
     }
 
-    // Overriding the Activation of the shader for rendering
+    // Overriding the activation of the shader for rendering
     activate(pixelColor, trsMatrix, cameraMatrix) {
         // first call the super class's activate
         super.activate(pixelColor, trsMatrix, cameraMatrix);

@@ -18,7 +18,7 @@ class IllumShader extends LightShader {
         this.mNormalSamplerRef = gl.getUniformLocation(this.mCompiledShader, "uNormalSampler");
     }
 
-    // Overriding the Activation of the shader for rendering
+    // Overriding the activation of the shader for rendering
     activate(pixelColor, trsMatrix, cameraMatrix) {
         // first call the super class's activate
         super.activate(pixelColor, trsMatrix, cameraMatrix);
