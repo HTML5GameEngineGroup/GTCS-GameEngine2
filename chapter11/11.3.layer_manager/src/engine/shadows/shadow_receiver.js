@@ -40,11 +40,11 @@ class ShadowReceiver {
         // draw receiver as a regular renderable
         this.mReceiver.draw(aCamera);
 
-        this._shadowRecieverStencilOn();
+        this._shadowReceiverStencilOn();
         let s = this.mReceiver.getRenderable().swapShader(this.mReceiverShader);
         this.mReceiver.draw(aCamera);
         this.mReceiver.getRenderable().swapShader(s);
-        this._shadowRecieverStencilOff();
+        this._shadowReceiverStencilOff();
 
         // now draw shadow color to the pixels in the stencil that are switched on
         for (c = 0; c < this.mShadowCaster.length; c++) {
@@ -52,7 +52,7 @@ class ShadowReceiver {
         }
 
         // switch off stencil checking
-        this._shadowRecieverStencilDisable();
+        this._shadowReceiverStencilDisable();
     }
 
     update() {
@@ -64,7 +64,7 @@ class ShadowReceiver {
      * GL Stencil settings to support rendering to and checking of 
      * the stencil buffer
      */
-    _shadowRecieverStencilOn() {
+    _shadowReceiverStencilOn() {
         let gl = glSys.get();
         gl.clear(gl.STENCIL_BUFFER_BIT);
         gl.enable(gl.STENCIL_TEST);
@@ -75,7 +75,7 @@ class ShadowReceiver {
         gl.stencilMask(this.kShadowStencilMask);
     }
 
-    _shadowRecieverStencilOff() {
+    _shadowReceiverStencilOff() {
         let gl = glSys.get();
         gl.depthMask(gl.TRUE);
         gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
@@ -83,7 +83,7 @@ class ShadowReceiver {
         gl.colorMask(true, true, true, true);
     }
 
-    _shadowRecieverStencilDisable() {
+    _shadowReceiverStencilDisable() {
         let gl = glSys.get();
         gl.disable(gl.STENCIL_TEST);
     }
