@@ -41,7 +41,7 @@ function init(htmlCanvasID) {
         return;
     }
 
-    // Allows transperency with textures.
+    // Allows transparency with textures.
     mGL.blendFunc(mGL.SRC_ALPHA, mGL.ONE_MINUS_SRC_ALPHA);
     mGL.enable(mGL.BLEND);
     
@@ -53,4 +53,32 @@ function init(htmlCanvasID) {
     mGL.depthFunc(mGL.LEQUAL);
 }
 
-export {get, init, cleanUp}
+function beginDrawToStencil(bit, mask)
+{
+    mGL.clear(mGL.STENCIL_BUFFER_BIT);
+    mGL.enable(mGL.STENCIL_TEST);
+    mGL.colorMask(false, false, false, false);
+    mGL.depthMask(false);
+    mGL.stencilFunc(mGL.NEVER, bit, mask);
+    mGL.stencilOp(mGL.REPLACE, mGL.KEEP, mGL.KEEP);
+    mGL.stencilMask(mask);
+}
+
+function endDrawToStencil(bit, mask)
+{
+    mGL.depthMask(mGL.TRUE);
+    mGL.stencilOp(mGL.KEEP, mGL.KEEP, mGL.KEEP);
+    mGL.stencilFunc(mGL.EQUAL, bit, mask);
+    mGL.colorMask(true, true, true, true);
+}
+
+function disableDrawToStencil() {
+    mGL.disable(mGL.STENCIL_TEST);
+}
+
+export {
+    get, init, cleanUp,
+
+    // stencil support
+    disableDrawToStencil, beginDrawToStencil, endDrawToStencil
+}

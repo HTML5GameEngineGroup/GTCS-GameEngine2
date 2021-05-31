@@ -40,7 +40,7 @@ function init(htmlCanvasID) {
         return;
     }
 
-    // Allows transperency with textures.
+    // Allows transparency with textures.
     mGL.blendFunc(mGL.SRC_ALPHA, mGL.ONE_MINUS_SRC_ALPHA);
     mGL.enable(mGL.BLEND);
     

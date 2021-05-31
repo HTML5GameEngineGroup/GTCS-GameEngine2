@@ -19,10 +19,10 @@ class ShadowCaster {
         this.mShadowColor = [0, 0, 0, 0.2];
         this.mSaveXform = new Transform();
 
-        this.kCasterMaxScale = 3;   // maximum size a caster will be scaled
+        this.kCasterMaxScale = 3;   // Max amount a caster will be scaled
         this.kVerySmall = 0.001;    // 
-        this.kDistanceFudge = 0.01; // Ensure shadow caster geometry is not at the exact same depth as receiver
-        this.kReceiverDistanceFudge = 0.6; // Reduce the projection size increase of the caster geometry
+        this.kDistanceFudge = 0.01; // Dist between caster geometry and receiver: ensure no overlap
+        this.kReceiverDistanceFudge = 0.6; // Factor to reduce the projected caster geometry size
     }
 
     setShadowColor(c) {
@@ -42,6 +42,7 @@ class ShadowCaster {
         //      2. light is lower than the caster
         // it is still possible to cast shadow on receiver
 
+        // Region 1: declaring variables
         let cxf = this.mShadowCaster.getXform();
         let rxf = this.mShadowReceiver.getXform();
         // vector from light to caster
@@ -54,6 +55,7 @@ class ShadowCaster {
 
         receiverToCasterZ = rxf.getZPos() - cxf.getZPos();
         if (aLight.getLightType() === eLightType.eDirectionalLight) {
+            // Region 2: Processing a directional light
             if (((Math.abs(aLight.getDirection())[2]) < this.kVerySmall) ||
                 ((receiverToCasterZ * (aLight.getDirection())[2]) < 0)) {
                 return false;   // direction light casting side way or
@@ -65,6 +67,7 @@ class ShadowCaster {
             distToReceiver = Math.abs(receiverToCasterZ / lgtToCaster[2]);  // distance measured along lgtToCaster
             scale = Math.abs(1 / lgtToCaster[2]);
         } else {
+            // Region 3: Processing a point or spot light
             vec3.sub(lgtToCaster, cxf.get3DPosition(), aLight.getPosition());
             lgtToReceiverZ = rxf.getZPos() - (aLight.getPosition())[2];
 
@@ -73,7 +76,7 @@ class ShadowCaster {
             }
 
             if ((Math.abs(lgtToReceiverZ) < this.kVerySmall) || ((Math.abs(lgtToCaster[2]) < this.kVerySmall))) {
-                // alomst the same Z, can't see shadow
+                // almost the same Z, can't see shadow
                 return false;
             }
 
@@ -85,6 +88,7 @@ class ShadowCaster {
         }
         vec3.scaleAndAdd(offset, cxf.get3DPosition(), lgtToCaster, distToReceiver + this.kDistanceFudge);
 
+        // Region 4: Setting casterRenderable xform
         cxf.setRotationInRad(cxf.getRotationInRad());
         cxf.setPosition(offset[0], offset[1]);
         cxf.setZPos(offset[2]);
@@ -95,17 +99,19 @@ class ShadowCaster {
     }
 
     draw(aCamera) {
-        // loop through each light in this array, if shadow casting on the light is on
-        // compute the proper shadow offset
         let casterRenderable = this.mShadowCaster.getRenderable();
+        // Step A: save caster xform, shader, and color. and, sets caster to shadow color
         this.mShadowCaster.getXform().cloneTo(this.mSaveXform);
         let s = casterRenderable.swapShader(this.mCasterShader);
         let c = casterRenderable.getColor();
         casterRenderable.setColor(this.mShadowColor);
         let l, lgt;
-        for (l = 0; l < casterRenderable.getNumLights(); l++) {
+        // Step B: loop through each light in this array, if shadow casting on the light is on
+        // compute the proper shadow offset
+        for(l = 0; l < casterRenderable.getNumLights(); l++) {
             lgt = casterRenderable.getLightAt(l);
             if (lgt.isLightOn() && lgt.isLightCastShadow()) {
+                // Step C: turn caster into caster geometry, draws as SpriteRenderable
                 this.mSaveXform.cloneTo(this.mShadowCaster.getXform());
                 if (this._computeShadowGeometry(lgt)) {
                     this.mCasterShader.setCameraAndLights(aCamera, lgt);
@@ -113,6 +119,7 @@ class ShadowCaster {
                 }
             }
         }
+        // Step D: restore the original shadow caster
         this.mSaveXform.cloneTo(this.mShadowCaster.getXform());
         casterRenderable.swapShader(s);
         casterRenderable.setColor(c);
