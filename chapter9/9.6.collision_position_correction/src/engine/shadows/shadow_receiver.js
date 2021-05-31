@@ -37,16 +37,19 @@ class ShadowReceiver {
     draw(aCamera) {
         let c;
 
-        // draw receiver as a regular renderable
+        // Step A: draw receiver as a regular renderable
         this.mReceiver.draw(aCamera);
 
+        // Step B: draw the receiver into the stencil buffer to enable corresponding pixels
         glSys.beginDrawToStencil(this.kShadowStencilBit, this.kShadowStencilMask);
+        //        Step B1: swap receiver shader to a ShadowReceiverShader
         let s = this.mReceiver.getRenderable().swapShader(this.mReceiverShader);
+        //        Step B2: draw the receiver again to the stencil buffer
         this.mReceiver.draw(aCamera);
         this.mReceiver.getRenderable().swapShader(s);
         glSys.endDrawToStencil(this.kShadowStencilBit, this.kShadowStencilMask);
 
-        // now draw shadow color to the pixels in the stencil that are switched on
+        // Step C: draw shadow color to the pixels in the stencil that are switched on
         for (c = 0; c < this.mShadowCaster.length; c++) {
             this.mShadowCaster[c].draw(aCamera);
         }
