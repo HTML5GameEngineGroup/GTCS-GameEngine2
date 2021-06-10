@@ -8,8 +8,6 @@
 
 import * as map from "./resource_map.js";
 import * as input from "../components/input.js";
-
-import * as debugDraw from "../core/debug_draw.js";
 import * as particleSystem from "../components/particle_system.js";
 
 const kUPS = 60; // Updates per second
@@ -64,9 +62,6 @@ async function start(scene) {
     
     // Wait for any async requests before game-load
     await map.waitOnPromises();
-    
-    // System debug-drawing support
-    debugDraw.init();
     
     // Other system init that can only occur after all resources are loaded
     particleSystem.init();
