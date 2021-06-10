@@ -9,8 +9,6 @@
 import * as map from "./resource_map.js";
 import * as input from "../components/input.js";
 
-import * as debugDraw from "../core/debug_draw.js";
-
 const kUPS = 60; // Updates per second
 const kMPF = 1000 / kUPS; // Milliseconds per update.
 
