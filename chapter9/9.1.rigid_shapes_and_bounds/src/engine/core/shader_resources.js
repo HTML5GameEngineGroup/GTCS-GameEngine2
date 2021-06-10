@@ -15,6 +15,8 @@ import IllumShader from "../shaders/illum_shader.js";
 import ShadowCasterShader from "../shaders/shadow_caster_shader.js";
 import * as text from "../resources/text.js";
 import * as map from "./resource_map.js";
+
+import * as debugDraw from "./debug_draw.js";
  
 // Simple Shader
 let kSimpleVS = "src/glsl_shaders/simple_vs.glsl";  // Path to the VertexShader 
@@ -54,6 +56,9 @@ function createShaders() {
     mIllumShader = new IllumShader(kTextureVS, kIllumFS);
     mShadowCasterShader = new ShadowCasterShader(kTextureVS, kShadowCasterFS);
     mShadowReceiverShader = new SpriteShader(kTextureVS, kShadowReceiverFS);
+
+    // System debug-drawing support
+    debugDraw.init();  // can only be called after LineShader
 }
 
 function cleanUp() {

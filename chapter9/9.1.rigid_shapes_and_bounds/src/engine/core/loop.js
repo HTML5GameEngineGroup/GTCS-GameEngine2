@@ -58,9 +58,6 @@ async function start(scene) {
     
     // Wait for any async requests before game-load
     await map.waitOnPromises();
-
-    // System debug-drawing support
-    debugDraw.init();
     
     // Now, initialize current scenes
     mCurrentScene.init();    
