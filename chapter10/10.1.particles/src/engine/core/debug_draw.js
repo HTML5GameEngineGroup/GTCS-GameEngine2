@@ -7,7 +7,7 @@
 
 import LineRenderable from "../renderables/line_renderable.js";
 
-let kDrawNumCircleSides = 16;    // for approx circumference as line segements
+let kDrawNumCircleSides = 16;    // for approx circumference as line segments
 let mUnitCirclePos = [];
 let mLine = null;
 
