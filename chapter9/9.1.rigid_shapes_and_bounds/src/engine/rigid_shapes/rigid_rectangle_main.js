@@ -82,10 +82,6 @@ class RigidRectangle extends RigidShape {
     draw(aCamera) {
         super.draw(aCamera);  // the cross marker at the center
         debugDraw.drawRectangle(aCamera, this.mVertex, this._shapeColor());
-
-        if (this.mDrawBounds) {
-            debugDraw.drawCircle(aCamera, this.mXform.getPosition(), this.mBoundRadius, this._boundColor());
-        }
     }
 
     update() {

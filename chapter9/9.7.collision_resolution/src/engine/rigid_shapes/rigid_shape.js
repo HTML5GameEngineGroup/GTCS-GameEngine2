@@ -131,6 +131,7 @@ class RigidShape {
     draw(aCamera) {
         if (!this.mDrawBounds)
             return;
+        debugDraw.drawCircle(aCamera, this.mXform.getPosition(), this.mBoundRadius, this._boundColor());
         debugDraw.drawCrossMarker(aCamera, this.mXform.getPosition(), 
                                   this.mBoundRadius * 0.2, this._boundColor());
     }

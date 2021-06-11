@@ -464,24 +464,25 @@ vec2.rotate = function(out, a, c){
 
 /**
  * Rotate a 2D vector (around the z-axis)
- * @param {vec2} out The receiving vec3
- * @param {vec2} a The vec2 point to rotate
- * @param {vec2} b The origin of the rotation
- * @param {Number} c The angle of rotation
+ * @param {vec2} out The returning values
+ * @param {vec2} pt The vec2 point to be rotated
+ * @param {Number} angle The angle of rotation 
+ * @param {vec2} ref The ref position of the rotation
  * @returns {vec2} out
  */
- vec2.rotateWRT = function(out, a, c, pt){
+ vec2.rotateWRT = function(out, pt, angle, ref){
     var r=[];
       
-      vec2.subtract(r, a, pt);
-      vec2.rotate(r, r, c);
-      vec2.add(r, r, pt);
+      vec2.subtract(r, pt, ref);
+      vec2.rotate(r, r, angle);
+      vec2.add(r, r, ref);
 
       out[0] = r[0];
       out[1] = r[1];
 
     return r;
 };
+
 
 /**
  * Normalize a vec2
