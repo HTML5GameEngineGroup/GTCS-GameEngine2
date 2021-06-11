@@ -22,8 +22,6 @@ class RigidCircle extends RigidShape {
     }
 
     draw(aCamera) {
-        super.draw(aCamera);  // draw the cross marker
-
         let p = this.mXform.getPosition();
         debugDraw.drawCircle(aCamera, p, this.mRadius, this._shapeColor());  // the circle object
 
@@ -31,6 +29,8 @@ class RigidCircle extends RigidShape {
         // angular motion
         vec2.rotateWRT(u, u, this.mXform.getRotationInRad(), p);
         debugDraw.drawLine(aCamera, p, u, false, this._shapeColor()); // show rotation 
+
+        super.draw(aCamera);  // draw last to be on top
     }
 
     getRadius() { return this.mRadius; }
