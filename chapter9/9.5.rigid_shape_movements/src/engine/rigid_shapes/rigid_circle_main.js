@@ -34,11 +34,6 @@ class RigidCircle extends RigidShape {
     }
 
     getRadius() { return this.mRadius; }
-
-    setTransform(xf) {
-        super.setTransform(xf);
-        this.mRadius = xf.getWidth();  // assume width and height are the same
-    }
 }
 
 export default RigidCircle;
