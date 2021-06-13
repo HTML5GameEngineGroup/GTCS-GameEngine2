@@ -7,7 +7,7 @@
 
 import * as debugDraw from "../core/debug_draw.js";
 
-let kInfoColor = [1, 0, 1, 1];
+let kInfoColor = [1, 0, 1, 1]; // draw the info in magenta
 
 class CollisionInfo {
     constructor() {
