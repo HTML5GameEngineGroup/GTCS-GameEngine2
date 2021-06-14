@@ -125,7 +125,7 @@ function collideShape(s1, s2, infoSet = null) {
     return hasCollision;
 }
 
-// collide an GameObject with a GameObjectSet
+// collide a given GameObject with a GameObjectSet
 function processObjToSet(obj, set, infoSet = null) {
     let j = 0, r = 0;
     let hasCollision = false;
@@ -139,7 +139,7 @@ function processObjToSet(obj, set, infoSet = null) {
     return hasCollision;
 }
 
-// collide two GameObjectSets
+// collide between all objects in two different GameObjectSets
 function processSetToSet(set1, set2, infoSet = null) {
     let i = 0, j = 0, r = 0;
     let hasCollision = false;
