@@ -16,6 +16,7 @@ class ShaderLightAt {
     loadToShader(aCamera, aLight) {
         let gl = glSys.get();
         gl.uniform1i(this.mIsOnRef, aLight.isLightOn());
+        // Process a light only when it is switched on
         if (aLight.isLightOn()) {
             let p = aCamera.wcPosToPixel(aLight.getPosition());
             let n = aCamera.wcSizeToPixel(aLight.getNear());

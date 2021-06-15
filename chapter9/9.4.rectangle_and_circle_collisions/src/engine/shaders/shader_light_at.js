@@ -17,6 +17,7 @@ class ShaderLightAt {
     loadToShader(aCamera, aLight) {
         let gl = glSys.get();
         gl.uniform1i(this.mIsOnRef, aLight.isLightOn());
+        // Process a light only when it is switched on
         if (aLight.isLightOn()) {
             let p = aCamera.wcPosToPixel(aLight.getPosition());
             let n = aCamera.wcSizeToPixel(aLight.getNear());
@@ -32,6 +33,7 @@ class ShaderLightAt {
             gl.uniform1f(this.mDropOffRef, 0);
             gl.uniform1i(this.mLightTypeRef, aLight.getLightType());
 
+            // Point light does not need the direction
             if (aLight.getLightType() === eLightType.ePointLight) {
                 gl.uniform3fv(this.mDirRef, vec3.fromValues(0, 0, 0));
             } else {
