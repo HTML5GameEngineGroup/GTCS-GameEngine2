@@ -18,7 +18,7 @@ class SupportStruct {
     }
 }
 
-// temp work area to save memory allocations
+// temp work area to conserve run time dynamic allocation cost
 let mTmpSupport = new SupportStruct();
 let mCollisionInfoR1 = new CollisionInfo();
 let mCollisionInfoR2 = new CollisionInfo();
