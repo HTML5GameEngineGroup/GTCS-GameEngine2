@@ -10,24 +10,24 @@ import RigidRectangle from "./rigid_rectangle_collision.js";
 /**
  * Determines if there is collision between the shapes
  * @memberOf RigidRectangle
- * @param {float[]} v The rectangle vertex that is closest to the center of the circle
+ * @param {float[]} v1 The rectangle vertex that is closest to the center of the circle
  * @param {float[]} cirCenter The center of the circle
  * @param {float} r The radius of the circle
  * @param {CollisionInfo} info Used to store the collision info
  * @returns {Boolean} If there is collision between the 2 shapes
  */
-RigidRectangle.prototype.checkCircRecVertex = function(v, cirCenter, r, info) {
+RigidRectangle.prototype.checkCircRecVertex = function(v1, cirCenter, r, info) {
     //the center of circle is in corner region of mVertex[nearestEdge]
-    let dis = vec2.length(v);
+    let dist = vec2.length(v1);
     //compare the distance with radius to decide collision
-    if (dis > r)
+    if (dist > r)
         return false;
     let radiusVec = [0, 0];
     let ptAtCirc = [0, 0];
-    vec2.scale(v, v, 1/dis); // normalize
-    vec2.scale(radiusVec, v, -r);
+    vec2.scale(v1, v1, 1/dist); // normalize
+    vec2.scale(radiusVec, v1, -r);
     vec2.add(ptAtCirc, cirCenter, radiusVec);
-    info.setInfo(r - dis, v, ptAtCirc);
+    info.setInfo(r - dist, v1, ptAtCirc);
     return true;
 }
 
@@ -59,16 +59,16 @@ RigidRectangle.prototype.collideRectCirc = function (otherCir, collisionInfo) {
         }
         i++;
     }
-    let dis;
+    let dist;
     let radiusVec = [0, 0];
     let ptAtCirc = [0, 0];
     
     if (!outside) { // inside
         // Step B: The center of circle is inside of rectangle
         vec2.scale(radiusVec, this.mFaceNormal[nearestEdge], otherCir.mRadius);
-        dis = otherCir.mRadius - bestDistance; // bestDist is -ve
+        dist = otherCir.mRadius - bestDistance; // bestDist is -ve
         vec2.subtract(ptAtCirc, cirCenter, radiusVec);
-        collisionInfo.setInfo(dis, this.mFaceNormal[nearestEdge], ptAtCirc);
+        collisionInfo.setInfo(dist, this.mFaceNormal[nearestEdge], ptAtCirc);
         return true;
     }
     
@@ -99,9 +99,9 @@ RigidRectangle.prototype.collideRectCirc = function (otherCir, collisionInfo) {
             // Step C3: In Region R3 
             if (bestDistance < otherCir.mRadius) {
                 vec2.scale(radiusVec, this.mFaceNormal[nearestEdge], otherCir.mRadius);
-                dis = otherCir.mRadius - bestDistance;
+                dist = otherCir.mRadius - bestDistance;
                 vec2.subtract(ptAtCirc, cirCenter, radiusVec);
-                collisionInfo.setInfo(dis, this.mFaceNormal[nearestEdge], ptAtCirc);
+                collisionInfo.setInfo(dist, this.mFaceNormal[nearestEdge], ptAtCirc);
                 return true;
             } else {
                 return false;
