@@ -99,7 +99,7 @@ RigidRectangle.prototype.findAxisLeastPenetration = function (otherRect, collisi
         otherRect.findSupportPoint(dir, ptOnEdge);
         hasSupport = (mTmpSupport.mSupportPoint !== null);
         
-        //get the shortest support point depth
+        // get the shortest support point depth
         if ((hasSupport) && (mTmpSupport.mSupportPointDist < bestDistance)) {
             bestDistance = mTmpSupport.mSupportPointDist;
             bestIndex = i;
@@ -108,7 +108,7 @@ RigidRectangle.prototype.findAxisLeastPenetration = function (otherRect, collisi
         i = i + 1;
     }
     if (hasSupport) {
-        //all four directions have support point
+        // all four directions have support point
         let bestVec = [0, 0];
         vec2.scale(bestVec, this.mFaceNormal[bestIndex], bestDistance);
         let atPos = [0, 0];
