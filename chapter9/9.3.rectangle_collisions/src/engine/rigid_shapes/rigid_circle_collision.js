@@ -17,7 +17,7 @@ RigidCircle.prototype.collisionTest = function (otherShape, collisionInfo) {
 
 RigidCircle.prototype.collideCircCirc = function (c1, c2, collisionInfo) {
     let vFrom1to2 = [0, 0];
-    // Region 1: Determine if the circles overlap
+    // Step 1: Determine if the circles overlap
     vec2.subtract(vFrom1to2, c2.getCenter(), c1.getCenter());
     let rSum = c1.mRadius + c2.mRadius;
     let dist = vec2.length(vFrom1to2);
@@ -26,7 +26,7 @@ RigidCircle.prototype.collideCircCirc = function (c1, c2, collisionInfo) {
         return false;
     }
     if (dist !== 0) {
-        // Region 2: Colliding circle centers are at different positions
+        // Step 2: Colliding circle centers are at different positions
         vec2.normalize(vFrom1to2, vFrom1to2);
         let vToC2 = [0, 0];
         vec2.scale(vToC2, vFrom1to2, -c2.mRadius);
@@ -34,7 +34,7 @@ RigidCircle.prototype.collideCircCirc = function (c1, c2, collisionInfo) {
         collisionInfo.setInfo(rSum - dist, vFrom1to2, vToC2);
     } else {
         let n = [0, -1];
-        // Region 3: Colliding circle centers are at exactly the same position
+        // Step 3: Colliding circle centers are at exactly the same position
         if (c1.mRadius > c2.mRadius) {
             let pC1 = c1.getCenter();
             let ptOnC1 = [pC1[0], pC1[1] + c1.mRadius];
