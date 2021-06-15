@@ -13,9 +13,9 @@ import RigidRectangle from "./rigid_rectangle_main.js";
  */
 class SupportStruct {
     constructor() {
-    this.mSupportPoint = null;
-    this.mSupportPointDist = 0;
-}
+        this.mSupportPoint = null;
+        this.mSupportPointDist = 0;
+    }
 }
 
 // temp work area to save memory allocations
