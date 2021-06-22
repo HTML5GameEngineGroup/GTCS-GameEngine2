@@ -185,6 +185,18 @@ class MyGame extends engine.Scene {
         engine.physics.processSetToSet(this.mAllObjs, this.mPlatforms, this.mCollisionInfos);
         engine.physics.processSet(this.mAllObjs, this.mCollisionInfos);
 
+        for (let i = 0; i<this.mAllObjs.size(); i++) {
+            let xf = this.mAllObjs.getObjectAt(i).getXform();
+            if (xf.getYPos() < 10) {
+                let obj = this.mAllObjs.getObjectAt(i); 
+                xf.setPosition(50 + ((Math.random() - 0.5) * 40), 40 + Math.random() * 20);
+                let rigidShape = obj.getRigidBody();
+                let x = (Math.random() - 0.5) * 40;
+                let y = Math.random() * 50 * 0.5;
+                rigidShape.setVelocity(x, y);
+            }
+        }
+
         let p = obj.getXform().getPosition();
         this.mTarget.getXform().setPosition(p[0], p[1]);
         msg += " V(" + engine.physics.getHasMotion() + ")";
