@@ -20,6 +20,19 @@ class RigidRectangle extends RigidShape {
 
         this.setVertices();
         this.computeFaceNormals();
+
+        this.updateInertia();
+    }
+
+    updateInertia() {
+        // Expect this.mInvMass to be already inverted!
+        if (this.mInvMass === 0) {
+            this.mInertia = 0;
+        } else {
+            //inertia=mass*width^2+height^2
+            this.mInertia = (1 / this.mInvMass) * (this.mWidth * this.mWidth + this.mHeight * this.mHeight) / 12;
+            this.mInertia = 1 / this.mInertia;
+        }
     }
 
     incShapeSizeBy(dt) {
@@ -27,6 +40,7 @@ class RigidRectangle extends RigidShape {
         this.mWidth += dt;
         this.setVertices();
         this.rotateVertices();
+        this.updateInertia();
     }
 
     setPosition(x, y) {

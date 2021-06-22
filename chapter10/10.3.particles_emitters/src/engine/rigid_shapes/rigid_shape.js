@@ -93,11 +93,10 @@ class RigidShape {
     travel() {
         let dt = loop.getUpdateIntervalInSeconds();
 
-        // update acceleration
+        // update velocity by acceleration
         vec2.scaleAndAdd(this.mVelocity, this.mVelocity, this.mAcceleration, dt);
 
-        //s += v*t  with new velocity
-        // linear motion
+        // p  = p + v*dt  with new velocity
         let p = this.mXform.getPosition();
         vec2.scaleAndAdd(p, p, this.mVelocity, dt);
 

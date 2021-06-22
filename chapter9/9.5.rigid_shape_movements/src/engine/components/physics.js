@@ -9,10 +9,6 @@
 import CollisionInfo from "../rigid_shapes/collision_info.js";
 
 let mSystemAcceleration = [0, -20];        // system-wide default acceleration
-let mPosCorrectionRate = 0.8;               // percentage of separation to project objects
-let mRelaxationCount = 15;                  // number of relaxation iteration
-
-let mCorrectPosition = true;
 let mHasMotion = true;
 
 // getters and setters
@@ -22,36 +18,16 @@ function setSystemAcceleration(x, y) {
     mSystemAcceleration[1] = y;
 }
 
-function getPositionalCorrection() { return mCorrectPosition; }
-function togglePositionalCorrection() { mCorrectPosition = !mCorrectPosition; }
-
 function getHasMotion() { return mHasMotion; }
 function toggleHasMotion() { mHasMotion = !mHasMotion; }
-
-function getRelaxationCount() { return mRelaxationCount; }
-function incRelaxationCount(dc) { mRelaxationCount += dc; }
 
 let mS1toS2 = [0, 0];
 let mCInfo = new CollisionInfo();
 
-function positionalCorrection(s1, s2, collisionInfo) {
-    if (!mCorrectPosition)
-        return;
-
-    let s1InvMass = s1.getInvMass();
-    let s2InvMass = s2.getInvMass();
-
-    let num = collisionInfo.getDepth() / (s1InvMass + s2InvMass) * mPosCorrectionRate;
-    let correctionAmount = [0, 0];
-    vec2.scale(correctionAmount, collisionInfo.getNormal(), num);
-    s1.adjustPositionBy(correctionAmount, -s1InvMass);
-    s2.adjustPositionBy(correctionAmount, s2InvMass);
-}
-
 // collide two rigid shapes
 function collideShape(s1, s2, infoSet = null) {
     let hasCollision = false;
-    if ((s1 !== s2) && ((s1.getInvMass() !== 0) || (s2.getInvMass() !== 0))) {
+    if (s1 !== s2) {
         if (s1.boundTest(s2)) {
             hasCollision = s1.collisionTest(s2, mCInfo);
             if (hasCollision) {
@@ -114,18 +90,11 @@ function processSet(set, infoSet = null) {
 export {
     // Physics system attributes
     getSystemAcceleration, setSystemAcceleration,
-
-
-    togglePositionalCorrection,
-    getPositionalCorrection,
-
-    getRelaxationCount,
-    incRelaxationCount,
-    
+   
     getHasMotion,
     toggleHasMotion,
 
-     // collide and response two shapes 
+     // collide two shapes 
     collideShape,
 
     // Collide

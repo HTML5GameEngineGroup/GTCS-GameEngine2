@@ -25,6 +25,7 @@ class RigidShape {
         this.mType = "";
 
         this.mInvMass = 1;
+        this.mInertia = 0;
 
         this.mFriction = 0.8;
         this.mRestitution = 0.2;
@@ -48,7 +49,11 @@ class RigidShape {
             this.mInvMass = 0;
             this.mAcceleration = [0, 0];  // to ensure object does not move
         }
+        this.updateInertia();
     }
+
+    getInertia() { return this.mInertia; }
+    setInertia(i) { this.mInertia = i; }
 
     getFriction() { return this.mFriction; }
     setFriction(f) { this.mFriction = f; }
@@ -88,11 +93,10 @@ class RigidShape {
     travel() {
         let dt = loop.getUpdateIntervalInSeconds();
 
-        // update acceleration
+        // update velocity by acceleration
         vec2.scaleAndAdd(this.mVelocity, this.mVelocity, this.mAcceleration, dt);
 
-        //s += v*t  with new velocity
-        // linear motion
+        // p  = p + v*dt  with new velocity
         let p = this.mXform.getPosition();
         vec2.scaleAndAdd(p, p, this.mVelocity, dt);
 
@@ -147,6 +151,7 @@ class RigidShape {
             m = 1 / m;
 
         return "M=" + m.toFixed(kPrintPrecision) +
+            "(I=" + this.mInertia.toFixed(kPrintPrecision) + ")" +
             " F=" + this.mFriction.toFixed(kPrintPrecision) +
             " R=" + this.mRestitution.toFixed(kPrintPrecision);
     }

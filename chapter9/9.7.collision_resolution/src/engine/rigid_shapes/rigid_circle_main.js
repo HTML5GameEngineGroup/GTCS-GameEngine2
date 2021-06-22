@@ -14,11 +14,25 @@ class RigidCircle extends RigidShape {
         this.mType = "RigidCircle";
         this.mRadius = radius;
         this.mBoundRadius = radius;
+
+        this.updateInertia();
+    }
+
+    updateInertia() {
+        if (this.mInvMass === 0) {
+            this.mInertia = 0;
+        } else {
+            // this.mInvMass is inverted!!
+            // Inertia=mass * radius^2
+            // 12 is a constant value that can be changed
+            this.mInertia = (1 / this.mInvMass) * (this.mRadius * this.mRadius) / 12;
+        }
     }
 
     incShapeSizeBy(dt) { 
         this.mRadius += dt; 
         this.mBoundRadius = this.mRadius;
+        this.updateInertia();
     }
 
     draw(aCamera) {

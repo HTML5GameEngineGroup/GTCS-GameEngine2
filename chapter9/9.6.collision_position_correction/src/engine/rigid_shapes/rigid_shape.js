@@ -25,6 +25,11 @@ class RigidShape {
         this.mType = "";
 
         this.mInvMass = 1;
+        this.mInertia = 0;
+
+        this.mFriction = 0.8;
+        this.mRestitution = 0.2;
+
         this.mAngularVelocity = 0;
 
         this.mBoundRadius = 0;
@@ -44,7 +49,17 @@ class RigidShape {
             this.mInvMass = 0;
             this.mAcceleration = [0, 0];  // to ensure object does not move
         }
+        this.updateInertia();
     }
+
+    getInertia() { return this.mInertia; }
+    setInertia(i) { this.mInertia = i; }
+
+    getFriction() { return this.mFriction; }
+    setFriction(f) { this.mFriction = f; }
+
+    getRestitution() { return this.mRestitution; }
+    setRestitution(r) { this.mRestitution = r; }
 
     getAngularVelocity() { return this.mAngularVelocity; }
     setAngularVelocity(w) { this.mAngularVelocity = w; }
@@ -78,11 +93,10 @@ class RigidShape {
     travel() {
         let dt = loop.getUpdateIntervalInSeconds();
 
-        // update acceleration
+        // update velocity by acceleration
         vec2.scaleAndAdd(this.mVelocity, this.mVelocity, this.mAcceleration, dt);
 
-        //s += v*t  with new velocity
-        // linear motion
+        // p  = p + v*dt  with new velocity
         let p = this.mXform.getPosition();
         vec2.scaleAndAdd(p, p, this.mVelocity, dt);
 
@@ -136,7 +150,10 @@ class RigidShape {
         if (m !== 0)
             m = 1 / m;
 
-        return "M=" + m.toFixed(kPrintPrecision);
+        return "M=" + m.toFixed(kPrintPrecision) +
+            "(I=" + this.mInertia.toFixed(kPrintPrecision) + ")" +
+            " F=" + this.mFriction.toFixed(kPrintPrecision) +
+            " R=" + this.mRestitution.toFixed(kPrintPrecision);
     }
 
     userSetsState() {
@@ -155,6 +172,20 @@ class RigidShape {
                 if (this.mInvMass > 0)
                     m = 1 / this.mInvMass;
                 this.setMass(m + delta * 10);
+            }
+            if (input.isKeyPressed(input.keys.F)) {
+                this.mFriction += delta;
+                if (this.mFriction < 0)
+                    this.mFriction = 0;
+                if (this.mFriction > 1)
+                    this.mFriction = 1;
+            }
+            if (input.isKeyPressed(input.keys.R)) {
+                this.mRestitution += delta;
+                if (this.mRestitution < 0)
+                    this.mRestitution = 0;
+                if (this.mRestitution > 1)
+                    this.mRestitution = 1;
             }
         }
     }
