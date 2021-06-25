@@ -131,7 +131,7 @@ export {
     getHasMotion,
     toggleHasMotion,
 
-    // collide and response two shapes 
+    // collide two shapes 
     collideShape,
 
     // Collide
