@@ -180,7 +180,7 @@ class RigidShape {
                 if (this.mFriction > 1)
                     this.mFriction = 1;
             }
-            if (input.isKeyPressed(input.keys.R)) {
+            if (input.isKeyPressed(input.keys.N)) {
                 this.mRestitution += delta;
                 if (this.mRestitution < 0)
                     this.mRestitution = 0;

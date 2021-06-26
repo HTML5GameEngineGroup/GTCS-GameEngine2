@@ -79,7 +79,7 @@ MyGame.prototype.platformAt = function (x, y, w, rot) {
     r.setMass(0);
     xf.setSize(w, h);
     xf.setPosition(x, y);
-    xf.setRotationInDegree(rot);
+    // xf.setRotationInDegree(rot);
     this.mPlatforms.addToSet(g);
 }
 

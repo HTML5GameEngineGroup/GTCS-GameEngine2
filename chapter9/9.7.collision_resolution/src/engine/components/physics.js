@@ -6,6 +6,7 @@
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
+
 import CollisionInfo from "../rigid_shapes/collision_info.js";
 
 let mSystemAcceleration = [0, -20];        // system-wide default acceleration
@@ -48,15 +49,16 @@ function positionalCorrection(s1, s2, collisionInfo) {
     s2.adjustPositionBy(correctionAmount, s2InvMass);
 }
 
-function resolveCollision(s1, s2, collisionInfo) {
+function resolveCollision(b, a, collisionInfo) {
     let n = collisionInfo.getNormal();
 
-    let v1 = s1.getVelocity();
-    let v2 = s2.getVelocity();
+    // Step A: Compute relative velocity
+    let va = a.getVelocity();
+    let vb = b.getVelocity();
     let relativeVelocity = [0, 0];
-    vec2.subtract(relativeVelocity, v2, v1);
+    vec2.subtract(relativeVelocity, va, vb);
 
-    // Relative velocity in normal direction
+    // Step B: Determine relative velocity in normal direction
     let rVelocityInNormal = vec2.dot(relativeVelocity, n);
 
     //if objects moving apart ignore
@@ -64,41 +66,31 @@ function resolveCollision(s1, s2, collisionInfo) {
         return;
     }
 
-    // compute and apply response impulses for each object    
-    let newRestituion = Math.min(s1.getRestitution(), s2.getRestitution());
-    let newFriction = Math.min(s1.getFriction(), s2.getFriction());
-
-    // Calc impulse scalar
-    // the formula of jN can be found in http://www.myphysicslab.com/collision.html
-    let jN = -(1 + newRestituion) * rVelocityInNormal;
-    jN = jN / (s1.getInvMass() + s2.getInvMass());
-
-    //impulse is in direction of normal ( from s1 to s2)
-    let impulse = [0, 0];
-    vec2.scale(impulse, n, jN);
-    // impulse = F dt = m * ?v
-    // ?v = impulse / m
-    vec2.scaleAndAdd(s1.getVelocity(), s1.getVelocity(), impulse, -s1.getInvMass());
-    vec2.scaleAndAdd(s2.getVelocity(), s2.getVelocity(), impulse, s2.getInvMass());
-
+    // Step C: Compute collision tangent direction
     let tangent = [0, 0];
     vec2.scale(tangent, n, rVelocityInNormal);
     vec2.subtract(tangent, tangent, relativeVelocity);
     vec2.normalize(tangent, tangent);
-
+    // Relative velocity in tangent direction
     let rVelocityInTangent = vec2.dot(relativeVelocity, tangent);
-    let jT = -(1 + newRestituion) * rVelocityInTangent * newFriction;
-    jT = jT / (s1.getInvMass() + s2.getInvMass());
 
-    //friction should less than force in normal direction
-    if (jT > jN) {
-        jT = jN;
-    }
+    // Step D: Compute and apply response impulses for each object    
+    let newRestituion = (a.getRestitution() + b.getRestitution()) * 0.5;
+    let newFriction = 1 - ((a.getFriction() + b.getFriction()) * 0.5);
 
-    //impulse is from s1 to s2 (in opposite direction of velocity)
-    vec2.scale(impulse, tangent, jT);
-    vec2.scaleAndAdd(s1.getVelocity(), s1.getVelocity(), impulse, -s1.getInvMass());
-    vec2.scaleAndAdd(s2.getVelocity(), s2.getVelocity(), impulse, s2.getInvMass());
+    // Step E: Impulse in the normal and tangent directions
+    let jN = -(1 + newRestituion) * rVelocityInNormal;
+    jN = jN / (a.getInvMass() + b.getInvMass());
+
+    let jT = (newFriction - 1) * rVelocityInTangent;
+    jT = jT / (a.getInvMass() + b.getInvMass());
+
+    // STEP F: Update velocity in both normal and tangent directions
+    vec2.scaleAndAdd(va, va, n, (jN * a.getInvMass()));
+    vec2.scaleAndAdd(va, va, tangent, (jT * a.getInvMass()));
+
+    vec2.scaleAndAdd(vb, vb, n, -(jN * b.getInvMass()));
+    vec2.scaleAndAdd(vb, vb, tangent, -(jT * b.getInvMass()));
 }
 
 // collide two rigid shapes
@@ -149,11 +141,11 @@ function processSetToSet(set1, set2, infoSet = null) {
             for (j = 0; j < set2.size(); j++) {
                 let s2 = set2.getObjectAt(j).getRigidBody();
                 hasCollision = collideShape(s1, s2, infoSet) || hasCollision;
-                            }
-                        }
-                    }
+            }
+        }
+    }
     return hasCollision;
-                }
+}
 
 // collide all objects in the GameObjectSet with themselves
 function processSet(set, infoSet = null) {
@@ -181,7 +173,7 @@ export {
 
     getRelaxationCount,
     incRelaxationCount,
-    
+
     getHasMotion,
     toggleHasMotion,
 

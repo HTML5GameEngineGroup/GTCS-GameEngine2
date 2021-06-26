@@ -24,8 +24,7 @@ class RigidCircle extends RigidShape {
         } else {
             // this.mInvMass is inverted!!
             // Inertia=mass * radius^2
-            // 12 is a constant value that can be changed
-            this.mInertia = (1 / this.mInvMass) * (this.mRadius * this.mRadius) / 12;
+            this.mInertia = (1 / this.mInvMass) * (this.mRadius * this.mRadius);
         }
     }
 
