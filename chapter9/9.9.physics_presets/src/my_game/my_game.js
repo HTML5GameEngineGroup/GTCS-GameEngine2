@@ -155,10 +155,10 @@ class MyGame extends engine.Scene {
         if (engine.input.isKeyPressed(engine.input.keys.V)) {
             area.incRestitution(.01);
         }
-        if (engine.input.isKeyPressed(engine.input.keys.B)) {
+        if (engine.input.isKeyPressed(engine.input.keys.R)) {
             area.incFriction(-.01);
         }
-        if (engine.input.isKeyPressed(engine.input.keys.N)) {
+        if (engine.input.isKeyPressed(engine.input.keys.T)) {
             area.incFriction(.01);
         }
         if (engine.input.isKeyClicked(engine.input.keys.H)) {

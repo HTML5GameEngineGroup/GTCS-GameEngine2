@@ -91,11 +91,7 @@ function resolveCollision(b, a, collisionInfo) {
 
     // compute and apply response impulses for each object    
     let newRestituion = (b.getRestitution() + a.getRestitution()) * 0.5;
-    //newRestituion = Math.max(newRestituion, 0.1);
-    //newRestituion = Math.min(newRestituion, 0.9);
     let newFriction = 1 - (((b.getFriction() + a.getFriction())) * 0.5);
-    //newFriction = Math.max(newFriction, 0.1);
-    //newFriction = Math.min(newFriction, 0.9);
 
     //R cross N
     let rBPcrossN = rBP[0] * n[1] - rBP[1] * n[0]; // rBP cross n
