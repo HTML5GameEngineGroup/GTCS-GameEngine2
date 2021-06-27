@@ -51,6 +51,11 @@ function positionalCorrection(s1, s2, collisionInfo) {
 function resolveCollision(b, a, collisionInfo) {
     let n = collisionInfo.getNormal();
 
+    // Step A: Compute relative velocity
+    let va = a.getVelocity();
+    let vb = b.getVelocity();
+
+    // Step A1: Compute the intersection position p
     // the direction of collisionInfo is always from b to a
     // but the Mass is inverse, so start scale with a and end scale with b
     let invSum = 1 / (b.getInvMass() + a.getInvMass());
@@ -59,23 +64,26 @@ function resolveCollision(b, a, collisionInfo) {
     vec2.scale(end, collisionInfo.getEnd(), b.getInvMass() * invSum);
     vec2.add(p, start, end);
 
-    // r is vector from center of object to collision point
+    // Step A2: Compute relative velocity with rotation components 
+    //    Vectors from center to P
+    //    r is vector from center of object to collision point
     let rBP = [0, 0], rAP = [0, 0];
     vec2.subtract(rAP, p, a.getCenter());
-    vec2.subtract(rBP, p, b.getCenter());
-    
+    vec2.subtract(rBP, p, b.getCenter());   
+
     // newV = V + mAngularVelocity cross R
     let vAP1 = [-1 * a.getAngularVelocity() * rAP[1],
     a.getAngularVelocity() * rAP[0]];
-    vec2.add(vAP1, vAP1, a.getVelocity());
+    vec2.add(vAP1, vAP1, va);
+
     let vBP1 = [-1 * b.getAngularVelocity() * rBP[1],
     b.getAngularVelocity() * rBP[0]];
-    vec2.add(vBP1, vBP1, b.getVelocity());
+    vec2.add(vBP1, vBP1, vb);
 
     let relativeVelocity = [0, 0];
     vec2.subtract(relativeVelocity, vAP1, vBP1);
 
-    // Relative velocity in normal direction
+    // Step B: Determine relative velocity in normal direction
     let rVelocityInNormal = vec2.dot(relativeVelocity, n);
 
     //if objects moving apart ignore
@@ -83,16 +91,18 @@ function resolveCollision(b, a, collisionInfo) {
         return;
     }
 
+    // Step C: Compute collision tangent direction
     let tangent = [0, 0];
     vec2.scale(tangent, n, rVelocityInNormal);
     vec2.subtract(tangent, tangent, relativeVelocity);
     vec2.normalize(tangent, tangent);
     let rVelocityInTangent = vec2.dot(relativeVelocity, tangent);
 
-    // compute and apply response impulses for each object    
+    // Step D: Compute and apply response impulses for each object    
     let newRestituion = (b.getRestitution() + a.getRestitution()) * 0.5;
     let newFriction = 1 - (((b.getFriction() + a.getFriction())) * 0.5);
 
+    // Step E: Impulse in the normal and tangent directions
     //R cross N
     let rBPcrossN = rBP[0] * n[1] - rBP[1] * n[0]; // rBP cross n
     let rAPcrossN = rAP[0] * n[1] - rAP[1] * n[0]; // rAP cross n
@@ -110,12 +120,13 @@ function resolveCollision(b, a, collisionInfo) {
         rBPcrossT * rBPcrossT * b.getInertia() +
         rAPcrossT * rAPcrossT * a.getInertia());
 
-    vec2.scaleAndAdd(a.getVelocity(), a.getVelocity(), n, (jN * a.getInvMass()));
-    vec2.scaleAndAdd(a.getVelocity(), a.getVelocity(), tangent, (jT * a.getInvMass()));
+    // Step F: Update velocity in both normal and tangent directions
+    vec2.scaleAndAdd(va, va, n, (jN * a.getInvMass()));
+    vec2.scaleAndAdd(va, va, tangent, (jT * a.getInvMass()));
     a.setAngularVelocityDelta((rAPcrossN * jN * a.getInertia() + rAPcrossT * jT * a.getInertia()));
 
-    vec2.scaleAndAdd(b.getVelocity(), b.getVelocity(), n, -(jN * b.getInvMass()));
-    vec2.scaleAndAdd(b.getVelocity(), b.getVelocity(), tangent, -(jT * b.getInvMass()));
+    vec2.scaleAndAdd(vb, vb, n, -(jN * b.getInvMass()));
+    vec2.scaleAndAdd(vb, vb, tangent, -(jT * b.getInvMass()));
     b.setAngularVelocityDelta(-(rBPcrossN * jN * b.getInertia() + rBPcrossT * jT * b.getInertia()));    
 }
 

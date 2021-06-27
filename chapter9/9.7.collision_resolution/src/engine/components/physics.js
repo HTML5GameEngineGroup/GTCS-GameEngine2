@@ -84,7 +84,7 @@ function resolveCollision(b, a, collisionInfo) {
     let jT = (newFriction - 1) * rVelocityInTangent;
     jT = jT / (a.getInvMass() + b.getInvMass());
 
-    // STEP F: Update velocity in both normal and tangent directions
+    // Step F: Update velocity in both normal and tangent directions
     vec2.scaleAndAdd(va, va, n, (jN * a.getInvMass()));
     vec2.scaleAndAdd(va, va, tangent, (jT * a.getInvMass()));
 
