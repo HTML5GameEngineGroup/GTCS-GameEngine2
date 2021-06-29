@@ -73,7 +73,7 @@ function resolveCollision(b, a, collisionInfo) {
     // Relative velocity in tangent direction
     let rVelocityInTangent = vec2.dot(relativeVelocity, tangent);
 
-    // Step D: Compute and apply response impulses for each object    
+    // Step D: Determine the effective coefficients    
     let newRestituion = (a.getRestitution() + b.getRestitution()) * 0.5;
     let newFriction = 1 - ((a.getFriction() + b.getFriction()) * 0.5);
 
