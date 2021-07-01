@@ -82,10 +82,10 @@ RigidRectangle.prototype.collideRectCirc = function (otherCir, collisionInfo) {
     let dot = vec2.dot(v1, v2);
 
     if (dot < 0) {
-        // Step C1: In Region R1
+        // Step C1: In Region RG1
         return this.checkCircRecVertex(v1, cirCenter, otherCir.mRadius, collisionInfo);
     } else {
-        // Either in Region R2 or R3
+        // Either in Region RG2 or RG3
         
         //v1 is from right vertex of face to center of circle 
         //v2 is from right vertex of face to left vertex of face
@@ -93,10 +93,10 @@ RigidRectangle.prototype.collideRectCirc = function (otherCir, collisionInfo) {
         vec2.scale(v2, v2, -1);
         dot = vec2.dot(v1, v2); 
         if (dot < 0) {
-            // Step C2: In Region R2
+            // Step C2: In Region RG2
             return this.checkCircRecVertex(v1, cirCenter, otherCir.mRadius, collisionInfo);
         } else {
-            // Step C3: In Region R3 
+            // Step C3: In Region RG3 
             if (bestDistance < otherCir.mRadius) {
                 vec2.scale(radiusVec, this.mFaceNormal[nearestEdge], otherCir.mRadius);
                 dist = otherCir.mRadius - bestDistance;
