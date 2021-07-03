@@ -81,7 +81,6 @@ class FontRenderable {
 
     update() {}
 
-    
     /*
      * this can be a potentially useful function. Not included/tested in this version of the engine
 

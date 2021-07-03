@@ -250,6 +250,21 @@ class MyGame extends engine.Scene {
     }
 }
 
+let kSpeed = 40;
+MyGame.prototype.randomizeVelocity = function()
+{
+    let i = 0;
+    for (i = 0; i<this.mAllObjs.size(); i++) {
+        let obj = this.mAllObjs.getObjectAt(i);
+        let rigidShape = obj.getRigidBody();
+        let x = (Math.random() - 0.5) * kSpeed;
+        let y = Math.random() * kSpeed * 0.5;
+        rigidShape.setVelocity(x, y);
+        let c = rigidShape.getCenter();
+        this.mParticles.addEmitterAt(c[0], c[1], 20, _createParticle);
+    }
+}
+
 function _createParticle(atX, atY) {
     let life = 30 + Math.random() * 200;
     let p = new engine.Particle(engine.defaultResources.getDefaultPSTexture(), atX, atY, life);

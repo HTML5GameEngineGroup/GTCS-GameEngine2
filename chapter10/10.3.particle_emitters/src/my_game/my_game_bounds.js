@@ -8,19 +8,6 @@
 import engine from "../engine/index.js";
 import MyGame from "./my_game_main.js";
 
-let kSpeed = 40;
-MyGame.prototype.randomizeVelocity = function()
-{
-    let i = 0;
-    for (i = 0; i<this.mAllObjs.size(); i++) {
-        let obj = this.mAllObjs.getObjectAt(i);
-        let rigidShape = obj.getRigidBody();
-        let x = (Math.random() - 0.5) * kSpeed;
-        let y = Math.random() * kSpeed * 0.5;
-        rigidShape.setVelocity(x, y);
-    }
-}
-
 MyGame.prototype.createBounds = function() {
     let x = 15, w = 30, y = 4;
     for (x = 15; x < 120; x+=30) 
