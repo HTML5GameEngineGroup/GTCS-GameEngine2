@@ -119,6 +119,7 @@ class MyGame extends engine.Scene {
         f.getXform().setSize(50, 50);
         f.getXform().setPosition(-3, 2);
         this.mFront = new engine.ParallaxGameObject(f, 0.9, this.mCamera);
+        engine.defaultResources.setGlobalAmbientIntensity(3);
 
         // 
         // the objects
