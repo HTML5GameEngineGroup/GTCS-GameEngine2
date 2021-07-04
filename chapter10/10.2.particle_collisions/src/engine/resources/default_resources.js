@@ -10,7 +10,7 @@ import * as texture from "../resources/texture.js";
 import * as map from "../core/resource_map.js";
 
 // Global Ambient color
-let mGlobalAmbientColor = [0.35, 0.35, 0.35, 1];
+let mGlobalAmbientColor = [0.3, 0.3, 0.3, 1];
 let mGlobalAmbientIntensity = 1;
 function getGlobalAmbientIntensity() { return mGlobalAmbientIntensity; }
 function setGlobalAmbientIntensity(v) { mGlobalAmbientIntensity = v; }
