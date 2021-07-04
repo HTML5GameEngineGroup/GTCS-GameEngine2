@@ -25,18 +25,18 @@ MyGame.prototype._initializeLights = function () {
     this.mGlobalLightSet = new engine.LightSet();
 
     let l = this._createALight(
-        [21, 58, 2],       // Hero
-        [0.2, 0.2, 0.8, 1],  // some color
+        [31, 53, 14],       // Hero
+        [0.4, 0.4, 0.5, 1],  // some color
         20, 50,             // Near and Far
-        5.5                // intensity
+        4.5                // intensity
     );
     this.mGlobalLightSet.addToSet(l);
 
     l = this._createALight(
-        [43, 34, 8],           // Left minion position
+        [30, 24, 8],           // Left minion position
         [0.4, 1.0, 0.4, 1],    // color
         20, 45,                // near and far
-        2.8                    // intensity
+        4.8                    // intensity
     );
     this.mGlobalLightSet.addToSet(l);
 
