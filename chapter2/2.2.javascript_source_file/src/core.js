@@ -24,7 +24,7 @@ function initWebGL(htmlCanvasID) {
         document.write("<br><b>WebGL 2 is not supported!</b>");
         return;
     }
-    mGL.clearColor(0.8, 0.8, 0.8, 1.0);  // set the color to be cleared
+    mGL.clearColor(0.0, 0.8, 0.0, 1.0);  // set the color to be cleared
 }
 
 // Clears the canvas area
