@@ -3,7 +3,7 @@
  * a set of Particles
  * 
  * Subclass of GameObjectSet: 
- *     GameObjectSert: a set of objects that support: update() and draw() functions
+ *     GameObjectSet: a set of objects that support: update() and draw() functions
  *                     Particle satisfies!
  */
 "use strict";
