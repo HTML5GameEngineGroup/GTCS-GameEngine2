@@ -39,14 +39,14 @@ class MyGmae {
         this.mCamera.setViewAndCameraMatrix();
 
         // Step F: Draw the blue square
-        // Centre Blue, slightly rotated square
+        // Center Blue, slightly rotated square
         this.mBlueSq.getXform().setPosition(20, 60);
         this.mBlueSq.getXform().setRotationInRad(0.2); // In Radians
         this.mBlueSq.getXform().setSize(5, 5);
         this.mBlueSq.draw(this.mCamera);
 
         // Step G: Draw the center and the corner squares
-        // centre red square
+        // center red square
         this.mRedSq.getXform().setPosition(20, 60);
         this.mRedSq.getXform().setSize(2, 2);
         this.mRedSq.draw(this.mCamera);
