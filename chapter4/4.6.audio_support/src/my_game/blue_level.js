@@ -77,7 +77,7 @@ class BlueLevel extends engine.Scene {
         let xform = this.mSQSet[1].getXform();
         let deltaX = 0.05;
 
-        /// Move right and swap ovre
+        // Move right and swap over
         if (engine.input.isKeyPressed(engine.input.keys.Right)) {
             engine.audio.playCue(this.mCue, 0.5);
             xform.incXPosBy(deltaX);

@@ -21,7 +21,7 @@ let mFrameID = -1;
 // This function loops over draw/update once
 function loopOnce() {
     if (mLoopRunning) {
-        // Step A: set up for next call to LoopOnce and update input!
+        // Step A: set up for next call to loopOnce
         mFrameID = requestAnimationFrame(loopOnce);
 
         // Step B: now let's draw
