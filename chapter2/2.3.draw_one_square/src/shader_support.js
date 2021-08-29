@@ -3,7 +3,7 @@
  * Support the loading, compiling, and linking of shader code
  * 
  * Notice: although in different files, access to symbols defined in other files
- *         can be established via "import" and "export staements"  
+ *         can be established via "import" and "export statements"  
  */
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
@@ -56,7 +56,7 @@ function activate() {
         false,          // if the content is normalized vectors
         0,              // number of bytes to skip in between elements
         0);             // offsets to the first element
-    gl.enableVertexAttribArray(this.mVertexPosition);
+    gl.enableVertexAttribArray(this.mVertexPositionRef);
 
 }
 
