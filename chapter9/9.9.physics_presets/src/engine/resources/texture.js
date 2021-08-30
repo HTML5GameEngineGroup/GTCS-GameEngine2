@@ -82,8 +82,8 @@ function load(textureName) {
 function unload(textureName) {
     let texInfo = get(textureName);
     if (map.unload(textureName)) {
-    let gl = glSys.get();
-    gl.deleteTexture(texInfo.mGLTexID);
+        let gl = glSys.get();
+        gl.deleteTexture(texInfo.mGLTexID);
     }
 }
 
