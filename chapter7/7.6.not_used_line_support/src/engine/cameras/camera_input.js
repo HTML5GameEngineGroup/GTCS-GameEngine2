@@ -1,7 +1,7 @@
 /*
  * File: camera_input.js
  *
- * Adds functions that support mouse input (transform from DC to WC)
+ * Adds functions to the Camrea class to  support mouse input (transform from DC to WC)
  */
 "use strict";
 
