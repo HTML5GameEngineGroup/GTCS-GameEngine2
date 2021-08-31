@@ -60,7 +60,7 @@ class MyGame extends engine.Scene {
         this.mCollector.setColor([0, 0, 0, 0]);  // No tinting
         this.mCollector.getXform().setPosition(15, 60);
         this.mCollector.getXform().setSize(3, 3);
-        this.mCollector.setElementPixelPositions(315, 495, 0, 180);
+        this.mCollector.setElementUVCoordinate(0.308, 0.483, 0, 0.352);
 
         // Step C: Create the font and minion images using sprite
         this.mFontImage = new engine.SpriteRenderable(this.kFontImage);
