@@ -128,8 +128,6 @@ class Camera {
 
         // Step B2: first operation to perform is to translate camera center to the origin
         mat4.translate(this.mCameraMatrix, this.mCameraMatrix, vec3.fromValues(-center[0], -center[1], 0));
-
-        this.panBy(1, 0);
     }
 
     // Getter for the View-Projection transform operator
