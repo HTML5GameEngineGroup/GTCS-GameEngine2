@@ -40,7 +40,7 @@ class MyGame extends engine.Scene {
         // Particle Support
         this.mParticles = null;
         this.mPSDrawBounds = false;
-        this.mPSCollision = false;
+        this.mPSCollision = true;
     }
 
 
