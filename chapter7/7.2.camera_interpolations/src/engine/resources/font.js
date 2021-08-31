@@ -14,7 +14,7 @@ import * as xml from "./xml.js";
 let kImageExt = ".png";  // extension for the bitmap font image
 let kDescExt = ".fnt";   // extension for the bitmap font description
 
-// for convenenit communication of per-character information
+// for convenient communication of per-character information
 // all size returned are in normalize unit (range between 0 to 1)
 class CharacterInfo {
     constructor() {
