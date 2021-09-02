@@ -84,7 +84,7 @@ function resolveCollision(b, a, collisionInfo) {
     // Step B: Determine relative velocity in normal direction
     let rVelocityInNormal = vec2.dot(relativeVelocity, n);
 
-    //if objects moving apart ignore
+    // if objects moving apart ignore
     if (rVelocityInNormal > 0) {
         return;
     }
@@ -102,7 +102,7 @@ function resolveCollision(b, a, collisionInfo) {
     let newFriction = 1 - ((a.getFriction() + b.getFriction()) * 0.5);
 
     // Step E: Impulse in the normal and tangent directions
-    //R cross N
+    // R cross N
     let rBPcrossN = rBP[0] * n[1] - rBP[1] * n[0]; // rBP cross n
     let rAPcrossN = rAP[0] * n[1] - rAP[1] * n[0]; // rAP cross n
     // Calc impulse scalar

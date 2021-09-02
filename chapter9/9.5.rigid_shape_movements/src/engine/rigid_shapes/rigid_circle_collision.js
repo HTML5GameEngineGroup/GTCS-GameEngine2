@@ -22,7 +22,7 @@ RigidCircle.prototype.collideCircCirc = function (c1, c2, collisionInfo) {
     let rSum = c1.mRadius + c2.mRadius;
     let dist = vec2.length(vFrom1to2);
     if (dist > Math.sqrt(rSum * rSum)) {
-        //not overlapping
+        // not overlapping
         return false;
     }
     if (dist !== 0) {

@@ -9,7 +9,7 @@
 import TextureRenderable from "./texture_renderable.js";
 import * as shaderResources from "../core/shader_resources.js";
   
-//// the expected texture coordinate array is an array of 8 floats where elements:
+// the expected texture coordinate array is an array of 8 floats where elements:
 //  [0] [1]: is u/v coordinate of Top-Right 
 //  [2] [3]: is u/v coordinate of Top-Left
 //  [4] [5]: is u/v coordinate of Bottom-Right

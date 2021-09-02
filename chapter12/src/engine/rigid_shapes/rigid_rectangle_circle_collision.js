@@ -17,9 +17,9 @@ import RigidRectangle from "./rigid_rectangle_collision.js";
  * @returns {Boolean} If there is collision between the 2 shapes
  */
 RigidRectangle.prototype.checkCircRecVertex = function(v1, cirCenter, r, info) {
-    //the center of circle is in corner region of mVertex[nearestEdge]
+    // the center of circle is in corner region of mVertex[nearestEdge]
     let dist = vec2.length(v1);
-    //compare the distance with radius to decide collision
+    // compare the distance with radius to decide collision
     if (dist > r)
         return false;
     let radiusVec = [0, 0];
@@ -49,7 +49,7 @@ RigidRectangle.prototype.collideRectCirc = function (otherCir, collisionInfo) {
     
     // Step A: Compute the nearest edge
     while ((!outside) && (i<4)) {
-        //find the nearest face for center of circle        
+        // find the nearest face for center of circle        
         vec2.subtract(vToC, cirCenter, this.mVertex[i]);
         projection = vec2.dot(vToC, this.mFaceNormal[i]);
         if (projection > bestDistance) {
@@ -72,10 +72,10 @@ RigidRectangle.prototype.collideRectCirc = function (otherCir, collisionInfo) {
         return true;
     }
     
-    //the center of circle is outside of rectangle
+    // the center of circle is outside of rectangle
 
-    //v1 is from left vertex of face to center of circle 
-    //v2 is from left vertex of face to right vertex of face
+    // v1 is from left vertex of face to center of circle 
+    // v2 is from left vertex of face to right vertex of face
     let v1 = [0, 0], v2 = [0, 0];
     vec2.subtract(v1, cirCenter, this.mVertex[nearestEdge]);
     vec2.subtract(v2, this.mVertex[(nearestEdge + 1) % 4], this.mVertex[nearestEdge]);
@@ -87,8 +87,8 @@ RigidRectangle.prototype.collideRectCirc = function (otherCir, collisionInfo) {
     } else {
         // Either in Region RG2 or RG3
         
-        //v1 is from right vertex of face to center of circle 
-        //v2 is from right vertex of face to left vertex of face
+        // v1 is from right vertex of face to center of circle 
+        // v2 is from right vertex of face to left vertex of face
         vec2.subtract(v1, cirCenter, this.mVertex[(nearestEdge + 1) % 4]);
         vec2.scale(v2, v2, -1);
         dot = vec2.dot(v1, v2); 

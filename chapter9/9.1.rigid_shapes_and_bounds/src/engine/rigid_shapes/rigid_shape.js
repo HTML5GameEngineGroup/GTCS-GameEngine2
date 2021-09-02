@@ -45,7 +45,7 @@ class RigidShape {
         let rSum = this.mBoundRadius + otherShape.mBoundRadius;
         let dist = vec2.length(vFrom1to2);
         if (dist > rSum) {
-            //not overlapping
+            // not overlapping
             return false;
         }
         return true;

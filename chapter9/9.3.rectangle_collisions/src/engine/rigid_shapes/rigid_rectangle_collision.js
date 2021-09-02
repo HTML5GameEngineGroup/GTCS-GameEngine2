@@ -46,19 +46,19 @@ RigidRectangle.prototype.collisionTest = function (otherShape, collisionInfo) {
  * @param {type} ptOnEdge
  */
 RigidRectangle.prototype.findSupportPoint = function (dir, ptOnEdge) {
-    //the longest project length
+    // the longest project length
     let vToEdge = [0, 0];
     let projection;
 
     mTmpSupport.mSupportPointDist = -Number.MAX_VALUE;
     mTmpSupport.mSupportPoint = null;
-    //check each vector of other object
+    // check each vector of other object
     for (let i = 0; i < this.mVertex.length; i++) {
         vec2.subtract(vToEdge, this.mVertex[i], ptOnEdge);
         projection = vec2.dot(vToEdge, dir);
         
-        //find the longest distance with certain edge
-        //dir is -n direction, so the distance should be positive       
+        // find the longest distance with certain edge
+        // dir is -n direction, so the distance should be positive       
         if ((projection > 0) && (projection > mTmpSupport.mSupportPointDist)) {
             mTmpSupport.mSupportPoint = this.mVertex[i];
             mTmpSupport.mSupportPointDist = projection;
@@ -130,14 +130,14 @@ RigidRectangle.prototype.collideRectRect = function (r1, r2, collisionInfo) {
     let status1 = false;
     let status2 = false;
 
-    //find Axis of Separation for both rectangle
+    // find Axis of Separation for both rectangle
     status1 = r1.findAxisLeastPenetration(r2, mCollisionInfoR1);
 
     if (status1) {
         status2 = r2.findAxisLeastPenetration(r1, mCollisionInfoR2);
         if (status2) {
             let depthVec = [0, 0];
-            //if both of rectangles are overlapping, choose the shorter normal as the normal       
+            // if both of rectangles are overlapping, choose the shorter normal as the normal       
             if (mCollisionInfoR1.getDepth() < mCollisionInfoR2.getDepth()) {
                 vec2.scale(depthVec, mCollisionInfoR1.getNormal(), mCollisionInfoR1.getDepth());
                 let pos = [0, 0];

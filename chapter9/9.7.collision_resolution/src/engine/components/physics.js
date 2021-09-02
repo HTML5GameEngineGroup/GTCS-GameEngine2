@@ -60,7 +60,7 @@ function resolveCollision(b, a, collisionInfo) {
     // Step B: Determine relative velocity in normal direction
     let rVelocityInNormal = vec2.dot(relativeVelocity, n);
 
-    //if objects moving apart ignore
+    // if objects moving apart ignore
     if (rVelocityInNormal > 0) {
         return;
     }

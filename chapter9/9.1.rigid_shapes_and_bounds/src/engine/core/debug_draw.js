@@ -52,12 +52,12 @@ function drawCircle(camera, pos, radius, color) {
 
 function drawCrossMarker(camera, p, size, color) {
     mLine.setColor(color);
-    mLine.setFirstVertex(p[0] - size, p[1] + size);  //TOP LEFT
-    mLine.setSecondVertex(p[0] + size, p[1] - size); //BOTTOM RIGHT
+    mLine.setFirstVertex(p[0] - size, p[1] + size); // TOP LEFT
+    mLine.setSecondVertex(p[0] + size, p[1] - size);// BOTTOM RIGHT
     mLine.draw(camera);
 
-    mLine.setFirstVertex(p[0] + size, p[1] + size);  //TOP RIGHT
-    mLine.setSecondVertex(p[0] - size, p[1] - size); //BOTTOM LEFT
+    mLine.setFirstVertex(p[0] + size, p[1] + size); // TOP RIGHT
+    mLine.setSecondVertex(p[0] - size, p[1] - size);// BOTTOM LEFT
     mLine.draw(camera);
 }
 
