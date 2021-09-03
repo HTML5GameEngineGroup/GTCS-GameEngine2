@@ -143,7 +143,7 @@ void main(void)  {
     // 
     vec3 N = normalize(normalMap.xyz);
    
-    vec4 shadedResult = uMaterial.Ka * uGlobalAmbientColor * uGlobalAmbientIntensity;
+    vec4 shadedResult = uGlobalAmbientIntensity * uGlobalAmbientColor * uMaterial.Ka;
 
     // now decide if we should illuminate by the light
     if (textureMapColor.a > 0.0) {
