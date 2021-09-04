@@ -39,10 +39,10 @@ MyGame.prototype._materialControl = function () {
     // shinningess
     let mat = this.mSlectedCh.getRenderable().getMaterial();
     if (engine.input.isKeyPressed(engine.input.keys.O)) {
-        mat.setShininess(mat.getShininess() + delta);
+        mat.setShininess(mat.getShininess() + 10*delta);
     }
     if (engine.input.isKeyPressed(engine.input.keys.P)) {
-        mat.setShininess(mat.getShininess() - delta);
+        mat.setShininess(mat.getShininess() - 10*delta);
     }
 
     msg += "n(" + mat.getShininess().toPrecision(2) + ")" +
