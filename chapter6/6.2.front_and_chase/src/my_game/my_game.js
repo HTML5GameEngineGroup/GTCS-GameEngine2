@@ -88,8 +88,8 @@ class MyGame extends engine.Scene {
                 this.mBrain.update();  // player steers with arrow keys
                 break;
             case 'K':
-                rate = 0.02;    // graduate rate
-                // When "K" is typed, the following should also be executed.
+                rate = 0.02;    // gradual rate
+                // After "K" is typed (in gradual mode), the following should also be executed.
             case 'J':
                 this.mBrain.rotateObjPointTo(this.mHero.getXform().getPosition(), rate);
                 engine.GameObject.prototype.update.call(this.mBrain);  // the default GameObject: only move forward

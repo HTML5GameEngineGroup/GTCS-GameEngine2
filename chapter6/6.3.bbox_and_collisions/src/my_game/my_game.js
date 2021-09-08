@@ -91,7 +91,7 @@ class MyGame extends engine.Scene {
                 this.mBrain.update();  // player steers with arrow keys
                 break;
             case 'K':
-                rate = 0.02;    // graduate rate
+                rate = 0.02;    // gradual rate
             // no break here on purpose
             case 'J':
                 if (!hBbox.intersectsBound(bBbox)) {  // stop the brain when it touches hero bound
