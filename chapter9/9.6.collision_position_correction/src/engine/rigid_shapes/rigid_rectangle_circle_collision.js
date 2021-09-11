@@ -16,7 +16,7 @@ import RigidRectangle from "./rigid_rectangle_collision.js";
  * @param {CollisionInfo} info Used to store the collision info
  * @returns {Boolean} If there is collision between the 2 shapes
  */
-RigidRectangle.prototype.checkCircRecVertex = function(v1, cirCenter, r, info) {
+RigidRectangle.prototype.checkCircRectVertex = function(v1, cirCenter, r, info) {
     // the center of circle is in corner region of mVertex[nearestEdge]
     let dist = vec2.length(v1);
     // compare the distance with radius to decide collision
@@ -83,7 +83,7 @@ RigidRectangle.prototype.collideRectCirc = function (otherCir, collisionInfo) {
 
     if (dot < 0) {
         // Step C1: In Region RG1
-        return this.checkCircRecVertex(v1, cirCenter, otherCir.mRadius, collisionInfo);
+        return this.checkCircRectVertex(v1, cirCenter, otherCir.mRadius, collisionInfo);
     } else {
         // Either in Region RG2 or RG3
         
@@ -94,7 +94,7 @@ RigidRectangle.prototype.collideRectCirc = function (otherCir, collisionInfo) {
         dot = vec2.dot(v1, v2); 
         if (dot < 0) {
             // Step C2: In Region RG2
-            return this.checkCircRecVertex(v1, cirCenter, otherCir.mRadius, collisionInfo);
+            return this.checkCircRectVertex(v1, cirCenter, otherCir.mRadius, collisionInfo);
         } else {
             // Step C3: In Region RG3 
             if (bestDistance < otherCir.mRadius) {
