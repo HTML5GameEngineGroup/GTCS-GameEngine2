@@ -1,1 +1,2 @@
-All screen shots and relevant drawings should be stored here. Using the Figure-number as the file name. E.g., Figure1-1.jpg, etc.
+Figures are stored according to folder name that corresponds to chapters.
+src folder is the ppt file that created the figures.
