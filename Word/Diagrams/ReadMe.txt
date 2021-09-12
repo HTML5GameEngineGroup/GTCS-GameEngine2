@@ -1,1 +1,0 @@
-All screen shots and relevant drawings should be stored here. Using the Figure-number as the file name. E.g., Figure1-1.jpg, etc.
