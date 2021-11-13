@@ -3,6 +3,8 @@
  *  
  * interfaces with HTML5 to to receive keyboard events
  * 
+ * For a complete list of key codes, see
+ * https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
  */
 "use strict";
 
