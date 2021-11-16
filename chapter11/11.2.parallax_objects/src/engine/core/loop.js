@@ -43,7 +43,7 @@ function loopOnce() {
         mLagTime += elapsedTime;
 
         // Step D: Make sure we update the game the appropriate number of times.
-        //      Update only every Milliseconds per frame.
+        //      Update only every kMPF (1/60 of a second)
         //      If lag larger then update frames, update until caught up.
         while ((mLagTime >= kMPF) && mLoopRunning) {
             input.update();
