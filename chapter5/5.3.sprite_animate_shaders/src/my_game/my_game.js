@@ -74,7 +74,7 @@ class MyGame extends engine.Scene {
         this.mRightMinion.getXform().setPosition(26, 56.5);
         this.mRightMinion.getXform().setSize(4, 3.2);
         this.mRightMinion.setSpriteSequence(512, 0,     // first element pixel position: top-left 512 is top of image, 0 is left of image
-            204, 164,       // widthxheight in pixels
+            204, 164,       // width x height in pixels
             5,              // number of elements in this sequence
             0);             // horizontal padding in between
         this.mRightMinion.setAnimationType(engine.eAnimationType.eRight);
@@ -87,7 +87,7 @@ class MyGame extends engine.Scene {
         this.mLeftMinion.getXform().setPosition(15, 56.5);
         this.mLeftMinion.getXform().setSize(4, 3.2);
         this.mLeftMinion.setSpriteSequence(348, 0,      // first element pixel position: top-left 164 from 512 is top of image, 0 is left of image
-            204, 164,       // widthxheight in pixels
+            204, 164,       // width x height in pixels
             5,              // number of elements in this sequence
             0);             // horizontal padding in between
         this.mLeftMinion.setAnimationType(engine.eAnimationType.eRight);

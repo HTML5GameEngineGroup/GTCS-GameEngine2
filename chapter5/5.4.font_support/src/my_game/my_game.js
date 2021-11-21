@@ -89,7 +89,7 @@ class MyGame extends engine.Scene {
         this.mMinion.getXform().setPosition(15, 25);
         this.mMinion.getXform().setSize(24, 19.2);
         this.mMinion.setSpriteSequence(512, 0,     // first element pixel position: top-left 512 is top of image, 0 is left of image
-            204, 164,    // widthxheight in pixels
+            204, 164,    // width x height in pixels
             5,          // number of elements in this sequence
             0);         // horizontal padding in between
         this.mMinion.setAnimationType(engine.eAnimationType.eSwing);
