@@ -23,7 +23,7 @@ class ShadowCasterShader extends SpriteShader {
 
     // Overriding the activation of the shader for rendering
     activate(pixelColor, trsMatrix, cameraMatrix) {
-        // first call the super class's activate
+        // first call the super class' activate
         super.activate(pixelColor, trsMatrix, cameraMatrix);
         this.mShaderLight.loadToShader(this.mCamera, this.mLight);
     }

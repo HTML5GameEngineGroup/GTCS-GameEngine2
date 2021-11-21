@@ -24,7 +24,7 @@ class LineShader extends SimpleShader {
 
     // Activate the shader for rendering
     activate(pixelColor, trsMatrix, cameraMatrix) {
-        // first call the super class's activate
+        // first call the super class' activate
         super.activate(pixelColor, trsMatrix, cameraMatrix);
 
         // now our own functionality: load the line pont size

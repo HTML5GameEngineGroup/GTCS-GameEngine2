@@ -45,7 +45,7 @@ class SpriteShader extends TextureShader {
     cleanUp() {
         let gl = glSys.get();
         gl.deleteBuffer(this.mTexCoordBuffer);
-        // now call super class's clean up ...
+        // now call super class' clean up ...
         super.cleanUp();
     }
 
