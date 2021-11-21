@@ -38,11 +38,6 @@ class MyGame extends engine.Scene {
         // Game loop not running, unload all assets
         engine.texture.unload(this.kPortal);
         engine.texture.unload(this.kCollector);
-
-        if (engine.texture.has(this.kCollector)) 
-            console.log("Yes, it is still there!");
-        else
-            console.log("NO, not there anymore!");
     }
 
     next() {
