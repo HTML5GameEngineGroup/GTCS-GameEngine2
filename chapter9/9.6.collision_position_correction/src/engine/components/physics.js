@@ -10,7 +10,7 @@ import CollisionInfo from "../rigid_shapes/collision_info.js";
 
 let mSystemAcceleration = [0, -20];        // system-wide default acceleration
 let mPosCorrectionRate = 0.8;               // percentage of separation to project objects
-let mRelaxationCount = 15;                  // number of relaxation iteration
+let mRelaxationCount = 15;                  // number of relaxation iterations
 
 let mCorrectPosition = true;
 let mHasMotion = true;
